@@ -1,0 +1,37 @@
+{
+  "Starter code": {
+    "prefix": "cpp",
+    "body": [
+      "#include<iostream>",
+      "#include<cstdlib>",
+      "",
+      "int main() {",
+      "\t$0",
+      "\treturn 0;",
+      "}"
+    ],
+    "description": "simple starter code"
+  },
+  "C++ Version": {
+    "prefix": "--v",
+    "body": [
+      "#include <iostream>",
+      "#include <typeinfo>",
+      "",
+      "int main() {",
+      "\tif (__cplusplus == 201703L)",
+      "\t\tstd::cout << \"C++17\";",
+      "\telse if (__cplusplus == 201402L)",
+      "\t\tstd::cout << \"C++14\";",
+      "\telse if (__cplusplus == 201103L)",
+      "\t\tstd::cout << \"C++11\";",
+      "\telse if (__cplusplus == 199711L)",
+      "\t\tstd::cout << \"C++98\";",
+      "\telse",
+      "\t\tstd::cout << \"pre-standard C++\";",
+      "}"
+    ],
+    "description": "check c++ version"
+  }
+}
+

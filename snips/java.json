@@ -1,0 +1,19 @@
+{
+  "Starter code with main": {
+    "prefix": "main",
+    "body": [
+      "public class $0 {",
+      "\tpublic static main (String args[]) {",
+      "\t\t",
+      "\t}",
+      "}"
+    ],
+    "description": "Starting code with main function"
+  },
+
+  "Starter code without main": {
+    "prefix": "java",
+    "body": ["public class $0 {", "\t", "}"],
+    "description": "starting code without main function"
+  }
+}
