@@ -1,10 +1,12 @@
-A collection of useful snippets for various languages.
+A collection of useful stuff for various languages.
 
+## Snippets
 
 Current list of languages: Java, C, C++, Python, HTML, JavaScript
+Includes things such as boilerplate code or useful functions
 
+## Batch Files
+List of batch files used to automate lengthy commands
 
-Lightweight snippets are the bare bones starter code for the languages, while heavyweight snippets include a lot more shortcut for many different tasks.
-
-
-In Visual Studio Code, go to preferences->settings->configure user snippets, and copy and paste the snippets you want to use into the document for the appropriate language.
+## dotfiles
+List of configs and other files
