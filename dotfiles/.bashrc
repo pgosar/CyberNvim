@@ -5,7 +5,7 @@ export DISPLAY=:1;
 
 ~/.extra/z.sh
 
-alias batch="cmd.exe /c batch.bat"
+alias batch="wine cmd /c batch.bat"
 alias ls="ls --color=auto"
 alias sl="ls"
 alias rm="rm -i"
