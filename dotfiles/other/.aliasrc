@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# random 
+alias \
+update="sudo apt update -y && sudo apt upgrade -y" \
+ls="ls -F --color=auto --group-directories-first" \
+sl="ls -F --color=auto --group-directories-first" \
+lsa="ls -a" \
+grep="grep --color=auto" \
+dora="explorer.exe ." \
+sbash=". ~/.bashrc ; echo \"bash restarted\"" \
+
+# verbosity and prompting
+alias \
+  mkdir="mkdir -pv" \
+  rm="rm -iv" \
+	cp="cp -iv" \
+	mv="mv -iv"
+
+# packages
+alias \
+hh="hstr" \
+yt="youtube-dl --add-metadata -ic"
+

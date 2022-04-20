@@ -1,0 +1,2 @@
+$PLUGIN/hstr.sh
+$PLUGIN/z.sh
