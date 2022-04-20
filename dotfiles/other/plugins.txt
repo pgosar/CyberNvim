@@ -1,2 +1,3 @@
-$PLUGIN/hstr.sh
+$PLUGIN/has.sh
 $PLUGIN/z.sh
+$PLUGIN/gitprompt.sh
