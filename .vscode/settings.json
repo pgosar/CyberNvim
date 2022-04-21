@@ -1,0 +1,59 @@
+{
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "files.exclude": {
+    "**/.classpath": true,
+    "**/.project": true,
+    "**/.settings": true,
+    "**/.factorypath": true
+  },
+  "terminal.integrated.defaultProfile.linux": "bash",
+  "terminal.integrated.defaultProfile.windows": "Ubuntu (WSL)",
+  "editor.wordWrap": "wordWrapColumn",
+  "editor.bracketPairColorization.enabled": true,
+  "editor.formatOnPaste": true,
+  "editor.formatOnType": true,
+  "editor.tabSize": 2,
+  "python.formatting.provider": "black",
+  "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Google, ColumnLimit: 80, PointerAlignment: Left}",
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[java]": {
+    "editor.defaultFormatter": "redhat.java"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.rulers": [
+      120
+    ]
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "java.format.enabled": false,
+  "css.lint.unknownAtRules": "ignore",
+  "remote.SSH.remotePlatform": {
+    "cancer.cs.utexas.edu": "linux"
+  },
+  "cmake.configureOnOpen": true,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "editor.formatOnSave": true,
+  "prettier.jsxBracketSameLine": true,
+  "liveServer.settings.donotShowInfoMsg": true,
+  "liveServer.settings.wait": 10,
+  "workbench.colorTheme": "Gruvbox Dark Medium",
+  "editor.matchBrackets": "always",
+  "indentRainbow.indicatorStyle": "light",
+  "tabnine.experimentalAutoImports": true,
+  "security.workspace.trust.untrustedFiles": "open",
+  "editor.linkedEditing": true,
+  "codesnap.realLineNumbers": true,
+  "codesnap.showWindowControls": false,
+  "codesnap.showWindowTitle": true,
+  "codesnap.shutterAction": "copy",
+  "codesnap.target": "window"
+}

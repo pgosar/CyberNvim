@@ -9,6 +9,7 @@ lsa="ls -a" \
 grep="grep --color=auto" \
 dora="explorer.exe ." \
 sbash=". ~/.bashrc ; echo \"bash restarted\"" \
+gst="git status"
 
 # verbosity and prompting
 alias \

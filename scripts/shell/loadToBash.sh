@@ -6,7 +6,7 @@ fi
 
 # disable command not found message when loading in plugins
 command_not_found_handle() {
-    echo "I don't know what '$1' is." > /dev/null
+    echo "easter egg!." > /dev/null
     return 127;
 }
 
@@ -15,15 +15,15 @@ in=${1:-$HOME/output.txt}
 # expand variables to full filepath into new txt
 envsubst < $DOTFILES/other/plugins.txt > $in
 [ ! -f "$in" ] && { echo "$0 - File $in not found.";}
-while read file ;
+while read file ; 
 do
-  # run the file on each line of txt and load it in
+  # run the file on each line of txt and load it in   
   source "$file"
-    if [ -f "$file" ]; then
-      source "$file" &> /dev/null
-    else 
-      echo "${file##*/} not loaded"
-    fi
+  if [ -f "$file" ]; then
+    source "$file" &> /dev/null
+  else 
+    echo "${file##*/} not loaded"
+  fi
 done < "${in}"
 # delete created txt file
 rm -f $in > /dev/null
