@@ -3,6 +3,11 @@ aliaspath=$DOTFILES/other/.aliasrc
 if [ -f "$aliaspath" ]; then
     source "$aliaspath"
 fi
+# load in extra commands
+commandpath=$DOTFILES/other/.commandsrc
+if [ -f "$commandpath" ]; then
+    source "$commandpath"
+fi
 
 # disable command not found message when loading in plugins
 command_not_found_handle() {

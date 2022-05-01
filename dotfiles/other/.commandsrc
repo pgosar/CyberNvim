@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Runs batch file put as parameter
+batch () {
+  cmd.exe /c $1
+}
+
+gadd () {
+  git add $1 && git status
+}
+
+# simulates typing
+simulatetyping () {
+  echo "$1" | pv -qL 12
+}

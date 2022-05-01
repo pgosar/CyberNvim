@@ -8,8 +8,11 @@ sl="ls -F --color=auto --group-directories-first" \
 lsa="ls -a" \
 grep="grep --color=auto" \
 dora="explorer.exe ." \
-sbash=". ~/.bashrc ; echo \"bash restarted\"" \
+sbash=". ~/.bashrc; echo \"bash restarted\"" \
+gcom="git commit -a" \
+mostused=$'history | awk \'{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}\' | grep -v "./" | column -c3 -s " " -t | sort -nr | nl |  head -n20'
 gst="git status"
+
 
 # verbosity and prompting
 alias \
@@ -22,4 +25,3 @@ alias \
 alias \
 hh="hstr" \
 yt="youtube-dl --add-metadata -ic"
-
