@@ -5,8 +5,10 @@ A collection of useful stuff for various languages.
 Current list of languages: Java, C, C++, Python, HTML, JavaScript
 Includes things such as boilerplate code or useful functions
 
-## Batch Files
-List of batch files used to automate lengthy commands
+## Scripts
+
+List of scripts for various projects and config files
 
 ## dotfiles
-List of configs and other files
+
+My shell configs and relevant scripts to load packages, aliases and other stuff

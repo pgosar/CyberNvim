@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # random 
 alias \
 update="sudo apt update -y && sudo apt upgrade -y" \
@@ -10,14 +8,13 @@ grep="grep --color=auto" \
 dora="explorer.exe ." \
 sbash=". ~/.bashrc; echo \"bash restarted\"" \
 gcom="git commit -a" \
-# most used commands
 mostused=$'history | awk \'{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}\' | grep -v "./" | column -c3 -s " " -t | sort -nr | nl |  head -n20' \
 gst="git status"
 
 
 # verbosity and prompting
 alias \
-  mkdir="mkdir -pv" \
+  mkdir="mkdir -pv" \s
   rm="rm -iv" \
 	cp="cp -iv" \
 	mv="mv -iv"

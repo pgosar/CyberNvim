@@ -1,5 +1,3 @@
-#!/bin/bash
-
 # Runs batch file put as parameter
 batch () {
   cmd.exe /c $1
@@ -10,7 +8,7 @@ gadd () {
 }
 
 # simulates typing
-simulatetyping () {
+typesim () {
   echo "$1" | pv -qL 12
 }
 

@@ -31,7 +31,6 @@ shopt -s dirspell 2> /dev/null
 # Correct spelling errors in arguments supplied to cd
 shopt -s cdspell 2> /dev/null
 
-
 # syncs wsl system clock with windows.
 # special permission was given in /etc/sudoers.d
 # to execute without a password for sudo for this 
