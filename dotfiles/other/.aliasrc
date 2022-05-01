@@ -4,17 +4,16 @@ update="sudo apt update -y && sudo apt upgrade -y" \
 ls="ls -F --color=auto --group-directories-first" \
 sl="ls -F --color=auto --group-directories-first" \
 lsa="ls -a" \
+cds="cd; ls" \
 grep="grep --color=auto" \
 dora="explorer.exe ." \
-sbash=". ~/.bashrc; echo \"bash restarted\"" \
+sbash="source ~/.bashrc; echo \"bash restarted\"" \
 gcom="git commit -a" \
-mostused=$'history | awk \'{CMD[$2]++;count++;}END { for (a in CMD)print CMD[a] " " CMD[a]/count*100 "% " a;}\' | grep -v "./" | column -c3 -s " " -t | sort -nr | nl |  head -n20' \
 gst="git status"
-
 
 # verbosity and prompting
 alias \
-  mkdir="mkdir -pv" \s
+  mkdir="mkdir -pv" \
   rm="rm -iv" \
 	cp="cp -iv" \
 	mv="mv -iv"
