@@ -7,9 +7,16 @@ lsa="ls -a" \
 cds="cd; ls" \
 grep="grep --color=auto" \
 dora="explorer.exe ." \
-sbash="source ~/.bashrc; echo \"bash restarted\"" \
+sbash="source ~/.bashrc; echo \"bash restarted\""
+
+# git stuff
+alias \
 gcom="git commit -a" \
-gst="git status"
+log="git log --graph --date=relative --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%an %ad)%Creset'" \
+gst="git status" \
+amend="git commit --amend --no-edit" \
+reword="git commit --amend" \
+uncommit="reset --soft HEAD~1"
 
 # verbosity and prompting
 alias \

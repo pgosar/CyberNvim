@@ -7,6 +7,11 @@ gadd () {
   git add $1 && git status
 }
 
+# untracks specified files from git add
+untrack () {
+  rm --cache $1
+}
+
 # simulates typing
 typesim () {
   echo "$1" | pv -qL 12
