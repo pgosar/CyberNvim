@@ -23,7 +23,7 @@ envsubst < $DOTFILES/other/plugins.txt > $in
 while read file ; 
 do
   # run the file on each line of txt and load it in   
-  source "$file"
+source "$file"
   if [ -f "$file" ]; then
     source "$file" &> /dev/null
   else 
