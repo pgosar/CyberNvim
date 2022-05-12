@@ -27,6 +27,11 @@ zl () {
   z "$1" && ls
 }
 
+# ls right after cd
+cl () {
+  cd "$@" && ls
+}
+
 # go up directories
 up (){ 
   DEEP=$1; 

@@ -1,13 +1,3 @@
-# load in aliases
-aliaspath=$DOTFILES/other/.aliasrc
-if [ -f "$aliaspath" ]; then
-    source "$aliaspath"
-fi
-# load in extra commands
-commandpath=$DOTFILES/other/.commandsrc
-if [ -f "$commandpath" ]; then
-    source "$commandpath"
-fi
 
 # disable command not found message when loading in plugins
 command_not_found_handle() {
@@ -32,6 +22,17 @@ source "$file"
 done < "${in}"
 # delete created txt file
 rm -f $in > /dev/null
+
+# load in aliases
+aliaspath=$DOTFILES/other/.aliasrc
+if [ -f "$aliaspath" ]; then
+    source "$aliaspath"
+fi
+# load in extra commands
+commandpath=$DOTFILES/other/.commandsrc
+if [ -f "$commandpath" ]; then
+    source "$commandpath"
+fi
 
 # reset command not found to its original (taken from ubuntu source code)
 command_not_found_handle () 

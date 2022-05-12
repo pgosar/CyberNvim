@@ -1,22 +1,20 @@
 # random 
 alias \
-update="sudo apt update -y && sudo apt upgrade -y" \
-ls="ls -F --color=auto --group-directories-first" \
-sl="ls -F --color=auto --group-directories-first" \
-lsa="ls -a" \
-cds="cd; ls" \
-grep="grep --color=auto" \
-dora="explorer.exe ." \
-sbash="source ~/.bashrc; echo \"bash restarted\""
+  update="sudo apt update -y && sudo apt upgrade -y" \
+  ls="ls -F --color=auto --group-directories-first" \
+  sl="ls -F --color=auto --group-directories-first" \
+  lsa="ls -a" \
+  grep="grep --color=auto" \
+  dora="explorer.exe ." 
 
 # git stuff
 alias \
-gcom="git commit -a" \
-log="git log --graph --date=relative --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%an %ad)%Creset'" \
-gst="git status" \
-amend="git commit --amend --no-edit" \
-reword="git commit --amend" \
-uncommit="reset --soft HEAD~1"
+  gcom="git commit -a" \
+  log="git log --graph --date=relative --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%an %ad)%Creset'" \
+  gst="git status" \
+  amend="git commit --amend --no-edit" \
+  reword="git commit --amend" \
+  uncommit="reset --soft HEAD~1"
 
 # verbosity and prompting
 alias \
@@ -24,6 +22,14 @@ alias \
   rm="rm -iv" \
 	cp="cp -iv" \
 	mv="mv -iv"
+
+# zsh specific
+alias \
+  szsh="source ~/.zshrc; echo \"zsh restarted\""
+
+# bash specific
+alias \
+  sbash="source ~/.bashrc; echo \"bash restarted\""
 
 # packages
 alias \

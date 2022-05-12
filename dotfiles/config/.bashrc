@@ -1,13 +1,13 @@
 #!/bin/bash
 
-export PATH="$PATH:$HOME/code/useful-things/scripts/shell"
+export PATH="$PATH:$HOME/code/useful-things/scripts/shell:$HOME/code/useful-things/scripts/python"
 export PLUGIN="$HOME/.extra"
 export DOTFILES="$HOME/code/useful-things/dotfiles"
 export SHELL="$HOME/code/useful-things/scripts/shell"
 # green prompt
 PS1='\[\e[1;32m\][\u@\h \w]\$\[\e[0m\]'
 # cuts directories shown in path to 3 
-PROMPT_DIRTRIM=3
+PROMPT_DIRTRIM=4
 # disable ctrl-s ctrl-q
 stty -ixon
 # cd into directory by just typing name
@@ -41,7 +41,7 @@ sudo hwclock -s
 # full list of bash specifics are in plugins.txt
 # other notables mentions: hstr
 if [ -e "$SHELL/loadToBash.sh" ]; then
-    source loadToBash.sh 
+    source loadToBash.sh > /dev/null 2>&1
 fi
 
 # set configs for bash git prompt
