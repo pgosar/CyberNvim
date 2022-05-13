@@ -5,6 +5,10 @@ alias \
   sl="ls -F --color=auto --group-directories-first" \
   lsa="ls -a" \
   grep="grep --color=auto" \
+  ccat="pygmentize -g" \
+  batch="cmd.exe /c" \
+  py="python3" \
+  v="vim" \
   dora="explorer.exe ." 
 
 # git stuff
@@ -14,6 +18,7 @@ alias \
   gst="git status" \
   amend="git commit --amend --no-edit" \
   reword="git commit --amend" \
+  untrack="rm --cache" \
   uncommit="reset --soft HEAD~1"
 
 # verbosity and prompting

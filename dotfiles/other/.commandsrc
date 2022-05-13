@@ -1,15 +1,5 @@
-# Runs batch file put as parameter
-batch () {
-  cmd.exe /c $1
-}
-
 gadd () {
   git add $1 && git status
-}
-
-# untracks specified files from git add
-untrack () {
-  rm --cache $1
 }
 
 # simulates typing
@@ -31,6 +21,8 @@ zl () {
 cl () {
   cd "$@" && ls
 }
+
+# colored cat output
 
 # go up directories
 up (){ 
