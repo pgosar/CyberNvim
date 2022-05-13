@@ -6,9 +6,10 @@ command_not_found_handle() {
 }
 
 # load in plugins
+loadpath=$DOTFILES/other/
 in=${1:-$HOME/output.txt}
 # expand variables to full filepath into new txt
-envsubst < $DOTFILES/other/plugins.txt > $in
+envsubst < $loadpath/plugins.txt > $in
 [ ! -f "$in" ] && { echo "$0 - File $in not found.";}
 while read file ; 
 do
@@ -24,14 +25,12 @@ done < "${in}"
 rm -f $in > /dev/null
 
 # load in aliases
-aliaspath=$DOTFILES/other/.aliasrc
-if [ -f "$aliaspath" ]; then
-    source "$aliaspath"
+if [ -f $loadpath/.aliasrc ]; then
+    source $loadpath/.aliasrc
 fi
 # load in extra commands
-commandpath=$DOTFILES/other/.commandsrc
-if [ -f "$commandpath" ]; then
-    source "$commandpath"
+if [ -f $loadpath/.commandsrc ]; then
+    source $loadpath/.commandsrc
 fi
 
 # reset command not found to its original (taken from ubuntu source code)

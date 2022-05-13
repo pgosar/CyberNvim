@@ -4,6 +4,8 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 export ZSH="$HOME/.oh-my-zsh"
+export DOTFILES="$HOME/code/useful-things/dotfiles"
+
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # update reminders
@@ -16,10 +18,14 @@ ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 # stops git status from checking untracked files
 DISABLE_UNTRACKED_FILES_DIRTY="true"
+
 # load in plugins
-plugins=(git)
+plugins=(
+  git
+  )
 
 source $ZSH/oh-my-zsh.sh
+# remove preset aliases
 unalias -a
 
 # load in aliases
@@ -33,5 +39,6 @@ if [ -f "$commandpath" ]; then
     source "$commandpath"
 fi
 
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+customization=$DOTFILES/other
+[[ ! -f $customization/.p10k.zsh ]] || source $customization/.p10k.zsh
