@@ -9,7 +9,6 @@ alias \
   batch="cmd.exe /c" \
   py="python3" \
   v="vim" \
-  ${ZSHZ_CMD:-${_Z_CMD:-z}}='zshz 2>&1' \
   dora="explorer.exe ." 
 
 # git stuff
@@ -39,5 +38,6 @@ alias \
 
 # packages
 alias \
+${ZSHZ_CMD:-${_Z_CMD:-z}}='zshz 2>&1' \
 hh="hstr" \
 yt="youtube-dl --add-metadata -ic"
