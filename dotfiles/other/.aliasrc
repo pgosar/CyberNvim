@@ -9,6 +9,7 @@ alias \
   batch="cmd.exe /c" \
   py="python3" \
   v="vim" \
+  ${ZSHZ_CMD:-${_Z_CMD:-z}}='zshz 2>&1' \
   dora="explorer.exe ." 
 
 # git stuff
@@ -30,11 +31,11 @@ alias \
 
 # zsh specific
 alias \
-  szsh="source ~/.zshrc; echo \"zsh restarted\""
+  szsh="source ~/.zshrc"
 
 # bash specific
 alias \
-  sbash="source ~/.bashrc; echo \"bash restarted\""
+  sbash="source ~/.bashrc"
 
 # packages
 alias \
