@@ -1,40 +1,40 @@
-# random 
+# random
 alias \
-  update="sudo apt update -y && sudo apt upgrade -y" \
-  ls="ls -F --color=auto --group-directories-first" \
-  sl="ls -F --color=auto --group-directories-first" \
-  lsa="ls -a" \
-  grep="grep --color=auto" \
-  ccat="pygmentize -g" \
-  batch="cmd.exe /c" \
-  py="python3" \
-  v="vim" \
-  dora="explorer.exe ." 
+update="sudo apt update -y && sudo apt upgrade -y" \
+ls="ls -F --color=auto --group-directories-first" \
+sl="ls -F --color=auto --group-directories-first" \
+lsa="ls -a" \
+grep="grep --color=auto" \
+ccat="pygmentize -g" \
+batch="cmd.exe /c" \
+py="python3" \
+v="vim" \
+dora="explorer.exe ."
 
 # git stuff
 alias \
-  gcom="git commit -a" \
-  log="git log --graph --date=relative --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%an %ad)%Creset'" \
-  gst="git status" \
-  amend="git commit --amend --no-edit" \
-  reword="git commit --amend" \
-  untrack="rm --cache" \
-  uncommit="reset --soft HEAD~1"
+gcom="git commit -a" \
+log="git log --graph --date=relative --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%an %ad)%Creset'" \
+gst="git status" \
+amend="git commit --amend --no-edit" \
+reword="git commit --amend" \
+untrack="rm --cache" \
+uncommit="reset --soft HEAD~1"
 
 # verbosity and prompting
 alias \
-  mkdir="mkdir -pv" \
-  rm="rm -iv" \
-	cp="cp -iv" \
-	mv="mv -iv"
+mkdir="mkdir -pv" \
+rm="rm -iv" \
+cp="cp -iv" \
+mv="mv -iv"
 
 # zsh specific
 alias \
-  szsh="source ~/.zshrc"
+szsh="source ~/.zshrc"
 
 # bash specific
 alias \
-  sbash="source ~/.bashrc"
+sbash="source ~/.bashrc"
 
 # packages
 alias \

@@ -34,7 +34,7 @@ up (){
 imagePDF () {
   for i in `find . -type d`
     do
-      convert "${i}/*jpg" "${i}/*png" ${i}.pdf
+      convert "${i}/*jpg" "${i}/*png" ${i}.pdf > /dev/null 2>&1
   done
 }
 
