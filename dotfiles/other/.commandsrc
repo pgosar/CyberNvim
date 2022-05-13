@@ -22,8 +22,6 @@ cl () {
   cd "$@" && ls
 }
 
-# colored cat output
-
 # go up directories
 up (){ 
   DEEP=$1; 

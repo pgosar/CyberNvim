@@ -14,13 +14,20 @@ zstyle ':omz:update' mode reminder
 # stops them from being annoying
 DISABLE_MAGIC_FUNCTIONS="true"
 # dots when function is auto completing
-COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true" 
 # stops git status from checking untracked files
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 # sets color style
 ZSH_COLORIZE_STYLE="colorful"
 # disables autocorrect completely
 unsetopt correct
+# history
+HISTSIZE=10000
+SAVEHIST=10000
+# edit command in vim
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '^k' edit-command-line
 
 # load in plugins
 plugins=(
@@ -31,15 +38,15 @@ plugins=(
   bgnotify
   history-substring-search
   last-working-dir
-  pip
   safe-paste
-  rust
   vi-mode
   zsh-interactive-cd
-  z
+  zsh-syntax-highlighting
+  zsh-has
+  zsh-z
   )
-
-source $ZSH/oh-my-zsh.sh
+# load oh my zsh
+source $ZSH/oh-my-zsh.sh > /dev/null 2>&1
 # remove preset aliases
 unalias -a
 # load in aliases
@@ -51,5 +58,5 @@ fi
 if [ -f $loadpath/.commandsrc ]; then
     source $loadpath/.commandsrc
 fi
-
+# load theme
 [[ ! -f $loadpath/.p10k.zsh ]] || source $loadpath/.p10k.zsh
