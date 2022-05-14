@@ -7,6 +7,7 @@ lsa="ls -a" \
 grep="grep --color=auto" \
 ccat="pygmentize -g" \
 batch="cmd.exe /c" \
+code="/mnt/c/Users/pgosa/AppData/Local/Programs/Microsoft\ VS\ Code/bin/code" \
 py="python3" \
 v="vim" \
 dora="explorer.exe ."
@@ -40,4 +41,6 @@ sbash="source ~/.bashrc"
 alias \
 ${ZSHZ_CMD:-${_Z_CMD:-z}}='zshz 2>&1' \
 hh="hstr" \
-yt="youtube-dl --add-metadata -ic"
+yt="youtube-dl --add-metadata -ic" \
+alias fd="fdfind" \
+alias bat="batcat"

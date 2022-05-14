@@ -9,6 +9,7 @@ alias batch="cmd.exe /c"
 alias py="python3"
 alias v="vim"
 alias dora="explorer.exe ."
+alias code="/mnt/c/Users/pgosa/AppData/Local/Programs/Microsoft\ VS\ Code/bin/code"
 
 # git stuff
 alias gcom="git commit -a"
@@ -28,3 +29,5 @@ alias mv="mv -iv"
 # packages
 alias hh="hstr"
 alias yt="youtube-dl --add-metadata -ic"
+alias fd="fdfind"
+alias bat="batcat"

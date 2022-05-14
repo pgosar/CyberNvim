@@ -45,8 +45,9 @@ plugins=(
   zsh-has
   zsh-z
   )
+  
 # load oh my zsh
-source $ZSH/oh-my-zsh.sh > /dev/null 2>&1
+source $ZSH/oh-my-zsh.sh 
 # remove preset aliases
 unalias -a
 # load in aliases
