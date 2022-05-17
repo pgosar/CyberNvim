@@ -44,10 +44,11 @@ plugins=(
   zsh-syntax-highlighting
   zsh-has
   zsh-z
+  zsh-autosuggestions
   )
-  
+
 # load oh my zsh
-source $ZSH/oh-my-zsh.sh 
+source $ZSH/oh-my-zsh.sh > /dev/null 2>&1
 # remove preset aliases
 unalias -a
 # load in aliases
@@ -61,3 +62,4 @@ if [ -f $loadpath/.commandsrc ]; then
 fi
 # load theme
 [[ ! -f $loadpath/.p10k.zsh ]] || source $loadpath/.p10k.zsh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

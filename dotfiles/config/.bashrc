@@ -47,3 +47,4 @@ fi
 # set configs for bash git prompt
 GIT_PROMPT_ONLY_IN_REPO=1
 GIT_PROMPT_SHOW_UNTRACKED_FILES=normal
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

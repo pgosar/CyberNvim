@@ -7,7 +7,7 @@ alias grep="grep --color=auto"
 alias ccat="pygmentize -g"
 alias batch="cmd.exe /c"
 alias py="python3"
-alias v="vim"
+alias v="nvim"
 alias dora="explorer.exe ."
 alias code="/mnt/c/Users/pgosa/AppData/Local/Programs/Microsoft\ VS\ Code/bin/code"
 
