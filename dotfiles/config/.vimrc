@@ -6,9 +6,9 @@ filetype plugin indent on
 " enable usage of mouse in all modes
 set mouse=a
 " line count
-set number
+set number relativenumber
 " makes symbols replace line number when necessarry
-set signcolumn=number
+set signcolumn=yes
 " length of time to wait before triggering plugins
 set updatetime=300
 " stops text wrap from breaking apart words
@@ -31,6 +31,12 @@ set breakindent
 set breakindentopt=shift:2,min:40,sbr
 " append '>>' to indent
 set showbreak=>>
+" splits new windows to the right and bottom instead
+set splitbelow splitright
+" autocompletion on commands
+set wildmenu
+set wildmode=longest:full,full
+" disable lsp for ale
 let g:ale_disable_lsp = 1
 " leader character to spacebar
 let mapleader=" "
@@ -96,19 +102,27 @@ set background=dark
 let g:gruvbox_number_column = 'bg1'
 autocmd vimenter * ++nested colorscheme gruvbox
 
-" ctrl l to open nerd tree, and ctrl n to close
+" Automatically deletes all trailing whitespace and newlines at end of file on save. & reset cursor position
+autocmd BufWritePre * let currPos = getpos(".")
+autocmd BufWritePre * %s/\s\+$//e
+autocmd BufWritePre * %s/\n\+\%$//e
+autocmd BufWritePre *.[ch] %s/\%$/\r/e
+autocmd BufWritePre * cal cursor(currPos[1], currPos[2])
+
+" ctrl  to open nerd tree, and ctrl n to close
 nnoremap <C-l> :NERDTreeMirror<CR>:NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTreeToggle<CR>
-" for save session 
-nnoremap <C-o> :OpenSession 
-nnoremap <C-s> :SaveSession 
+" for save session
+nnoremap <C-o> :OpenSession
+nnoremap <C-s> :SaveSession<CR>
 " remap esc in insert mode
 inoremap <C-k> <ESC>
 
-" Coc diagnostics
-nmap <silent> cd :CocDiagnostics<CR>
-nmap <silent> [g <Plug>(coc-diagnostic-prev)
-nmap <silent> ]g <Plug>(coc-diagnostic-next)
+" errors
+nmap <silent> cd :lopen<CR>
+nmap <silent> cl :lclose<CR>
+nmap <silent> [g :lnext<CR>
+nmap <silent> ]g :lprev<CR>
 
 " Coc navigation
 nmap <silent> gd <Plug>(coc-definition)
@@ -125,7 +139,17 @@ inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 tnoremap <Esc> <C-\><C-n>
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
-
+" toggle goyo
+nmap <silent> goyo :Goyo<CR>
+nmap <silent> !goyo :Goyo!<CR>
+" toggle limelight
+nmap <silent> lime :Limelight<CR>
+nmap <silent> !lime :Limelight!<CR>
+" now just ctrl+key to switch windows
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
 " WSL yank support
 let s:clip = '/mnt/c/Windows/System32/clip.exe'
 if executable(s:clip)

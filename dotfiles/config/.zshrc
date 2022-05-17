@@ -63,3 +63,5 @@ fi
 # load theme
 [[ ! -f $loadpath/.p10k.zsh ]] || source $loadpath/.p10k.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# binds auto complete key to ctrl space
+ bindkey '^ ' autosuggest-accept
