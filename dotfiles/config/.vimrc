@@ -1,13 +1,39 @@
+" gets rid of swapfiles
 set noswapfile
+" syntax highlighting
 syntax enable
 filetype plugin indent on
+" enable usage of mouse in all modes
 set mouse=a
+" line count
 set number
-set signcolumn=yes
+" makes symbols replace line number when necessarry
+set signcolumn=number
+" length of time to wait before triggering plugins
 set updatetime=300
-
-let g:ale_disable_lsp = 1
+" stops text wrap from breaking apart words
+set linebreak
+" column count for wrap
+set textwidth=80
+" sets title of window to current editing file
+set title
+" spell check
+set spell
+" disables compatibility with vi
+set nocompatible
+" makes all clipboard registers act the same
 set clipboard=unnamedplus
+" tab width to two
+set tabstop=8 softtabstop=0 expandtab shiftwidth=2 smarttab
+" Smart wrapping indentation
+set breakindent
+" keeps indent level on line break
+set breakindentopt=shift:2,min:40,sbr
+" append '>>' to indent
+set showbreak=>>
+let g:ale_disable_lsp = 1
+" leader character to spacebar
+let mapleader=" "
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'vim-airline/vim-airline'
@@ -29,10 +55,10 @@ Plug 'frazrepo/vim-rainbow'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'Raimondi/delimitMate'
 Plug 'mattn/emmet-vim'
+Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 call plug#end()
 
 " set tabs to 2 spaces
-set tabstop=8 softtabstop=0 expandtab shiftwidth=2 smarttab
 "shows number of errors on status bar
 function! LinterStatus() abort
     let l:counts = ale#statusline#Count(bufnr(''))
@@ -52,18 +78,9 @@ let g:rainbow_active = 1
 let g:session_autosave = 'no'
 " auto formats files on save
 let g:ale_fix_on_save = 1
-" disable code folding
-let g:vim_markdown_folding_disabled = 1
 
 " Format
 command! -nargs=0 Format :call CocAction('format')
-" Smart wrapping
-" enable indentation
-set breakindent
-" keeps indent level on line break
-set breakindentopt=shift:2,min:40,sbr
-" append '>>' to indent
-set showbreak=>>
 " highlight symbol
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
