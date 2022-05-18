@@ -14,7 +14,7 @@ zstyle ':omz:update' mode reminder
 # stops them from being annoying
 DISABLE_MAGIC_FUNCTIONS="true"
 # dots when function is auto completing
-COMPLETION_WAITING_DOTS="true" 
+COMPLETION_WAITING_DOTS="true"
 # stops git status from checking untracked files
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 # sets color style
@@ -46,7 +46,8 @@ plugins=(
   zsh-z
   zsh-autosuggestions
   )
-
+# resync clock on start
+sudo hwclock -s
 # load oh my zsh
 source $ZSH/oh-my-zsh.sh > /dev/null 2>&1
 # remove preset aliases
