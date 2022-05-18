@@ -1,0 +1,5 @@
+{
+"diagnostic.displayByAle": true,
+"diagnostic.refreshOnInsertMode": true,
+"diagnostic.checkCurrentLine": true
+}
