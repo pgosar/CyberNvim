@@ -4,7 +4,7 @@ export PATH="$PATH:$HOME/code/useful-things/scripts/shell:$HOME/code/useful-thin
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-
+export EDITOR='vim'
 export ZSH="$HOME/.oh-my-zsh"
 export DOTFILES="$HOME/code/useful-things/dotfiles"
 
