@@ -62,7 +62,6 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'Raimondi/delimitMate'
 Plug 'mattn/emmet-vim'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
-Plug 'christoomey/vim-tmux-navigator'
 call plug#end()
 
 " set tabs to 2 spaces

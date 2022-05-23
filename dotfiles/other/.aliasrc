@@ -44,3 +44,4 @@ hh="hstr" \
 yt="youtube-dl --add-metadata -ic" \
 alias fd="fdfind" \
 alias bat="batcat"
+alias mux="tmuxinator"
