@@ -1,10 +1,10 @@
 export PATH="$PATH:$HOME/code/useful-things/scripts/shell:$HOME/code/useful-things/scripts/python"
-
-# Enable Powerlevel10k instant prompt
+export DISPLAY=:0
+#Enable Powerlevel10k instant prompt
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-
+export EDITOR='vim'
 export ZSH="$HOME/.oh-my-zsh"
 export DOTFILES="$HOME/code/useful-things/dotfiles"
 
@@ -64,5 +64,9 @@ fi
 # load theme
 [[ ! -f $loadpath/.p10k.zsh ]] || source $loadpath/.p10k.zsh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# auto start tmux
+[ -x "$(command -v tmux)" ] \
+  && [ -z "${TMUX}" ] \
+  && { tmux attach || tmux; } >/dev/null 2>&1
 # binds auto complete key to ctrl space
  bindkey '^ ' autosuggest-accept

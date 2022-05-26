@@ -45,3 +45,5 @@ yt="youtube-dl --add-metadata -ic" \
 alias fd="fdfind" \
 alias bat="batcat"
 alias mux="tmuxinator"
+alias stmux="tmux && source "
+#> /dev/null 2>&1"

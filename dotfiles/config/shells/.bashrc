@@ -4,9 +4,10 @@ export PATH="$PATH:$HOME/code/useful-things/scripts/shell:$HOME/code/useful-thin
 export PLUGIN="$HOME/.extra"
 export DOTFILES="$HOME/code/useful-things/dotfiles"
 export SHELL="$HOME/code/useful-things/scripts/shell"
+export EDITOR='vim'
 # green prompt
 PS1='\[\e[1;32m\][\u@\h \w]\$\[\e[0m\]'
-# cuts directories shown in path to 3 
+# cuts directories shown in path to 3
 PROMPT_DIRTRIM=4
 # disable ctrl-s ctrl-q
 stty -ixon
@@ -33,7 +34,7 @@ shopt -s cdspell 2> /dev/null
 
 # syncs wsl system clock with windows.
 # special permission was given in /etc/sudoers.d
-# to execute without a password for sudo for this 
+# to execute without a password for sudo for this
 # command specifically
 sudo hwclock -s
 
@@ -48,3 +49,7 @@ fi
 GIT_PROMPT_ONLY_IN_REPO=1
 GIT_PROMPT_SHOW_UNTRACKED_FILES=normal
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+# auto load tmux
+[ -x "$(command -v tmux)" ] \
+  && [ -z "${TMUX}" ] \
+  && { tmux attach || tmux; } >/dev/null 2>&1
