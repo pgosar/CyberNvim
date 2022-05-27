@@ -47,7 +47,7 @@ plugins=(
   zsh-autosuggestions
   )
 # resync clock on start
-sudo hwclock -s
+sudo hwclock -s > /dev/null 2>&1
 # load oh my zsh
 source $ZSH/oh-my-zsh.sh > /dev/null 2>&1
 # remove preset aliases
