@@ -42,8 +42,7 @@ alias \
 ${ZSHZ_CMD:-${_Z_CMD:-z}}='zshz 2>&1' \
 hh="hstr" \
 yt="youtube-dl --add-metadata -ic" \
-alias fd="fdfind" \
-alias bat="batcat"
-alias mux="tmuxinator"
-alias stmux="tmux && source "
-#> /dev/null 2>&1"
+fd="fdfind" \
+bat="batcat" \
+mux="tmuxinator" \
+ling="github-linguist --breakdown"
