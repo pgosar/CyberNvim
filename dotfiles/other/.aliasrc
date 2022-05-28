@@ -19,8 +19,8 @@ log="git log --graph --date=relative --pretty=tformat:'%Cred%h%Creset -%C(auto)%
 gst="git status" \
 amend="git commit --amend --no-edit" \
 reword="git commit --amend" \
-untrack="rm --cache" \
-uncommit="reset --soft HEAD~1"
+untrack="git rm --cache" \
+uncommit="git reset --soft HEAD^"
 
 # verbosity and prompting
 alias \

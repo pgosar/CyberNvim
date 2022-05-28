@@ -19,8 +19,6 @@ set textwidth=80
 set title
 " spell check
 set spell
-" column at 80 chars
-set colorcolumn=80
 " disables compatibility with vi
 set nocompatible
 " makes all clipboard registers act the same
@@ -77,6 +75,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'tmux-plugins/vim-tmux'
 Plug 'airblade/vim-gitgutter'
 Plug 'lervag/vimtex'
+Plug 'ConradIrwin/vim-bracketed-paste'
 call plug#end()
 
 " set tabs to 2 spaces
@@ -116,7 +115,9 @@ endif
 set background=dark
 let g:gruvbox_number_column = 'bg1'
 autocmd vimenter * ++nested colorscheme gruvbox
-
+" column at 80 chars
+highlight ColorColumn ctermfg=67
+call matchadd('ColorColumn', '\%81v', 100)
 " Automatically deletes all trailing whitespace and newlines at end of file on save. & reset cursor position
 autocmd BufWritePre * let currPos = getpos(".")
 autocmd BufWritePre * %s/\s\+$//e
@@ -166,10 +167,9 @@ map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
 " WSL yank support
-let s:clip = '/mnt/c/Windows/System32/clip.exe'
-if executable(s:clip)
-    augroup WSLYank
-        autocmd!
-        autocmd TextYankPost * if v:event.operator ==# 'y' | call system(s:clip, @0) | endif
+if system('uname -r') =~ "microsoft"
+    augroup Yank
+    autocmd!
+    autocmd TextYankPost * :call system('/mnt/c/windows/system32/clip.exe ',@")
     augroup END
 endif
