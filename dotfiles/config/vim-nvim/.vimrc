@@ -19,6 +19,8 @@ set textwidth=80
 set title
 " spell check
 set spell
+" column at 80 chars
+set colorcolumn=80
 " disables compatibility with vi
 set nocompatible
 " makes all clipboard registers act the same
@@ -40,11 +42,20 @@ set wildmode=longest:full,full
 let g:ale_disable_lsp = 1
 " leader character to spacebar
 let mapleader=" "
+" display all buffers if one tab open
+let g:airline#extensions#tabline#enabled = 1
+" how file paths are shown
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+" powerline integration
+let g:airline_powerline_fonts = 1
+" status bar theme
+let g:airline_theme='bubblegum'
 call plug#begin('~/.config/nvim/plugged')
-
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'preservim/nerdtree'
 Plug 'preservim/nerdcommenter'
+Plug 'preservim/tagbar'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/goyo.vim'
@@ -62,6 +73,10 @@ Plug 'nathanaelkane/vim-indent-guides'
 Plug 'Raimondi/delimitMate'
 Plug 'mattn/emmet-vim'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'tmux-plugins/vim-tmux'
+Plug 'airblade/vim-gitgutter'
+Plug 'lervag/vimtex'
 call plug#end()
 
 " set tabs to 2 spaces
