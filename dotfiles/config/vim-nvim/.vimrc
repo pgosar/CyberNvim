@@ -64,6 +64,7 @@ Plug 'xolox/vim-session'
 Plug 'rust-lang/rust.vim'
 Plug 'godlygeek/tabular'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-surround'
 Plug 'morhetz/gruvbox'
 Plug 'dense-analysis/ale'
 Plug 'frazrepo/vim-rainbow'
@@ -115,16 +116,16 @@ endif
 set background=dark
 let g:gruvbox_number_column = 'bg1'
 autocmd vimenter * ++nested colorscheme gruvbox
-" column at 80 chars
-highlight ColorColumn ctermfg=67
-call matchadd('ColorColumn', '\%81v', 100)
-" Automatically deletes all trailing whitespace and newlines at end of file on save. & reset cursor position
+" Automatically deletes all trailing whitespace and newlines at end of
+" file on save & reset cursor position
 autocmd BufWritePre * let currPos = getpos(".")
 autocmd BufWritePre * %s/\s\+$//e
 autocmd BufWritePre * %s/\n\+\%$//e
 autocmd BufWritePre *.[ch] %s/\%$/\r/e
 autocmd BufWritePre * cal cursor(currPos[1], currPos[2])
-
+" limelight color dimming
+let g:limelight_conceal_ctermfg = 'gray'
+let g:limelight_conceal_guifg = 'DarkGray'
 " ctrl  to open nerd tree, and ctrl n to close
 nnoremap <C-l> :NERDTreeMirror<CR>:NERDTreeFocus<CR>
 nnoremap <C-n> :NERDTreeToggle<CR>
@@ -166,6 +167,15 @@ map <C-h> <C-w>h
 map <C-j> <C-w>j
 map <C-k> <C-w>k
 map <C-l> <C-w>l
+" alternate keybindings for multiline
+let g:VM_maps = {}
+let g:VM_maps["Add Cursor Down"] = '<C-S-.>'
+let g:VM_maps["Add Cursor Up"] = '<C-S-,>'
+let g:VM_maps["Undo"] = 'u'
+let g:VM_maps["Redo"] = '<C-r>'
+" visual block mode
+command! Vb normal! <C-v>
+nnoremap <silent> vb :Vb<CR>
 " WSL yank support
 if system('uname -r') =~ "microsoft"
     augroup Yank
@@ -173,3 +183,11 @@ if system('uname -r') =~ "microsoft"
     autocmd TextYankPost * :call system('/mnt/c/windows/system32/clip.exe ',@")
     augroup END
 endif
+
+" column at 80 chars and highlight where text goes over
+call matchadd('ColorColumn', '\(\%81v\|\%101v\)', 200)
+ augroup vimrc
+   autocmd!
+   autocmd ColorScheme * highlight ColorColumn cterm=bold ctermfg=magenta
+         \ ctermbg=NONE gui=bold guifg=magenta guibg=NONE
+ augroup END
