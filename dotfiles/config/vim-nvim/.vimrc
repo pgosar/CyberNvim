@@ -60,6 +60,11 @@ set autowrite
 set ruler
 " prompt to save instead of erroring
 set confirm
+" disables auto-comment creation after first
+set formatoptions-=cro
+" persistent undo
+set undodir=~/.vim-undo
+set undofile
 " disable lsp for ale
 let g:ale_disable_lsp = 1
 " leader character to space
@@ -102,7 +107,6 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'lervag/vimtex'
   Plug 'ConradIrwin/vim-bracketed-paste'
   Plug 'zirrostig/vim-schlepp'
-  Plug 'senderle/restoreview'
   Plug 'PeterRincker/vim-searchlight'
   Plug 'tpope/vim-surround'
   Plug 'SirVer/ultisnips'
@@ -140,7 +144,7 @@ let g:NERDCommentEmptyLines = 1
 set listchars=tab:>-
 " Format
 command! -nargs=0 Format :call CocAction('format')
-" highlight symbol
+" " highlight symbol
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
 " deal with color
@@ -148,7 +152,7 @@ if !has('gui_running')
   set t_Co=256
 endif
 if (match($TERM, "-256color") != -1) && (match($TERM, "screen-256color") == -1)
-   " screen does not (yet) support truecolor
+  " screen does not (yet) support truecolor
   set termguicolors
 endif
 set background=dark
@@ -170,12 +174,10 @@ nmap <silent> nt :NERDTreeToggle<CR>
 " for save session
 nnoremap <Leader>o :OpenSession<CR>
 nnoremap <Leader>s :SaveSession<CR>
-
 " autocomplete config
 inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 " auto-import
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-
 " remap esc in insert mode
 inoremap <C-k> <ESC>
 " gets rid of highlighting after searching
@@ -229,11 +231,10 @@ vmap <unique> dupl    <Plug>SchleppDupRight
 map <Leader>n :w \| bn<cr>
 map <Leader>p :w \| bp<cr>
 map <Leader>d :w \| bd<cr>
-
 " tagbar
 nmap <Leader>tt :TagbarToggle<CR>
 " snippet insertion
-let g:UltiSnipsExpandTrigger="<C-n>"
+let g:UltiSnipsExpandTrigger="<Leader>n"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " WSL yank support
@@ -246,11 +247,11 @@ if system('uname -r') =~ "microsoft"
 
 " column at 80 chars and highlight where text goes over
 call matchadd('ColorColumn', '\(\%81v\|\%121v\)', 200)
-augroup vimrc
-   autocmd!
-   autocmd ColorScheme * highlight ColorColumn cterm=bold ctermfg=196
+  augroup vimrc
+    autocmd!
+    autocmd ColorScheme * highlight ColorColumn cterm=bold ctermfg=196
          \ ctermbg=None guifg=Red guibg=NONE
- augroup END
+  augroup END
 
 " fixes lag of exiting insert/visual mode
 if !has('gui_running')
@@ -261,5 +262,9 @@ if !has('gui_running')
         au InsertLeave * set timeoutlen=1000
     augroup END
 endif
-" disables auto-comment creation after first
-autocmd BufNewFile,BufRead * setlocal formatoptions-=cro
+set vop=folds,cursor,curdir
+augroup AutoSaveFolds
+  autocmd!
+  autocmd BufWinLeave * mkview
+  autocmd BufWinEnter * silent loadview
+augroup END
