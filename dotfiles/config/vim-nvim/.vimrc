@@ -7,6 +7,9 @@ filetype plugin indent on
 set mouse=a
 " line count
 set number relativenumber
+set numberwidth=6
+" set command history
+set history=1000
 " makes symbols replace line number when necessary
 set signcolumn=yes
 " length of time to wait before triggering plugins
@@ -19,6 +22,8 @@ set textwidth=80
 set title
 " spell check
 set spell
+" disables compatibility with vi
+set nocompatible
 " for searching
 set smartcase
 set ignorecase
@@ -46,8 +51,15 @@ set splitbelow splitright
 " autocompletion on commands
 set wildmenu
 set wildmode=longest:full,full
-" lengthen timeout of leader key
-set timeoutlen=2000
+" lengthen timeout of leader key and commands
+set timeoutlen=1000
+set ttimeoutlen=1000
+" auto file save
+set autowrite
+" cursor position
+set ruler
+" prompt to save instead of erroring
+set confirm
 " disable lsp for ale
 let g:ale_disable_lsp = 1
 " leader character to space
@@ -65,9 +77,9 @@ let g:session_autosave = 'yes'
 call plug#begin('~/.config/nvim/plugged')
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
-  Plug 'preservim/nerdtree'
+  Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
   Plug 'preservim/nerdcommenter'
-  Plug 'preservim/tagbar'
+  Plug 'preservim/tagbar', { 'on': 'TagbarToggle' }
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
   Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
   Plug 'junegunn/fzf.vim'
@@ -76,15 +88,13 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'xolox/vim-misc'
   Plug 'xolox/vim-session'
   Plug 'rust-lang/rust.vim'
-  Plug 'godlygeek/tabular'
+  Plug 'godlygeek/tabular', { 'on': 'Tab' }
   Plug 'tpope/vim-fugitive'
   Plug 'thaerkh/vim-indentguides'
   Plug 'morhetz/gruvbox'
   Plug 'dense-analysis/ale'
   Plug 'frazrepo/vim-rainbow'
   Plug 'Raimondi/delimitMate'
-  Plug 'mattn/emmet-vim'
-  Plug 'mattn/webapi-vim'
   Plug 'mg979/vim-visual-multi', {'branch': 'master'}
   Plug 'christoomey/vim-tmux-navigator'
   Plug 'tmux-plugins/vim-tmux'
@@ -95,6 +105,8 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'senderle/restoreview'
   Plug 'PeterRincker/vim-searchlight'
   Plug 'tpope/vim-surround'
+  Plug 'SirVer/ultisnips'
+  Plug 'honza/vim-snippets'
 call plug#end()
 
 " shows number of errors on status bar
@@ -109,7 +121,6 @@ function! LinterStatus() abort
         \)
 endfunction
 
-set statusline+=%=
 set statusline+=\ %{LinterStatus()}
 " enables rainbow brackets
 let g:rainbow_active = 1
@@ -119,17 +130,20 @@ let g:session_autosave = 'no'
 let g:ale_fix_on_save = 1
 let g:indentguides_spacechar = '|'
 let g:indentguides_tabchar = '|'
+" add spaces after comment delimiters
+let g:NERDSpaceDelims = 1
+" compact syntax for multi line comments
+let g:NERDCompactSexyComs = 1
+" allow commenting empty lines
+let g:NERDCommentEmptyLines = 1
 " gets rid of dollar sign new line char
 set listchars=tab:>-
-" custom emmett snippets
-let g:user_emmet_settings =
-      \ webapi#json#decode(join(readfile(expand('~/snippets.json')), "\n"))
 " Format
 command! -nargs=0 Format :call CocAction('format')
 " highlight symbol
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
-" deal with colors
+" deal with color
 if !has('gui_running')
   set t_Co=256
 endif
@@ -139,7 +153,8 @@ if (match($TERM, "-256color") != -1) && (match($TERM, "screen-256color") == -1)
 endif
 set background=dark
 let g:gruvbox_number_column = 'bg1'
-autocmd vimenter * ++nested colorscheme gruvbox
+autocmd vimenter * ++nested colo gruvbox
+
 " Automatically deletes all trailing whitespace and newlines at end of
 " file on save & reset cursor position
 autocmd BufWritePre * let currPos = getpos(".")
@@ -153,8 +168,14 @@ let g:limelight_conceal_guifg = 'DarkGray'
 " toggle nerd tree
 nmap <silent> nt :NERDTreeToggle<CR>
 " for save session
-nnoremap <C-o> :OpenSession
-nnoremap <C-s> :SaveSession<CR>
+nnoremap <Leader>o :OpenSession<CR>
+nnoremap <Leader>s :SaveSession<CR>
+
+" autocomplete config
+inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+" auto-import
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
 " remap esc in insert mode
 inoremap <C-k> <ESC>
 " gets rid of highlighting after searching
@@ -172,11 +193,6 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> ga :CocAction<CR>
 
-" tab for auto completion
-inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-" tab for auto-import completion
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-" esc to escape embedded terminal
 tnoremap <Esc> <C-\><C-n>
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
@@ -209,8 +225,17 @@ vmap <unique> dupk    <Plug>SchleppDupUp
 vmap <unique> dupj    <Plug>SchleppDupDown
 vmap <unique> duph    <Plug>SchleppDupLeft
 vmap <unique> dupl    <Plug>SchleppDupRight
+" toggling between buffers
+map <Leader>n :w \| bn<cr>
+map <Leader>p :w \| bp<cr>
+map <Leader>d :w \| bd<cr>
+
 " tagbar
 nmap <Leader>tt :TagbarToggle<CR>
+" snippet insertion
+let g:UltiSnipsExpandTrigger="<C-n>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " WSL yank support
 if system('uname -r') =~ "microsoft"
   augroup Yank

@@ -28,7 +28,8 @@ SAVEHIST=10000
 autoload -U edit-command-line
 zle -N edit-command-line
 bindkey '^k' edit-command-line
-
+# disable ctrl-s and q
+unsetopt flow_control
 # load in plugins
 plugins=(
   git
