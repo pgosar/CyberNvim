@@ -96,7 +96,11 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'godlygeek/tabular', { 'on': 'Tab' }
   Plug 'tpope/vim-fugitive'
   Plug 'thaerkh/vim-indentguides'
+
   Plug 'morhetz/gruvbox'
+  Plug 'joshdick/onedark.vim'
+  Plug 'tomasr/molokai'
+
   Plug 'dense-analysis/ale'
   Plug 'frazrepo/vim-rainbow'
   Plug 'Raimondi/delimitMate'
@@ -111,6 +115,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'tpope/vim-surround'
   Plug 'SirVer/ultisnips'
   Plug 'honza/vim-snippets'
+  Plug 'ctrlpvim/ctrlp.vim'
 call plug#end()
 
 " shows number of errors on status bar
@@ -170,7 +175,7 @@ autocmd BufWritePre * cal cursor(currPos[1], currPos[2])
 let g:limelight_conceal_ctermfg = 'gray'
 let g:limelight_conceal_guifg = 'DarkGray'
 " toggle nerd tree
-nmap <silent> nt :NERDTreeToggle<CR>
+nnoremap <silent> nt :NERDTreeToggle<CR>
 " for save session
 nnoremap <Leader>o :OpenSession<CR>
 nnoremap <Leader>s :SaveSession<CR>
@@ -183,32 +188,32 @@ inoremap <C-k> <ESC>
 " gets rid of highlighting after searching
 nnoremap <CR> :noh<CR><CR>
 " errors
-nmap <silent> cd :lopen<CR>
-nmap <silent> cl :lclose<CR>
-nmap <silent> [g :lnext<CR>
-nmap <silent> ]g :lprev<CR>
+nnoremap <silent> cd :lopen<CR>
+nnoremap <silent> cl :lclose<CR>
+nnoremap <silent> [g :lnext<CR>
+nnoremap <silent> ]g :lprev<CR>
 
 " Coc navigation
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
-nmap <silent> ga :CocAction<CR>
+nnoremap <silent> gd <Plug>(coc-definition)
+nnoremap <silent> gy <Plug>(coc-type-definition)
+nnoremap <silent> gi <Plug>(coc-implementation)
+nnoremap <silent> gr <Plug>(coc-references)
+nnoremap <silent> ga :CocAction<CR>
 
 tnoremap <Esc> <C-\><C-n>
 " Symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
+nnoremap <leader>rn <Plug>(coc-rename)
 " toggle goyo
-nmap <silent> goyo :Goyo<CR>
-nmap <silent> !goyo :Goyo!<CR>
+nnoremap <silent> goyo :Goyo<CR>
+nnoremap <silent> !goyo :Goyo!<CR>
 " toggle limelight
-nmap <silent> lime :Limelight<CR>
-nmap <silent> !lime :Limelight!<CR>
+nnoremap <silent> lime :Limelight<CR>
+nnoremap <silent> !lime :Limelight!<CR>
 " now just ctrl+key to switch windows
-map <C-h> <C-w> h
-map <C-j> <C-w> j
-map <C-k> <C-w> k
-map <C-l> <C-w> l
+noremap <C-h> <C-w> h
+noremap <C-j> <C-w> j
+noremap <C-k> <C-w> k
+noremap <C-l> <C-w> l
 " alternate keybindings for multiline
 let g:VM_maps = {}
 let g:VM_maps["Add Cursor Down"] = '<Leader>.'
@@ -219,24 +224,26 @@ let g:VM_maps["Redo"] = '<C-r>'
 command! Vb normal! <C-v>
 nnoremap <silent> vb :Vb<CR>
 " visual block text movement and copying
-vmap <unique> <up>    <Plug>SchleppUp
-vmap <unique> <down>  <Plug>SchleppDown
-vmap <unique> <left>  <Plug>SchleppLeft
-vmap <unique> <right> <Plug>SchleppRight
-vmap <unique> dupk    <Plug>SchleppDupUp
-vmap <unique> dupj    <Plug>SchleppDupDown
-vmap <unique> duph    <Plug>SchleppDupLeft
-vmap <unique> dupl    <Plug>SchleppDupRight
+vnoremap <unique> <up>    <Plug>SchleppUp
+vnoremap <unique> <down>  <Plug>SchleppDown
+vnoremap <unique> <left>  <Plug>SchleppLeft
+vnoremap <unique> <right> <Plug>SchleppRight
+vnoremap <unique> dupk    <Plug>SchleppDupUp
+vnoremap <unique> dupj    <Plug>SchleppDupDown
+vnoremap <unique> duph    <Plug>SchleppDupLeft
+vnoremap <unique> dupl    <Plug>SchleppDupRight
 " toggling between buffers
-map <Leader>n :w \| bn<cr>
-map <Leader>p :w \| bp<cr>
-map <Leader>d :w \| bd<cr>
+noremap <Leader>n :w \| bn<cr>
+noremap <Leader>p :w \| bp<cr>
+noremap <Leader>d :w \| bd<cr>
 " tagbar
-nmap <Leader>tt :TagbarToggle<CR>
+nnoremap <Leader>tt :TagbarToggle<CR>
 " snippet insertion
 let g:UltiSnipsExpandTrigger="<Leader>n"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+" tab out of delimiters
+inoremap <S-Tab>
 " WSL yank support
 if system('uname -r') =~ "microsoft"
   augroup Yank
@@ -262,7 +269,9 @@ if !has('gui_running')
         au InsertLeave * set timeoutlen=1000
     augroup END
 endif
-set vop=folds,cursor,curdir
+" get rid of auto commenting
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+" auto save folds and cursor position
 augroup AutoSaveFolds
   autocmd!
   autocmd BufWinLeave * mkview
