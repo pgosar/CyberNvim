@@ -1,5 +1,6 @@
 #!/bin/bash
-
+export DISPLAY=:0
+export LIBGL_ALWAYS_INDIRECT=1
 export PATH="$PATH:$HOME/code/useful-things/scripts/shell:$HOME/code/useful-things/scripts/python"
 export PLUGIN="$HOME/.extra"
 export DOTFILES="$HOME/code/useful-things/dotfiles"

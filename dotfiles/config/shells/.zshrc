@@ -1,5 +1,6 @@
 export PATH="$PATH:$HOME/code/useful-things/scripts/shell:$HOME/code/useful-things/scripts/python"
 export DISPLAY=:0
+export LIBGL_ALWAYS_INDIRECT=1
 #Enable Powerlevel10k instant prompt
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
@@ -29,7 +30,7 @@ autoload -U edit-command-line
 zle -N edit-command-line
 bindkey '^k' edit-command-line
 # disable ctrl-s and q
-unsetopt flow_control
+ [[ -n ${TTY:-} && $+commands[stty] == 1 ]] && stty -ixon <$TTY >$TTY
 # load in plugins
 plugins=(
   git
