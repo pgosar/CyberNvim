@@ -27,13 +27,13 @@ set nocompatible
 " for searching
 set smartcase
 set ignorecase
-set hlsearch
 set incsearch
 " code folding
 set foldmethod=indent
 set foldlevel=2
 set foldcolumn=2
-set nofoldenable
+set foldlevelstart=99
+set foldopen+=jump
 " clipboard
 set clipboard=unnamedplus
 " tab width to two
@@ -44,7 +44,7 @@ set breakindent
 set breakindentopt=shift:2,min:40,sbr
 " append '>>' to indent
 set showbreak=>>
-" show keystrokes in status line
+"show keystrokes in status line
 set showcmd
 " splits new windows to the right and bottom instead
 set splitbelow splitright
@@ -60,8 +60,6 @@ set autowrite
 set ruler
 " prompt to save instead of erroring
 set confirm
-" disables auto-comment creation after first
-set formatoptions-=cro
 " persistent undo
 set undodir=~/.vim-undo
 set undofile
@@ -96,11 +94,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'godlygeek/tabular', { 'on': 'Tab' }
   Plug 'tpope/vim-fugitive'
   Plug 'thaerkh/vim-indentguides'
-
   Plug 'morhetz/gruvbox'
-  Plug 'joshdick/onedark.vim'
-  Plug 'tomasr/molokai'
-
   Plug 'dense-analysis/ale'
   Plug 'frazrepo/vim-rainbow'
   Plug 'Raimondi/delimitMate'
@@ -110,7 +104,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'airblade/vim-gitgutter'
   Plug 'lervag/vimtex'
   Plug 'ConradIrwin/vim-bracketed-paste'
-  Plug 'zirrostig/vim-schlepp'
+  Plug 'matze/vim-move'
   Plug 'PeterRincker/vim-searchlight'
   Plug 'tpope/vim-surround'
   Plug 'SirVer/ultisnips'
@@ -162,7 +156,8 @@ if (match($TERM, "-256color") != -1) && (match($TERM, "screen-256color") == -1)
 endif
 set background=dark
 let g:gruvbox_number_column = 'bg1'
-autocmd vimenter * ++nested colo gruvbox
+
+autocmd vimenter * ++nested colorscheme gruvbox
 
 " Automatically deletes all trailing whitespace and newlines at end of
 " file on save & reset cursor position
@@ -175,18 +170,16 @@ autocmd BufWritePre * cal cursor(currPos[1], currPos[2])
 let g:limelight_conceal_ctermfg = 'gray'
 let g:limelight_conceal_guifg = 'DarkGray'
 " toggle nerd tree
-nnoremap <silent> nt :NERDTreeToggle<CR>
+nnoremap <silent> <Leader>nt :NERDTreeToggle<CR>
 " for save session
-nnoremap <Leader>o :OpenSession<CR>
+nnoremap <Leader>o :OpenSession<CR><cr>
 nnoremap <Leader>s :SaveSession<CR>
 " autocomplete config
 inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 " auto-import
 inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-" remap esc in insert mode
-inoremap <C-k> <ESC>
 " gets rid of highlighting after searching
-nnoremap <CR> :noh<CR><CR>
+nnoremap <cr> :noh<CR><CR>
 " errors
 nnoremap <silent> cd :lopen<CR>
 nnoremap <silent> cl :lclose<CR>
@@ -199,7 +192,7 @@ nnoremap <silent> gy <Plug>(coc-type-definition)
 nnoremap <silent> gi <Plug>(coc-implementation)
 nnoremap <silent> gr <Plug>(coc-references)
 nnoremap <silent> ga :CocAction<CR>
-
+" exit vim command mode
 tnoremap <Esc> <C-\><C-n>
 " Symbol renaming.
 nnoremap <leader>rn <Plug>(coc-rename)
@@ -210,10 +203,14 @@ nnoremap <silent> !goyo :Goyo!<CR>
 nnoremap <silent> lime :Limelight<CR>
 nnoremap <silent> !lime :Limelight!<CR>
 " now just ctrl+key to switch windows
-noremap <C-h> <C-w> h
-noremap <C-j> <C-w> j
-noremap <C-k> <C-w> k
-noremap <C-l> <C-w> l
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+" create new windows
+nnoremap <Leader>v <C-w>v
+nnoremap <Leader>h <C-w>s
+
 " alternate keybindings for multiline
 let g:VM_maps = {}
 let g:VM_maps["Add Cursor Down"] = '<Leader>.'
@@ -223,27 +220,22 @@ let g:VM_maps["Redo"] = '<C-r>'
 " visual block mode
 command! Vb normal! <C-v>
 nnoremap <silent> vb :Vb<CR>
-" visual block text movement and copying
-vnoremap <unique> <up>    <Plug>SchleppUp
-vnoremap <unique> <down>  <Plug>SchleppDown
-vnoremap <unique> <left>  <Plug>SchleppLeft
-vnoremap <unique> <right> <Plug>SchleppRight
-vnoremap <unique> dupk    <Plug>SchleppDupUp
-vnoremap <unique> dupj    <Plug>SchleppDupDown
-vnoremap <unique> duph    <Plug>SchleppDupLeft
-vnoremap <unique> dupl    <Plug>SchleppDupRight
 " toggling between buffers
-noremap <Leader>n :w \| bn<cr>
-noremap <Leader>p :w \| bp<cr>
-noremap <Leader>d :w \| bd<cr>
+nnoremap <Leader>n :w \| bn<cr>
+nnoremap <Leader>p :w \| bp<cr>
+nnoremap <Leader>d :w \| bd<cr>
 " tagbar
 nnoremap <Leader>tt :TagbarToggle<CR>
-" snippet insertion
-let g:UltiSnipsExpandTrigger="<Leader>n"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+" change keybind to use ctrl for move
+let g:move_key_modifier_visualmode = 'C'
 " tab out of delimiters
-inoremap <S-Tab>
+nnoremap <Leader>/ :set hlsearch<cr>
+nnoremap i :set nohlsearch<cr>i
+inoremap <Esc>[Z <c-o>/["')}\]]<cr><c-o>:noh<cr><right>
+" (testing purposes)
+" [testing purposes]
+" {testing purposes}
+" 'testing purposes'
 " WSL yank support
 if system('uname -r') =~ "microsoft"
   augroup Yank
@@ -254,26 +246,29 @@ if system('uname -r') =~ "microsoft"
 
 " column at 80 chars and highlight where text goes over
 call matchadd('ColorColumn', '\(\%81v\|\%121v\)', 200)
-  augroup vimrc
-    autocmd!
-    autocmd ColorScheme * highlight ColorColumn cterm=bold ctermfg=196
-         \ ctermbg=None guifg=Red guibg=NONE
-  augroup END
 
 " fixes lag of exiting insert/visual mode
 if !has('gui_running')
-    set ttimeoutlen=10
-    augroup FastEscape
-        autocmd!
-        au InsertEnter * set timeoutlen=0
-        au InsertLeave * set timeoutlen=1000
-    augroup END
+  set ttimeoutlen=10
+  augroup FastEscape
+    autocmd!
+    au InsertEnter * set timeoutlen=0
+    au InsertLeave * set timeoutlen=1000
+  augroup END
 endif
 " get rid of auto commenting
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-" auto save folds and cursor position
-augroup AutoSaveFolds
+
+augroup vimrc
+  autocmd!
+  autocmd ColorScheme * highlight ColorColumn cterm=bold ctermfg=196
+       \ ctermbg=None guifg=Red guibg=NONE
+  autocmd ColorScheme * highlight Search cterm=None guibg=Grey50 guifg=NONE
+        \ ctermbg=244 ctermfg=16
+augroup END
+
+augroup remember_folds
   autocmd!
   autocmd BufWinLeave * mkview
-  autocmd BufWinEnter * silent loadview
+  autocmd BufWinEnter * silent! loadview
 augroup END
