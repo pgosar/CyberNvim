@@ -210,10 +210,7 @@ nnoremap <C-l> <C-w>l
 " create new windows
 nnoremap <Leader>v <C-w>v
 nnoremap <Leader>h <C-w>s
-" snippets
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
 " alternate keybindings for multiline
 let g:VM_maps = {}
 let g:VM_maps["Add Cursor Down"] = '<Leader>.'
@@ -227,6 +224,10 @@ nnoremap <silent> vb :Vb<CR>
 nnoremap <Leader>n :w \| bn<cr>
 nnoremap <Leader>p :w \| bp<cr>
 nnoremap <Leader>d :w \| bd<cr>
+" snippets
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " tagbar
 nnoremap <Leader>tt :TagbarToggle<CR>
 " change keybind to use ctrl for move

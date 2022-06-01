@@ -1,3 +1,5 @@
+# daily fortune
+fortune
 export PATH="$PATH:$HOME/code/useful-things/scripts/shell:$HOME/code/useful-things/scripts/python"
 export DISPLAY=:0
 export LIBGL_ALWAYS_INDIRECT=1

@@ -1,9 +1,10 @@
 #!/bin/bash
+# for x server
 export DISPLAY=:0
 export LIBGL_ALWAYS_INDIRECT=1
 export PATH="$PATH:$HOME/code/useful-things/scripts/shell:$HOME/code/useful-things/scripts/python"
 export PLUGIN="$HOME/.extra"
-export DOTFILES="$HOME/code/useful-things/dotfiles"
+export HELPER="$HOME/code/useful-things/shell-helpers"
 export SHELL="$HOME/code/useful-things/scripts/shell"
 export EDITOR='vim'
 # green prompt
@@ -45,6 +46,7 @@ sudo hwclock -s
 if [ -e "$SHELL/loadToBash.sh" ]; then
     source loadToBash.sh > /dev/null 2>&1
 fi
+
 
 # set configs for bash git prompt
 GIT_PROMPT_ONLY_IN_REPO=1
