@@ -210,7 +210,10 @@ nnoremap <C-l> <C-w>l
 " create new windows
 nnoremap <Leader>v <C-w>v
 nnoremap <Leader>h <C-w>s
-
+" snippets
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " alternate keybindings for multiline
 let g:VM_maps = {}
 let g:VM_maps["Add Cursor Down"] = '<Leader>.'
@@ -232,10 +235,6 @@ let g:move_key_modifier_visualmode = 'C'
 nnoremap <Leader>/ :set hlsearch<cr>
 nnoremap i :set nohlsearch<cr>i
 inoremap <Esc>[Z <c-o>/["')}\]]<cr><c-o>:noh<cr><right>
-" (testing purposes)
-" [testing purposes]
-" {testing purposes}
-" 'testing purposes'
 " WSL yank support
 if system('uname -r') =~ "microsoft"
   augroup Yank
