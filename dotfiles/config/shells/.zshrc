@@ -1,3 +1,16 @@
+#   ________         ______         __    __
+#  |        \       /      \       |  \  |  \
+#   \$$$$$$$$      |  $$$$$$\      | $$  | $$
+#      /  $$       | $$___\$$      | $$__| $$
+#     /  $$         \$$    \       | $$    $$
+#    /  $$          _\$$$$$$\      | $$$$$$$$
+#   /  $$___       |  \__| $$      | $$  | $$
+#  |  $$    \       \$$    $$      | $$  | $$
+#   \$$$$$$$$        \$$$$$$        \$$   \$$
+#
+#
+#
+
 # daily fortune
 fortune
 export PATH="$PATH:$HOME/code/useful-things/scripts/shell:$HOME/code/useful-things/scripts/python"
