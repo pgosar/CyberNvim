@@ -11,13 +11,13 @@ in=${1:-$HOME/output.txt}
 # expand variables to full filepath into new txt
 envsubst < $loadpath/plugins.txt > $in
 [ ! -f "$in" ] && { echo "$0 - File $in not found.";}
-while read file ; 
+while read file ;
 do
-  # run the file on each line of txt and load it in   
+  # run the file on each line of txt and load it in
 source "$file"
   if [ -f "$file" ]; then
     source "$file" &> /dev/null
-  else 
+  else
     echo "${file##*/} not loaded"
   fi
 done < "${in}"
@@ -25,17 +25,17 @@ done < "${in}"
 rm -f $in > /dev/null
 
 # load in aliases
-if [ -f $loadpath/.aliasrc ]; then
-    source $loadpath/.aliasrc
+if [ -f $loadpath/aliasrc ]; then
+    source $loadpath/aliasrc
 fi
 # load in extra commands
-if [ -f $loadpath/.commandsrc ]; then
-    source $loadpath/.commandsrc
+if [ -f $loadpath/commandsrc ]; then
+    source $loadpath/commandsrc
 fi
 
 # reset command not found to its original (taken from ubuntu source code)
-command_not_found_handle () 
-{ 
+command_not_found_handle ()
+{
     if [ -x /usr/lib/command-not-found ]; then
         /usr/lib/command-not-found -- "$1";
         return $?;

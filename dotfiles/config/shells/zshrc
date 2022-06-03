@@ -1,0 +1,99 @@
+#   ________         ______         __    __
+#  |        \       /      \       |  \  |  \
+#   \$$$$$$$$      |  $$$$$$\      | $$  | $$
+#      /  $$       | $$___\$$      | $$__| $$
+#     /  $$         \$$    \       | $$    $$
+#    /  $$          _\$$$$$$\      | $$$$$$$$
+#   /  $$___       |  \__| $$      | $$  | $$
+#  |  $$    \       \$$    $$      | $$  | $$
+#   \$$$$$$$$        \$$$$$$        \$$   \$$
+#
+#
+
+# ---- Environment Variables -------------------------------------------------
+
+export PATH="$PATH:$HOME/code/useful-things/scripts/shell: \
+                   $HOME/code/useful-things/scripts/python"
+export ZSH="$HOME/.oh-my-zsh"
+export DOTFILES="$HOME/code/useful-things/dotfiles"
+export DISPLAY=:0                                                   # x server
+export LIBGL_ALWAYS_INDIRECT=1
+export EDITOR='vim'
+
+
+# ---- Terminal Settings -----------------------------------------------------
+
+ZSH_THEME="powerlevel10k/powerlevel10k"                    # set p10k as theme
+zstyle ':omz:update' mode reminder                          # update reminders
+DISABLE_MAGIC_FUNCTIONS="true"
+COMPLETION_WAITING_DOTS="true"               # show command is auto completing
+ZSH_COLORIZE_STYLE="colorful"                                # set color style
+unsetopt correct                                         # disable autocorrect
+HISTSIZE=10000                                                   # big history
+SAVEHIST=10000
+autoload -U edit-command-line                            # edit command in vim
+zle -N edit-command-line
+# disable ctrl-s and q
+[[ -n ${TTY:-} && $+commands[stty] == 1 ]] && stty -ixon <$TTY >$TTY
+unalias -a                                             # remove preset aliases
+
+
+# ---- Plugins ---------------------------------------------------------------
+
+plugins=(
+  git
+  copyfile
+  command-not-found
+  colored-man-pages
+  bgnotify
+  history-substring-search
+  last-working-dir
+  safe-paste
+  vi-mode
+  zsh-interactive-cd
+  zsh-syntax-highlighting
+  zsh-has
+  zsh-z
+  zsh-autosuggestions
+)
+
+
+# ---- Terminal Commands -----------------------------------------------------
+
+sudo hwclock -s > /dev/null 2>&1                         # resync system clock
+fortune                                                        # daily fortune
+
+
+# ---- Load Scripts ----------------------------------------------------------
+
+loadpath=$DOTFILES/other/
+source $ZSH/oh-my-zsh.sh > /dev/null 2>&1                     # load oh-my-zsh
+if [ -f $loadpath/aliasrc ]; then                              # load aliases
+    source $loadpath/aliasrc
+fi
+if [ -f $loadpath/commandsrc ]; then                          # load commands
+    source $loadpath/commandsrc
+fi
+# load theme
+[[ ! -f $loadpath/p10k.zsh ]] || source $loadpath/p10k.zsh       # load p10k
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh                              # load fzf
+# auto start tmux
+[ -x "$(command -v tmux)" ] && [ -z "${TMUX}" ] \
+  && { tmux attach || tmux; } >/dev/null 2>&1
+# p10k prompt
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]];
+then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+
+# ---- Keybindings -----------------------------------------------------------
+
+bindkey '^ ' autosuggest-accept
+bindkey '^k' edit-command-line
+
+
+# ---- Plugin Settings -------------------------------------------------------
+
+# stops git status from checking untracked files
+DISABLE_UNTRACKED_FILES_DIRTY="true"
