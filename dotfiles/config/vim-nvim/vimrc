@@ -66,7 +66,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'thaerkh/vim-indentguides'
   Plug 'morhetz/gruvbox'
   Plug 'dense-analysis/ale'
-  Plug 'frazrepo/vim-rainbow'
+  Plug 'luochen1990/rainbow'
   Plug 'Raimondi/delimitMate'
   Plug 'mg979/vim-visual-multi', {'branch': 'master'}
   Plug 'christoomey/vim-tmux-navigator'
@@ -80,6 +80,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'SirVer/ultisnips'
   Plug 'honza/vim-snippets'
   Plug 'ctrlpvim/ctrlp.vim'
+  Plug 'sheerun/vim-polyglot'
 call plug#end()
 
 
