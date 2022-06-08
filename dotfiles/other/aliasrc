@@ -9,7 +9,7 @@ ccat="pygmentize -g" \
 batch="cmd.exe /c" \
 code="/mnt/c/Users/pgosa/AppData/Local/Programs/Microsoft\ VS\ Code/bin/code" \
 py="python3" \
-v="vim" \
+v="nvim" \
 dora="explorer.exe ."
 
 # git stuff
