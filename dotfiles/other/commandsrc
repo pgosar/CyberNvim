@@ -23,12 +23,12 @@ cl () {
 }
 
 # go up directories
-up (){ 
-  DEEP=$1; 
+up (){
+  DEEP=$1;
   [ -z "${DEEP}" ] && { DEEP=1; };
-  for i in $(seq 1 ${DEEP}); 
-    do cd ../; 
-  done; 
+  for i in $(seq 1 ${DEEP});
+    do cd ../;
+  done;
 }
 
 imagePDF () {
