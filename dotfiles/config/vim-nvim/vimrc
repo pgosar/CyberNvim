@@ -81,6 +81,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'honza/vim-snippets'
   Plug 'ctrlpvim/ctrlp.vim'
   Plug 'sheerun/vim-polyglot'
+  Plug 'tommcdo/vim-lion'
 call plug#end()
 
 
@@ -270,9 +271,9 @@ let mapleader=" "                               " Leader Character to Space
 " }
 " Buffers {
   " change buffers
-  nnoremap <Leader>n :w \| bn<cr>
-  nnoremap <Leader>d :w \| bd<cr>
-  nnoremap <Leader>p :w \| bp<cr>
+  nnoremap <Leader>n bn<cr>
+  nnoremap <Leader>d bd<cr>
+  nnoremap <Leader>p bp<cr>
 " }
 " Misc {
   " enter to get rid of highlights
@@ -285,7 +286,8 @@ let mapleader=" "                               " Leader Character to Space
   nnoremap <Leader>/ :set hlsearch<cr>
   nnoremap i :set nohlsearch<cr>i
   " tab out of delimiters
-  inoremap <Esc>[Z <c-o>/["')}\]]<cr><c-o>:noh<cr><right>
+  inoremap <Esc>[Z <left><c-o>/["')>}\]]<cr><c-o>:noh<cr><right>
+
 " }
 " Visual Block Mode {
   command! Vb normal! <C-v>
