@@ -15,7 +15,6 @@
 set shell=/usr/bin/zsh                          " set default shell
 set noswapfile                                  " no swap files
 syntax enable                                   " enable syntax
-set omnifunc=syntaxcomplete#Complete
 filetype plugin indent on
 set mouse=a                                     " enable mouse
 set number relativenumber                       "line numbers
@@ -66,7 +65,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'godlygeek/tabular', { 'on': 'Tab' }
   Plug 'tpope/vim-fugitive'
   Plug 'thaerkh/vim-indentguides'
-  Plug 'morhetz/gruvbox'
+  Plug 'flazz/vim-colorschemes'
   Plug 'luochen1990/rainbow'
   Plug 'Raimondi/delimitMate'
   Plug 'mg979/vim-visual-multi', {'branch': 'master'}
@@ -85,6 +84,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'tommcdo/vim-lion'
   Plug 'pechorin/any-jump.vim'
   Plug 'alvan/vim-closetag'
+  Plug 'mhinz/vim-startify'
 call plug#end()
 
 
@@ -96,7 +96,7 @@ call plug#end()
   " how file paths are shown
   let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
   let g:airline_powerline_fonts = 1             " powerline integration
-  let g:airline_theme='bubblegum'               " status bar theme
+  let g:airline_theme='bubblegum'                 " status bar theme
 " }
 " NerdComment {
   let g:NERDSpaceDelims = 1                     " add space after comment char
@@ -126,7 +126,6 @@ let &t_SI = "\<Esc>[6 q"                        " insert mode, vertical bar
 let &t_SR = "\<Esc>[4 q"                        " replace mode, underscore
 let &t_EI = "\<Esc>[2 q"                        " normal mode, block
 
-
 " Auto Formatting
 command! -nargs=0 Format :call CocAction('format')
 " highlight symbol on press
@@ -141,7 +140,9 @@ if (match($TERM, "-256color") != -1) && (match($TERM, "screen-256color") == -1)
   set termguicolors
 endif
 set background=dark
+" gruvbox {
 let g:gruvbox_number_column = 'bg1'
+" }
 autocmd vimenter * ++nested colorscheme gruvbox
 
 " Auto delete trailing whitespace, save cursor position
@@ -210,6 +211,9 @@ let mapleader=" "                               " Leader Character to Space
   nnoremap <silent> gi <Plug>(coc-implementation)
   nnoremap <silent> gr <Plug>(coc-references)
   nnoremap <silent> ga :CocAction<CR>
+
+  nnoremap <silent> K :call <SID>show_documentation()<CR>
+  nnoremap <silent> gh :call <SID>show_documentation()<CR>
 " }
 " Multiline {
   let g:VM_maps = {}
@@ -261,9 +265,9 @@ let mapleader=" "                               " Leader Character to Space
 " }
 " Buffers {
   " change buffers
-  nnoremap <Leader>bn :bn<cr>
-  nnoremap <Leader>bd :bd<cr>
-  nnoremap <Leader>bp :bp<cr>
+  nnoremap <Leader>bn :w \| bn<cr>
+  nnoremap <Leader>bd :w \| bd<cr>
+  nnoremap <Leader>bp :w \| bp<cr>
 " }
 " Misc {
   " enter to get rid of highlights
@@ -292,3 +296,17 @@ nnoremap gr gd[{V%::s/<C-R>///gc<left><left><left>
 " global
 nnoremap gR gD:%s/<C-R>///gc<left><left><left>
 " }
+
+
+" ---- Functions --------------------------------------------------------------
+
+" manual show documentation
+function! s:show_documentation()
+  if (index(['vim', 'help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
+  else
+    execute '!' . &keywordprg . " " . expand('<cword>')
+  endif
+endfunction
