@@ -82,6 +82,8 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'ctrlpvim/ctrlp.vim'
   Plug 'sheerun/vim-polyglot'
   Plug 'tommcdo/vim-lion'
+  Plug 'vim-autoformat/vim-autoformat'
+  Plug 'pechorin/any-jump.vim'
 call plug#end()
 
 
@@ -110,14 +112,12 @@ call plug#end()
   let g:indentguides_spacechar = '|'            " indent guide chars
   let g:indentguides_tabchar = '|'
 " }
-" Ale {
-  let g:ale_disable_lsp = 1                     " disable lsp for ale
-  let g:ale_fix_on_save = 1                     " autoformat on save
-" }
 " Limelight {
   let g:limelight_conceal_ctermfg = 'gray'      " Color dimming
   let g:limelight_conceal_guifg = 'DarkGray'
 " }
+
+
 " ---- Extra Settings ----------------------------------------------------------
 
 " change cursor shape
@@ -170,8 +170,8 @@ if system('uname -r') =~ "microsoft"
     augroup END
   endif
 
-" highlight lines longer than 80 then 120 chars
-call matchadd('ColorColumn', '\(\%81v\|\%121v\)', 200)
+" highlight lines longer than 100 then 120 chars
+call matchadd('ColorColumn', '\(\%101v\|\%121v\)', 200)
 
 " fixes lag of exiting insert/visual mode
 if !has('gui_running')
@@ -206,23 +206,21 @@ autocmd VimEnter * set cul
 autocmd InsertLeave * set cul
 autocmd InsertEnter * set nocul
 
+
 " ---- Keybindings -------------------------------------------------------------
 
 let mapleader=" "                               " Leader Character to Space
 " COC {
   " errors
-  nnoremap <silent> cd :lopen<CR>
+  nnoremap <silent> cd :CocDiagnostics<CR>
   nnoremap <silent> cl :lclose<CR>
-  nnoremap <silent> [g :lnext<CR>
-  nnoremap <silent> ]g :lprev<CR>
+  nnoremap <silent> gn :lnext<CR>
+  nnoremap <silent> gp :lprev<CR>
   " Coc navigation
-  nnoremap <silent> gd <Plug>(coc-definition)
   nnoremap <silent> gy <Plug>(coc-type-definition)
   nnoremap <silent> gi <Plug>(coc-implementation)
   nnoremap <silent> gr <Plug>(coc-references)
   nnoremap <silent> ga :CocAction<CR>
-  " Symbol renaming.
-  nnoremap <leader>rn <Plug>(coc-rename)
 " }
 " Multiline {
   let g:VM_maps = {}
@@ -295,4 +293,13 @@ let mapleader=" "                               " Leader Character to Space
 " Visual Block Mode {
   command! Vb normal! <C-v>
   nnoremap <silent> vb :Vb<CR>
+" }
+" Auto Format {
+  nnoremap <Leader>f :Autoformat<cr>
+" }
+" word replacement {
+" local
+nnoremap gr gd[{V%::s/<C-R>///gc<left><left><left>
+" global
+nnoremap gR gD:%s/<C-R>///gc<left><left><left>
 " }

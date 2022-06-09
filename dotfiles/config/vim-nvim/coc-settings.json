@@ -1,5 +1,7 @@
 {
 "diagnostic.displayByAle": true,
 "diagnostic.refreshOnInsertMode": true,
-"diagnostic.checkCurrentLine": true
+"diagnostic.checkCurrentLine": true,
+"clangd.path":"~/.config/coc/extensions/coc-clangd-data/install/14.0.3/clangd_14.0.3/bin/clangd",
+"clangd.inlayHints.enable": false
 }
