@@ -51,7 +51,8 @@ set hidden                                      " hide buffers instead of close
 call plug#begin('~/.config/nvim/plugged')
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
-  Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
+  Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' } |
+            \ Plug 'Xuyuanp/nerdtree-git-plugin'
   Plug 'preservim/nerdcommenter'
   Plug 'preservim/tagbar', { 'on': 'TagbarToggle' }
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -151,6 +152,8 @@ autocmd BufWritePre * %s/\s\+$//e
 autocmd BufWritePre * %s/\n\+\%$//e
 autocmd BufWritePre *.[ch] %s/\%$/\r/e
 autocmd BufWritePre * cal cursor(currPos[1], currPos[2])
+
+" added lines for illustration
 
 " WSL yank support
 if system('uname -r') =~ "microsoft"
