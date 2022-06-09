@@ -15,6 +15,7 @@
 set shell=/usr/bin/zsh                          " set default shell
 set noswapfile                                  " no swap files
 syntax enable                                   " enable syntax
+set omnifunc=syntaxcomplete#Complete
 filetype plugin indent on
 set mouse=a                                     " enable mouse
 set number relativenumber                       "line numbers
@@ -43,6 +44,7 @@ set autowrite                                   " auto save
 set confirm                                     " prompt to save not error
 set undodir=~/.vim-undo undofile                " persistent undo
 set listchars=tab:>-                            " no endline chars
+set hidden                                      " hide buffers instead of close
 
 
 " ---- Plugins -----------------------------------------------------------------
@@ -65,7 +67,6 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'tpope/vim-fugitive'
   Plug 'thaerkh/vim-indentguides'
   Plug 'morhetz/gruvbox'
-  Plug 'dense-analysis/ale'
   Plug 'luochen1990/rainbow'
   Plug 'Raimondi/delimitMate'
   Plug 'mg979/vim-visual-multi', {'branch': 'master'}
@@ -82,8 +83,8 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'ctrlpvim/ctrlp.vim'
   Plug 'sheerun/vim-polyglot'
   Plug 'tommcdo/vim-lion'
-  Plug 'vim-autoformat/vim-autoformat'
   Plug 'pechorin/any-jump.vim'
+  Plug 'alvan/vim-closetag'
 call plug#end()
 
 
@@ -125,18 +126,6 @@ let &t_SI = "\<Esc>[6 q"                        " insert mode, vertical bar
 let &t_SR = "\<Esc>[4 q"                        " replace mode, underscore
 let &t_EI = "\<Esc>[2 q"                        " normal mode, block
 
-" shows number of errors on status bar
-function! LinterStatus() abort
-  let l:counts = ale#statusline#Count(bufnr(''))
-  let l:all_errors = l:counts.error + l:counts.style_error
-  let l:all_non_errors = l:counts.total - l:all_errors
-  return l:counts.total == 0 ? 'OK' : printf(
-        \   '%d⨉ %d⚠ ',
-        \   all_non_errors,
-        \   all_errors
-        \)
-endfunction
-set statusline+=\ %{LinterStatus()}
 
 " Auto Formatting
 command! -nargs=0 Format :call CocAction('format')
@@ -179,7 +168,7 @@ if !has('gui_running')
   augroup FastEscape
     autocmd!
     au InsertEnter * set timeoutlen=0
-    au InsertLeave * set timeoutlen=1000
+    au InsertLeave * set timeoutlen=5
   augroup END
 endif
 
@@ -272,9 +261,9 @@ let mapleader=" "                               " Leader Character to Space
 " }
 " Buffers {
   " change buffers
-  nnoremap <Leader>n bn<cr>
-  nnoremap <Leader>d bd<cr>
-  nnoremap <Leader>p bp<cr>
+  nnoremap <Leader>bn :bn<cr>
+  nnoremap <Leader>bd :bd<cr>
+  nnoremap <Leader>bp :bp<cr>
 " }
 " Misc {
   " enter to get rid of highlights
