@@ -41,51 +41,88 @@ set wildmenu wildmode=longest:full,full         " command autocompletion
 set timeoutlen=1000 ttimeoutlen=1000            " timeout for keybind presses
 set autowrite                                   " auto save
 set confirm                                     " prompt to save not error
-set undodir=~/.vim-undo undofile                " persistent undo
+set undofile                                    " persistent undo
 set listchars=tab:>-                            " no endline chars
 set hidden                                      " hide buffers instead of close
 
 
 " ---- Plugins -----------------------------------------------------------------
 
+
 call plug#begin('~/.config/nvim/plugged')
-  Plug 'vim-airline/vim-airline'
-  Plug 'vim-airline/vim-airline-themes'
-  Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' } |
-            \ Plug 'Xuyuanp/nerdtree-git-plugin'
-  Plug 'preservim/nerdcommenter'
-  Plug 'preservim/tagbar', { 'on': 'TagbarToggle' }
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
-  Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-  Plug 'junegunn/fzf.vim'
-  Plug 'junegunn/goyo.vim'
-  Plug 'junegunn/limelight.vim'
-  Plug 'xolox/vim-misc'
-  Plug 'xolox/vim-session'
-  Plug 'rust-lang/rust.vim'
-  Plug 'godlygeek/tabular', { 'on': 'Tab' }
-  Plug 'tpope/vim-fugitive'
-  Plug 'thaerkh/vim-indentguides'
-  Plug 'flazz/vim-colorschemes'
-  Plug 'luochen1990/rainbow'
-  Plug 'Raimondi/delimitMate'
-  Plug 'mg979/vim-visual-multi', {'branch': 'master'}
-  Plug 'christoomey/vim-tmux-navigator'
-  Plug 'tmux-plugins/vim-tmux'
-  Plug 'airblade/vim-gitgutter'
-  Plug 'lervag/vimtex'
-  Plug 'ConradIrwin/vim-bracketed-paste'
-  Plug 'matze/vim-move'
-  Plug 'PeterRincker/vim-searchlight'
-  Plug 'tpope/vim-surround'
-  Plug 'SirVer/ultisnips'
-  Plug 'honza/vim-snippets'
-  Plug 'ctrlpvim/ctrlp.vim'
-  Plug 'sheerun/vim-polyglot'
-  Plug 'tommcdo/vim-lion'
-  Plug 'pechorin/any-jump.vim'
-  Plug 'alvan/vim-closetag'
-  Plug 'mhinz/vim-startify'
+  " Status bar {
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
+  " }
+  " File tree {
+    Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' } |
+              \ Plug 'Xuyuanp/nerdtree-git-plugin'
+  " }
+  " Commenting {
+    Plug 'preservim/nerdcommenter'
+  " }
+  " Tags {
+    Plug 'preservim/tagbar', { 'on': 'TagbarToggle' }
+  " }
+  " LSP {
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    Plug 'pechorin/any-jump.vim'                " jump to definition/reference
+  " }
+  " fuzzy finders {
+    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    Plug 'junegunn/fzf.vim'
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-telescope/telescope.nvim'        " search files within vim
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    Plug 'ctrlpvim/ctrlp.vim'
+  " }
+  " Focus helpers {
+    Plug 'junegunn/goyo.vim'
+    Plug 'junegunn/limelight.vim'
+  " }
+  " Sessions {
+    Plug 'xolox/vim-misc'
+    Plug 'xolox/vim-session'                    " Save sessions
+  " }
+  " Lang Plugins {
+    Plug 'rust-lang/rust.vim'
+    Plug 'lervag/vimtex'
+  " }
+  " Git {
+    Plug 'tpope/vim-fugitive'                   " Git inside vim
+    Plug 'airblade/vim-gitgutter'               " show changes in signcolumn
+  " }
+  " Visuals/syntax {
+    Plug 'thaerkh/vim-indentguides'
+    Plug 'flazz/vim-colorschemes'
+    Plug 'luochen1990/rainbow'                  " bracket coloring
+    Plug 'sheerun/vim-polyglot'                 " Syntax highlighting
+  " }
+  " Quality of Life {
+    Plug 'Raimondi/delimitMate'                 " autoclose deimiters
+    Plug 'alvan/vim-closetag'                   " autoclose html esq tags
+    Plug 'tpope/vim-surround'                   " edit tags/delimiters in pairs
+    Plug 'mhinz/vim-startify'                   " start screen
+    Plug 'ryanoasis/vim-devicons'               " fancy icons
+    Plug 'ConradIrwin/vim-bracketed-paste'      " autoset paste mode
+  " }
+  " Multiline editing {
+    " multicursor
+    Plug 'mg979/vim-visual-multi', {'branch': 'master'}
+    Plug 'matze/vim-move'                       " move blocks
+    Plug 'tommcdo/vim-lion'                     " line up text
+  " }
+  " Tmux {
+    Plug 'christoomey/vim-tmux-navigator'
+    Plug 'tmux-plugins/vim-tmux'
+  " }
+  " Searching {
+    Plug 'PeterRincker/vim-searchlight'
+  " }
+  " snippets
+    Plug 'SirVer/ultisnips'
+    Plug 'honza/vim-snippets'
+  " }
 call plug#end()
 
 
@@ -97,7 +134,7 @@ call plug#end()
   " how file paths are shown
   let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
   let g:airline_powerline_fonts = 1             " powerline integration
-  let g:airline_theme='bubblegum'                 " status bar theme
+  let g:airline_theme='bubblegum'               " status bar theme
 " }
 " NerdComment {
   let g:NERDSpaceDelims = 1                     " add space after comment char
@@ -143,6 +180,7 @@ endif
 set background=dark
 " gruvbox {
 let g:gruvbox_number_column = 'bg1'
+let g:gruvbox_contrast_dark = 'soft'
 " }
 autocmd vimenter * ++nested colorscheme gruvbox
 
@@ -152,8 +190,6 @@ autocmd BufWritePre * %s/\s\+$//e
 autocmd BufWritePre * %s/\n\+\%$//e
 autocmd BufWritePre *.[ch] %s/\%$/\r/e
 autocmd BufWritePre * cal cursor(currPos[1], currPos[2])
-
-" added lines for illustration
 
 " WSL yank support
 if system('uname -r') =~ "microsoft"
@@ -172,7 +208,7 @@ if !has('gui_running')
   augroup FastEscape
     autocmd!
     au InsertEnter * set timeoutlen=0
-    au InsertLeave * set timeoutlen=5
+    au InsertLeave * set timeoutlen=1000
   augroup END
 endif
 
@@ -202,7 +238,7 @@ autocmd InsertEnter * set nocul
 
 " ---- Keybindings -------------------------------------------------------------
 
-let mapleader=" "                               " Leader Character to Space
+let mapleader = " "                               " Leader Character to Space
 " COC {
   " errors
   nnoremap <silent> cd :CocDiagnostics<CR>
@@ -282,22 +318,24 @@ let mapleader=" "                               " Leader Character to Space
   " toggle hl search
   nnoremap <Leader>/ :set hlsearch<cr>
   nnoremap i :set nohlsearch<cr>i
-  " tab out of delimiters
+  " tab out of delimiters (shift-tab)
   inoremap <Esc>[Z <left><c-o>/["')>}\]]<cr><c-o>:noh<cr><right>
-
 " }
 " Visual Block Mode {
   command! Vb normal! <C-v>
   nnoremap <silent> vb :Vb<CR>
-" }
-" Auto Format {
-  nnoremap <Leader>f :Autoformat<cr>
-" }
+  " }
 " word replacement {
-" local
-nnoremap gr gd[{V%::s/<C-R>///gc<left><left><left>
-" global
-nnoremap gR gD:%s/<C-R>///gc<left><left><left>
+  " local
+  nnoremap gr gd[{V%::s/<C-R>///gc<left><left><left>
+  " global
+  nnoremap gR gD:%s/<C-R>///gc<left><left><left>
+" }
+" telescope {
+  nnoremap ff :Telescope find_files<cr>
+  nnoremap fg :Telescope live_grep<cr>
+  nnoremap fb :Telescope buffers<cr>
+  nnoremap fh :Telescope help_tags<cr>
 " }
 
 
@@ -313,3 +351,11 @@ function! s:show_documentation()
     execute '!' . &keywordprg . " " . expand('<cword>')
   endif
 endfunction
+
+
+" ---- NVIM Specifics ---------------------------------------------------------
+
+if has("nvim")
+lua << EOF
+EOF
+endif
