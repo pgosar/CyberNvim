@@ -48,7 +48,6 @@ set hidden                                      " hide buffers instead of close
 
 " ---- Plugins -----------------------------------------------------------------
 
-
 call plug#begin('~/.config/nvim/plugged')
   " Status bar {
     Plug 'vim-airline/vim-airline'
@@ -67,6 +66,7 @@ call plug#begin('~/.config/nvim/plugged')
   " LSP {
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'pechorin/any-jump.vim'                " jump to definition/reference
+    Plug 'ervandew/supertab'
   " }
   " fuzzy finders {
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -154,6 +154,9 @@ call plug#end()
 " Limelight {
   let g:limelight_conceal_ctermfg = 'gray'      " Color dimming
   let g:limelight_conceal_guifg = 'DarkGray'
+" }
+" Supertab {
+  let g:SuperTabDefaultCompletionType = "<c-n>"
 " }
 
 
@@ -252,7 +255,6 @@ let mapleader = " "                               " Leader Character to Space
   nnoremap <silent> ga :CocAction<CR>
 
   nnoremap <silent> K :call <SID>show_documentation()<CR>
-  nnoremap <silent> gh :call <SID>show_documentation()<CR>
 " }
 " Multiline {
   let g:VM_maps = {}
@@ -277,7 +279,7 @@ let mapleader = " "                               " Leader Character to Space
   nnoremap <Leader>s :SaveSession<CR>
 " }
 " UltiSnips {
-  let g:UltiSnipsExpandTrigger="<tab>"
+  let g:UltiSnipsExpandTrigger="<s-tab>"
   let g:UltiSnipsJumpForwardTrigger="<c-b>"
   let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " }
@@ -286,11 +288,6 @@ let mapleader = " "                               " Leader Character to Space
 " }
 " Move {
   let g:move_key_modifier_visualmode = 'C'        " Change from alt to ctrl
-" }
-" Autocomplete {
-  inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-  " imports
-  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 " }
 " Windows {
   " ctrl+key to switch windows
