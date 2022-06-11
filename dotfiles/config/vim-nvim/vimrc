@@ -44,6 +44,7 @@ set confirm                                     " prompt to save not error
 set undofile                                    " persistent undo
 set listchars=tab:>-                            " no endline chars
 set hidden                                      " hide buffers instead of close
+set termguicolors                               " better colors
 
 
 " ---- Plugins -----------------------------------------------------------------
@@ -66,7 +67,8 @@ call plug#begin('~/.config/nvim/plugged')
   " LSP {
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'pechorin/any-jump.vim'                " jump to definition/reference
-    Plug 'ervandew/supertab'
+    Plug 'ervandew/supertab'                    " tab autocomplete
+    Plug 'folke/trouble.nvim'                   " better loc list
   " }
   " fuzzy finders {
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -97,6 +99,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'flazz/vim-colorschemes'
     Plug 'luochen1990/rainbow'                  " bracket coloring
     Plug 'sheerun/vim-polyglot'                 " Syntax highlighting
+    Plug 'sunjon/shade.nvim'                    " dim inactive windows
   " }
   " Quality of Life {
     Plug 'Raimondi/delimitMate'                 " autoclose deimiters
@@ -104,6 +107,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'tpope/vim-surround'                   " edit tags/delimiters in pairs
     Plug 'mhinz/vim-startify'                   " start screen
     Plug 'ryanoasis/vim-devicons'               " fancy icons
+    Plug 'kyazdani42/nvim-web-devicons'
     Plug 'ConradIrwin/vim-bracketed-paste'      " autoset paste mode
   " }
   " Multiline editing {
@@ -158,6 +162,10 @@ call plug#end()
 " Supertab {
   let g:SuperTabDefaultCompletionType = "<c-n>"
 " }
+" ctrlp {
+  " ignore files in git and gitignore
+  let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+" }
 
 
 " ---- Extra Settings ----------------------------------------------------------
@@ -168,23 +176,13 @@ let &t_SR = "\<Esc>[4 q"                        " replace mode, underscore
 let &t_EI = "\<Esc>[2 q"                        " normal mode, block
 
 " Auto Formatting
-command! -nargs=0 Format :call CocAction('format')
+command! -nargs=0 Format :call CocActionAsync('format')
 " highlight symbol on press
 autocmd CursorHold * silent call CocActionAsync('highlight')
-
-" deal with color
-if !has('gui_running')
-  set t_Co=256
-endif
-if (match($TERM, "-256color") != -1) && (match($TERM, "screen-256color") == -1)
-  " screen does not (yet) support truecolor
-  set termguicolors
-endif
+" colorscheme
 set background=dark
-" gruvbox {
 let g:gruvbox_number_column = 'bg1'
 let g:gruvbox_contrast_dark = 'soft'
-" }
 autocmd vimenter * ++nested colorscheme gruvbox
 
 " Auto delete trailing whitespace, save cursor position
@@ -238,13 +236,24 @@ autocmd VimEnter * set cul
 autocmd InsertLeave * set cul
 autocmd InsertEnter * set nocul
 
+" show function signatures
+augroup mygroup
+  autocmd!
+  " Update signature help on jump placeholder.
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+" Highlight currently open buffer in NERDTree
+autocmd BufRead * call SyncTree()
+
 
 " ---- Keybindings -------------------------------------------------------------
 
 let mapleader = " "                               " Leader Character to Space
 " COC {
   " errors
-  nnoremap <silent> cd :CocDiagnostics<CR>
+  nnoremap <silent> cd <cmd>call coc#rpc#request('fillDiagnostics',
+        \ [bufnr('%')])<CR><cmd>Trouble loclist<CR>`
   nnoremap <silent> cl :lclose<CR>
   nnoremap <silent> gn :lnext<CR>
   nnoremap <silent> gp :lprev<CR>
@@ -253,8 +262,16 @@ let mapleader = " "                               " Leader Character to Space
   nnoremap <silent> gi <Plug>(coc-implementation)
   nnoremap <silent> gr <Plug>(coc-references)
   nnoremap <silent> ga :CocAction<CR>
-
+  " better documentation and scroll through
   nnoremap <silent> K :call <SID>show_documentation()<CR>
+  if has('nvim-0.4.0') || has('patch-8.2.0750')
+    nnoremap <silent><nowait><expr> <A-j> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+    nnoremap <silent><nowait><expr> <A-k> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+    inoremap <silent><nowait><expr> <A-j> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
+    inoremap <silent><nowait><expr> <A-k> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
+    vnoremap <silent><nowait><expr> <A-j> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
+    vnoremap <silent><nowait><expr> <A-k> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
+  endif
 " }
 " Multiline {
   let g:VM_maps = {}
@@ -267,6 +284,7 @@ let mapleader = " "                               " Leader Character to Space
   nnoremap <silent> goyo :Goyo<CR>
   nnoremap <silent> !goyo :Goyo!<CR>
 " }
+
 " Limelight {
   nnoremap <silent> lime :Limelight<CR>
   nnoremap <silent> !lime :Limelight!<CR>
@@ -287,7 +305,7 @@ let mapleader = " "                               " Leader Character to Space
   nnoremap <Leader>tt :TagbarToggle<CR>
 " }
 " Move {
-  let g:move_key_modifier_visualmode = 'C'        " Change from alt to ctrl
+  let g:move_key_modifier = 'C'        " Change from alt to ctrl
 " }
 " Windows {
   " ctrl+key to switch windows
@@ -316,13 +334,13 @@ let mapleader = " "                               " Leader Character to Space
   nnoremap <Leader>/ :set hlsearch<cr>
   nnoremap i :set nohlsearch<cr>i
   " tab out of delimiters (shift-tab)
-  inoremap <Esc>[Z <left><c-o>/["')>}\]]<cr><c-o>:noh<cr><right>
+  inoremap <C-d> <left><c-o>/["')>}\]]<cr><c-o>:noh<cr><right>
 " }
 " Visual Block Mode {
   command! Vb normal! <C-v>
   nnoremap <silent> vb :Vb<CR>
-  " }
-" word replacement {
+" }
+" renaming {
   " local
   nnoremap gr gd[{V%::s/<C-R>///gc<left><left><left>
   " global
@@ -333,6 +351,9 @@ let mapleader = " "                               " Leader Character to Space
   nnoremap fg :Telescope live_grep<cr>
   nnoremap fb :Telescope buffers<cr>
   nnoremap fh :Telescope help_tags<cr>
+" }
+" gitgutter {
+  nnoremap diff :GitGutterDiffOrig<cr>
 " }
 
 
@@ -349,10 +370,48 @@ function! s:show_documentation()
   endif
 endfunction
 
+" sync open file with NERDTree
+function! IsNERDTreeOpen()
+  return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+endfunction
+
+" Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
+" file, and we're not in vimdiff
+function! SyncTree()
+  if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
+    NERDTreeFind
+    wincmd p
+  endif
+endfunction
+
+function! GitStatus()
+  let [a,m,r] = GitGutterGetHunkSummary()
+  return printf('+%d ~%d -%d', a, m, r)
+endfunction
+set statusline+=%{GitStatus()}
+
 
 " ---- NVIM Specifics ---------------------------------------------------------
 
 if has("nvim")
 lua << EOF
+-- dim inactive window
+  require'shade'.setup({
+    overlay_opacity = 60,
+    opacity_step = 1,
+    keys = {
+      brightness_up    = '<C-Up>',
+      brightness_down  = '<C-Down>',
+    }
+  })
+  -- fancy loc list
+  require("trouble").setup {}
 EOF
 endif
+
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
+inoremap <expr> <Esc>      pumvisible() ? "\<C-e>" : "\<Esc>"
+" Remap keys for applying codeAction to the current buffer.
+nmap <leader>ac   <Plug>(coc-codeaction-selected)w
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf  <Plug>(coc-fix-current)
