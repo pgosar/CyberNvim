@@ -354,6 +354,8 @@ let mapleader = " "                               " Leader Character to Space
 " }
 " gitgutter {
   nnoremap diff :GitGutterDiffOrig<cr>
+  nmap <silent> <Leader>nh :call GitGutterNextHunkCycle()<CR>
+  nmap <silent> <Leader>ph :call GitGutterPrevHunkCycle()<CR>
 " }
 
 
@@ -384,11 +386,33 @@ function! SyncTree()
   endif
 endfunction
 
+" git info in status line
+  inoremap <silent><expr> <A-b> coc#refresh()
 function! GitStatus()
   let [a,m,r] = GitGutterGetHunkSummary()
   return printf('+%d ~%d -%d', a, m, r)
 endfunction
 set statusline+=%{GitStatus()}
+
+" cycle between hunks
+function! GitGutterNextHunkCycle()
+  let line = line('.')
+  silent! GitGutterNextHunk
+  if line('.') == line
+    1
+    GitGutterNextHunk
+  endif
+endfunction
+
+function! GitGutterPrevHunkCycle()
+  let line = line('.')
+  silent! GitGutterPrevHunk
+  if line('.') == line
+    normal! G
+    GitGutterPrevHunk
+  endif
+endfunction
+
 
 
 " ---- NVIM Specifics ---------------------------------------------------------

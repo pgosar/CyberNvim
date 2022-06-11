@@ -6,11 +6,11 @@
 	ui = auto
 [core]
 	# default editor
-	editor = vim
+	editor = ~/nvim-linux64/bin/nvim
 	# trailing whitespace doesn't cause merge conflicts
 	whitespace = -trailing-space
 [credential "https://github.com"]
-	helper = 
+	helper =
 	helper = !/usr/bin/gh auth git-credential
 [diff]
   # more descriptive initials
@@ -21,10 +21,6 @@
   wordRegex = .
   # show submodule-related information
   submodule = log
-  #  VSCode as default diff tool
-  tool = vscode
-[difftool "vscode"]
-  cmd = code --wait --diff $LOCAL $REMOTE
 [grep]
   break = true
   heading = true
@@ -67,4 +63,6 @@
   # Sort tags as version numbers
   sort = version:refname[status]
 	subModuleSummary = true
-	showUntrackedFiles = all
+  showUntrackedFiles = all
+[alias]
+  edit = !$EDITOR $(git status --short | awk '$1 ~ /^M|A|U/ {print $2}')

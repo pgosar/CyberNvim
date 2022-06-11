@@ -18,7 +18,8 @@ export ZSH="$HOME/.oh-my-zsh"
 export DOTFILES="$HOME/code/useful-things/dotfiles"
 export DISPLAY=:0                                                   # x server
 export LIBGL_ALWAYS_INDIRECT=1
-export EDITOR='vim'
+export EDITOR='nvim'
+export VISUAL='nvim'
 
 
 # ---- Terminal Settings -----------------------------------------------------
