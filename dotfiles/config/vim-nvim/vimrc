@@ -28,7 +28,7 @@ set spell                                       " spell check
 set nocompatible                                " no vi compatibility
 set smartcase ignorecase incsearch              " searching and highlighting
 set foldmethod=indent foldlevel=2 foldcolumn=2  " code folding
-set foldlevelstart=99 foldopen+=jump            " auto fold open/close
+set foldlevelstart=99 foldopen+=jump nofoldenable " auto fold open/close
 set clipboard=unnamedplus                       " clipboard register
 set tabstop=8 softtabstop=0                     " tab settings
 set expandtab shiftwidth=2 smarttab
@@ -44,7 +44,9 @@ set confirm                                     " prompt to save not error
 set undofile                                    " persistent undo
 set listchars=tab:>-                            " no endline chars
 set hidden                                      " hide buffers instead of close
-set termguicolors                               " better colors
+if has("nvim")
+  set termguicolors                               " better colors
+endif
 
 
 " ---- Plugins -----------------------------------------------------------------
@@ -55,7 +57,9 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'vim-airline/vim-airline-themes'
   " }
   " File tree {
-    Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
+    if has("nvim")
+      Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
+    endif
   " }
   " Commenting {
     Plug 'preservim/nerdcommenter'
@@ -66,16 +70,20 @@ call plug#begin('~/.config/nvim/plugged')
   " LSP {
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'pechorin/any-jump.vim'                " jump to definition/reference
-    Plug 'folke/trouble.nvim'                   " better loc list
-    Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
-    Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
+    if has("nvim")
+      Plug 'folke/trouble.nvim'                   " better loc list
+      Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
+      Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
+    endif
   " }
   " fuzzy finders {
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
-    Plug 'nvim-lua/plenary.nvim'
-    Plug 'nvim-telescope/telescope.nvim'        " search files within vim
-    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    if has("nvim")
+      Plug 'nvim-lua/plenary.nvim'
+      Plug 'nvim-telescope/telescope.nvim'        " search files within vim
+      Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    endif
     Plug 'ctrlpvim/ctrlp.vim'
   " }
   " Focus helpers {
@@ -109,13 +117,17 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'ryanoasis/vim-devicons'               " fancy icons
     Plug 'kyazdani42/nvim-web-devicons'
     Plug 'ConradIrwin/vim-bracketed-paste'      " autoset paste mode
-    Plug 'antoinemadec/FixCursorHold.nvim'
-    Plug 'sudormrfbin/cheatsheet.nvim'          " fuzzy cheatsheet
-    Plug 'axieax/urlview.nvim'
     Plug 'easymotion/vim-easymotion'            " better movement
-    Plug 'psliwka/vim-smoothie'
-    " run code snippets
-    Plug 'michaelb/sniprun', {'do': 'bash install.sh'}
+    if has("vim-8.2.1978") || has("nvim")
+      Plug 'psliwka/vim-smoothie'
+    endif
+    if has("nvim")
+      Plug 'antoinemadec/FixCursorHold.nvim'
+      Plug 'sudormrfbin/cheatsheet.nvim'        " fuzzy cheatsheet
+      Plug 'axieax/urlview.nvim'
+      " run code snippets
+      Plug 'michaelb/sniprun', {'do': 'bash install.sh'}
+    endif
   " }
   " Multiline editing {
     " multicursor
@@ -133,11 +145,15 @@ call plug#begin('~/.config/nvim/plugged')
   " }
   " markdown {
     " view markdown in file
-    Plug 'ellisonleao/glow.nvim', {'branch': 'main'}
     Plug 'vimwiki/vimwiki'
     Plug 'gabrielelana/vim-markdown'            " syntax
+    Plug 'ferrine/md-img-paste.vim'
+    if has("nvim")
+      Plug 'ellisonleao/glow.nvim', {'branch': 'main'}
+      " in browser
+      Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug'], 'commit': '0194821'}
+  endif
   " }
-
   call plug#end()
 
 
@@ -170,9 +186,6 @@ call plug#begin('~/.config/nvim/plugged')
 " Limelight {
   let g:limelight_conceal_ctermfg = 'gray'      " Color dimming
   let g:limelight_conceal_guifg = 'DarkGray'
-" }
-" Supertab {
-  let g:SuperTabDefaultCompletionType = "<c-n>"
 " }
 " ctrlp {
   " ignore files in git and gitignore
@@ -220,9 +233,6 @@ if system('uname -r') =~ "microsoft"
     augroup END
   endif
 
-" highlight lines longer than 100 then 120 chars
-call matchadd('OverLength', '\(\%101v\|\%121v\)', 200)
-
 " fixes lag of exiting insert/visual mode
 if !has('gui_running')
   set ttimeoutlen=10
@@ -236,8 +246,6 @@ endif
 " Override colors
 augroup vimrc
   autocmd!
-  " autocmd ColorScheme * highlight ColorColumn cterm=bold ctermfg=196
-  "     \ ctermbg=None guifg=Aqua guibg=NONE
   autocmd ColorScheme * highlight clear Search
         \ | highlight Search ctermbg=None ctermfg=None guibg=Grey42
   autocmd ColorScheme * highlight CocHighlightText ctermbg=None ctermfg=None guibg=Grey35
@@ -280,16 +288,18 @@ augroup WindowManagement
 augroup END
 
 " highlight text over 100 chars
-augroup highlightText
-  autocmd!
-  autocmd ColorScheme * highlight OverLength ctermbg=darkgrey guibg=Grey30
-  autocmd ColorScheme * match OverLength /\%101v.*/
-augroup END
+if has("nvim")
+  augroup highlightText
+    autocmd!
+    autocmd ColorScheme * highlight OverLength ctermbg=darkgrey guibg=Grey30
+    autocmd ColorScheme * match OverLength /\%101v.*/
+  augroup END
 
-augroup COQ
-  autocmd!
-  autocmd VimEnter * COQnow -s
-augroup END
+  augroup COQ
+    autocmd!
+    autocmd VimEnter * COQnow -s
+  augroup END
+endif
 
 
 " ---- Keybindings -------------------------------------------------------------
@@ -413,6 +423,9 @@ set completeopt=noinsert
   nnoremap diff :GitGutterDiffOrig<cr>
   nmap <silent> <Leader>nh :call GitGutterNextHunkCycle()<CR>
   nmap <silent> <Leader>ph :call GitGutterPrevHunkCycle()<CR>
+" }
+" md image inserter {
+autocmd FileType markdown nnoremap <buffer><silent> <leader>p :call mdip#MarkdownClipboardImage()<CR>
 " }
 
 
