@@ -55,8 +55,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'vim-airline/vim-airline-themes'
   " }
   " File tree {
-    Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' } |
-              \ Plug 'Xuyuanp/nerdtree-git-plugin'
+    Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
   " }
   " Commenting {
     Plug 'preservim/nerdcommenter'
@@ -67,8 +66,9 @@ call plug#begin('~/.config/nvim/plugged')
   " LSP {
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'pechorin/any-jump.vim'                " jump to definition/reference
-    Plug 'ervandew/supertab'                    " tab autocomplete
     Plug 'folke/trouble.nvim'                   " better loc list
+    Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
+    Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
   " }
   " fuzzy finders {
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -98,7 +98,8 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'flazz/vim-colorschemes'
     Plug 'luochen1990/rainbow'                  " bracket coloring
     Plug 'sheerun/vim-polyglot'                 " Syntax highlighting
-    Plug 'sunjon/shade.nvim'                    " dim inactive windows
+    Plug 'blueyed/vim-diminactive'
+    Plug 'stevearc/dressing.nvim'               " prettier boxes like on rename
   " }
   " Quality of Life {
     Plug 'jiangmiao/auto-pairs'                 " autoclose deimiters
@@ -109,6 +110,12 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'kyazdani42/nvim-web-devicons'
     Plug 'ConradIrwin/vim-bracketed-paste'      " autoset paste mode
     Plug 'antoinemadec/FixCursorHold.nvim'
+    Plug 'sudormrfbin/cheatsheet.nvim'          " fuzzy cheatsheet
+    Plug 'axieax/urlview.nvim'
+    Plug 'easymotion/vim-easymotion'            " better movement
+    Plug 'psliwka/vim-smoothie'
+    " run code snippets
+    Plug 'michaelb/sniprun', {'do': 'bash install.sh'}
   " }
   " Multiline editing {
     " multicursor
@@ -119,9 +126,6 @@ call plug#begin('~/.config/nvim/plugged')
   " Tmux {
     Plug 'christoomey/vim-tmux-navigator'
     Plug 'tmux-plugins/vim-tmux'
-  " }
-  " Searching {
-    Plug 'PeterRincker/vim-searchlight'
   " }
   " snippets {
    Plug 'SirVer/ultisnips'
@@ -134,9 +138,8 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'gabrielelana/vim-markdown'            " syntax
   " }
 
-  Plug 'sudormrfbin/cheatsheet.nvim'
+  call plug#end()
 
-call plug#end()
 
 " ---- Plugin Settings ---------------------------------------------------------
 
@@ -147,11 +150,12 @@ call plug#end()
   let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
   let g:airline_powerline_fonts = 1             " powerline integration
   let g:airline_theme='bubblegum'               " status bar theme
+  let g:airline#extensions#tagbar#enabled = 1
+  let g:airline#extensions#tagbar#flags = 'f'
 " }
 " NerdComment {
   let g:NERDSpaceDelims = 1                     " add space after comment char
   let g:NERDCompactSexyComs = 1                 " short syntax in comment blocks
-  let g:NERDCommentEmptyLines = 1               " allow comments on empty lines
 " }
 " Vim-Session {
   let g:session_autosave = 'yes'                " auto save session periodically
@@ -182,7 +186,6 @@ call plug#end()
 " vim markdown {
   let g:markdown_mapping_switch_status = '<Leader>s'
 " }
-
 
 
 " ---- Extra Settings ----------------------------------------------------------
@@ -218,7 +221,7 @@ if system('uname -r') =~ "microsoft"
   endif
 
 " highlight lines longer than 100 then 120 chars
-call matchadd('ColorColumn', '\(\%101v\|\%121v\)', 200)
+call matchadd('OverLength', '\(\%101v\|\%121v\)', 200)
 
 " fixes lag of exiting insert/visual mode
 if !has('gui_running')
@@ -233,13 +236,14 @@ endif
 " Override colors
 augroup vimrc
   autocmd!
-  autocmd ColorScheme * highlight ColorColumn cterm=bold ctermfg=196
-       \ ctermbg=None guifg=Red guibg=NONE
-  autocmd ColorScheme * highlight Search cterm=None guibg=Grey50 guifg=NONE
-        \ ctermbg=244 ctermfg=16
+  " autocmd ColorScheme * highlight ColorColumn cterm=bold ctermfg=196
+  "     \ ctermbg=None guifg=Aqua guibg=NONE
+  autocmd ColorScheme * highlight clear Search
+        \ | highlight Search ctermbg=None ctermfg=None guibg=Grey42
+  autocmd ColorScheme * highlight CocHighlightText ctermbg=None ctermfg=None guibg=Grey35
 augroup END
 
-" remember folds
+" remember fold
 augroup remember_folds
   autocmd!
   autocmd BufWinLeave * silent! mkview
@@ -248,6 +252,7 @@ augroup END
 
 " get rid of auto commenting
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
 " add cursorline when not in insert mode
 autocmd VimEnter * set cul
 autocmd InsertLeave * set cul
@@ -257,11 +262,34 @@ autocmd InsertEnter * set nocul
 augroup mygroup
   autocmd!
   " Update signature help on jump placeholder.
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')Lq
+
 augroup end
 
-" Highlight currently open buffer in NERDTree
-autocmd BufRead * call SyncTree()
+" limelight integration
+autocmd! User GoyoEnter Limelight
+autocmd! User GoyoLeave Limelight!
+
+" Change highlight group of active/inactive windows
+hi ActiveWindow guibg=#17252c
+hi InactiveWindow guibg=#0D1B22
+
+augroup WindowManagement
+  autocmd!
+  autocmd WinEnter * call Handle_Win_Enter()
+augroup END
+
+" highlight text over 100 chars
+augroup highlightText
+  autocmd!
+  autocmd ColorScheme * highlight OverLength ctermbg=darkgrey guibg=Grey30
+  autocmd ColorScheme * match OverLength /\%101v.*/
+augroup END
+
+augroup COQ
+  autocmd!
+  autocmd VimEnter * COQnow -s
+augroup END
 
 
 " ---- Keybindings -------------------------------------------------------------
@@ -288,12 +316,21 @@ let mapleader = " "                               " Leader Character to Space
     vnoremap <silent><nowait><expr> <A-j> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
     vnoremap <silent><nowait><expr> <A-k> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
   endif
+  " misc
   nnoremap <leader>ac   <Plug>(coc-codeaction-selected)w
   nnoremap <leader>qf  <Plug>(coc-fix-current)
+  nnoremap <leader>rn <Plug>(coc-rename)
 " }
 " autocomplete {
-  inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
-  inoremap <expr> <Esc> pumvisible() ? "\<C-e>" : "\<Esc>"
+let g:coq_settings = { "keymap.recommended": v:false }
+  inoremap <expr> <CR>            pumvisible() ? "\<C-y>" : "\<CR>"
+  inoremap <silent><expr> <Esc>   pumvisible() ? "\<C-e><Esc>" : "\<Esc>"
+  inoremap <silent><expr> <C-c>   pumvisible() ? "\<C-e><C-c>" : "\<C-c>"
+  inoremap <silent><expr> <BS>    pumvisible() ? "\<C-e><BS><C-e>"  : "\<BS>"
+  inoremap <silent><expr> <CR>    pumvisible() ? (complete_info().selected == -1 ? "\<C-e><CR>" : "\<C-y>") : "\<CR>"
+  inoremap <silent><expr> <tab>   pumvisible() ? "\<Down>" : "\<Tab>"
+  inoremap <silent><expr> <Esc>[z pumvisible() ? "\<Up>" : "\<Esc>[z"
+set completeopt=noinsert
 " }
 " Multiline {
   let g:VM_maps = {}
@@ -303,16 +340,17 @@ let mapleader = " "                               " Leader Character to Space
   let g:VM_maps["Redo"] = '<C-r>'
 " }
 " Goyo {
-  nnoremap <silent> goyo :Goyo<CR>
-  nnoremap <silent> !goyo :Goyo!<CR>
+  nnoremap <silent> gy :Goyo<CR>
+  nnoremap <silent> gy! :Goyo!<CR>
 " }
 
 " Limelight {
   nnoremap <silent> lime :Limelight<CR>
   nnoremap <silent> !lime :Limelight!<CR>
 " }
-" NERDTree {
-  nnoremap <silent> <Leader>nt :NERDTreeToggle<CR>
+" CHADTree {
+  nnoremap <silent> <Leader>nt :CHADopen<CR>
+  nnoremap <silent> <Leader>ng :CHADopen --version-ctl<CR>
 " }
 " Vim Session {
   nnoremap <Leader>o :OpenSession<CR><cr>
@@ -326,15 +364,12 @@ let mapleader = " "                               " Leader Character to Space
 " Tagbar {
   nnoremap <Leader>tt :TagbarToggle<CR>
 " }
-" Move {
-  let g:move_key_modifier = 'C'        " Change from alt to ctrl
-" }
 " Windows {
-  " ctrl+key to switch windows
-  nnoremap <C-h> <C-w>h
-  nnoremap <C-j> <C-w>j
-  nnoremap <C-k> <C-w>k
-  nnoremap <C-l> <C-w>l
+  " shift+key to switch windows
+  nnoremap <S-h> <C-w>h
+  nnoremap <S-j> <C-w>j
+  nnoremap <S-k> <C-w>k
+  nnoremap <S-l> <C-w>l
   " create new windows
   nnoremap <Leader>v <C-w>v
   nnoremap <Leader>h <C-w>s
@@ -342,7 +377,7 @@ let mapleader = " "                               " Leader Character to Space
 " Buffers {
   " change buffers
   nnoremap <Leader>bn :w \| bn<cr>
-  nnoremap <Leader>bd :w \| bd<cr>
+  nnoremap <Leader>bd :bd<cr>
   nnoremap <Leader>bp :w \| bp<cr>
 " }
 " Misc {
@@ -353,10 +388,10 @@ let mapleader = " "                               " Leader Character to Space
 " }
 " Delimiter Tabs {
   " toggle hl search
-  nnoremap <Leader>/ :set hlsearch<cr>
+  nnoremap / :set hlsearch<cr>/
   nnoremap i :set nohlsearch<cr>i
-  " tab out of delimiters (shift-tab)
-  inoremap <C-d> <left><c-o>/["')>}\]]<cr><c-o>:noh<cr><right>
+  " ctrl+d out of delimiters
+  inoremap <c-d> <left><c-o>/["')>}\]]<cr><c-o>:noh<cr><right>
 " }
 " Visual Block Mode {
   command! Vb normal! <C-v>
@@ -394,20 +429,6 @@ function! s:show_documentation()
   endif
 endfunction
 
-" sync open file with NERDTree
-function! IsNERDTreeOpen()
-  return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
-endfunction
-
-" Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
-" file, and we're not in vimdiff
-function! SyncTree()
-  if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
-    NERDTreeFind
-    wincmd p
-  endif
-endfunction
-
 " git info in status line
   inoremap <silent><expr> <A-b> coc#refresh()
 function! GitStatus()
@@ -435,19 +456,15 @@ function! GitGutterPrevHunkCycle()
   endif
 endfunction
 
+function! Handle_Win_Enter()
+  setlocal winhighlight=Normal:ActiveWindow,NormalNC:InactiveWindow
+endfunction
+
 
 " ---- NVIM Specifics ---------------------------------------------------------
 
 if has("nvim")
 lua << EOF
--- dim inactive window
-  require'shade'.setup({
-    overlay_opacity = 60,
-    opacity_step = 1,
-    keys = {
-      brightness_up    = '<C-Up>',
-      brightness_down  = '<C-Down>',
-    }
-  })
+-- this is space for changing the settings of nvim only plugins
 EOF
 endif
