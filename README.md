@@ -1,14 +1,20 @@
 ### My Dotfiles
 
+
 Turn your vim into an IDE and your terminal into a pure productivity machine with only a few minutes of setup.
 
 Vim/Nvim Welcome Screen
 
+
 ![image](https://user-images.githubusercontent.com/55164602/172945445-c99092f1-e42f-46af-974b-e9110c8308da.png)
+
+<hr>
 
 vim/nvim with gruvbox
 
 ![image](https://user-images.githubusercontent.com/55164602/172945978-126dc68a-f36b-4c04-9ff7-ce414b24ff29.png)
+
+<hr>
 
 Zsh shell showcase
 
@@ -45,4 +51,8 @@ fish requires [tide](https://github.com/ilanCosman/tide)
 <hr>
 
 ### Contributing
-I welcome contributions if you know of any useful features that I may be missing, as well as help making the files more plug and play friendly by limiting the number of hard coded filepaths and helping to create a small shell script to automate creating symlinks during installation. I unfortunately do not have the time to do so currently.
+I welcome contributions if you know of any useful features that I may be
+missing, as well as help making the files more plug and play friendly by
+limiting the number of hard coded filepaths and helping to create a small shell
+script to automate creating symlinks during installation. I unfortunately do not
+have the time to do so currently.

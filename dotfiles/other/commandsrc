@@ -62,3 +62,7 @@ extract () {
         echo "'$1' is not a valid file"
     fi
 }
+
+grip () {
+  python3 ~/grip/grip/__main__.py "$1"
+}

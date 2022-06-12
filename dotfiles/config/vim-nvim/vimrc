@@ -87,7 +87,6 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'xolox/vim-session'                    " Save sessions
   " }
   " Lang Plugins {
-    Plug 'rust-lang/rust.vim'
     Plug 'lervag/vimtex'
   " }
   " Git {
@@ -102,13 +101,14 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'sunjon/shade.nvim'                    " dim inactive windows
   " }
   " Quality of Life {
-    Plug 'Raimondi/delimitMate'                 " autoclose deimiters
+    Plug 'jiangmiao/auto-pairs'                 " autoclose deimiters
     Plug 'alvan/vim-closetag'                   " autoclose html esq tags
     Plug 'tpope/vim-surround'                   " edit tags/delimiters in pairs
     Plug 'mhinz/vim-startify'                   " start screen
     Plug 'ryanoasis/vim-devicons'               " fancy icons
     Plug 'kyazdani42/nvim-web-devicons'
     Plug 'ConradIrwin/vim-bracketed-paste'      " autoset paste mode
+    Plug 'antoinemadec/FixCursorHold.nvim'
   " }
   " Multiline editing {
     " multicursor
@@ -123,12 +123,20 @@ call plug#begin('~/.config/nvim/plugged')
   " Searching {
     Plug 'PeterRincker/vim-searchlight'
   " }
-  " snippets
-    Plug 'SirVer/ultisnips'
-    Plug 'honza/vim-snippets'
+  " snippets {
+   Plug 'SirVer/ultisnips'
+   Plug 'honza/vim-snippets'
   " }
-call plug#end()
+  " markdown {
+    " view markdown in file
+    Plug 'ellisonleao/glow.nvim', {'branch': 'main'}
+    Plug 'vimwiki/vimwiki'
+    Plug 'gabrielelana/vim-markdown'            " syntax
+  " }
 
+  Plug 'sudormrfbin/cheatsheet.nvim'
+
+call plug#end()
 
 " ---- Plugin Settings ---------------------------------------------------------
 
@@ -166,6 +174,15 @@ call plug#end()
   " ignore files in git and gitignore
   let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 " }
+" vim wiki {
+  " set markdown syntax and filepath
+  let g:vimwiki_list = [{'path': '~/vimwiki/',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
+" }
+" vim markdown {
+  let g:markdown_mapping_switch_status = '<Leader>s'
+" }
+
 
 
 " ---- Extra Settings ----------------------------------------------------------
@@ -253,15 +270,14 @@ let mapleader = " "                               " Leader Character to Space
 " COC {
   " errors
   nnoremap <silent> cd <cmd>call coc#rpc#request('fillDiagnostics',
-        \ [bufnr('%')])<CR><cmd>Trouble loclist<CR>`
-  nnoremap <silent> cl :lclose<CR>
+        \ [bufnr('%')])<CR><cmd>Trouble loclist<CR>
+  nnoremap cl :silent! TroubleClose<CR>
   nnoremap <silent> gn :lnext<CR>
   nnoremap <silent> gp :lprev<CR>
   " Coc navigation
-  nnoremap <silent> gy <Plug>(coc-type-definition)
-  nnoremap <silent> gi <Plug>(coc-implementation)
-  nnoremap <silent> gr <Plug>(coc-references)
-  nnoremap <silent> ga :CocAction<CR>
+  nnoremap <silent> cy <Plug>(coc-type-definition)
+  nnoremap <silent> ci <Plug>(coc-implementation)
+  nnoremap <silent> cr <Plug>(coc-references)
   " better documentation and scroll through
   nnoremap <silent> K :call <SID>show_documentation()<CR>
   if has('nvim-0.4.0') || has('patch-8.2.0750')
@@ -272,6 +288,12 @@ let mapleader = " "                               " Leader Character to Space
     vnoremap <silent><nowait><expr> <A-j> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
     vnoremap <silent><nowait><expr> <A-k> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
   endif
+  nnoremap <leader>ac   <Plug>(coc-codeaction-selected)w
+  nnoremap <leader>qf  <Plug>(coc-fix-current)
+" }
+" autocomplete {
+  inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
+  inoremap <expr> <Esc> pumvisible() ? "\<C-e>" : "\<Esc>"
 " }
 " Multiline {
   let g:VM_maps = {}
@@ -414,7 +436,6 @@ function! GitGutterPrevHunkCycle()
 endfunction
 
 
-
 " ---- NVIM Specifics ---------------------------------------------------------
 
 if has("nvim")
@@ -428,14 +449,5 @@ lua << EOF
       brightness_down  = '<C-Down>',
     }
   })
-  -- fancy loc list
-  require("trouble").setup {}
 EOF
 endif
-
-inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"
-inoremap <expr> <Esc>      pumvisible() ? "\<C-e>" : "\<Esc>"
-" Remap keys for applying codeAction to the current buffer.
-nmap <leader>ac   <Plug>(coc-codeaction-selected)w
-" Apply AutoFix to problem on the current line.
-nmap <leader>qf  <Plug>(coc-fix-current)
