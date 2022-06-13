@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # random
 alias \
 update="sudo apt update -y && sudo apt upgrade -y" \

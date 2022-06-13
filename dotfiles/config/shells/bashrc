@@ -17,8 +17,7 @@ export DISPLAY=:0                                                   # X Server
 export LIBGL_ALWAYS_INDIRECT=1
 
 export PATH="$PATH:$HOME/code/useful-things/scripts/shell: \
-                   $HOME/code/useful-things/scripts/python: \
-                   $HOME/nvim-linux64/bin/"
+                   $HOME/code/useful-things/scripts/python"
 export PLUGIN="$HOME/.extra"
 export SHELL="$HOME/code/useful-things/scripts/shell"
 export EDITOR='nvim'
@@ -55,6 +54,8 @@ bind '"\e[D": backward-char'
 
 # resync wsl clock (use sudoers for sudo permission)
 sudo hwclock -s
+# source nvim
+export PATH="$HOME/nvim-linux64/bin:$PATH"
 
 
 # ---- load scripts ----------------------------------------------------------

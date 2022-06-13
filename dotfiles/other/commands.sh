@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 gadd () {
   git add $1 && git status
 }
