@@ -17,12 +17,12 @@ set noswapfile                                  " no swap files
 syntax enable                                   " enable syntax
 filetype plugin indent on
 set mouse=a                                     " enable mouse
-set number relativenumber                       "line numbers
+set number relativenumber                       " line numbers
 set history=1000                                " command history
-set signcolumn=yes numberwidth=6                "signcolumn and available width
+set signcolumn=yes numberwidth=6                " signcolumn and available width
 set updatetime=300                              " delay for plugin trigger
 set linebreak                                   " text wrap wont break words
-set textwidth=80                                "line length
+set textwidth=100                               " line length
 set title                                       " window title current file
 set spell                                       " spell check
 set nocompatible                                " no vi compatibility
@@ -35,15 +35,20 @@ set expandtab shiftwidth=2 smarttab
 set breakindent                                 " smart wrapping indentation
 set breakindentopt=shift:2,min:40,sbr
 set showbreak=>>                                " shows line break
+set ruler                                       " always show cursor
+set wrap                                        " enable text wrapping
+set scrolloff=5                                 " lines above/below cursor when scrolling
 set showcmd                                     " key strokes in command line
 set splitbelow splitright                       " new windows split right/bottom
 set wildmenu wildmode=longest:full,full         " command autocompletion
 set timeoutlen=1000 ttimeoutlen=1000            " timeout for keybind presses
 set autowrite                                   " auto save
 set confirm                                     " prompt to save not error
+set noerrorbells                                " no ring on error
 set undofile                                    " persistent undo
 set listchars=tab:>-                            " no endline chars
 set hidden                                      " hide buffers instead of close
+set autochdir                                   " relative filepaths
 if has("nvim")
   set termguicolors                               " better colors
 endif
@@ -162,8 +167,8 @@ call plug#begin('~/.config/nvim/plugged')
 " airline {
   " display all buffers if one tab open
   let g:airline#extensions#tabline#enabled = 1
-  " how file paths are shown
-  let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+  " how file paths are shown (they're not)
+  let g:airline#extensions#tabline#fnamemod = ':t'
   let g:airline_powerline_fonts = 1             " powerline integration
   let g:airline_theme='bubblegum'               " status bar theme
   let g:airline#extensions#tagbar#enabled = 1
@@ -421,8 +426,12 @@ set completeopt=noinsert
 " }
 " gitgutter {
   nnoremap diff :GitGutterDiffOrig<cr>
-  nmap <silent> <Leader>nh :call GitGutterNextHunkCycle()<CR>
-  nmap <silent> <Leader>ph :call GitGutterPrevHunkCycle()<CR>
+  " cycle continuously through single files
+  nnoremap <silent> <Leader>nh :call GitGutterNextHunkCycle()<CR>
+  nnoremap <silent> <Leader>ph :call GitGutterPrevHunkCycle()<CR>
+  " cycle through multiple files
+  nnoremap <silent> ]c :call NextHunkAllBuffers()<CR>
+  nnoremap <silent> [c :call PrevHunkAllBuffers()<CR>
 " }
 " md image inserter {
 autocmd FileType markdown nnoremap <buffer><silent> <leader>p :call mdip#MarkdownClipboardImage()<CR>
@@ -467,6 +476,46 @@ function! GitGutterPrevHunkCycle()
     normal! G
     GitGutterPrevHunk
   endif
+endfunction
+
+function! NextHunkAllBuffers()
+  let line = line('.')
+  GitGutterNextHunk
+  if line('.') != line
+    return
+  endif
+  let bufnr = bufnr('')
+  while 1
+    bnext
+    if bufnr('') == bufnr
+      return
+    endif
+    if !empty(GitGutterGetHunks())
+      1
+      GitGutterNextHunk
+      return
+    endif
+  endwhile
+endfunction
+
+function! PrevHunkAllBuffers()
+  let line = line('.')
+  GitGutterPrevHunk
+  if line('.') != line
+    return
+  endif
+  let bufnr = bufnr('')
+  while 1
+    bprevious
+    if bufnr('') == bufnr
+      return
+    endif
+    if !empty(GitGutterGetHunks())
+      normal! G
+      GitGutterPrevHunk
+      return
+    endif
+  endwhile
 endfunction
 
 function! Handle_Win_Enter()

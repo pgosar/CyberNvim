@@ -1,3 +1,4 @@
+#!/bin/bash
 
 # disable command not found message when loading in plugins
 command_not_found_handle() {
@@ -25,12 +26,12 @@ done < "${in}"
 rm -f $in > /dev/null
 
 # load in aliases
-if [ -f $loadpath/aliasrc ]; then
-    source $loadpath/aliasrc
+if [ -f $loadpath/aliasList.sh ]; then
+    source $loadpath/aliasList.sh
 fi
 # load in extra commands
 if [ -f $loadpath/commandsrc ]; then
-    source $loadpath/commandsrc
+    source $loadpath/commands.sh
 fi
 
 # reset command not found to its original (taken from ubuntu source code)
