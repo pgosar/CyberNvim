@@ -5,8 +5,8 @@
 	# enable colors
 	ui = auto
 [core]
-	# default editor
-	editor = ~/nvim-linux64/bin/nvim
+  # default editor
+  editor = 'nvim'
 	# trailing whitespace doesn't cause merge conflicts
 	whitespace = -trailing-space
 [credential "https://github.com"]

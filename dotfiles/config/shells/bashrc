@@ -17,7 +17,8 @@ export DISPLAY=:0                                                   # X Server
 export LIBGL_ALWAYS_INDIRECT=1
 
 export PATH="$PATH:$HOME/code/useful-things/scripts/shell: \
-                   $HOME/code/useful-things/scripts/python"
+                   $HOME/code/useful-things/scripts/python: \
+                   $HOME/nvim-linux64/bin/"
 export PLUGIN="$HOME/.extra"
 export HELPER="$HOME/code/useful-things/shell-helpers"
 export SHELL="$HOME/code/useful-things/scripts/shell"
