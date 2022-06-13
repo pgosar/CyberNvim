@@ -61,8 +61,7 @@ plugins=(
 
 # ---- Terminal Commands -----------------------------------------------------
 
-sudo hwclock -s > /dev/null 2>&1                         # resync system clock
-fortune                                                        # daily fortune
+fortune                                                  # daily fortune
 # source nvim
 export PATH="$HOME/nvim-linux64/bin:$PATH"
 
@@ -92,7 +91,7 @@ fi
 
 # ---- Keybindings -----------------------------------------------------------
 
-bindkey '^ ' autosuggest-accept
+bindkey '^d' autosuggest-accept
 bindkey '^k' edit-command-line
 
 

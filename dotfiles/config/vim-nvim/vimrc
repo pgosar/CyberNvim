@@ -123,6 +123,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'kyazdani42/nvim-web-devicons'
     Plug 'ConradIrwin/vim-bracketed-paste'      " autoset paste mode
     Plug 'easymotion/vim-easymotion'            " better movement
+    Plug 'tpope/vim-repeat'
     if has("vim-8.2.1978") || has("nvim")
       Plug 'psliwka/vim-smoothie'
     endif
@@ -203,6 +204,11 @@ call plug#begin('~/.config/nvim/plugged')
 " }
 " vim markdown {
   let g:markdown_mapping_switch_status = '<Leader>s'
+" }
+" coq {
+  let g:coq_settings = { 'keymap.recommended': v:false,
+        \ 'display.pum.fast_close': v:false}
+
 " }
 
 
@@ -299,12 +305,12 @@ if has("nvim")
     autocmd ColorScheme * highlight OverLength ctermbg=darkgrey guibg=Grey30
     autocmd ColorScheme * match OverLength /\%101v.*/
   augroup END
-
-  augroup COQ
-    autocmd!
-    autocmd VimEnter * COQnow -s
-  augroup END
 endif
+  " augroup COQ
+    " autocmd!
+    " autocmd VimEnter * COQnow -s
+  " augroup END
+" endif
 
 
 " ---- Keybindings -------------------------------------------------------------
@@ -337,7 +343,6 @@ let mapleader = " "                               " Leader Character to Space
   nnoremap <leader>rn <Plug>(coc-rename)
 " }
 " autocomplete {
-let g:coq_settings = { "keymap.recommended": v:false }
   inoremap <expr> <CR>            pumvisible() ? "\<C-y>" : "\<CR>"
   inoremap <silent><expr> <Esc>   pumvisible() ? "\<C-e><Esc>" : "\<Esc>"
   inoremap <silent><expr> <C-c>   pumvisible() ? "\<C-e><C-c>" : "\<C-c>"

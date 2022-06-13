@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # disable command not found message when loading in plugins
 command_not_found_handle() {
