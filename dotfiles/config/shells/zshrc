@@ -64,6 +64,7 @@ plugins=(
 fortune                                                  # daily fortune
 # source nvim
 export PATH="$HOME/nvim-linux64/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 
 # ---- Load Scripts ----------------------------------------------------------

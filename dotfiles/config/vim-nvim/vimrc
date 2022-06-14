@@ -20,7 +20,7 @@ set mouse=a                                     " enable mouse
 set number relativenumber                       " line numbers
 set history=1000                                " command history
 set signcolumn=yes numberwidth=6                " signcolumn and available width
-set updatetime=300                              " delay for plugin trigger
+set updatetime=100                              " delay for plugin trigger
 set linebreak                                   " text wrap wont break words
 set textwidth=100                               " line length
 set title                                       " window title current file
@@ -123,7 +123,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'kyazdani42/nvim-web-devicons'
     Plug 'ConradIrwin/vim-bracketed-paste'      " autoset paste mode
     Plug 'easymotion/vim-easymotion'            " better movement
-    Plug 'tpope/vim-repeat'
+    Plug 'tpope/vim-repeat'                     " repeat commands with .
     if has("vim-8.2.1978") || has("nvim")
       Plug 'psliwka/vim-smoothie'
     endif
@@ -156,8 +156,6 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'ferrine/md-img-paste.vim'
     if has("nvim")
       Plug 'ellisonleao/glow.nvim', {'branch': 'main'}
-      " in browser
-      Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug'], 'commit': '0194821'}
   endif
   " }
   call plug#end()
@@ -166,14 +164,21 @@ call plug#begin('~/.config/nvim/plugged')
 " ---- Plugin Settings ---------------------------------------------------------
 
 " airline {
+  " stops other insert modes from showing
+  let g:airline_mode_map = {}
+  let g:airline_mode_map['ic'] = 'INSERT'
   " display all buffers if one tab open
   let g:airline#extensions#tabline#enabled = 1
   " how file paths are shown (they're not)
   let g:airline#extensions#tabline#fnamemod = ':t'
   let g:airline_powerline_fonts = 1             " powerline integration
   let g:airline_theme='bubblegum'               " status bar theme
-  let g:airline#extensions#tagbar#enabled = 1
+  let g:airline#extensions#tagbar#enabled = 1   " show where in file you are
   let g:airline#extensions#tagbar#flags = 'f'
+  let g:airline#extensions#coc#enabled = 1
+  let g:airline_detect_modified = 0             " stop color change of filepath
+  let g:airline_section_c = airline#section#create(["%{expand('%:p:~:h:h:t')}/%{expand('%:p:h:t')}/%{expand('%:t')}"])
+
 " }
 " NerdComment {
   let g:NERDSpaceDelims = 1                     " add space after comment char
@@ -208,7 +213,6 @@ call plug#begin('~/.config/nvim/plugged')
 " coq {
   let g:coq_settings = { 'keymap.recommended': v:false,
         \ 'display.pum.fast_close': v:false}
-
 " }
 
 
@@ -241,8 +245,8 @@ if system('uname -r') =~ "microsoft"
   augroup Yank
     autocmd!
     autocmd TextYankPost * :call system('/mnt/c/windows/system32/clip.exe ',@")
-    augroup END
-  endif
+  augroup END
+endif
 
 " fixes lag of exiting insert/visual mode
 if !has('gui_running')
@@ -306,11 +310,21 @@ if has("nvim")
     autocmd ColorScheme * match OverLength /\%101v.*/
   augroup END
 endif
-  " augroup COQ
-    " autocmd!
-    " autocmd VimEnter * COQnow -s
-  " augroup END
-" endif
+
+" stop changing tab color when not saved, unless its not the selected tab
+autocmd VimEnter *
+   \ let g:airline#themes#bubblegum#palette.tabline = {
+   \    'airline_tabmod':       ['#000000','#afd787',231,88,''],
+   \    'airline_tabmod_unsel': ['#000000','#87afd7',231,52,''],
+   \ } | :AirlineRefresh
+
+
+" currently coq is glitchy, probably since I don't use nvim native LSP.
+" will make a separate version for it
+" augroup COQ
+  " autocmd!
+  " autocmd VimEnter * COQnow -s
+" augroup END
 
 
 " ---- Keybindings -------------------------------------------------------------
@@ -441,6 +455,13 @@ set completeopt=noinsert
 " md image inserter {
 autocmd FileType markdown nnoremap <buffer><silent> <leader>p :call mdip#MarkdownClipboardImage()<CR>
 " }
+" auto save {
+  nnoremap <c-s> :call ToggleAutoSave()<cr>
+" }
+" movement {
+  inoremap <c-b> <c-o>0
+  inoremap <c-a> <c-o>A
+" }
 
 
 " ---- Functions --------------------------------------------------------------
@@ -525,6 +546,30 @@ endfunction
 
 function! Handle_Win_Enter()
   setlocal winhighlight=Normal:ActiveWindow,NormalNC:InactiveWindow
+endfunction
+
+" start with auto save on
+augroup AutoSave
+  autocmd CursorHoldI <buffer>
+    \ if &readonly == 0 && filereadable(bufname('%')) | silent write | endif
+augroup END
+" auto save
+function! ToggleAutoSave()
+  " Switch the toggle variable
+  let g:AutoSaveToggle = !get(g:, 'AutoSaveToggle', 1)
+  " Reset group
+  augroup AutoSave
+    autocmd!
+    echo "auto save off"
+  augroup END
+  " Enable if toggled on
+  if g:AutoSaveToggle
+    augroup AutoSave
+      autocmd CursorHoldI <buffer>
+        \ if &readonly == 0 && filereadable(bufname('%')) | silent write | endif
+      echo "auto save on"
+    augroup END
+  endif
 endfunction
 
 
