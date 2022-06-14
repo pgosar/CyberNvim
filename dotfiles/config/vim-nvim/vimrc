@@ -49,8 +49,9 @@ set undofile                                    " persistent undo
 set listchars=tab:>-                            " no endline chars
 set hidden                                      " hide buffers instead of close
 set autochdir                                   " relative filepaths
+set completeopt=noinsert                        " dont insert automatically in completion
 if has("nvim")
-  set termguicolors                               " better colors
+  set termguicolors                             " better colors
 endif
 
 
@@ -160,15 +161,16 @@ call plug#begin('~/.config/nvim/plugged')
   " }
   call plug#end()
 
-
 " ---- Plugin Settings ---------------------------------------------------------
 
-" airline {
+"  airline {
   " stops other insert modes from showing
   let g:airline_mode_map = {}
   let g:airline_mode_map['ic'] = 'INSERT'
   " display all buffers if one tab open
   let g:airline#extensions#tabline#enabled = 1
+  let g:airline#extensions#tabline#tab_nr_type = 1  " buffer/tab number
+  let g:airline#extensions#tabline#buffer_idx_mode = 1
   " how file paths are shown (they're not)
   let g:airline#extensions#tabline#fnamemod = ':t'
   let g:airline_powerline_fonts = 1             " powerline integration
@@ -286,21 +288,11 @@ augroup mygroup
   autocmd!
   " Update signature help on jump placeholder.
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')Lq
-
 augroup end
 
 " limelight integration
 autocmd! User GoyoEnter Limelight
 autocmd! User GoyoLeave Limelight!
-
-" Change highlight group of active/inactive windows
-hi ActiveWindow guibg=#17252c
-hi InactiveWindow guibg=#0D1B22
-
-augroup WindowManagement
-  autocmd!
-  autocmd WinEnter * call Handle_Win_Enter()
-augroup END
 
 " highlight text over 100 chars
 if has("nvim")
@@ -319,14 +311,6 @@ autocmd VimEnter *
    \ } | :AirlineRefresh
 
 
-" currently coq is glitchy, probably since I don't use nvim native LSP.
-" will make a separate version for it
-" augroup COQ
-  " autocmd!
-  " autocmd VimEnter * COQnow -s
-" augroup END
-
-
 " ---- Keybindings -------------------------------------------------------------
 
 let mapleader = " "                               " Leader Character to Space
@@ -342,7 +326,7 @@ let mapleader = " "                               " Leader Character to Space
   nnoremap <silent> ci <Plug>(coc-implementation)
   nnoremap <silent> cr <Plug>(coc-references)
   " better documentation and scroll through
-  nnoremap <silent> K :call <SID>show_documentation()<CR>
+  nnoremap <silent> D :call <SID>show_documentation()<CR>
   if has('nvim-0.4.0') || has('patch-8.2.0750')
     nnoremap <silent><nowait><expr> <A-j> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
     nnoremap <silent><nowait><expr> <A-k> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
@@ -364,7 +348,6 @@ let mapleader = " "                               " Leader Character to Space
   inoremap <silent><expr> <CR>    pumvisible() ? (complete_info().selected == -1 ? "\<C-e><CR>" : "\<C-y>") : "\<CR>"
   inoremap <silent><expr> <tab>   pumvisible() ? "\<Down>" : "\<Tab>"
   inoremap <silent><expr> <Esc>[z pumvisible() ? "\<Up>" : "\<Esc>[z"
-set completeopt=noinsert
 " }
 " Multiline {
   let g:VM_maps = {}
@@ -466,7 +449,6 @@ autocmd FileType markdown nnoremap <buffer><silent> <leader>p :call mdip#Markdow
 
 " ---- Functions --------------------------------------------------------------
 
-" manual show documentation
 function! s:show_documentation()
   if (index(['vim', 'help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
@@ -476,14 +458,6 @@ function! s:show_documentation()
     execute '!' . &keywordprg . " " . expand('<cword>')
   endif
 endfunction
-
-" git info in status line
-  inoremap <silent><expr> <A-b> coc#refresh()
-function! GitStatus()
-  let [a,m,r] = GitGutterGetHunkSummary()
-  return printf('+%d ~%d -%d', a, m, r)
-endfunction
-set statusline+=%{GitStatus()}
 
 " cycle between hunks
 function! GitGutterNextHunkCycle()
@@ -544,15 +518,12 @@ function! PrevHunkAllBuffers()
   endwhile
 endfunction
 
-function! Handle_Win_Enter()
-  setlocal winhighlight=Normal:ActiveWindow,NormalNC:InactiveWindow
-endfunction
-
 " start with auto save on
 augroup AutoSave
   autocmd CursorHoldI <buffer>
     \ if &readonly == 0 && filereadable(bufname('%')) | silent write | endif
 augroup END
+
 " auto save
 function! ToggleAutoSave()
   " Switch the toggle variable
@@ -561,6 +532,7 @@ function! ToggleAutoSave()
   augroup AutoSave
     autocmd!
     echo "auto save off"
+    let g:airline_detect_modified = 1
   augroup END
   " Enable if toggled on
   if g:AutoSaveToggle
