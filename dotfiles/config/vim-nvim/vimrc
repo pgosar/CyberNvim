@@ -8,7 +8,7 @@
 "      \$$$         |   $$ \      | $$  \$ | $$
 "       \$           \$$$$$$       \$$      \$$
 "
-"
+
 
 " ---- Basic Settings ----------------------------------------------------------
 
@@ -17,10 +17,10 @@ set noswapfile                                  " no swap files
 syntax enable                                   " enable syntax
 filetype plugin indent on
 set mouse=a                                     " enable mouse
+set updatetime=30                               " time before updates
 set number relativenumber                       " line numbers
 set history=1000                                " command history
 set signcolumn=yes numberwidth=6                " signcolumn and available width
-set updatetime=100                              " delay for plugin trigger
 set linebreak                                   " text wrap wont break words
 set textwidth=100                               " line length
 set title                                       " window title current file
@@ -161,6 +161,7 @@ call plug#begin('~/.config/nvim/plugged')
   " }
   call plug#end()
 
+
 " ---- Plugin Settings ---------------------------------------------------------
 
 "  airline {
@@ -203,6 +204,7 @@ call plug#begin('~/.config/nvim/plugged')
 " ctrlp {
   " ignore files in git and gitignore
   let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+  let g:ctrlp_map = 'cp'
 " }
 " vim wiki {
   " set markdown syntax and filepath
@@ -327,6 +329,7 @@ let mapleader = " "                               " Leader Character to Space
   nnoremap <silent> cr <Plug>(coc-references)
   " better documentation and scroll through
   nnoremap <silent> D :call <SID>show_documentation()<CR>
+  inoremap <c-p> <C-\><C-O>:call CocActionAsync('showSignatureHelp')<cr>
   if has('nvim-0.4.0') || has('patch-8.2.0750')
     nnoremap <silent><nowait><expr> <A-j> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
     nnoremap <silent><nowait><expr> <A-k> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
@@ -339,6 +342,8 @@ let mapleader = " "                               " Leader Character to Space
   nnoremap <leader>ac   <Plug>(coc-codeaction-selected)w
   nnoremap <leader>qf  <Plug>(coc-fix-current)
   nnoremap <leader>rn <Plug>(coc-rename)
+  nnoremap <silent> <leader>cd :CocDisable<cr>
+  nnoremap <silent> <leader>ce :CocEnable<cr>
 " }
 " autocomplete {
   inoremap <expr> <CR>            pumvisible() ? "\<C-y>" : "\<CR>"
@@ -412,7 +417,6 @@ let mapleader = " "                               " Leader Character to Space
 " }
 " Visual Block Mode {
   command! Vb normal! <C-v>
-  nnoremap <silent> vb :Vb<CR>
 " }
 " renaming {
   " local
@@ -444,6 +448,8 @@ autocmd FileType markdown nnoremap <buffer><silent> <leader>p :call mdip#Markdow
 " movement {
   inoremap <c-b> <c-o>0
   inoremap <c-a> <c-o>A
+  vnoremap <c-b> ^
+  vnoremap <c-a> $
 " }
 
 
