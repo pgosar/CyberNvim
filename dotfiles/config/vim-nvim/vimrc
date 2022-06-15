@@ -181,6 +181,10 @@ call plug#begin('~/.config/nvim/plugged')
   let g:airline#extensions#coc#enabled = 1
   let g:airline_detect_modified = 0             " stop color change of filepath
   let g:airline_section_c = airline#section#create(["%{expand('%:p:~:h:h:t')}/%{expand('%:p:h:t')}/%{expand('%:t')}"])
+  if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+  endif
+  let g:airline_symbols.modified = ''
 
 " }
 " NerdComment {
@@ -539,6 +543,7 @@ function! ToggleAutoSave()
     autocmd!
     echo "auto save off"
     let g:airline_detect_modified = 1
+    let g:airline_symbols.modified = '+'
   augroup END
   " Enable if toggled on
   if g:AutoSaveToggle
@@ -546,6 +551,8 @@ function! ToggleAutoSave()
       autocmd CursorHoldI <buffer>
         \ if &readonly == 0 && filereadable(bufname('%')) | silent write | endif
       echo "auto save on"
+      let g:airline_detect_modified = 0
+      let g:airline_symbols.modified = ''
     augroup END
   endif
 endfunction
