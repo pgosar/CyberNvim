@@ -1,4 +1,4 @@
-"   __     __        ______        __       __
+"
 "  |  \   |  \      |      \      |  \     /  \
 "  | $$   | $$       \$$$$$$      | $$\   /  $$
 "  | $$   | $$        | $$        | $$$\ /  $$$
@@ -153,7 +153,6 @@ call plug#begin('~/.config/nvim/plugged')
   " markdown {
     Plug 'vimwiki/vimwiki'
     Plug 'gabrielelana/vim-markdown'            " syntax
-    Plug 'ferrine/md-img-paste.vim'
     if has("nvim")
       " view markdown in a file
       Plug 'ellisonleao/glow.nvim', {'branch': 'main'}
@@ -442,9 +441,6 @@ let mapleader = " "                               " Leader Character to Space
   " cycle through multiple files
   nnoremap <silent> ]c :call NextHunkAllBuffers()<CR>
   nnoremap <silent> [c :call PrevHunkAllBuffers()<CR>
-" }
-" md image inserter {
-autocmd FileType markdown nnoremap <buffer><silent> <leader>p :call mdip#MarkdownClipboardImage()<CR>
 " }
 " auto save {
   nnoremap <c-s> :call ToggleAutoSave()<cr>

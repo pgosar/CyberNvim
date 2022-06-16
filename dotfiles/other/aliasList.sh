@@ -12,7 +12,8 @@ batch="cmd.exe /c" \
 code="/mnt/c/Users/pgosa/AppData/Local/Programs/Microsoft\ VS\ Code/bin/code" \
 py="python3" \
 v="~/nvim-linux64/bin/nvim" \
-dora="explorer.exe ."
+dora="explorer.exe ." \
+imgpst="powershell.exe -executionpolicy bypass -file ~/code/useful-things/scripts/batch/clipboardPaste.ps1"
 
 # git stuff
 alias \
