@@ -151,11 +151,11 @@ call plug#begin('~/.config/nvim/plugged')
    Plug 'honza/vim-snippets'
   " }
   " markdown {
-    " view markdown in file
     Plug 'vimwiki/vimwiki'
     Plug 'gabrielelana/vim-markdown'            " syntax
     Plug 'ferrine/md-img-paste.vim'
     if has("nvim")
+      " view markdown in a file
       Plug 'ellisonleao/glow.nvim', {'branch': 'main'}
   endif
   " }
@@ -408,7 +408,7 @@ let mapleader = " "                               " Leader Character to Space
 " }
 " Misc {
   " enter to get rid of highlights
-  nnoremap <cr> :noh<CR><CR>
+  nnoremap m :noh<CR><CR>
   " exit vim command mode
   tnoremap <Esc> <C-\><C-n>
 " }
