@@ -44,7 +44,6 @@ plugins=(
   copyfile
   command-not-found
   colored-man-pages
-  bgnotify
   history-substring-search
   last-working-dir
   safe-paste
