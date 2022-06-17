@@ -3,9 +3,9 @@
 # random
 alias \
 update="sudo apt update -y && sudo apt upgrade -y" \
-ls="ls -F --color=auto --group-directories-first" \
-sl="ls -F --color=auto --group-directories-first" \
-lsa="ls -a" \
+ls="colorls --sd --gs" \
+sl="colorls --sd --gs" \
+lsa="colorls --sd --gs -A" \
 grep="grep --color=auto" \
 ccat="pygmentize -g" \
 batch="cmd.exe /c" \
@@ -32,14 +32,6 @@ rm="rm -iv" \
 cp="cp -iv" \
 mv="mv -iv"
 
-# zsh specific
-alias \
-szsh="source ~/.zshrc"
-
-# bash specific
-alias \
-sbash="source ~/.bashrc"
-
 # packages
 alias \
 ${ZSHZ_CMD:-${_Z_CMD:-z}}='zshz 2>&1' \
@@ -50,3 +42,5 @@ bat="batcat" \
 mux="tmuxinator" \
 ling="github-linguist --breakdown" \
 mlp="mlp --no-browser"
+
+eval $(thefuck --alias)

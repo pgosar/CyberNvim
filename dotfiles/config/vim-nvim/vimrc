@@ -355,7 +355,6 @@ let mapleader = " "                               " Leader Character to Space
   inoremap <silent><expr> <Esc>   pumvisible() ? "\<C-e><Esc>" : "\<Esc>"
   inoremap <silent><expr> <C-c>   pumvisible() ? "\<C-e><C-c>" : "\<C-c>"
   inoremap <silent><expr> <BS>    pumvisible() ? "\<C-e><BS><C-e>"  : "\<BS>"
-  inoremap <silent><expr> <CR>    pumvisible() ? (complete_info().selected == -1 ? "\<C-e><CR>" : "\<C-y>") : "\<CR>"
   inoremap <silent><expr> <tab>   pumvisible() ? "\<Down>" : "\<Tab>"
   inoremap <silent><expr> <Esc>[z pumvisible() ? "\<Up>" : "\<Esc>[z"
 " }
