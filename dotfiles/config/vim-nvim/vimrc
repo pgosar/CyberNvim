@@ -1,4 +1,3 @@
-"
 "  |  \   |  \      |      \      |  \     /  \
 "  | $$   | $$       \$$$$$$      | $$\   /  $$
 "  | $$   | $$        | $$        | $$$\ /  $$$
@@ -45,7 +44,7 @@ set timeoutlen=1000 ttimeoutlen=1000            " timeout for keybind presses
 set autowrite                                   " auto save
 set confirm                                     " prompt to save not error
 set noerrorbells                                " no ring on error
-set undofile                                    " persistent undo
+set undofile undodir=~/.vim/undo-dir            " persistent undo
 set listchars=tab:>-                            " no endline chars
 set hidden                                      " hide buffers instead of close
 set autochdir                                   " relative filepaths
@@ -314,6 +313,8 @@ autocmd VimEnter *
    \    'airline_tabmod':       ['#000000','#afd787',231,88,''],
    \    'airline_tabmod_unsel': ['#000000','#87afd7',231,52,''],
    \ } | :AirlineRefresh
+
+autocmd FileType markdown let b:coc_suggest_disable = 1
 
 
 " ---- Keybindings -------------------------------------------------------------
