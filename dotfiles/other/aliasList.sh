@@ -48,4 +48,5 @@ yt="youtube-dl --add-metadata -ic" \
 fd="fdfind" \
 bat="batcat" \
 mux="tmuxinator" \
-ling="github-linguist --breakdown"
+ling="github-linguist --breakdown" \
+mlp="mlp --no-browser"

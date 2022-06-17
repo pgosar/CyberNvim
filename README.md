@@ -8,26 +8,26 @@ Vim/Nvim Welcome Screen
 
 ![image](https://user-images.githubusercontent.com/55164602/172945445-c99092f1-e42f-46af-974b-e9110c8308da.png)
 
-<hr>
+<hr />
 
 vim/nvim with gruvbox
 
 ![image](https://user-images.githubusercontent.com/55164602/172945978-126dc68a-f36b-4c04-9ff7-ce414b24ff29.png)
 
-<hr>
+<hr />
 
 Zsh shell showcase
 
 ![image](https://user-images.githubusercontent.com/55164602/172946091-1782a47a-b086-40f5-9cc0-4db7e409b675.png)
 
-<hr>
+<hr />
 
 ### Warning
 Simply copying my dotfiles is unlikely to work due to various system specific settings and hard coded filepaths. It is suggested and quite trivial to take the parts of the code (or even entire files) that you do want to use while being sure you change any hard coded filepaths (there are not very many don't worry).
 
 This repository is not meant as much for a plug and play experience as much as it is for showcasing various things you can do with tmux, vim, zsh, bash, and fish, in the hopes that you find some of the tricks useful and integrate them into your own configurations.
 
-<hr>
+<hr />
 
 ### Installation
 
@@ -39,7 +39,7 @@ ln ~/.vimrc ~/useful-things/dotfiles/config/vim-nvim/vimrc
 for example. This creates what is basically a new file with the exact same content as the one in this repository.
 
 My terminal configurations are dependent on files located [here](https://github.com/pgosar/useful-things/tree/main/dotfiles/other). You are welcome to copy those files anywhere you want.
-<hr>
+<hr />
 
 ### Dependencies
 My vimrc requires [vim-plug](https://github.com/junegunn/vim-plug)
@@ -48,7 +48,7 @@ zsh requires [powerline](powerline/powerline) with the [Meslo nerd font](https:/
 
 fish requires [tide](https://github.com/ilanCosman/tide)
 
-<hr>
+<hr />
 
 ### Contributing
 I welcome contributions if you know of any useful features that I may be
