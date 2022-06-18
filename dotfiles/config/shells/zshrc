@@ -61,11 +61,6 @@ plugins=(
 )
 
 
-# ---- Terminal Commands -----------------------------------------------------
-
-fortune                                                  # daily fortune
-
-
 # ---- Load Scripts ----------------------------------------------------------
 
 loadpath=$DOTFILES/other/
@@ -99,3 +94,8 @@ bindkey '^k' edit-command-line
 
 # stops git status from checking untracked files
 DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+
+# ---- Terminal Commands -----------------------------------------------------
+
+fortune                                                  # daily fortune

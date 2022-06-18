@@ -354,6 +354,7 @@ let mapleader = " "                               " Leader Character to Space
   inoremap <expr> <CR>            pumvisible() ? "\<C-y>" : "\<CR>"
   inoremap <silent><expr> <Esc>   pumvisible() ? "\<C-e><Esc>" : "\<Esc>"
   inoremap <silent><expr> <C-c>   pumvisible() ? "\<C-e><C-c>" : "\<C-c>"
+  inoremap <silent><expr> <CR>    pumvisible() ? (complete_info().selected == -1 ? "\<C-e><CR>" : "\<C-y>") : "\<CR>"
   inoremap <silent><expr> <BS>    pumvisible() ? "\<C-e><BS><C-e>"  : "\<BS>"
   inoremap <silent><expr> <tab>   pumvisible() ? "\<Down>" : "\<Tab>"
   inoremap <silent><expr> <Esc>[z pumvisible() ? "\<Up>" : "\<Esc>[z"
@@ -417,7 +418,7 @@ let mapleader = " "                               " Leader Character to Space
   nnoremap / :set hlsearch<cr>/
   nnoremap i :set nohlsearch<cr>i
   " ctrl+d out of delimiters
-  inoremap <c-d> <left><c-o>/["')>}\]]<cr><c-o>:noh<cr><right>
+  inoremap <c-d> <left><c-o>/["';)>}\]]<cr><c-o>:noh<cr><right>
 " }
 " Visual Block Mode {
   command! Vb normal! <C-v>
