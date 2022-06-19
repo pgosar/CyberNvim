@@ -23,7 +23,7 @@ Zsh shell showcase
 <hr />
 
 ### Warning
-Simply copying my dotfiles is unlikely to work due to various system specific settings and hard coded filepaths. It is suggested and quite trivial to take the parts of the code (or even entire files) that you do want to use while being sure you change any hard coded filepaths (there are not very many don't worry).
+Simply copying my dotfiles is unlikely to work due to various system specific settings and hard coded filepaths. It is suggested and quite trivial to take the parts of the code (or even entire files) that you do want to use while being sure you change any hard coded filepaths (there are not very many don't worry) Most of them are in updating my PATH variable and in certain aliases, for example, my nvim alias.
 
 This repository is not meant as much for a plug and play experience as much as it is for showcasing various things you can do with tmux, vim, zsh, bash, and fish, in the hopes that you find some of the tricks useful and integrate them into your own configurations.
 
@@ -34,9 +34,9 @@ This repository is not meant as much for a plug and play experience as much as i
 I would recommend taking parts of code you like from the stars of the show, my [vim/nvim](https://github.com/pgosar/useful-things/tree/main/dotfiles/config/vim-nvim/) settings, my [tmux](https://github.com/pgosar/useful-things/tree/main/dotfiles/config/tmux.conf) settings, and my [terminal](https://github.com/pgosar/useful-things/tree/main/dotfiles/config/shells) settings, which you are probably here for. Beware that a couple files associated with my terminal tend to feature hard coded filepaths unique to my system, but these are simple to change. Furthermore, I keep all nvim specific configs at the very bottom of my vimrc since I prefer having everything in one file for easy sharing.
 If you go the ```git clone``` route, you can also symlink my files to your own configuration files using
 ``` python
-ln ~/.vimrc ~/useful-things/dotfiles/config/vim-nvim/vimrc
+ln ~/.vimrc ~/dotfiles/dotfiles/config/vim-nvim/vimrc
 ```
-for example. This creates what is basically a new file with the exact same content as the one in this repository.
+for example. This creates what is basically a new file with the exact same content as the one in this repository. If you run into any issues in using my files, feel free to make an issue. I have probably run into the same issue before too.
 
 My terminal configurations are dependent on files located [here](https://github.com/pgosar/useful-things/tree/main/dotfiles/other). You are welcome to copy those files anywhere you want.
 <hr />
