@@ -23,6 +23,7 @@ export DOTFILES="$HOME/code/useful-things/dotfiles"
 export EDITOR='nvim'
 export VISUAL='nvim'
 export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0
+export LIBGL_ALWAYS_INDIRECT=1                  # for x server
 
 
 # ---- Terminal Settings -----------------------------------------------------
@@ -99,3 +100,6 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # ---- Terminal Commands -----------------------------------------------------
 
 fortune                                                  # daily fortune
+# remove this line if you do not have the wsl2 bug where your system clock
+# is always out of date after computer goes to sleep mode
+sudo hwclock -s
