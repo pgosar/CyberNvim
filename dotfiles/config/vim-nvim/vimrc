@@ -82,8 +82,6 @@ call plug#begin('~/.config/nvim/plugged')
     endif
   " }
   " fuzzy finders {
-    Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-    Plug 'junegunn/fzf.vim'
     if has("nvim")
       Plug 'nvim-lua/plenary.nvim'
       Plug 'nvim-telescope/telescope.nvim'        " search files within vim
