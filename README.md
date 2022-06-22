@@ -12,7 +12,7 @@ Vim/Nvim Welcome Screen
 
 vim/nvim with gruvbox
 
-![image](https://user-images.githubusercontent.com/55164602/172945978-126dc68a-f36b-4c04-9ff7-ce414b24ff29.png)
+![image](![image](![image](https://user-images.githubusercontent.com/55164602/174918419-56ae2aca-2f04-4f20-b477-8366ad31ce05.png)
 
 <hr />
 
@@ -34,7 +34,7 @@ This repository is not meant as much for a plug and play experience as much as i
 I would recommend taking parts of code you like from the stars of the show, my [vim/nvim](https://github.com/pgosar/useful-things/tree/main/dotfiles/config/vim-nvim/) settings, my [tmux](https://github.com/pgosar/useful-things/tree/main/dotfiles/config/tmux.conf) settings, and my [terminal](https://github.com/pgosar/useful-things/tree/main/dotfiles/config/shells) settings, which you are probably here for. Beware that a couple files associated with my terminal tend to feature hard coded filepaths unique to my system, but these are simple to change. Furthermore, I keep all nvim specific configs at the very bottom of my vimrc since I prefer having everything in one file for easy sharing.
 If you go the ```git clone``` route, you can also symlink my files to your own configuration files using
 ``` python
-ln ~/.vimrc ~/dotfiles/dotfiles/config/vim-nvim/vimrc
+ln ~/dotfiles/dotfiles/config/vim-nvim/vimrc ~/.vimrc
 ```
 for example. This creates what is basically a new file with the exact same content as the one in this repository. If you run into any issues in using my files, feel free to make an issue. I have probably run into the same issue before too.
 
