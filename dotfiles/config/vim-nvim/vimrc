@@ -11,6 +11,7 @@
 
 " ---- Basic Settings ----------------------------------------------------------
 
+set nocompatible                                " no vi compatibility
 set shell=/usr/bin/zsh                          " set default shell
 set noswapfile                                  " no swap files
 syntax enable                                   " enable syntax
@@ -22,9 +23,7 @@ set history=1000                                " command history
 set signcolumn=yes numberwidth=6                " signcolumn and available width
 set linebreak                                   " text wrap wont break words
 set textwidth=100                               " line length
-set title                                       " window title current file
 set spell                                       " spell check
-set nocompatible                                " no vi compatibility
 set smartcase ignorecase incsearch              " searching and highlighting
 set foldmethod=indent foldlevel=2 foldcolumn=2  " code folding
 set foldlevelstart=99 foldopen+=jump nofoldenable " auto fold open/close
@@ -238,11 +237,14 @@ let g:gruvbox_contrast_dark = 'soft'
 autocmd vimenter * ++nested colorscheme gruvbox
 
 " Auto delete trailing whitespace, save cursor position
-autocmd BufWritePre * let currPos = getpos(".")
-autocmd BufWritePre * %s/\s\+$//e
-autocmd BufWritePre * %s/\n\+\%$//e
-autocmd BufWritePre *.[ch] %s/\%$/\r/e
-autocmd BufWritePre * cal cursor(currPos[1], currPos[2])
+augroup noWhitespace
+  autocmd!
+  autocmd BufWritePre * let currPos = getpos(".")
+  autocmd BufWritePre * %s/\s\+$//e
+  autocmd BufWritePre * %s/\n\+\%$//e
+  autocmd BufWritePre *.[ch] %s/\%$/\r/e
+  autocmd BufWritePre * cal cursor(currPos[1], currPos[2])
+augroup END
 
 " WSL yank support
 if system('uname -r') =~ "microsoft"
@@ -257,8 +259,8 @@ if !has('gui_running')
   set ttimeoutlen=10
   augroup FastEscape
     autocmd!
-    au InsertEnter * set timeoutlen=0
-    au InsertLeave * set timeoutlen=1000
+    autocmd InsertEnter * set timeoutlen=0
+    autocmd InsertLeave * set timeoutlen=1000
   augroup END
 endif
 
@@ -281,20 +283,23 @@ augroup END
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " add cursorline when not in insert mode
-autocmd VimEnter * set cul
-autocmd InsertLeave * set cul
-autocmd InsertEnter * set nocul
+augroup cursorLine
+  autocmd!
+  autocmd VimEnter * set cul
+  autocmd InsertLeave * set cul
+  autocmd InsertEnter * set nocul
+augroup END
 
 " show function signatures
 augroup mygroup
   autocmd!
   " Update signature help on jump placeholder.
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')Lq
-augroup end
+augroup END
 
 " limelight integration
-autocmd! User GoyoEnter Limelight
-autocmd! User GoyoLeave Limelight!
+autocmd User GoyoEnter Limelight
+autocmd User GoyoLeave Limelight!
 
 " highlight text over 100 chars
 if has("nvim")
