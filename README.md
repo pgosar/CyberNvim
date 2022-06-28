@@ -1,19 +1,41 @@
-### A note about migrating to Lua
+# My Dotfiles
 
-Eventually I will be moving to a Lua only config for Neovim (hopefully within the coming months), with the exception that all my keybindings will be written in vimscript and then sourced in my init.lua. As such, when that happens, my vimrc will NOT be updated to vim9 script, and will stop recieving updates as new possible improvements/features to my config become available. 
+<hr />
 
-Part of this is my desire to use a language for my (n)Vim tinkering that actually has a usecase beyond Vim and also partly because any performance improvements in vim9 compared to LuaJIT still do not make using vimscript a more enticing proposition than Lua. I am considering becoming more involved in writing plugins and more extensive modifications for my neovim as the need arises (provided I have time), and I most definitely would prefer using Lua for that instead of vim9 script. That being said, the Vim config will remain here, be completely usable, and will still provide an IDE-like experience. 
+## Table of Contents
+1. [Intro](#intro)
+2. [Installation](#installation)
+3. [Dependencies](#dependencies)
+4. [Things to keep in mind](#warning)
 
-Contributions are, as always, welcome if anybody plans to port parts of my vim config (or all of it, I certainly wouldn't complain!) to vim9 and wants to share their work. In this case, it would be best to make a separate file so that I can maintain backwards compatibility and provide a version of my config that works for people not planning to use vim9 script.
+### Intro
+_Turbocharge your vim into an IDE with 550 lines of config. Make your terminal the envy of the entire town with only a few minutes of setup._
 
+Wondering about what features my Vim config has? Any feature you find useful in whatever IDE or other program you use, **my config has it and more**. Are you a neovim user? Fear not! my config has even more features for you to take advantage of!
 
-### My Dotfiles
+A short list:
 
+* Persistent undo
+* Better autocomplete than VSCode
+* floating and inline function documentation and parameter completion (and other goodies!)
+* Auto-save
+* Persistent sessions
+* support for any of many dozens of colorschemes
+* An all-in-one editor for (literally) **any** programming language, markdown, latex, and more.
+* A start screen with bookmarks to your recent files/favorites
+* An aesthetic colorscheme, tabline, and statusline
+* Super easy tab, split, and buffer navigation
+* File explorer and file overview (see picture)
+* Git integration
+* Fuzzy file searching
+* A myriad of quality of life features you will not be able to live without
+* Highly Customizable. I have customized nearly everything, which means you get a template for your own customizations :) 
 
-Turn your vim into an IDE and your terminal into a pure productivity machine with only a few minutes of setup. Wondering about what features my Vim config has? Any feature you find useful in whatever IDE or other program you use, **my config has it and more**. And if it does not (it will), make an issue, and I will add it if I think it would be useful.
+If my config does not have a feature you want, (it will), make an issue, and I will add it if I think it would be useful.
 
-Vim/Nvim Welcome Screen``
+<hr />
 
+Vim/Nvim Welcome Screen
 
 ![image](https://user-images.githubusercontent.com/55164602/172945445-c99092f1-e42f-46af-974b-e9110c8308da.png)
 
@@ -31,13 +53,6 @@ Zsh shell showcase
 
 <hr />
 
-### Warning
-Simply copying my dotfiles is unlikely to work due to various system specific settings and hard coded filepaths. It is suggested and quite trivial to take the parts of the code (or even entire files) that you do want to use while being sure you change any hard coded filepaths (there are not very many don't worry) Most of them are in updating my PATH variable and in certain aliases, for example, my nvim alias.
-
-This repository is not meant as much for a plug and play experience as much as it is for showcasing various things you can do with tmux, vim, zsh, bash, and fish, in the hopes that you find some of the tricks useful and integrate them into your own configurations.
-
-<hr />
-
 ### Installation
 
 I would recommend taking parts of code you like from the stars of the show, my [vim/nvim](https://github.com/pgosar/useful-things/tree/main/dotfiles/config/vim-nvim/) settings, my [tmux](https://github.com/pgosar/useful-things/tree/main/dotfiles/config/tmux.conf) settings, and my [terminal](https://github.com/pgosar/useful-things/tree/main/dotfiles/config/shells) settings, which you are probably here for. Beware that a couple files associated with my terminal tend to feature hard coded filepaths unique to my system, but these are simple to change. Furthermore, I keep all nvim specific configs at the very bottom of my vimrc since I prefer having everything in one file for easy sharing.
@@ -51,13 +66,31 @@ My terminal configurations are dependent on files located [here](https://github.
 <hr />
 
 ### Dependencies
-My vimrc requires [vim-plug](https://github.com/junegunn/vim-plug)
+My vimrc requires [vim-plug](https://github.com/junegunn/vim-plug). Look at its README for details on usage. Refer to [CoC's README](https://github.com/neoclide/coc.nvim) for details on using the LSP provider.
 
 zsh requires [powerline](powerline/powerline) with the [Meslo nerd font](https://github.com/ryanoasis/nerd-fonts) and [oh my zsh](https://github.com/ohmyzsh/ohmyzsh)
 
 fish requires [tide](https://github.com/ilanCosman/tide)
 
 <hr />
+
+### Warning
+Simply copying my dotfiles is unlikely to work due to various system specific settings and hard coded filepaths. It is suggested and quite trivial to take the parts of the code (or even entire files) that you do want to use while being sure you change any hard coded filepaths (there are not very many don't worry) Most of them are in updating my PATH variable and in certain aliases, for example, my nvim alias.
+
+This repository is not meant as much for a plug and play experience as much as it is for showcasing various things you can do with tmux, vim, zsh, bash, and fish, in the hopes that you find some of the tricks useful and integrate them into your own configurations.
+
+<hr />
+
+### A note about migrating to Lua
+
+Eventually I will be moving to a Lua only config for Neovim (hopefully within the coming months), with the exception that all my keybindings will be written in vimscript and then sourced in my init.lua. As such, when that happens, my vimrc will NOT be updated to vim9 script, and will stop recieving updates as new possible improvements/features to my config become available. 
+
+Part of this is my desire to use a language for my (n)Vim tinkering that actually has a usecase beyond Vim and also partly because any performance improvements in vim9 compared to LuaJIT still do not make using vimscript a more enticing proposition than Lua. I am considering becoming more involved in writing plugins and more extensive modifications for my neovim as the need arises (provided I have time), and I most definitely would prefer using Lua for that instead of vim9 script. That being said, the Vim config will remain here, be completely usable, and will still provide an IDE-like experience. 
+
+Contributions are, as always, welcome if anybody plans to port parts of my vim config (or all of it, I certainly wouldn't complain!) to vim9 and wants to share their work. In this case, it would be best to make a separate file so that I can maintain backwards compatibility and provide a version of my config that works for people not planning to use vim9 script.
+
+<hr />
+
 
 ### Contributing
 I welcome contributions if you know of any useful features that I may be
