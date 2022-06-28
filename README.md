@@ -1,3 +1,11 @@
+### A note about migrating to Lua
+
+Eventually I will be moving to a Lua only config for Neovim (hopefully within the coming months), with the exception that all my keybindings will be written in vimscript and then sourced in my init.lua. As such, when that happens, my vimrc will NOT be updated to vim9 script, and will stop recieving updates as new possible improvements/features to my config become available. 
+
+Part of this is my desire to use a language for my (n)Vim tinkering that actually has a usecase beyond Vim and also partly because any performance improvements in vim9 compared to LuaJIT still do not make using vimscript a more enticing proposition than Lua. I am considering becoming more involved in writing plugins and more extensive modifications for my neovim as the need arises (provided I have time), and I most definitely would prefer using Lua for that instead of vim9 script. That being said, the Vim config will remain here, be completely usable, and will still provide an IDE-like experience. 
+
+Contributions are, as always, welcome if anybody plans to port parts of my vim config (or all of it, I certainly wouldn't complain!) to vim9 and wants to share their work. In this case, it would be best to make a separate file so that I can maintain backwards compatibility and provide a version of my config that works for people not planning to use vim9 script.
+
 ### My Dotfiles
 
 
