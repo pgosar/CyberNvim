@@ -6,12 +6,13 @@ Part of this is my desire to use a language for my (n)Vim tinkering that actuall
 
 Contributions are, as always, welcome if anybody plans to port parts of my vim config (or all of it, I certainly wouldn't complain!) to vim9 and wants to share their work. In this case, it would be best to make a separate file so that I can maintain backwards compatibility and provide a version of my config that works for people not planning to use vim9 script.
 
+
 ### My Dotfiles
 
 
-Turn your vim into an IDE and your terminal into a pure productivity machine with only a few minutes of setup.
+Turn your vim into an IDE and your terminal into a pure productivity machine with only a few minutes of setup. Wondering about what features my Vim config has? Any feature you find useful in whatever IDE or other program you use, **my config has it and more**. And if it does not (it will), make an issue, and I will add it if I think it would be useful.
 
-Vim/Nvim Welcome Screen
+Vim/Nvim Welcome Screen``
 
 
 ![image](https://user-images.githubusercontent.com/55164602/172945445-c99092f1-e42f-46af-974b-e9110c8308da.png)
