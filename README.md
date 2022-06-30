@@ -23,7 +23,7 @@ A short list:
 * support for any of many dozens of colorschemes
 * An all-in-one editor for (literally) **any** programming language, markdown, latex, and more.
 * A start screen with bookmarks to your recent files/favorites
-* An aesthetic colorscheme, tabline, and statusline
+* An aesthetic colorscheme (actually one of [several dozen](https://github.com/flazz/vim-colorschemes) that you can pick and choose from), tabline, and statusline
 * Super easy tab, split, and buffer navigation
 * File explorer and file overview (see picture)
 * Git integration
