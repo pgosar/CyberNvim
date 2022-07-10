@@ -12,23 +12,19 @@
 
 # ---- Environment Variables -------------------------------------------------
 
-export PATH="$HOME/nvim-linux64/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
-export PATH="$HOME/code/useful-things/scripts/batch:$PATH"
 export PATH="$HOME/code/useful-things/scripts/python:$PATH"
 export PATH="$HOME/code/useful-things/scripts/shell:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
 
 export ZSH="$HOME/.oh-my-zsh"
 export DOTFILES="$HOME/code/useful-things/dotfiles"
 export EDITOR='nvim'
 export VISUAL='nvim'
-export DISPLAY=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}'):0
-export LIBGL_ALWAYS_INDIRECT=1                  # for x server
 
 
 # ---- Terminal Settings -----------------------------------------------------
 
-ZSH_THEME="powerlevel10k/powerlevel10k"                    # set p10k as theme
 zstyle ':omz:update' mode reminder                          # update reminders
 DISABLE_MAGIC_FUNCTIONS="true"
 COMPLETION_WAITING_DOTS="true"               # show command is auto completing
@@ -72,17 +68,7 @@ fi
 if [ -f $loadpath/commands.sh ]; then                          # load commands
     source $loadpath/commands.sh
 fi
-# load theme
-[[ ! -f $loadpath/p10k.zsh ]] || source $loadpath/p10k.zsh       # load p10k
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh                              # load fzf
-# auto start tmux
-[ -x "$(command -v tmux)" ] && [ -z "${TMUX}" ] \
-  && { tmux attach || tmux; } >/dev/null 2>&1
-# p10k prompt
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]];
-then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
 
 
 # ---- Keybindings -----------------------------------------------------------
@@ -100,6 +86,4 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # ---- Terminal Commands -----------------------------------------------------
 
 fortune                                                  # daily fortune
-# remove this line if you do not have the wsl2 bug where your system clock
-# is always out of date after computer goes to sleep mode
-sudo hwclock -s
+source ~/.local/share/lscolors.sh

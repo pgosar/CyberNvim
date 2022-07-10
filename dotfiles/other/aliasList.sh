@@ -2,14 +2,12 @@
 
 # random
 alias \
-update="sudo apt update -y && sudo apt upgrade -y" \
 ls="ls -F --color=auto --group-directories-first" \
 sl="ls -F --color=auto --group-directories-first" \
 lsa="ls -A" \
 grep="grep --color=auto" \
 py="python3" \
-v="nvim" \
-dora="explorer.exe ." \
+v="nvim"
 
 # git stuff
 alias \
@@ -39,3 +37,5 @@ ling="github-linguist --breakdown" \
 mlp="mlp --no-browser"
 
 eval $(thefuck --alias)
+eval "$(zoxide init zsh)"
+eval "$(starship init zsh)"
