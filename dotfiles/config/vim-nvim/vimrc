@@ -73,7 +73,7 @@ call plug#begin('~/.config/nvim/plugged')
   " }
   " LSP {
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
-    Plug 'pechorin/any-jump.vim'                " jump to definition/reference
+    Plug 'pechorin/any-jump.vim'                  " jump to definition/reference
     if has("nvim")
       Plug 'folke/trouble.nvim'                   " better loc list
       Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
@@ -98,16 +98,17 @@ call plug#begin('~/.config/nvim/plugged')
   " }
   " Lang Plugins {
     Plug 'lervag/vimtex'
+    Plug 'uiiaoo/java-syntax.vim'
+    Plug 'sheerun/vim-polyglot'                 " Syntax highlighting
   " }
   " Git {
     Plug 'tpope/vim-fugitive'                   " Git inside vim
     Plug 'airblade/vim-gitgutter'               " show changes in signcolumn
   " }
-  " Visuals/syntax {
+  " Visuals {
     Plug 'thaerkh/vim-indentguides'
     Plug 'flazz/vim-colorschemes'
     Plug 'luochen1990/rainbow'                  " bracket coloring
-    Plug 'sheerun/vim-polyglot'                 " Syntax highlighting
     Plug 'blueyed/vim-diminactive'
     Plug 'stevearc/dressing.nvim'               " prettier boxes like on rename
   " }
@@ -155,6 +156,7 @@ call plug#begin('~/.config/nvim/plugged')
   endif
   " }
 call plug#end()
+
 
 
 " ---- Plugin Settings ---------------------------------------------------------
@@ -320,6 +322,13 @@ autocmd VimEnter *
 " turn off suggestions in markdown only
 autocmd FileType markdown let b:coc_suggest_disable = 1
 
+" highlight operator symbols
+augroup operatorHighlight
+  autocmd!
+  autocmd Syntax * call s:HighlightOperators()
+  autocmd ColorScheme * call s:HighlightOperators()
+augroup END
+
 
 " ---- Keybindings -------------------------------------------------------------
 
@@ -331,10 +340,9 @@ let mapleader = " "                               " Leader Character to Space
   nnoremap cl :silent! TroubleClose<CR>
   nnoremap <silent> gn :lnext<CR>
   nnoremap <silent> gp :lprev<CR>
-  " Coc navigation
-  nnoremap <silent> cy <Plug>(coc-type-definition)
-  nnoremap <silent> ci <Plug>(coc-implementation)
-  nnoremap <silent> cr <Plug>(coc-references)
+  " Coc navigation - prefer anyjump for references etc.
+  nnoremap <silent> gd <Plug>(coc-definition)
+  nnoremap <silent> gt <Plug>(coc-type-definition)
   " better documentation and scroll through
   nnoremap <silent> D :call <SID>show_documentation()<CR>
   inoremap <c-p> <C-\><C-O>:call CocActionAsync('showSignatureHelp')<cr>
@@ -456,10 +464,21 @@ let mapleader = " "                               " Leader Character to Space
   vnoremap <c-b> ^
   vnoremap <c-a> $
 " }
+" this is ctrl backspace to delete button
+silent! exe "set <F34>=\<Esc>\<C-?>"
+silent! exe "set <F35>=\<Esc>\<C-H>"
 
 
 " ---- Functions --------------------------------------------------------------
 
+" highlight operator symbols
+function! s:HighlightOperators()
+  syntax match OperatorChars "?\|+\|-\|\*\|:\|<\|>\|&\||\|!\|\~\|%\|=\|/\(/\|*\)\@!"
+
+    exec "hi OperatorChars guifg=" . "BlueViolet"
+endfunction
+
+" show documentation from LSP
 function! s:show_documentation()
   if (index(['vim', 'help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')

@@ -1,5 +1,7 @@
 # My Dotfiles
 
+Note: If you use WSL2, checkout the WSL2 branch. It has my old setup including plenty of workarounds for everything such as fluid copy pasting between vim and windows.
+
 <hr />
 
 ## Table of Contents

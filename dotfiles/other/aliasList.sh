@@ -3,17 +3,13 @@
 # random
 alias \
 update="sudo apt update -y && sudo apt upgrade -y" \
-ls="colorls --sd --gs" \
-sl="colorls --sd --gs" \
-lsa="colorls --sd --gs -A" \
+ls="ls -F --color=auto --group-directories-first" \
+sl="ls -F --color=auto --group-directories-first" \
+lsa="ls -A" \
 grep="grep --color=auto" \
-ccat="pygmentize -g" \
-batch="cmd.exe /c" \
-code="/mnt/c/Users/pgosa/AppData/Local/Programs/Microsoft\ VS\ Code/bin/code" \
 py="python3" \
-v="~/nvim-linux64/bin/nvim" \
+v="nvim" \
 dora="explorer.exe ." \
-imgpst="powershell.exe -executionpolicy bypass -file ~/code/useful-things/scripts/batch/clipboardPaste.ps1"
 
 # git stuff
 alias \
@@ -38,7 +34,6 @@ ${ZSHZ_CMD:-${_Z_CMD:-z}}='zshz 2>&1' \
 hh="hstr" \
 yt="youtube-dl --add-metadata -ic" \
 fd="fdfind" \
-bat="batcat" \
 mux="tmuxinator" \
 ling="github-linguist --breakdown" \
 mlp="mlp --no-browser"
