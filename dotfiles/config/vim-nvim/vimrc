@@ -248,14 +248,6 @@ augroup noWhitespace
   autocmd BufWritePre * cal cursor(currPos[1], currPos[2])
 augroup END
 
-" WSL yank support
-if system('uname -r') =~ "microsoft"
-  augroup Yank
-    autocmd!
-    autocmd TextYankPost * :call system('/mnt/c/windows/system32/clip.exe ',@")
-  augroup END
-endif
-
 " fixes lag of exiting insert/visual mode
 if !has('gui_running')
   set ttimeoutlen=10
