@@ -33,8 +33,12 @@ yt="youtube-dl --add-metadata -ic" \
 fd="fdfind" \
 mux="tmuxinator" \
 ling="github-linguist --breakdown" \
-mlp="mlp --no-browser"
+mlp="mlp --no-browser" \
+icat="kitty +kitten icat" \
+hg="kitty +kitten hyperlinked_grep" \
+kd="kitty +kitten diff"
 
+# other
 eval $(thefuck --alias)
 eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
