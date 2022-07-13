@@ -23,12 +23,11 @@ uncommit="git reset --soft HEAD^"
 alias \
 mkdir="mkdir -pv" \
 rm="rm -iv" \
-cp="cp -iv" \
+cp="cp -iv"
 mv="mv -iv"
 
 # packages
 alias \
-${ZSHZ_CMD:-${_Z_CMD:-z}}='zshz 2>&1' \
 hh="hstr" \
 yt="youtube-dl --add-metadata -ic" \
 fd="fdfind" \
