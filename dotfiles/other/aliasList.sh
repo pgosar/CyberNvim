@@ -23,7 +23,7 @@ uncommit="git reset --soft HEAD^"
 alias \
 mkdir="mkdir -pv" \
 rm="rm -iv" \
-cp="cp -iv"
+cp="cp -iv" \
 mv="mv -iv"
 
 # packages
@@ -37,6 +37,8 @@ mlp="mlp --no-browser" \
 icat="kitty +kitten icat" \
 hg="kitty +kitten hyperlinked_grep" \
 kd="kitty +kitten diff" \
+save="kitty @ ls > ~/.local/kitty.app/kitty-dump.json; cat ~/.local/kitty.app/kitty-dump.json |
+python3 ~/.local/kitty.app/kitty-convert-dump.py > ~/.local/kitty.app/kitty-session.kitty" \
 tn="tmux new-session -s" \
 ta="tmux attach-session -t" \
 tl="tmux ls"
