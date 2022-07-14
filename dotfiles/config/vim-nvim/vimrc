@@ -140,9 +140,8 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'matze/vim-move'                       " move blocks
     Plug 'tommcdo/vim-lion'                     " line up text
   " }
-  " Tmux {
-    Plug 'christoomey/vim-tmux-navigator'
-    Plug 'tmux-plugins/vim-tmux'
+  " Split navigators {
+    Plug 'marromlam/sailor.vim'
   " }
   " snippets {
    Plug 'SirVer/ultisnips'
@@ -390,10 +389,10 @@ let mapleader = " "                               " Leader Character to Space
 " }
 " Windows {
   " shift+key to switch windows
-  nnoremap <S-h> <C-w>h
-  nnoremap <S-j> <C-w>j
-  nnoremap <S-k> <C-w>k
-  nnoremap <S-l> <C-w>l
+  nnoremap <silent> <s-h> :AwesomeNavigateLeft<cr>
+  nnoremap <silent> <s-j> :AwesomeNavigateDown<cr>
+  nnoremap <silent> <s-k> :AwesomeNavigateUp<cr>
+  nnoremap <silent> <s-l> :AwesomeNavigateRight<cr>
   " create new windows
   nnoremap <Leader>v <C-w>v
   nnoremap <Leader>h <C-w>s

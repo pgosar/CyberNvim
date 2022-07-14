@@ -36,7 +36,10 @@ ling="github-linguist --breakdown" \
 mlp="mlp --no-browser" \
 icat="kitty +kitten icat" \
 hg="kitty +kitten hyperlinked_grep" \
-kd="kitty +kitten diff"
+kd="kitty +kitten diff" \
+tn="tmux new-session -s" \
+ta="tmux attach-session -t" \
+tl="tmux ls"
 
 # other
 eval $(thefuck --alias)
