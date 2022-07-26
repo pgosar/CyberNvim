@@ -368,8 +368,8 @@ let mapleader = " "                               " Leader Character to Space
 " }
 
 " Limelight {
-  nnoremap <silent> lime :Limelight<CR>
-  nnoremap <silent> !lime :Limelight!<CR>
+  nnoremap <silent> <space>lm :Limelight<CR>
+  nnoremap <silent> !lm :Limelight!<CR>
 " }
 " CHADTree {
   nnoremap <silent> <Leader>nt :CHADopen<CR>
