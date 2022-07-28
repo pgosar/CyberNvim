@@ -18,7 +18,7 @@ syntax enable                                   " enable syntax
 filetype plugin indent on
 set mouse=a                                     " enable mouse
 set updatetime=30                               " time before updates
-set number relativenumber                       " line numbers
+set number                                      " line numbers
 set history=1000                                " command history
 set signcolumn=yes numberwidth=6                " signcolumn and available width
 set linebreak                                   " text wrap wont break words
@@ -115,6 +115,7 @@ call plug#begin('~/.config/nvim/plugged')
   " Quality of Life {
     Plug 'jiangmiao/auto-pairs'                 " autoclose deimiters
     Plug 'alvan/vim-closetag'                   " autoclose html esq tags
+    Plug 'AndrewRadev/tagalong.vim'
     Plug 'tpope/vim-surround'                   " edit tags/delimiters in pairs
     Plug 'mhinz/vim-startify'                   " start screen
     Plug 'ryanoasis/vim-devicons'               " fancy icons

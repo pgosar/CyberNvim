@@ -30,7 +30,7 @@ mv="mv -iv"
 alias \
 hh="hstr" \
 yt="youtube-dl --add-metadata -ic" \
-fd="fdfind" \
+fd="~/.cargo/bin/fd" \
 mux="tmuxinator" \
 ling="github-linguist --breakdown" \
 mlp="mlp --no-browser" \
