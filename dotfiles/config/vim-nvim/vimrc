@@ -1,3 +1,4 @@
+
 "  |  \   |  \      |      \      |  \     /  \
 "  | $$   | $$       \$$$$$$      | $$\   /  $$
 "  | $$   | $$        | $$        | $$$\ /  $$$
@@ -72,6 +73,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'preservim/tagbar', { 'on': 'TagbarToggle' }
   " }
   " LSP {
+    Plug 'github/copilot.vim'
     Plug 'neoclide/coc.nvim', {'branch': 'release'}
     Plug 'pechorin/any-jump.vim'                  " jump to definition/reference
     if has("nvim")
@@ -142,7 +144,6 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'tommcdo/vim-lion'                     " line up text
   " }
   " Split navigators {
-    Plug 'marromlam/sailor.vim'
   " }
   " snippets {
    Plug 'SirVer/ultisnips'
@@ -390,14 +391,11 @@ let mapleader = " "                               " Leader Character to Space
 " }
 " Windows {
   " shift+key to switch windows
-  nnoremap <silent> <s-h> :AwesomeNavigateLeft<cr>
-  nnoremap <silent> <s-j> :AwesomeNavigateDown<cr>
-  nnoremap <silent> <s-k> :AwesomeNavigateUp<cr>
-  nnoremap <silent> <s-l> :AwesomeNavigateRight<cr>
   " create new windows
   nnoremap <Leader>v <C-w>v
   nnoremap <Leader>h <C-w>s
 " }
+
 " Buffers {
   " change buffers
   nnoremap <Leader>bn :w \| bn<cr>
@@ -414,14 +412,15 @@ let mapleader = " "                               " Leader Character to Space
   " toggle hl search
   nnoremap / :set hlsearch<cr>/
   nnoremap i :set nohlsearch<cr>i
+  nnoremap a :set nohlsearch<cr>a
+  nnoremap I :set nohlsearch<cr>I
+  nnoremap A :set nohlsearch<cr>A
   " ctrl+d out of delimiters
   inoremap <c-d> <left><c-o>/["';)>}\]]<cr><c-o>:noh<cr><right>
 " }
 " Visual Block Mode {
   command! Vb normal! <C-v>
-" }
-" renaming {
-  " local
+"" renaming {
   nnoremap gr gd[{V%::s/<C-R>///gc<left><left><left>
   " global
   nnoremap gR gD:%s/<C-R>///gc<left><left><left>
