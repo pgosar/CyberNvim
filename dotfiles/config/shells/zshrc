@@ -25,11 +25,9 @@ export VISUAL='nvim'
 
 # ---- Terminal Settings -----------------------------------------------------
 
-zstyle ':omz:update' mode reminder                          # update reminders
 DISABLE_MAGIC_FUNCTIONS="true"
 COMPLETION_WAITING_DOTS="true"               # show command is auto completing
 ZSH_COLORIZE_STYLE="colorful"                                # set color style
-unsetopt correct                                         # disable autocorrect
 HISTSIZE=10000                                                   # big history
 SAVEHIST=10000
 autoload -U edit-command-line                            # edit command in vim

@@ -143,8 +143,6 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'matze/vim-move'                       " move blocks
     Plug 'tommcdo/vim-lion'                     " line up text
   " }
-  " Split navigators {
-  " }
   " snippets {
    Plug 'SirVer/ultisnips'
    Plug 'honza/vim-snippets'
@@ -347,15 +345,19 @@ let mapleader = " "                               " Leader Character to Space
   nnoremap <leader>rn <Plug>(coc-rename)
   nnoremap <silent> <leader>cd :CocDisable<cr>
   nnoremap <silent> <leader>ce :CocEnable<cr>
+  inoremap <silent> <c-f> <c-o>:call coc#snippet#jump(1, 0)<cr>
 " }
 " autocomplete {
-  inoremap <expr> <CR>            pumvisible() ? "\<C-y>" : "\<CR>"
-  inoremap <silent><expr> <Esc>   pumvisible() ? "\<C-e><Esc>" : "\<Esc>"
-  inoremap <silent><expr> <C-c>   pumvisible() ? "\<C-e><C-c>" : "\<C-c>"
-  inoremap <silent><expr> <CR>    pumvisible() ? (complete_info().selected == -1 ? "\<C-e><CR>" : "\<C-y>") : "\<CR>"
-  inoremap <silent><expr> <BS>    pumvisible() ? "\<C-e><BS><C-e>"  : "\<BS>"
-  inoremap <silent><expr> <tab>   pumvisible() ? "\<Down>" : "\<Tab>"
-  inoremap <silent><expr> <Esc>[z pumvisible() ? "\<Up>" : "\<Esc>[z"
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1):
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice.
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 " }
 " Multiline {
   let g:VM_maps = {}
@@ -432,7 +434,7 @@ let mapleader = " "                               " Leader Character to Space
   nnoremap fh :Telescope help_tags<cr>
 " }
 " gitgutter {
-  nnoremap diff :GitGutterDiffOrig<cr>
+  nnoremap <Leader>df :GitGutterDiffOrig<cr>
   " cycle continuously through single files
   nnoremap <silent> <Leader>nh :call GitGutterNextHunkCycle()<CR>
   nnoremap <silent> <Leader>ph :call GitGutterPrevHunkCycle()<CR>
@@ -451,6 +453,9 @@ let mapleader = " "                               " Leader Character to Space
 " }
 " markdown image paste {
   nnoremap <buffer><silent> <leader>p :call mdip#MarkdownClipboardImage()<CR>
+" }
+" misc {
+  vnoremap d d<cr>
 " }
 
 
