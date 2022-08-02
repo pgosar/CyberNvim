@@ -341,6 +341,9 @@ let mapleader = " "                               " Leader Character to Space
   nnoremap <leader>rn <Plug>(coc-rename)
   nnoremap <silent> <leader>cd :CocDisable<cr>
   nnoremap <silent> <leader>ce :CocEnable<cr>
+  " jump through parameters
+  inoremap <expr> <C-j> coc#pum#visible() ? coc#pum#next(1) : "\<C-j>"
+  inoremap <expr> <C-k> coc#pum#visible() ? coc#pum#prev(1) : "\<C-k>"
 " }
 " autocomplete {
 inoremap <silent><expr> <TAB>
@@ -450,10 +453,8 @@ inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
   cnoremap <C-N> <Down>
 " }
 
-inoremap <c-j> <Esc>:call coc#snippet#next()<cr>i
 
 " ---- Functios --------------------------------------------------------------
-
 
 function! CheckBackspace() abort
   let col = col('.') - 1
