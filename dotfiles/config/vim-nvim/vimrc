@@ -53,7 +53,6 @@ if has("nvim")
   set termguicolors                             " better colors
 endif
 
-
 " ---- Plugins -----------------------------------------------------------------
 
 call plug#begin('~/.config/nvim/plugged')
@@ -116,6 +115,7 @@ call plug#begin('~/.config/nvim/plugged')
   " }
   " Quality of Life {
     Plug 'jiangmiao/auto-pairs'                 " autoclose deimiters
+    Plug 'tpope/vim-surround'                   " surround stuff
     Plug 'alvan/vim-closetag'                   " autoclose html esq tags
     Plug 'AndrewRadev/tagalong.vim'
     Plug 'tpope/vim-surround'                   " edit tags/delimiters in pairs
@@ -142,10 +142,6 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'mg979/vim-visual-multi', {'branch': 'master'}
     Plug 'matze/vim-move'                       " move blocks
     Plug 'tommcdo/vim-lion'                     " line up text
-  " }
-  " snippets {
-   Plug 'SirVer/ultisnips'
-   Plug 'honza/vim-snippets'
   " }
   " markdown {
     Plug 'vimwiki/vimwiki'
@@ -288,7 +284,7 @@ augroup END
 augroup mygroup
   autocmd!
   " Update signature help on jump placeholder.
-  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')Lq
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup END
 
 " limelight integration
@@ -330,7 +326,7 @@ let mapleader = " "                               " Leader Character to Space
   nnoremap <silent> gt <Plug>(coc-type-definition)
   " better documentation and scroll through
   nnoremap <silent> D :call <SID>show_documentation()<CR>
-  inoremap <c-p> <C-\><C-O>:call CocActionAsync('showSignatureHelp')<cr>
+  inoremap <expr><c-p> <C-\><C-O>:call CocActionAsync('showSignatureHelp')<cr>
   if has('nvim-0.4.0') || has('patch-8.2.0750')
     nnoremap <silent><nowait><expr> <A-j> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
     nnoremap <silent><nowait><expr> <A-k> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
@@ -339,13 +335,12 @@ let mapleader = " "                               " Leader Character to Space
     vnoremap <silent><nowait><expr> <A-j> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
     vnoremap <silent><nowait><expr> <A-k> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
   endif
-  " misc
+  " misc {
   nnoremap <leader>ac   <Plug>(coc-codeaction-selected)w
   nnoremap <leader>qf  <Plug>(coc-fix-current)
   nnoremap <leader>rn <Plug>(coc-rename)
   nnoremap <silent> <leader>cd :CocDisable<cr>
   nnoremap <silent> <leader>ce :CocEnable<cr>
-  inoremap <silent> <c-f> <c-o>:call coc#snippet#jump(1, 0)<cr>
 " }
 " autocomplete {
 inoremap <silent><expr> <TAB>
@@ -353,9 +348,6 @@ inoremap <silent><expr> <TAB>
       \ CheckBackspace() ? "\<Tab>" :
       \ coc#refresh()
 inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
-
-" Make <CR> to accept selected completion item or notify coc.nvim to format
-" <C-g>u breaks current undo, please make your own choice.
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
                               \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 " }
@@ -382,11 +374,6 @@ inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
 " Vim Session {
   nnoremap <Leader>o :OpenSession<CR><cr>
   nnoremap <Leader>s :SaveSession<CR>
-" }
-" UltiSnips {
-  let g:UltiSnipsExpandTrigger="<s-tab>"
-  let g:UltiSnipsJumpForwardTrigger="<c-b>"
-  let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " }
 " Tagbar {
   nnoremap <Leader>tt :TagbarToggle<CR>
@@ -454,12 +441,24 @@ inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
 " markdown image paste {
   nnoremap <buffer><silent> <leader>p :call mdip#MarkdownClipboardImage()<CR>
 " }
-" misc {
-  vnoremap d d<cr>
+" copilot {
+  imap <silent><script><expr> <C-;> copilot#Accept("\<CR>")
+  let g:copilot_no_tab_map = v:true
+" }
+" command mode search {
+  cnoremap <C-P> <Up>
+  cnoremap <C-N> <Down>
 " }
 
+inoremap <c-j> <Esc>:call coc#snippet#next()<cr>i
 
-" ---- Functions --------------------------------------------------------------
+" ---- Functios --------------------------------------------------------------
+
+
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
 " show documentation from LSP
 function! s:show_documentation()

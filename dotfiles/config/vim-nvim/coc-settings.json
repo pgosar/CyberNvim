@@ -1,9 +1,12 @@
 {
 "diagnostic.refreshOnInsertMode": true,
 "diagnostic.checkCurrentLine": true,
-"suggest.enablePreview": true,
+"suggest.enablePreselect": false,
+"suggest.noselect": true,
 "clangd.path":"~/.config/coc/extensions/coc-clangd-data/install/14.0.3/clangd_14.0.3/bin/clangd",
 "dialog.rounded": true,
-"notification.focusable": true
-
+"notification.focusable": true,
+"codeLens.enable": true,
+"rust-analyzer.updates.checkOnStartup": false,
+"clangd.inlayHints.enable": false,
 }
