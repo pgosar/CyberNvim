@@ -2,16 +2,27 @@
 
 Note: If you use WSL2, checkout the WSL2 branch. It has my old setup including plenty of workarounds for everything such as fluid copy pasting between vim and windows.
 
+A rewrite of my vimrc in Lua is approaching! When that happens my old vimrc will stop recieving any changes, but will of course always give you an IDE-like experience
+
 <hr />
 
 ## Table of Contents
 1. [Intro](#intro)
 2. [Installation](#installation)
 3. [Dependencies](#dependencies)
-4. [Things to keep in mind](#warning)
+4. [Contributing](#contributing)
 
 ### Intro
 _Turbocharge your vim into an IDE with 550 lines of config. Make your terminal the envy of the entire town with only a few minutes of setup._
+
+Including my configs for 
+
+* Ranger (terminal file manager)
+* Vim and Neovim (editors)
+* Zsh, Bash, Fish (shells and their prompts)
+* Kitty and Wezterm (terminals)
+* Tmux (multiplexer)
+* Microsoft's WSL2 (checkout the WSL branch)
 
 Wondering about what features my Vim config has? Any feature you find useful in whatever IDE or other program you use, **my config has it and more**. Are you a neovim user? Fear not! my config has even more features for you to take advantage of!
 
@@ -39,32 +50,43 @@ If my config does not have a feature you want, (it will), make an issue, and I w
 
 Vim/Nvim Welcome Screen
 
-![image](https://user-images.githubusercontent.com/55164602/172945445-c99092f1-e42f-46af-974b-e9110c8308da.png)
+![image](https://user-images.githubusercontent.com/55164602/182413717-ccb80aa5-c879-4671-9562-ebc628a7dd2d.png)
 
 <hr />
 
-vim/nvim with gruvbox
+vim/nvim with Nord theme
 
-![image](https://user-images.githubusercontent.com/55164602/174918698-5f9a2ac3-ed01-48db-ab80-0cb54dae6b25.png)
+![image](https://user-images.githubusercontent.com/55164602/182413341-18bdc1d2-f9a0-403c-ba0e-9a15ff37d8d5.png)
+
 
 <hr />
 
-Zsh shell showcase
+My environment that is currently using an [unmodified starship prompt](https://github.com/starship/starship), [kitty terminal](https://sw.kovidgoyal.net/kitty/), and [tmux](https://github.com/tmux/tmux)
 
-![image](https://user-images.githubusercontent.com/55164602/172946091-1782a47a-b086-40f5-9cc0-4db7e409b675.png)
+![image](https://user-images.githubusercontent.com/55164602/182411940-805e9c36-c5c1-4688-afe7-06e04ee76495.png)
 
 <hr />
 
 ### Installation
 
-I would recommend taking parts of code you like from the stars of the show, my [vim/nvim](https://github.com/pgosar/useful-things/tree/main/dotfiles/config/vim-nvim/) settings, my [tmux](https://github.com/pgosar/useful-things/tree/main/dotfiles/config/tmux.conf) settings, and my [terminal](https://github.com/pgosar/useful-things/tree/main/dotfiles/config/shells) settings, which you are probably here for.
-If you go the ```git clone``` route, you can also symlink my files to your own configuration files using
-``` python
-ln ~/dotfiles/dotfiles/config/vim-nvim/vimrc ~/.vimrc
-```
-for example. This creates what is basically a new file with the exact same content as the one in this repository. If you run into any issues in using my files, feel free to make an issue. I have probably run into the same issue before too.
+If you want to install my files you must first clone the respository with 
 
-My terminal configurations are dependent on files located [here](https://github.com/pgosar/useful-things/tree/main/dotfiles/other). You are welcome to copy those files anywhere you want.
+``` bash
+
+git clone https://github.com/pgosar/dotfiles.git
+
+```
+
+You can then run the install script. Make it executable and run with 
+
+```bash
+
+chmod +x ./install.sh ; ./install.sh
+
+```
+
+If you don't want all my files, you can easily remove the lines that remove and then link the files that you do not want to replace. Each file is installed on a per-file basis, making it easy for you to pick and choose what you want. Keep in mind that to get my aliases and Powerlevel 10k config, you have to also download the files located [here](https://github.com/pgosar/dotfiles/tree/main/dotfiles/other)
+
 <hr />
 
 ### Dependencies
@@ -80,26 +102,6 @@ You can refer to the repositories linked above for download instructions, and be
 
 <hr />
 
-### Warning
-
-There are a couple system specific settings and a couple hard coded filepaths in here that are possibly useless to you. As always, be sure to look through the code you are planning on using and remove/change unnecessary lines. 
-
-<hr />
-
-### A note about migrating to Lua
-
-Eventually I will be moving to a Lua only config for Neovim (hopefully within the coming months), with the exception that all my keybindings will be written in vimscript and then sourced in my init.lua. As such, when that happens, my vimrc will NOT be updated to vim9 script, and will stop recieving updates as new possible improvements/features to my config become available. 
-
-Part of this is my desire to use a language for my (n)Vim tinkering that actually has a usecase beyond Vim and also partly because any performance improvements in vim9 compared to LuaJIT still do not make using vimscript a more enticing proposition than Lua. I am considering becoming more involved in writing plugins and more extensive modifications for my neovim as the need arises (provided I have time), and I most definitely would prefer using Lua for that instead of vim9 script. That being said, the Vim config will remain here, be completely usable, and will still provide an IDE-like experience. 
-
-Contributions are, as always, welcome if anybody plans to port parts of my vim config (or all of it, I certainly wouldn't complain!) to vim9 and wants to share their work. In this case, it would be best to make a separate file so that I can maintain backwards compatibility and provide a version of my config that works for people not planning to use vim9 script.
-
-<hr />
-
 
 ### Contributing
-I welcome contributions if you know of any useful features that I may be
-missing, as well as help making the files more plug and play friendly by
-limiting the number of hard coded filepaths and helping to create a small shell
-script to automate creating symlinks during installation. I unfortunately do not
-have the time to do so currently.
+I welcome contributions if you know of any useful features that I may be missing out on. Feel free to make issues if you find any bugs, have troubles installing or using my files, or have any other concerns.
