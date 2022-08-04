@@ -12,7 +12,6 @@
 " ---- Basic Settings ----------------------------------------------------------
 
 
-set nocompatible                                " no vi compatibility
 set shell=/usr/bin/zsh                          " set default shell
 set noswapfile                                  " no swap files
 syntax enable                                   " enable syntax
@@ -77,15 +76,13 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'pechorin/any-jump.vim'                  " jump to definition/reference
     if has("nvim")
       Plug 'folke/trouble.nvim'                   " better loc list
-      Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
-      Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
     endif
   " }
   " fuzzy finders {
     if has("nvim")
       Plug 'nvim-lua/plenary.nvim'
       Plug 'nvim-telescope/telescope.nvim'        " search files within vim
-      Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+      Plug 'nvim-treesitter/nvim-treesitter'
     endif
     Plug 'ctrlpvim/ctrlp.vim'
   " }
@@ -111,17 +108,15 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'flazz/vim-colorschemes'
     Plug 'luochen1990/rainbow'                  " bracket coloring
     Plug 'blueyed/vim-diminactive'
-    Plug 'stevearc/dressing.nvim'               " prettier boxes like on rename
   " }
   " Quality of Life {
     Plug 'jiangmiao/auto-pairs'                 " autoclose deimiters
     Plug 'tpope/vim-surround'                   " surround stuff
     Plug 'alvan/vim-closetag'                   " autoclose html esq tags
-    Plug 'AndrewRadev/tagalong.vim'
+    Plug 'AndrewRadev/tagalong.vim'             " auto edit other html tag in pair
     Plug 'tpope/vim-surround'                   " edit tags/delimiters in pairs
     Plug 'mhinz/vim-startify'                   " start screen
-    Plug 'ryanoasis/vim-devicons'               " fancy icons
-    Plug 'kyazdani42/nvim-web-devicons'
+    Plug 'kyazdani42/nvim-web-devicons'         " fancy icons
     Plug 'ConradIrwin/vim-bracketed-paste'      " autoset paste mode
     Plug 'easymotion/vim-easymotion'            " better movement
     Plug 'tpope/vim-repeat'                     " repeat commands with .
@@ -135,6 +130,7 @@ call plug#begin('~/.config/nvim/plugged')
       Plug 'axieax/urlview.nvim'
       " run code snippets
       Plug 'michaelb/sniprun', {'do': 'bash install.sh'}
+      Plug 'akinsho/toggleterm.nvim', {'tag' : 'v2.*'} " toggle multiple terminals
     endif
   " }
   " Multiline editing {
@@ -153,6 +149,7 @@ call plug#begin('~/.config/nvim/plugged')
   endif
   " }
 call plug#end()
+
 
 " ---- Plugin Settings ---------------------------------------------------------
 
@@ -228,7 +225,6 @@ command! -nargs=0 Format :call CocActionAsync('format')
 " highlight symbol on press
 autocmd CursorHold * silent call CocActionAsync('highlight')
 " colorscheme
-set background=dark
 let g:gruvbox_number_column = 'bg1'
 let g:gruvbox_contrast_dark = 'soft'
 autocmd vimenter * ++nested colorscheme nord
@@ -270,8 +266,6 @@ augroup END
 
 " get rid of auto commenting
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-
-" add cursorline when not in insert mode
 augroup cursorLine
   autocmd!
   autocmd VimEnter * set cul
@@ -461,7 +455,7 @@ function! CheckBackspace() abort
 endfunction
 
 " show documentation from LSP
-function! s:show_documentation()
+function! s:show_documentation() abort
   if (index(['vim', 'help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
   elseif (coc#rpc#ready())
@@ -472,7 +466,7 @@ function! s:show_documentation()
 endfunction
 
 " cycle between hunks
-function! GitGutterNextHunkCycle()
+function! GitGutterNextHunkCycle() abort
   let line = line('.')
   silent! GitGutterNextHunk
   if line('.') == line
@@ -481,7 +475,7 @@ function! GitGutterNextHunkCycle()
   endif
 endfunction
 
-function! GitGutterPrevHunkCycle()
+function! GitGutterPrevHunkCycle() abort
   let line = line('.')
   silent! GitGutterPrevHunk
   if line('.') == line
@@ -490,7 +484,7 @@ function! GitGutterPrevHunkCycle()
   endif
 endfunction
 
-function! NextHunkAllBuffers()
+function! NextHunkAllBuffers() abort
   let line = line('.')
   GitGutterNextHunk
   if line('.') != line
@@ -510,7 +504,7 @@ function! NextHunkAllBuffers()
   endwhile
 endfunction
 
-function! PrevHunkAllBuffers()
+function! PrevHunkAllBuffers() abort
   let line = line('.')
   GitGutterPrevHunk
   if line('.') != line
@@ -537,7 +531,7 @@ augroup AutoSave
 augroup END
 
 " auto save
-function! ToggleAutoSave()
+function! ToggleAutoSave() abort
   " Switch the toggle variable
   let g:AutoSaveToggle = !get(g:, 'AutoSaveToggle', 1)
   " Reset group
