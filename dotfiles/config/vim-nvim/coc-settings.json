@@ -9,4 +9,5 @@
 "codeLens.enable": true,
 "rust-analyzer.updates.checkOnStartup": false,
 "clangd.inlayHints.enable": false,
+"Lua.telemetry.enable": false,
 }

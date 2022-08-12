@@ -47,3 +47,9 @@ mostused () {
 grip () {
   python3 ~/grip/grip/__main__.py "$1"
 }
+
+
+# view markdown
+rmd () {
+  pandoc $1 | lynx -stdin
+}

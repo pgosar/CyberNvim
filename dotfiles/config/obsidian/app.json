@@ -1,0 +1,16 @@
+{
+  "promptDelete": false,
+  "trashOption": "local",
+  "showUnsupportedFiles": true,
+  "attachmentFolderPath": "attachments",
+  "newFileLocation": "current",
+  "useMarkdownLinks": true,
+  "alwaysUpdateLinks": true,
+  "vimMode": true,
+  "strictLineBreaks": true,
+  "userIgnoreFilters": [
+    "/robots.txt"
+  ],
+  "showLineNumber": true,
+  "spellcheck": true
+}

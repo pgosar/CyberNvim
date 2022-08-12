@@ -12,7 +12,6 @@
 " ---- Basic Settings ----------------------------------------------------------
 
 
-set shell=/usr/bin/zsh                          " set default shell
 set noswapfile                                  " no swap files
 syntax enable                                   " enable syntax
 filetype plugin indent on
@@ -96,6 +95,7 @@ call plug#begin('~/.config/nvim/plugged')
   " }
   " Lang Plugins {
     Plug 'lervag/vimtex'
+    Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
     Plug 'uiiaoo/java-syntax.vim'
     Plug 'sheerun/vim-polyglot'                 " Syntax highlighting
   " }
@@ -141,6 +141,7 @@ call plug#begin('~/.config/nvim/plugged')
   " }
   " markdown {
     Plug 'vimwiki/vimwiki'
+    Plug 'mmai/vim-markdown-wiki'
     Plug 'gabrielelana/vim-markdown'            " syntax
     Plug 'ferrine/md-img-paste.vim'             " markdown image paste
     if has("nvim")
@@ -201,11 +202,11 @@ call plug#end()
 " }
 " vim wiki {
   " set markdown syntax and filepath
-  let g:vimwiki_list = [{'path': '~/vimwiki/',
+  let g:vimwiki_list = [{'path': '~/Documents/notes/vimwiki/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
 " }
 " vim markdown {
-  let g:markdown_mapping_switch_status = '<Leader>s'
+  let g:markdown_mapping_switch_status = '<Leader>n'
 " }
 " coq {
   let g:coq_settings = { 'keymap.recommended': v:false,
@@ -346,6 +347,8 @@ let mapleader = " "                               " Leader Character to Space
   inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
   inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
                                 \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+  inoremap <silent> <c-f> <c-x><c-f>
+  inoremap <silent> <c-'> <c-y>
 " }
 " Multiline {
   let g:VM_maps = {}
