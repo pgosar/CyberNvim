@@ -27,7 +27,7 @@ set smartcase ignorecase incsearch              " searching and highlighting
 set foldmethod=indent foldlevel=2 foldcolumn=2  " code folding
 set foldlevelstart=99 foldopen+=jump nofoldenable " auto fold open/close
 set clipboard=unnamedplus                       " clipboard register
-set tabstop=8 softtabstop=0                     " tab settings
+set tabstop=2 softtabstop=0                     " tab settings
 set expandtab shiftwidth=2 smarttab
 set breakindent                                 " smart wrapping indentation
 set breakindentopt=shift:2,min:40,sbr
@@ -98,6 +98,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
     Plug 'uiiaoo/java-syntax.vim'
     Plug 'sheerun/vim-polyglot'                 " Syntax highlighting
+    Plug 'ap/vim-css-color'                     " Color syntax for css
   " }
   " Git {
     Plug 'tpope/vim-fugitive'                   " Git inside vim
@@ -113,7 +114,6 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'jiangmiao/auto-pairs'                 " autoclose deimiters
     Plug 'tpope/vim-surround'                   " surround stuff
     Plug 'alvan/vim-closetag'                   " autoclose html esq tags
-    Plug 'AndrewRadev/tagalong.vim'             " auto edit other html tag in pair
     Plug 'tpope/vim-surround'                   " edit tags/delimiters in pairs
     Plug 'mhinz/vim-startify'                   " start screen
     Plug 'kyazdani42/nvim-web-devicons'         " fancy icons
@@ -149,6 +149,7 @@ call plug#begin('~/.config/nvim/plugged')
       Plug 'ellisonleao/glow.nvim', {'branch': 'main'}
   endif
   " }
+
 call plug#end()
 
 
@@ -387,7 +388,6 @@ let mapleader = " "                               " Leader Character to Space
 " Buffers {
   " change buffers
   nnoremap <Leader>bn :w \| bn<cr>
-  nnoremap <Leader>bd :bd<cr>
   nnoremap <Leader>bp :w \| bp<cr>
 " }
 " Misc {
@@ -408,11 +408,6 @@ let mapleader = " "                               " Leader Character to Space
 " }
 " Visual Block Mode {
   command! Vb normal! <C-v>
-"" renaming {
-  nnoremap gr gd[{V%::s/<C-R>///gc<left><left><left>
-  " global
-  nnoremap gR gD:%s/<C-R>///gc<left><left><left>
-" }
 " telescope {
   nnoremap ff :Telescope find_files<cr>
   nnoremap fg :Telescope live_grep<cr>
