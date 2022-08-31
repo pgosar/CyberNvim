@@ -213,6 +213,10 @@ call plug#end()
   let g:coq_settings = { 'keymap.recommended': v:false,
         \ 'display.pum.fast_close': v:false}
 " }
+" closetags {
+  let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.js'
+  let g:closetag_xhtml_filenames = '*.xhtml,*.jsx,*.tsx,*.ts,*.js'
+" }
 
 
 " ---- Extra Settings ----------------------------------------------------------
@@ -267,7 +271,9 @@ augroup remember_folds
 augroup END
 
 " get rid of auto commenting
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+au FileType * setlocal comments-=:// comments+=f://
+
+" create cursor line
 augroup cursorLine
   autocmd!
   autocmd VimEnter * set cul
@@ -408,6 +414,11 @@ let mapleader = " "                               " Leader Character to Space
 " }
 " Visual Block Mode {
   command! Vb normal! <C-v>
+" renaming {
+  nnoremap gr gd[{V%::s/<C-R>///gc<left><left><left>
+  " global
+  nnoremap gR gD:%s/<C-R>///gc<left><left><left>
+" }
 " telescope {
   nnoremap ff :Telescope find_files<cr>
   nnoremap fg :Telescope live_grep<cr>
