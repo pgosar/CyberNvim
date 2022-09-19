@@ -78,7 +78,7 @@ call plug#begin('~/.config/nvim/plugged')
     endif
   " }
   " fuzzy finders {
-    if has("nvim")
+  if has("nvim")
       Plug 'nvim-lua/plenary.nvim'
       Plug 'nvim-telescope/telescope.nvim'        " search files within vim
       Plug 'nvim-treesitter/nvim-treesitter'
@@ -420,7 +420,7 @@ let mapleader = " "                               " Leader Character to Space
   nnoremap gR gD:%s/<C-R>///gc<left><left><left>
 " }
 " telescope {
-  nnoremap ff :Telescope find_files<cr>
+  nnoremap ff :Telescope git_files hidden=true<cr>
   nnoremap fg :Telescope live_grep<cr>
   nnoremap fb :Telescope buffers<cr>
   nnoremap fh :Telescope help_tags<cr>
