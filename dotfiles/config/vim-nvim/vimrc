@@ -297,7 +297,7 @@ if has("nvim")
   augroup highlightText
     autocmd!
     autocmd ColorScheme * highlight OverLength ctermbg=darkgrey guibg=Grey30
-    autocmd ColorScheme * match OverLength /\%101v.*/
+    autocmd ColorScheme * match OverLength /\%81v.*/
   augroup END
 endif
 
@@ -455,6 +455,7 @@ let mapleader = " "                               " Leader Character to Space
   cnoremap <C-N> <Down>
 " }
 
+nnoremap dd cc
 
 " ---- Functios --------------------------------------------------------------
 

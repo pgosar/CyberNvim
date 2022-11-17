@@ -53,3 +53,11 @@ grip () {
 rmd () {
   pandoc $1 | lynx -stdin
 }
+
+transcribe () {
+  ffmpeg -i $1 -ar 16000 -ac 1 -c:a pcm_s16le $2 &&
+  cd ~/whisper.cpp &&
+  ./main -f ~/dwhelper/$2 > ~/out.txt &&
+  cd ~ &&
+  v ~/out.txt
+}
