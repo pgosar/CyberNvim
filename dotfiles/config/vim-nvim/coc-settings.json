@@ -3,7 +3,7 @@
 "diagnostic.checkCurrentLine": true,
 "suggest.enablePreselect": false,
 "suggest.noselect": true,
-"clangd.path":"~/.config/coc/extensions/coc-clangd-data/install/14.0.3/clangd_14.0.3/bin/clangd",
+"clangd.path":"~/.config/coc/extensions/coc-clangd-data/install/15.0.6/clangd_15.0.6/bin/clangd",
 "dialog.rounded": true,
 "notification.focusable": true,
 "codeLens.enable": true,

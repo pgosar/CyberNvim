@@ -19,29 +19,34 @@ rm -f ~/.config/nvim/init.vim
 rm -f ~/.config/nvim/coc-settings.json
 rm -f ~/.gitconfig
 
+mkdir ~/.config/fish
+mkdir ~/.config/ranger
+mkdir ~/.config/kitty
+mkdir ~/.config/nvim
+
 
 # ranger
-ln ~/.config/ranger/rc.conf ~/code/useful-things/dotfiles/config/rc.conf
+ln -s ~/code/useful-things/dotfiles/config/rc.conf ~/.config/ranger/rc.conf 
 
 # kitty and wezterm terminals
-ln ~/.config/kitty/kitty.conf ~/code/useful-things/dotfiles/config/kitty/kitty.conf
-ln ~/.config/kitty/nord.conf ~/code/useful-things/dotfiles/config/kitty/nord.conf
-ln ~/.wezterm.lua ~/code/useful-things/dotfiles/config/wezterm.lua
+ln -s ~/code/useful-things/dotfiles/config/kitty/kitty.conf ~/.config/kitty/kitty.conf 
+ln -s ~/code/useful-things/dotfiles/config/kitty/nord.conf ~/.config/kitty/nord.conf 
+ln -s ~/code/useful-things/dotfiles/config/wezterm.lua ~/.wezterm.lua 
 
 # shells
-ln ~/.bashrc ~/code/useful-things/dotfiles/config/shells/bashrc
-ln ~/.zshrc ~/code/useful-things/dotfiles/config/shells/zshrc
-ln ~/.profile ~/code/useful-things/dotfiles/config/shells/profile
-ln ~/.config/fish/config.fish ~/code/useful-things/dotfiles/config/shells/fish/config.fish
-ln ~/.config/fish/fish_aliases.fish ~/code/useful-things/dotfiles/config/shells/fish/fish_aliases.fish
-ln ~/.config/fish/fish_commands.fish ~/code/useful-things/dotfiles/config/shells/fish/fish_commands.fish
-ln ~/.config/fish/fish_plugins ~/code/useful-things/dotfiles/config/shells/fish/fish_plugins
-ln ~/.config/fish/fish_variables ~/code/useful-things/dotfiles/config/shells/fish/fish_variables
+ln -s ~/code/useful-things/dotfiles/config/shells/bashrc ~/.bashrc 
+ln -s ~/code/useful-things/dotfiles/config/shells/zshrc ~/.zshrc 
+ln -s ~/code/useful-things/dotfiles/config/shells/profile ~/.profile 
+ln -s ~/code/useful-things/dotfiles/config/shells/fish/config.fish ~/.config/fish/config.fish 
+ln -s ~/code/useful-things/dotfiles/config/shells/fish/fish_aliases.fish ~/.config/fish/fish_aliases.fish 
+ln -s ~/code/useful-things/dotfiles/config/shells/fish/fish_commands.fish ~/.config/fish/fish_commands.fish 
+ln -s ~/code/useful-things/dotfiles/config/shells/fish/fish_plugins ~/.config/fish/fish_plugins 
+ln -s ~/code/useful-things/dotfiles/config/shells/fish/fish_variables ~/.config/fish/fish_variables 
 
 # neovim and vim
-ln ~/.vimrc ~/code/useful-things/dotfiles/config/vim-nvim/vimrc
-ln ~/.config/nvim/init.vim ~/code/useful-things/dotfiles/config/vim-nvim/init.vim
-ln ~/.config/nvim/coc-settings.json ~/code/useful-things/dotfiles/config/vim-nvim/coc-settings.json
+ln -s ~/code/useful-things/dotfiles/config/vim-nvim/vimrc ~/.vimrc 
+ln -s ~/code/useful-things/dotfiles/config/vim-nvim/init.vim ~/.config/nvim/init.vim 
+ln -s ~/code/useful-things/dotfiles/config/vim-nvim/coc-settings.json ~/.config/nvim/coc-settings.json 
 
 # other
-ln ~/.gitconfig ~/code/useful-things/dotfiles/config/gitconfig
+ln -s ~/code/useful-things/dotfiles/config/gitconfig ~/.gitconfig 
