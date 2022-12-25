@@ -1,0 +1,95 @@
+configuration {
+	modes: "window,drun,run";
+	font: "mono 32";
+	show-icons: true;
+	terminal: "rofi-sensible-terminal";
+	drun-display-format: "{icon} {name}";
+	display-window: "Windows:";
+	display-drun: "Applications:";
+	kb-remove-char-back: "BackSpace";
+	kb-remove-to-eol: "Control+Shift+e";
+	kb-accept-entry: "Control+m,Return,KP_Enter";
+	kb-mode-next: "Shift+Right,Control+Tab,Control+Shift+l";
+	kb-mode-previous: "Shift+Left,Control+Shift+Tab,Control+Shift+h";
+	kb-row-up: "Up,Control+k,Shift+Tab,Shift+ISO_Left_Tab";
+	kb-row-down: "Down,Control+j";
+  timeout {
+      action: "kb-cancel";
+      delay:  0;
+  }
+  filebrowser {
+      directories-first: true;
+      sorting-method:    "name";
+  }
+}
+
+@theme "/dev/null"
+
+* {
+  bg: #11121D40;
+  bg-alt: #444b6a;
+
+  fg: #FFFFFF;
+  fg-alt: #787c99;
+
+  background-color: @bg;
+  
+  border: 0;
+  margin: 0;
+  padding: 0;
+  spacing: 0;
+}
+
+window {
+  width: 30%;
+  border-radius:30px;
+}
+
+element {
+  padding: 8 0;
+  text-color: @fg-alt;
+}
+
+element selected {
+  text-color: @fg;
+}
+
+element-text {
+  text-color: inherit;
+  vertical-align: 0.5;
+}
+
+element-icon {
+  size: 64;
+  padding: 0 10 0 0;
+}
+
+entry {
+  background-color: @bg-alt;
+  padding: 12;
+  text-color: @fg;
+}
+
+inputbar {
+  children: [prompt, entry];
+}
+
+listview {
+  padding: 8 12;
+  background-color: @bg;
+  columns: 1;
+  lines: 8;
+}
+
+mainbox {
+  background-color: @bg;
+  children: [inputbar, listview];
+}
+
+prompt {
+  background-color: @bg-alt;
+  enabled: true;
+  padding: 12 0 0 12;
+  text-color: @fg;
+}
+
