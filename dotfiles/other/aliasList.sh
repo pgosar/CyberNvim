@@ -7,7 +7,10 @@ sl="ls -F --color=auto --group-directories-first" \
 lsa="ls -A" \
 grep="grep --color=auto" \
 py="python3" \
-v="nvim"
+v="nvim" \
+p="pacman"
+kitty="LIBGL_ALWAYS_SOFTWARE=1 kitty" \
+alacritty="LIBGL_ALWAYS_SOFTWARE=1 alacritty"
 
 # git stuff
 alias \
