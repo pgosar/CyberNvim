@@ -11,6 +11,14 @@
 
 set $mod Mod4
 
+new_window pixel 1
+
+# thin borders
+# hide_edge_borders both
+
+# Set inner/outer gaps
+gaps inner 10
+gaps outer -5
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 font pango:monospace 12
@@ -46,7 +54,7 @@ floating_modifier $mod
 tiling_drag modifier titlebar
 
 # start a terminal
-set $term-float env LIBGL_ALWAYS_SOFTWARE=1 /home/chilly/.local/bin/kitty
+set $term-float /home/chilly/.local/bin/kitty
 bindsym $mod+Return exec $term-float
 
 
@@ -62,10 +70,10 @@ bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -74,10 +82,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -186,9 +194,9 @@ bindsym $mod+r mode "resize"
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-bar {
-        status_command i3status
-}
+exec source ~/.local/eww-0.4.0/target/release/eww daemon
+exec_always eww open bar
+exec_always ~/.config/polybar/launch.sh --cuts
 # Review the lines below and append to ~/.config/i3/config
 
 ## Volume control
@@ -209,7 +217,7 @@ set $statussig SIGUSR1
 set $volumestep 5
 
 # pulseaudio-utils settings
-#
+
 # Symbolic name for sink (numeric index not supported)
 #   Recommended: comment out this setting and omit the -s option to use default sink
 #   List sink names: pacmd list-sinks | awk -F "[<>]" '/^\s+name: <.*>/{print $2}'
@@ -226,3 +234,4 @@ exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
 exec_always nitrogen --restore
 exec_always picom
+exec_always onboard
