@@ -297,7 +297,7 @@ if has("nvim")
   augroup highlightText
     autocmd!
     autocmd ColorScheme * highlight OverLength ctermbg=darkgrey guibg=Grey30
-    autocmd ColorScheme * match OverLength /\%81v.*/
+    autocmd ColorScheme * match OverLength /\%101v.*/
   augroup END
 endif
 
