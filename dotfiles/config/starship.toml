@@ -1,0 +1,12 @@
+[character]
+error_symbol = '[✗](bold red)'
+
+
+[[battery.display]]
+threshold = 100
+style = 'red'
+charging_symbol = '⚡️ '
+discharging_symbol = '💀 '
+
+[time]
+disabled = false

@@ -120,7 +120,6 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'ConradIrwin/vim-bracketed-paste'      " autoset paste mode
     Plug 'easymotion/vim-easymotion'            " better movement
     Plug 'tpope/vim-repeat'                     " repeat commands with .
-    Plug 'andweeb/presence.nvim'                " discord rich presence
     if has("vim-8.2.1978") || has("nvim")
       Plug 'psliwka/vim-smoothie'
     endif
@@ -130,7 +129,7 @@ call plug#begin('~/.config/nvim/plugged')
       Plug 'axieax/urlview.nvim'
       " run code snippets
       Plug 'michaelb/sniprun', {'do': 'bash install.sh'}
-      Plug 'akinsho/toggleterm.nvim', {'tag' : 'v2.*'} " toggle multiple terminals
+      Plug 'akinsho/toggleterm.nvim' " toggle multiple terminals
     endif
   " }
   " Multiline editing {
