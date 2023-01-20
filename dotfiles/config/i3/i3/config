@@ -235,3 +235,4 @@ exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 exec_always nitrogen --restore
 exec_always picom
 exec_always onboard
+exec_always watch_tablet &
