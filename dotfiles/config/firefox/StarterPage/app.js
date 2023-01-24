@@ -78,7 +78,7 @@ App = {
     /* OPEN WEATHER MAP */
     xhr.open(
       'GET',
-      'http://api.openweathermap.org/data/2.5/weather?q=Austin,us&APPID=fa218f4de8d15505e178e0263ca6d73d'
+      '// your api key'
     );
     xhr.onload = () => {
       if (xhr.readyState === 4) {
