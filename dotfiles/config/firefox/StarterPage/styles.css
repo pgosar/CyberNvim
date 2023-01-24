@@ -1,0 +1,257 @@
+html {
+  font-family: 'undefined';
+  font-size: 16px;
+  background-color: rgb(36, 41, 51);
+}
+
+body {
+  margin: 0px;
+  font-size: 20px;
+}
+
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#clock {
+  font-family: 'undefined';
+  color: #eceff4;
+  font-size: 3.5rem;
+  font-weight: 200;
+  text-shadow: 0px 3px 6px rgba(15, 17, 21, 0.2);
+}
+
+/* #weather-container:after {
+  font-family: 'jetbrains mono';
+  content: '';
+  display: block;
+  height: 1.75px;
+  background-color: #2e3440;
+  width: 30%;
+  margin: 0.25rem auto 0 auto;
+}*/
+
+#search {
+  width: 100%;
+  height: 81.25vh;
+  background-color: #242933;
+  display: none;
+  margin: 0;
+  position: absolute;
+  box-sizing: border-box;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#search-field {
+  padding: 0.38em 0.5em;
+  font-family: 'undefined';
+  background-color: #2e3440;
+  border: 0px;
+  font-size: 15px;
+  outline: none;
+  border-radius: 3px;
+  margin-bottom: 0.5em;
+  text-align: left;
+  color: #eceff4;
+}
+
+#weather-icon {
+  height: 30px;
+  width: 33px;
+  vertical-align: bottom;
+  opacity: 0.6;
+}
+
+#weather-container {
+  font-family: 'undefined';
+  width: 28%;
+  min-width: fit-content;
+  color: rgba(120, 128, 143, 0.6);
+  padding: 0.5em 1em;
+  margin-top: 0px;
+  font-size: 18px;
+  text-align: center;
+  border-radius: 5px;
+  margin-bottom: 25px;
+  /*background-color: rgb(59, 66, 82);
+  /*box-shadow: rgba(15, 17, 21, 0.2) 0px 3px 6px 0px;
+  transition: box-shadow 400ms ease-in-out 0s,
+  background-color 400ms ease-in-out 0s; */
+}
+
+/* #weather-container:hover {
+  box-shadow: rgba(15, 17, 21, 0.2) 0px 10px 20px 2px;
+} */
+
+.inline {
+  display: inline-block;
+}
+
+.bookmark-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 50%;
+  text-align: left;
+  margin: 1em 0em;
+  animation-delay: 0.3s;
+  z-index: 1;
+}
+
+@media only screen and (max-width: 960px) {
+  .container {
+    height: auto;
+  }
+  #clock {
+    margin-top: 1em;
+  }
+  .container > .bookmark-container {
+    flex-direction: column;
+    width: 23%;
+  }
+  .bookmark-container > .bookmark-set {
+    width: auto;
+    margin: 1em 0em;
+  }
+  .weather-container {
+    width: 30%;
+  }
+}
+
+.bookmark-set {
+  transition: box-shadow 400ms ease-in-out 0s;
+  box-shadow: rgba(15, 17, 21, 0.2) 0px 3px 6px 0px;
+  padding: 1rem;
+  background-color: #2e3440;
+  border-radius: 3px;
+  margin: 0em 0.75em;
+  width: 50%;
+  transition: 450ms ease-in 0.1s;
+}
+
+.bookmark-set:hover {
+  box-shadow: rgba(15, 17, 21, 0.2) 0px 10px 20px 2px;
+  background-color: #3b4252;
+  transition: 200ms ease-in-out 0s;
+}
+
+.bookmark-inner-container {
+  overflow-y: hidden;
+  height: 80%;
+  vertical-align: top;
+  margin: 0 0.5rem 0 0;
+}
+
+.bookmark-title {
+  display: inline;
+  font-size: 17.5px;
+  font-weight: 250;
+  color: #d8dee9;
+}
+
+.bookmark {
+  font-size: 13.5px;
+  color: #81a1c1;
+  text-decoration: none;
+  font-weight: 100;
+  display: block;
+  margin: 0.5em 0em;
+}
+
+.bookmark:hover {
+  color: #88c0d0;
+  transition: all 400ms ease-in-out 0s;
+}
+
+#waveform-collage {
+  position: fixed;
+  bottom: 0;
+  z-index: 2;
+}
+#waveform-1 {
+  fill: #434c5e;
+}
+#waveform-2 {
+  fill: #3b4252;
+}
+#waveform-3 {
+  fill: #2e3440;
+}
+
+.fade-in {
+  opacity: 1;
+  animation-name: fadeInOpacity;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: 1.5s;
+}
+
+.fade-in-weather {
+  opacity: 1;
+  animation-name: fadeInWeatherOpacity;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: 2s;
+}
+
+.fade-in-faster {
+  opacity: 1;
+  animation-name: fadeInFasterOpacity;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: 1s;
+}
+
+.fade-in-icon {
+  opacity: 1;
+  animation-name: fadeInIconOpacity;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: 3.5s;
+}
+
+@keyframes fadeInFasterOpacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInOpacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInWeatherOpacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInIconOpacity {
+  0% {
+    opacity: 0;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.6;
+  }
+}
