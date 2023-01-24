@@ -8,5 +8,5 @@
 "notification.focusable": true,
 "codeLens.enable": true,
 "rust-analyzer.updates.checkOnStartup": false,
-"clangd.inlayHints.enable": false
+"python.formatting.autopep8Path":"~/.local/bin/autopep8",
 }
