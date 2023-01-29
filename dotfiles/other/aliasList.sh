@@ -2,12 +2,13 @@
 
 # random
 alias \
-ls="ls -F --color=auto --group-directories-first" \
-sl="ls -F --color=auto --group-directories-first" \
-lsa="ls -A" \
+ls="exa -F --color=auto --group-directories-first" \
+sl="exa -F --color=auto --group-directories-first" \
+lsa="exa -a" \
 grep="grep --color=auto" \
 py="bpython" \
-v="nvim" 
+v="nvim" \
+ps="procs"
 
 # git stuff
 alias \
@@ -22,7 +23,7 @@ uncommit="git reset --soft HEAD^"
 # verbosity and prompting
 alias \
 mkdir="mkdir -pv" \
-rm="rm -iv" \
+rm="rip" \
 cp="cp -iv" \
 mv="mv -iv"
 

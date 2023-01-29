@@ -37,7 +37,6 @@ set wrap                                        " enable text wrapping
 set scrolloff=5                                 " lines above/below cursor when scrolling
 set showcmd                                     " key strokes in command line
 set splitbelow splitright                       " new windows split right/bottom
-set wildmenu wildmode=longest:full,full         " command autocompletion
 set timeoutlen=1000 ttimeoutlen=1000            " timeout for keybind presses
 set autowrite                                   " auto save
 set confirm                                     " prompt to save not error
@@ -83,7 +82,6 @@ call plug#begin('~/.config/nvim/plugged')
       Plug 'nvim-telescope/telescope.nvim'        " search files within vim
       Plug 'nvim-treesitter/nvim-treesitter'
     endif
-    Plug 'ctrlpvim/ctrlp.vim'
   " }
   " Focus helpers {
     Plug 'junegunn/goyo.vim'
@@ -116,7 +114,6 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'alvan/vim-closetag'                   " autoclose html esq tags
     Plug 'tpope/vim-surround'                   " edit tags/delimiters in pairs
     Plug 'mhinz/vim-startify'                   " start screen
-    Plug 'kyazdani42/nvim-web-devicons'         " fancy icons
     Plug 'ConradIrwin/vim-bracketed-paste'      " autoset paste mode
     Plug 'easymotion/vim-easymotion'            " better movement
     Plug 'tpope/vim-repeat'                     " repeat commands with .
@@ -126,10 +123,6 @@ call plug#begin('~/.config/nvim/plugged')
     if has("nvim")
       Plug 'antoinemadec/FixCursorHold.nvim'
       Plug 'sudormrfbin/cheatsheet.nvim'        " fuzzy cheatsheet
-      Plug 'axieax/urlview.nvim'
-      " run code snippets
-      Plug 'michaelb/sniprun', {'do': 'bash install.sh'}
-      Plug 'akinsho/toggleterm.nvim' " toggle multiple terminals
     endif
   " }
   " Multiline editing {
@@ -194,11 +187,6 @@ call plug#end()
 " Limelight {
   let g:limelight_conceal_ctermfg = 'gray'      " Color dimming
   let g:limelight_conceal_guifg = 'DarkGray'
-" }
-" ctrlp {
-  " ignore files in git and gitignore
-  let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
-  let g:ctrlp_map = 'cp'
 " }
 " vim wiki {
   " set markdown syntax and filepath
@@ -325,7 +313,7 @@ let mapleader = " "                               " Leader Character to Space
   nnoremap <silent> gd <Plug>(coc-definition)
   nnoremap <silent> gt <Plug>(coc-type-definition)
   " better documentation and scroll through
-  nnoremap <silent> D :call <SID>show_documentation()<CR>
+  nnoremap <silent> <leader>D :call <SID>show_documentation()<CR>
   inoremap <expr><c-p> <C-\><C-O>:call CocActionAsync('showSignatureHelp')<cr>
   if has('nvim-0.4.0') || has('patch-8.2.0750')
     nnoremap <silent><nowait><expr> <A-j> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
