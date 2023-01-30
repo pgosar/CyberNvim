@@ -107,6 +107,7 @@ call plug#begin('~/.config/nvim/plugged')
     Plug 'flazz/vim-colorschemes'
     Plug 'luochen1990/rainbow'                  " bracket coloring
     Plug 'blueyed/vim-diminactive'
+    Plug 'kyazdani42/nvim-web-devicons'
   " }
   " Quality of Life {
     Plug 'jiangmiao/auto-pairs'                 " autoclose deimiters
