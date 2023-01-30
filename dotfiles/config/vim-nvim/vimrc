@@ -37,7 +37,7 @@ set wrap                                        " enable text wrapping
 set scrolloff=5                                 " lines above/below cursor when scrolling
 set showcmd                                     " key strokes in command line
 set splitbelow splitright                       " new windows split right/bottom
-set timeoutlen=1000 ttimeoutlen=1000            " timeout for keybind presses
+set timeoutlen=100 ttimeoutlen=100            " timeout for keybind presses
 set autowrite                                   " auto save
 set confirm                                     " prompt to save not error
 set noerrorbells                                " no ring on error
