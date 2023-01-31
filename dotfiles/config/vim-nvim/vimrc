@@ -22,7 +22,7 @@ set history=1000                                " command history
 set signcolumn=yes numberwidth=6                " signcolumn and available width
 set linebreak                                   " text wrap wont break words
 set textwidth=100                               " line length
-set spell                                       " spell check
+" set spell                                       " spell check
 set smartcase ignorecase incsearch              " searching and highlighting
 set foldmethod=indent foldlevel=2 foldcolumn=2  " code folding
 set foldlevelstart=99 foldopen+=jump nofoldenable " auto fold open/close
@@ -37,7 +37,7 @@ set wrap                                        " enable text wrapping
 set scrolloff=5                                 " lines above/below cursor when scrolling
 set showcmd                                     " key strokes in command line
 set splitbelow splitright                       " new windows split right/bottom
-set timeoutlen=100 ttimeoutlen=100            " timeout for keybind presses
+set timeoutlen=1000 ttimeoutlen=1000            " timeout for keybind presses
 set autowrite                                   " auto save
 set confirm                                     " prompt to save not error
 set noerrorbells                                " no ring on error
@@ -104,10 +104,10 @@ call plug#begin('~/.config/nvim/plugged')
   " }
   " Visuals {
     Plug 'thaerkh/vim-indentguides'
-    Plug 'flazz/vim-colorschemes'
+    " Plug 'flazz/vim-colorschemes'
     Plug 'luochen1990/rainbow'                  " bracket coloring
     Plug 'blueyed/vim-diminactive'
-    Plug 'kyazdani42/nvim-web-devicons'
+    Plug 'nvim-tree/nvim-web-devicons'
   " }
   " Quality of Life {
     Plug 'jiangmiao/auto-pairs'                 " autoclose deimiters
@@ -142,7 +142,7 @@ call plug#begin('~/.config/nvim/plugged')
       Plug 'ellisonleao/glow.nvim', {'branch': 'main'}
   endif
   " }
-
+  Plug 'navarasu/onedark.nvim'
 call plug#end()
 
 
@@ -159,7 +159,7 @@ call plug#end()
   " how file paths are shown (they're not)
   let g:airline#extensions#tabline#fnamemod = ':t'
   let g:airline_powerline_fonts = 1             " powerline integration
-  let g:airline_theme='base16_nord'               " status bar theme
+  let g:airline_theme='onedark'               " status bar theme
   let g:airline#extensions#tagbar#enabled = 1   " show where in file you are
   let g:airline#extensions#tagbar#flags = 'f'
   let g:airline#extensions#coc#enabled = 1
@@ -221,7 +221,7 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 " colorscheme
 let g:gruvbox_number_column = 'bg1'
 let g:gruvbox_contrast_dark = 'soft'
-autocmd vimenter * ++nested colorscheme nord
+autocmd vimenter * ++nested colorscheme onedark
 
 " Auto delete trailing whitespace, save cursor position
 augroup noWhitespace
@@ -291,7 +291,7 @@ endif
 
 " stop changing tab color when not saved, unless its not the selected tab
 autocmd VimEnter *
-   \ let g:airline#themes#base16_nord#palette.tabline = {
+   \ let g:airline#themes#onedark#palette.tabline = {
    \    'airline_tabmod':       ['#000000','#afd787',231,88,''],
    \    'airline_tabmod_unsel': ['#000000','#87afd7',231,52,''],
    \ } | :AirlineRefresh

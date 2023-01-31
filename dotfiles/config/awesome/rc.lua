@@ -21,7 +21,6 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
 
-minimized = true
 -- {{{ Error handling
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -39,6 +38,7 @@ end)
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 
+minimized = true
 -- This is used later as the default terminal and editor to run.
 terminal = "/home/chilly/.local/bin/kitty"
 editor = os.getenv("EDITOR") or "nano"
@@ -63,7 +63,7 @@ end
 -- Table of layouts to cover with awful.layout.inc, order matters.
 tag.connect_signal("request::default_layouts", function()
     awful.layout.append_default_layouts({
-        awful.layout.suit.floating, awful.layout.suit.tile,
+        awful.layout.suit.tile, awful.layout.suit.floating,
         awful.layout.suit.tile.left, awful.layout.suit.tile.bottom,
         awful.layout.suit.tile.top, awful.layout.suit.fair,
         awful.layout.suit.fair.horizontal, awful.layout.suit.spiral,

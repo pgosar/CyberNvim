@@ -34,6 +34,7 @@ autoload -U edit-command-line                            # edit command in vim
 zle -N edit-command-line
 # disable ctrl-s and q
 [[ -n ${TTY:-} && $+commands[stty] == 1 ]] && stty -ixon <$TTY >$TTY
+set -o ignoreeof
 unalias -a                                             # remove preset aliases
 
 
