@@ -7,6 +7,7 @@ sl="exa -F --color=auto --group-directories-first" \
 lsa="exa -a" \
 grep="grep --color=auto" \
 py="bpython" \
+cd="cd -P" \
 v="nvim" \
 ps="procs"
 

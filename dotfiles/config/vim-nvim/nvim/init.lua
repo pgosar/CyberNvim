@@ -1,1 +1,1 @@
-set
+require('main-options')
