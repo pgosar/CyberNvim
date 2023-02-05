@@ -18,4 +18,3 @@ cmd({'BufEnter','BufAdd','BufNew','BufNewFile','BufWinEnter'}, {
   end,
 })
 
-

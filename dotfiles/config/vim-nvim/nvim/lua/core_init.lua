@@ -9,10 +9,14 @@ for _, source in ipairs {
   if not status_ok then vim.api.nvim_err_writeln("Failed to load " .. source .. "\n\n" .. fault) end
 end
 
+require("neodev").setup()
+require('Comment').setup()
 local lsp = require('lsp-zero')
 lsp.preset('recommended')
 lsp.setup()
 
-pcall(vim.cmd, 'colorscheme onedark')
+require('bufferline').setup{}
+require('scope').setup{}
 
+pcall(vim.cmd, 'colorscheme onedark')
 

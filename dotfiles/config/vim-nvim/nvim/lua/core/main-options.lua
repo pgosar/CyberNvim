@@ -1,7 +1,6 @@
 vim.opt.shortmess:append { s = true, I = true } -- disable startup message
 vim_opts({
 	opt = {
-    
     swapfile = false,              -- disable swapfiles   
 		number = true,                 -- add line numbers
 		signcolumn = "yes",            -- create sign column
@@ -42,6 +41,7 @@ vim_opts({
 		autochdir = true,                 -- set working dir for relative filepaths
 		termguicolors = true,             -- better colors
     undofile = true,                  -- persistent undo
+    sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions",
 	},
   g = {
     zipPlugin = false,                -- disable zip
