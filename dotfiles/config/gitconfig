@@ -61,7 +61,6 @@
   upstream = cyan
 [tag]
   # Sort tags as version numbers
-  sort = version:refname[status]
 	subModuleSummary = true
   showUntrackedFiles = all
 [alias]
