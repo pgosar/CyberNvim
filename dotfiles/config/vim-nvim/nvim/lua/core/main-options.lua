@@ -42,6 +42,7 @@ vim_opts({
 		termguicolors = true,             -- better colors
     undofile = true,                  -- persistent undo
     sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions",
+    hidden = true,
 	},
   g = {
     zipPlugin = false,                -- disable zip

@@ -2,8 +2,7 @@
 
 Note: If you use WSL2, checkout the WSL2 branch. It has my old setup including plenty of workarounds for everything such as fluid copy pasting between vim and windows.
 
-A rewrite of my vimrc in Lua is approaching! When that happens my old vimrc will stop recieving any changes, but will of course always give you an IDE-like experience
-
+A complete rewrite and overall of my vimrc in lua specifically for neovim is underway.
 <hr />
 
 ## Table of Contents
