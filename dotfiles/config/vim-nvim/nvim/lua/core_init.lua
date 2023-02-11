@@ -3,6 +3,7 @@ for _, source in ipairs {
   "core.autocommands",
 	"core.main-options",
 	"core.plugins",
+  "core.keybindings"
 
 } do
   local status_ok, fault = pcall(require, source)
