@@ -20,4 +20,3 @@ require('bufferline').setup{}
 require('scope').setup{}
 
 pcall(vim.cmd, 'colorscheme onedark')
-

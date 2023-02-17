@@ -53,7 +53,9 @@ autorun = true
 autorunApps = {
     "nitrogen --restore", "picom", "watch_tablet &",
     "/usr/lib/polkit-1/polkitd --no-debug",
-    "exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &"
+    "exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &",
+    "pa-applet &", "blueman-applet &", "nm-applet &"
+
 }
 if autorun then
     for app = 1, #autorunApps do awful.util.spawn(autorunApps[app]) end
@@ -120,7 +122,6 @@ screen.connect_signal("request::desktop_decoration", function(s)
         }
     }
 
-
     -- Create the wibox
     s.mywibox = awful.wibar {
         position = "top",
@@ -157,8 +158,17 @@ awful.mouse.append_global_mousebindings({
 
 -- General Awesome keys
 awful.keyboard.append_global_keybindings({
-    awful.key({modkey}, "s", hotkeys_popup.show_help,
-              {description = "show help", group = "awesome"}),
+    awful.key({}, "XF86AudioRaiseVolume", function()
+        awful.spawn(
+            "exec --no-startup-id $volumepath/volume -n -t $statuscmd -u $statussig up $volumestep")
+    end), awful.key({}, "XF86AudioLowerVolume", function()
+        awful.spawn(
+            "exec --no-startup-id $volumepath/volume -n -t $statuscmd -u $statussig down $volumestep")
+    end), awful.key({}, "XF86AudioMute", function()
+        awful.spawn(
+            "exec --no-startup-id $volumepath/volume -n -t $statuscmd -u $statussig mute")
+    end), awful.key({modkey}, "s", hotkeys_popup.show_help,
+                    {description = "show help", group = "awesome"}),
     awful.key({modkey, "Control"}, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
     awful.key({modkey, "Shift"}, "q", awesome.quit,
@@ -169,7 +179,8 @@ awful.keyboard.append_global_keybindings({
               function() awful.screen.focused().mypromptbox:run() end,
               {description = "run prompt", group = "launcher"}),
     awful.key({modkey}, "d",
-              function() awful.spawn('rofi -modi drun, run -show drun') end, {description = "open rofi", group = "launcher"}),
+              function() awful.spawn('rofi -modi drun, run -show drun') end,
+              {description = "open rofi", group = "launcher"})
 })
 
 -- Tags related keybindings
