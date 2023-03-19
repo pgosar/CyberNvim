@@ -17,6 +17,15 @@ local naughty = require("naughty")
 local ruled = require("ruled")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
+
+local batteryarc_widget = require(
+                              "awesome-wm-widgets.batteryarc-widget.batteryarc")
+local spotify_widget = require("awesome-wm-widgets.spotify-widget.spotify")
+local logout_popup = require(
+                         "awesome-wm-widgets.logout-popup-widget.logout-popup")
+local brightness_widget = require(
+                              "awesome-wm-widgets.brightness-widget.brightness")
+local volume_widget = require("awesome-wm-widgets.volume-widget.volume")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
 require("awful.hotkeys_popup.keys")
@@ -38,23 +47,23 @@ end)
 -- Themes define colours, icons, font and wallpapers.
 beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
 
-minimized = true
+local minimized = true
 -- This is used later as the default terminal and editor to run.
-terminal = "/home/chilly/.local/bin/kitty"
-editor = os.getenv("EDITOR") or "nano"
-editor_cmd = terminal .. " -e " .. editor
+local terminal = "/home/chilly/.local/bin/kitty"
+local editor = os.getenv("EDITOR") or "nano"
+local editor_cmd = terminal .. " -e " .. editor
 
 -- Default modkey.
-modkey = "Mod4"
+local modkey = "Mod4"
 -- }}}
 
 -- Autorun programs
-autorun = true
-autorunApps = {
+local autorun = true
+local autorunApps = {
     "nitrogen --restore", "picom", "watch_tablet &",
     "/usr/lib/polkit-1/polkitd --no-debug",
     "exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &",
-    "pa-applet &", "blueman-applet &", "nm-applet &"
+    "blueman-applet &", "nm-applet &"
 
 }
 if autorun then
@@ -77,9 +86,10 @@ end)
 -- }}}
 
 -- {{{ Wibar
+--
 
 -- Create a textclock widget
-mytextclock = wibox.widget.textclock()
+local mytextclock = wibox.widget.textclock()
 
 screen.connect_signal("request::desktop_decoration", function(s)
     -- Each screen has its own tag table.
@@ -121,7 +131,6 @@ screen.connect_signal("request::desktop_decoration", function(s)
             end)
         }
     }
-
     -- Create the wibox
     s.mywibox = awful.wibar {
         position = "top",
@@ -134,18 +143,35 @@ screen.connect_signal("request::desktop_decoration", function(s)
                 s.mytaglist,
                 s.mypromptbox
             },
-            s.mytasklist, -- Middle widget
+            {
+                -- middle widgets
+                s.mytasklist,
+                layout = wibox.layout.fixed.horizontal,
+                spotify_widget()
+            },
             { -- Right widgets
                 layout = wibox.layout.fixed.horizontal,
-                wibox.widget.systray(),
-                mytextclock,
-                s.mylayoutbox
+                wibox.widget.systray {},
+                brightness_widget {},
+                logout_popup.widget {},
+                volume_widget {},
+                batteryarc_widget{
+                    arc_thickness = 3,
+                    arc_color = "#5AA3CC",
+                    show_current_level = true,
+                    size = 52,
+                    warning_msg_title = "Low Battery",
+                    notification_position = "top_right",
+                    show_current_level_persentage = true,
+                    battery = "BAT0"
+                },
+                mytextclock
             }
         }
     }
 end)
 -- }}}
-
+--
 -- {{{ Mouse bindings
 awful.mouse.append_global_mousebindings({
     awful.button({}, 3, function() mymainmenu:toggle() end),
@@ -158,16 +184,15 @@ awful.mouse.append_global_mousebindings({
 
 -- General Awesome keys
 awful.keyboard.append_global_keybindings({
-    awful.key({}, "XF86AudioRaiseVolume", function()
-        awful.spawn(
-            "exec --no-startup-id $volumepath/volume -n -t $statuscmd -u $statussig up $volumestep")
-    end), awful.key({}, "XF86AudioLowerVolume", function()
-        awful.spawn(
-            "exec --no-startup-id $volumepath/volume -n -t $statuscmd -u $statussig down $volumestep")
-    end), awful.key({}, "XF86AudioMute", function()
-        awful.spawn(
-            "exec --no-startup-id $volumepath/volume -n -t $statuscmd -u $statussig mute")
-    end), awful.key({modkey}, "s", hotkeys_popup.show_help,
+
+    awful.key({modkey}, ";", function() brightness_widget:inc() end,
+              {description = "increase brightness", group = "custom"}),
+    awful.key({modkey, "Shift"}, ";", function() brightness_widget:dec() end,
+              {description = "decrease brightness", group = "custom"}),
+    awful.key({modkey}, "]", function() volume_widget:inc(5) end),
+    awful.key({modkey}, "[", function() volume_widget:dec(5) end),
+    awful.key({modkey}, "\\", function() volume_widget:toggle() end),
+    awful.key({modkey}, "s", hotkeys_popup.show_help,
                     {description = "show help", group = "awesome"}),
     awful.key({modkey, "Control"}, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
@@ -374,6 +399,12 @@ ruled.client.connect_signal("request::rules", function()
         }
     }
 
+    ruled.client.append_rule {
+      id = "global",
+      rule = {name = "Onboard"},
+      properties = {focusable = false}
+    }
+
     -- Floating clients.
     ruled.client.append_rule {
         id = "floating",
@@ -403,12 +434,6 @@ ruled.client.connect_signal("request::rules", function()
         rule_any = {type = {"normal", "dialog"}},
         properties = {titlebars_enabled = true}
     }
-
-    -- Set Firefox to always map on the tag named "2" on screen 1.
-    -- ruled.client.append_rule {
-    --     rule       = { class = "Firefox"     },
-    --     properties = { screen = 1, tag = "2" }
-    -- }
 end)
 -- }}}
 
@@ -454,3 +479,25 @@ naughty.connect_signal("request::display",
 client.connect_signal("mouse::enter", function(c)
     c:activate{context = "mouse_enter", raise = false}
 end)
+
+-- No borders if only one window on screen
+local function border_adjust(c)
+    if #c.screen.clients == 1 then
+        c.border_width = 0
+    elseif #c.screen.clients > 1 then
+        c.border_width = beautiful.border_width
+        c.border_color = beautiful.border_focus
+    end
+end
+
+-- No gaps if only one window on screen
+local function gap_adjust(c)
+    if #c.screen.clients == 1 then
+        beautiful.useless_gap = 0
+    elseif #c.screen.clients > 1 then
+        beautiful.useless_gap = 3
+    end
+end
+beautiful.gap_single_client = false
+client.connect_signal("focus", border_adjust)
+client.connect_signal("focus", gap_adjust)

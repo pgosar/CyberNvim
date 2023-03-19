@@ -43,7 +43,8 @@ save="kitty @ ls > ~/.local/kitty.app/kitty-dump.json; cat ~/.local/kitty.app/ki
 python3 ~/.local/kitty.app/kitty-convert-dump.py > ~/.local/kitty.app/kitty-session.kitty" \
 tn="tmux new-session -s" \
 ta="tmux attach-session -t" \
-tl="tmux ls"
+tl="tmux ls" \
+wiki="wikiSummary.py"
 
 # other
 eval $(thefuck --alias)
