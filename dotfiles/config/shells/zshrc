@@ -52,6 +52,7 @@ plugins=(
   zsh-interactive-cd
   zsh-autosuggestions
   zsh-syntax-highlighting
+  poetry
 )
 
 

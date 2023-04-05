@@ -63,7 +63,7 @@ local autorunApps = {
     "nitrogen --restore", "picom", "watch_tablet &",
     "/usr/lib/polkit-1/polkitd --no-debug",
     "exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &",
-    "blueman-applet &", "nm-applet &"
+    "blueman-applet &", "nm-applet &", "onboard &", "pa-applet &"
 
 }
 if autorun then
