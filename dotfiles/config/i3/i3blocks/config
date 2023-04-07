@@ -1,8 +1,0 @@
-[i3volume]
-label=
-command=~/.local/i3-volume/volume output i3blocks
-interval=once
-signal=10
-color=#b8bb26
-separator_block_width=10
-markup=pango

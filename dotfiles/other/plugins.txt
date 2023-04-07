@@ -1,3 +1,0 @@
-$PLUGIN/has.sh
-$PLUGIN/z.sh
-$HOME/.bash-git-prompt/gitprompt.sh
