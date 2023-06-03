@@ -5,10 +5,6 @@ return require('packer').startup(function(use)
     use 'joshdick/onedark.vim'
     use 'lewis6991/impatient.nvim'
     use "nvim-lua/plenary.nvim"
-    use {
-        'SmiteshP/nvim-navic',
-        config = function() require("plugin-configs.navic") end
-    }
     use 'windwp/nvim-ts-autotag'
     use {
         "windwp/nvim-autopairs",

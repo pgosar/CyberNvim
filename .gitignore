@@ -1,1 +1,4 @@
 ..vimrc.un~
+.luarc.json
+packer_compiled.lua
+

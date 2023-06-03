@@ -20,3 +20,8 @@ require('bufferline').setup{}
 require('scope').setup{}
 
 pcall(vim.cmd, 'colorscheme onedark')
+
+pcall(vim.cmd, [[autocmd BufReadPost *
+  \ if line("'\"") >= 1 && line("'\"") <= line("$") |
+  \   exe "normal! g`\"" |
+  \ endif]])
