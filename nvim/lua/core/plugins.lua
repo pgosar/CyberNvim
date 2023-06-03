@@ -12,11 +12,12 @@ return require('packer').startup(function(use)
     }
     use {
         "nvim-neo-tree/neo-tree.nvim",
-        branch = "v2.x",
+        branch = "main",
         requires = {
-            "nvim-lua/plenary.nvim", "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+            "nvim-lua/plenary.nvim", "nvim-tree/nvim-web-devicons",
             "MunifTanjim/nui.nvim"
-        }
+        },
+        config = function() require('plugin-configs.neo-tree') end
     }
     use "folke/neodev.nvim"
     use {
@@ -139,9 +140,15 @@ return require('packer').startup(function(use)
             }
         end
     }
-
+    use {
+        'williamboman/mason.nvim',
+        config = function() require("mason").setup {} end
+    }
     use 'mfussenegger/nvim-dap'
-    use 'jay-babu/mason-nvim-dap.nvim'
+    use {
+        'jay-babu/mason-nvim-dap.nvim',
+        config = function() require("mason-nvim-dap").setup {} end
+    }
     use 'folke/trouble.nvim'
     use({
         'nvim-lualine/lualine.nvim',

@@ -2,7 +2,7 @@ vim.g.mapleader = " "
 
 map("n", "<leader>zm", ":ZenMode<CR>")
 map("n", "<leader>nt", ":Neotree reveal left<CR>")
-map("n", "<leader>ntf", ":Neotree reveal float<CR>")
+map("n", "<leader>nf", ":Neotree reveal float<CR>")
 map("n", "<leader>a", ":AerialToggle<CR>")
 map("n", "m", ":noh<CR>")
 map("n", "/", ":set hlsearch<CR>/")
