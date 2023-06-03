@@ -1,10 +1,7 @@
 
 ### Intro
-_Turbocharge your vim into an IDE with 550 lines of config. Make your terminal the envy of the entire town with only a few minutes of setup._
 
-Wondering about what features my Vim config has? Any feature you find useful in whatever IDE or other program you use, **my config has it and more**. Are you a neovim user? Fear not! my config has even more features for you to take advantage of!
-
-A short list:
+A short list of remarkable features present in my vim and neovim configs
 
 * Persistent undo
 * Better autocomplete than VSCode
@@ -19,9 +16,9 @@ A short list:
 * File explorer and file overview (see picture)
 * Git integration
 * Fuzzy file searching
+* Debuggers
 * A myriad of quality of life features you will not be able to live without
-* Highly Customizable. I have customized nearly everything, which means you get a template for your own customizations :) 
-
+* Highly customizable
 If my config does not have a feature you want, (it will), make an issue, and I will add it if I think it would be useful.
 
 <hr />
@@ -53,6 +50,8 @@ git clone https://github.com/pgosar/dotfiles.git
 
 ### Dependencies
 My vimrc requires [vim-plug](https://github.com/junegunn/vim-plug). Look at its README for details on usage. Refer to [CoC's README](https://github.com/neoclide/coc.nvim) for details on using the LSP provider.
+
+The neovim config requires [packer](https://github.com/wbthomason/packer.nvim), and uses the built-in LSP
 
 <hr />
 
