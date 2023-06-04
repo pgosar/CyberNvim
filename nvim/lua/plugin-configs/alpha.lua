@@ -15,8 +15,8 @@ dashboard.section.header.val = {
 
 -- Set menu
 dashboard.section.buttons.val = {
-    dashboard.button("e", "  > New file", ":ene <BAR> startinsert <CR>"),
-    dashboard.button("f", "  > Find file in git repo",
+    dashboard.button("e", "  > New file", ":e <BAR> startinsert <CR>"),
+    dashboard.button("f", "  > Find file in git repo",
                      ":Telescope git_files <CR>"),
     dashboard.button("r", "  > Recent", ":Telescope oldfiles<CR>"),
     dashboard.button("l", "🗘  > Open last session",

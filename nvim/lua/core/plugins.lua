@@ -24,21 +24,17 @@ return require('packer').startup(function(use)
         "zbirenbaum/copilot.lua",
         cmd = "Copilot",
         event = "InsertEnter",
-        config = function() require("copilot").setup {} end
+        config = function() require('plugin-configs.copilot') end
     }
     use 'JoosepAlviste/nvim-ts-context-commentstring'
     use {
         'karb94/neoscroll.nvim',
-        config = function() require('neoscroll').setup {} end
-    }
-    use {
-        'ahmedkhalf/project.nvim',
-        config = function() require"project_nvim".setup {} end
+        config = function() require('plugin-configs.neoscroll') end
     }
     use {
         "akinsho/toggleterm.nvim",
         tag = '*',
-        config = function() require("toggleterm").setup() end
+        config = function() require("plugin-configs.toggleterm") end
     }
     use {
         'goolord/alpha-nvim',
@@ -47,21 +43,23 @@ return require('packer').startup(function(use)
     use {'numToStr/Comment.nvim'}
     use {
         'stevearc/dressing.nvim',
-        config = function() require'dressing'.setup {} end
+        config = function() require('plugin-configs.dressing') end
     }
     use {
         'phaazon/hop.nvim',
-        branch = 'v2', -- optional but strongly recommended
-        config = function()
-            -- you can configure Hop the way you like here; see :h hop-config
-            require'hop'.setup {keys = 'etovxqpdygfblzhckisuran'}
-        end
+        branch = 'v2',
+        config = function() require('plugin-configs.hop') end
     }
     use {
         "rcarriga/nvim-notify",
         config = function() require'notify'.setup {} end
     }
-
+    use {
+      'mrded/nvim-lsp-notify',
+      config = function()
+        require('lsp-notify').setup({})
+      end
+    }
     use {
         'VonHeikemen/lsp-zero.nvim',
         branch = 'v1.x',

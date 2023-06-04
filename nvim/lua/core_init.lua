@@ -1,5 +1,5 @@
 for _, source in ipairs {
-    "core.utils.utils", "core.autocommands", "core.main-options",
+    "core.utils.utils", "core.utils.notify", "core.autocommands", "core.main-options",
     "core.plugins", "core.keybindings"
 
 } do
@@ -25,4 +25,6 @@ vim.cmd([[autocmd BufReadPost *
   \ endif]])
 
 vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
+
+vim.notify = require("notify")
 
