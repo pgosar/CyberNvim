@@ -1,6 +1,6 @@
 for _, source in ipairs {
-    "core.utils.utils", "core.utils.notify", "core.autocommands", "core.main-options",
-    "core.plugins", "core.keybindings"
+    "core.utils.utils", "core.autocommands", "core.main-options",
+    "core.plugins", "core.keybindings", "core.utils.notify"
 
 } do
     local status_ok, fault = pcall(require, source)

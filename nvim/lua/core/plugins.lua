@@ -8,7 +8,7 @@ return require('packer').startup(function(use)
     use 'windwp/nvim-ts-autotag'
     use {
         "windwp/nvim-autopairs",
-        config = function() require("nvim-autopairs").setup {} end
+        config = function() require("plugin-configs.autopairs") end
     }
     use {
         "nvim-neo-tree/neo-tree.nvim",
@@ -55,14 +55,8 @@ return require('packer').startup(function(use)
         config = function() require'notify'.setup {} end
     }
     use {
-      'mrded/nvim-lsp-notify',
-      config = function()
-        require('lsp-notify').setup({})
-      end
-    }
-    use {
         'VonHeikemen/lsp-zero.nvim',
-        branch = 'v1.x',
+        branch = 'v2.x',
         requires = {
             -- LSP Support
             {'neovim/nvim-lspconfig'}, -- Required
