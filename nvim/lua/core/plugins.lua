@@ -55,6 +55,10 @@ return require('packer').startup(function(use)
         config = function() require'notify'.setup {} end
     }
     use {
+      "j-hui/fidget.nvim",
+      config = function() require("fidget").setup {} end
+    }
+    use {
         'VonHeikemen/lsp-zero.nvim',
         branch = 'v2.x',
         requires = {
