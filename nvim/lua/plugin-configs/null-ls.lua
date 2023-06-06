@@ -1,21 +1,15 @@
-local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-require("null-ls").setup({
-    -- you can reuse a shared lspconfig on_attach callback here
-    on_attach = function(client, bufnr)
-        if client.supports_method("textDocument/formatting") then
-            vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-            vim.api.nvim_create_autocmd("BufWritePre", {
-                group = augroup,
-                buffer = bufnr,
-                callback = function()
-                vim.lsp.buf.format({
-                    bufnr = bufnr,
-                    filter = function(client)
-                        return client.name == "null-ls"
-                    end
-                })
-            end,
-            })
-        end
-    end,
+local null_ls = require("null-ls")
+local b = null_ls.builtins
+
+null_ls.setup({
+    sources = {
+        b.formatting.lua_format, b.formatting.autopep8,
+        b.formatting.prettier.with({
+            filetypes = {
+                'markdown', 'javascript', 'javascriptreact', 'typescript',
+                'typescriptreact'
+            }
+        }), b.hover.dictionary.with({filetypes = {'text', 'markdown'}}),
+        b.completion.spell.with({filetypes = {'text', 'markdown'}})
+    }
 })

@@ -109,7 +109,6 @@ return require('packer').startup(function(use)
     use({
         "jose-elias-alvarez/null-ls.nvim",
         requires = {"nvim-lua/plenary.nvim"},
-        config = function() require "plugin-configs.null-ls" end
     })
     use 'nvim-tree/nvim-web-devicons'
     use 'onsails/lspkind.nvim'
