@@ -18,3 +18,7 @@ cmd({'BufEnter','BufAdd','BufNew','BufNewFile','BufWinEnter'}, {
   end,
 })
 
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+  pattern = { "*" },
+  command = [[%s/\s\+$//e]],
+})

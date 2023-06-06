@@ -1,9 +1,3 @@
--- Eviline config for lualine
--- Author: shadmansaleh
--- Credit: glepnir
-
--- Color table for highlights
--- stylua: ignore
 local colors = {
   bg       = '#202328',
   fg       = '#bbc2cf',
@@ -146,18 +140,15 @@ ins_left {
   },
 }
 
--- Insert mid section. You can make any number of sections in neovim :)
--- for lualine it's any number greater then 2
 ins_left {
   function()
     return '%='
   end,
 }
 
--- Add components to right sections
 ins_right {
-  'o:encoding', -- option component same as &encoding in viml
-  fmt = string.upper, -- I'm not sure why it's upper case either ;)
+  'o:encoding',
+  fmt = string.upper,
   cond = conditions.hide_in_width,
   color = { fg = colors.green, gui = 'bold' },
 }
@@ -165,7 +156,7 @@ ins_right {
 ins_right {
   'fileformat',
   fmt = string.upper,
-  icons_enabled = false, -- I think icons are cool but Eviline doesn't have them. sigh
+  icons_enabled = true,
   color = { fg = colors.green, gui = 'bold' },
 }
 
@@ -177,7 +168,6 @@ ins_right {
 
 ins_right {
   'diff',
-  -- Is it me or the symbol for modified us really weird
   symbols = { added = ' ', modified = '柳 ', removed = ' ' },
   diff_color = {
     added = { fg = colors.green },
@@ -195,5 +185,4 @@ ins_right {
   padding = { left = 1 },
 }
 
--- Now don't forget to initialize lualine
 require('lualine').setup(config)
