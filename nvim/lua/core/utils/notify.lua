@@ -1,4 +1,3 @@
-vim.notify = require("notify")
 local client_notifs = {}
 
 local function get_notif_data(client_id, token)
@@ -58,8 +57,8 @@ dap.listeners.before['event_progressStart']['progress-notifications'] =
             hide_from_history = false
         })
 
-        notif_data.notification.spinner = 1, update_spinner("dap",
-                                                            body.progressId)
+        notif_data.notification.spinner = 1
+        update_spinner("dap", body.progressId)
     end
 
 dap.listeners.before['event_progressUpdate']['progress-notifications'] =
@@ -86,45 +85,6 @@ dap.listeners.before['event_progressEnd']['progress-notifications'] = function(
     notif_data.spinner = nil
 end
 
--- vim.lsp.handlers["$/progress"] = function(_, result, ctx)
---  local client_id = ctx.client_id
---
---  local val = result.value
---
---  if not val.kind then
---    return
---  end
---  local notif_data = get_notif_data(client_id, result.token)
--- if not notif_data then return end
---  if val.kind == "begin" then
---    local message = format_message(val.message, val.percentage)
---
---    notif_data.notification = vim.notify(message, "info", {
---      title = format_title(val.title, vim.lsp.get_client_by_id(client_id).name),
---      icon = spinner_frames[1],
---      timeout = false,
---      hide_from_history = false,
---    })
---
---    notif_data.spinner = 1
---    update_spinner(client_id, result.token)
---  elseif val.kind == "report" and notif_data then
---    notif_data.notification = vim.notify(format_message(val.message, val.percentage), "info", {
---      replace = notif_data.notification,
---      hide_from_history = false,
---    })
---  elseif val.kind == "end" and notif_data then
---    notif_data.notification =
---      vim.notify(val.message and format_message(val.message) or "Complete", "info", {
---        icon = "",
---        replace = notif_data.notification,
---        timeout = 3000,
---      })
---
---    notif_data.spinner = nil
---  end
--- end
-
 local function _rename()
     local param = vim.lsp.util.make_position_params()
     param.oldName = vim.fn.expand("<cword>")
@@ -132,7 +92,7 @@ local function _rename()
                  function(input)
         if input == nil then
             vim.notify('aborted', "warn",
-                         {title = '[LSP] rename', render = 'compact'})
+                       {title = '[LSP] rename', render = 'compact'})
             return
         end
         param.newName = input
@@ -140,8 +100,7 @@ local function _rename()
                             function(err, result, ctx, config)
             if not result or (not result.documentChanges and not result.changes) then
                 vim.notify(string.format('could not perform rename: %s -> %s',
-                                         param.oldName,
-                                         param.newName), "error",
+                                         param.oldName, param.newName), "error",
                            {title = '[LSP] rename', timeout = 500})
 
                 return
@@ -178,9 +137,9 @@ local function _rename()
                     local short_uri = string.sub(vim.uri_to_fname(uri),
                                                  #vim.loop.cwd() + 2)
                     table.insert(notif, string.format('\t- %d in %s',
-                                                             vim.tbl_count(
-                                                                 document.edits),
-                                                             short_uri))
+                                                      vim.tbl_count(
+                                                          document.edits),
+                                                      short_uri))
                 end
             end
 
@@ -209,23 +168,21 @@ local function _rename()
                     local short_uri = string.sub(vim.uri_to_fname(uri),
                                                  #vim.loop.cwd() + 2)
                     table.insert(notif, string.format('\t- %d in %s',
-                                                             vim.tbl_count(edits),
-                                                             short_uri))
+                                                      vim.tbl_count(edits),
+                                                      short_uri))
                 end
             end
 
             local str = ''
             if files > 1 then
-                table.insert(notif, "info",
+                table.insert(notif, 1,
                              string.format('made %d change%s in %d files',
-                                           updates,
-                                           (updates > 1 and "s") or "",
+                                           updates, (updates > 1 and "s") or "",
                                            files))
 
                 str = table.concat(notif, '\n')
             else
-                str = string.format('made %s',
-                                                 notif[1]:sub(4))
+                str = string.format('made %s', notif[1]:sub(4))
 
                 local insert_loc = str:find('in')
                 str = table.concat({
@@ -235,8 +192,7 @@ local function _rename()
                 }, '')
             end
             vim.notify(str, "info", {
-                title = string.format('[LSP] rename: %s -> %s',
-                                      param.oldName,
+                title = string.format('[LSP] rename: %s -> %s', param.oldName,
                                       param.newName),
                 timeout = 2500
             })
@@ -244,3 +200,24 @@ local function _rename()
     end)
 end
 vim.lsp.buf.rename = _rename
+
+local function _format()
+    local count = 0
+    local param = vim.lsp.util.make_formatting_params()
+    vim.lsp.buf_request(0, "textDocument/formatting", param,
+                        function(err, result, ctx, config)
+        if not result then
+            vim.notify('formatting failed', "error", {title = '[LSP] format'})
+            return
+        end
+        vim.lsp.handlers["textDocument/formatting"](err, result, ctx, config)
+        if count == 0 then
+            local name = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ':t')
+            vim.notify(string.format('[LSP] formatted %s', name), "info",
+                       {title = '[LSP] format'})
+        end
+        count = count + 1
+    end)
+end
+
+vim.lsp.buf.format = _format
