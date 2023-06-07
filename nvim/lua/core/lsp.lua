@@ -152,3 +152,8 @@ null_ls.setup({
 		b.hover.dictionary,
 	},
 })
+
+require("mason-null-ls").setup({
+	ensure_installed = nil,
+	automatic_installation = true,
+})
