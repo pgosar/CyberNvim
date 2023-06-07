@@ -1,4 +1,5 @@
 -- currently unused functions for utils/notify.lua-----------------------------
+-- luacheck: globals vim
 
 vim.lsp.handlers["$/progress"] = function(_, result, ctx)
  local client_id = ctx.client_id

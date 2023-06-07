@@ -1,3 +1,5 @@
+-- luacheck: globals vim
+
 local tree = require("neo-tree")
 local sign_def = vim.fn.sign_define
 

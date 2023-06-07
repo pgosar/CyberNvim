@@ -1,3 +1,5 @@
+-- luacheck: globals vim
+
 local function _rename()
     local param = vim.lsp.util.make_position_params()
     param.oldName = vim.fn.expand("<cword>")
