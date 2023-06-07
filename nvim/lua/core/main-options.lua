@@ -31,11 +31,11 @@ vim_opts({
 		-- folds
 		foldmethod = "expr",
 		foldexpr = "nvim_treesitter#foldexpr()",
-		foldlevel = 2,
-		foldcolumn = "2",
-		foldlevelstart = 99,
+		foldlevel = 99,
+    foldlevelstart = 99,
+		foldcolumn = "1",
 		foldopen = "jump,block,hor,mark,percent,quickfix,search,tag,undo",
-		foldenable = false,
+		foldenable = true,
 		-- }
 		clipboard = "unnamedplus", -- set clipboard
 		scrolloff = 5, -- gap between edge of screen and cursor
