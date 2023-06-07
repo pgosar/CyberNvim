@@ -1,3 +1,6 @@
+-- luacheck: globals vim
+--
+local map = require("core.utils.utils").map
 vim.g.mapleader = " "
 
 map("n", "<leader>zm", ":ZenMode<CR>")
@@ -21,5 +24,3 @@ map("v", "<C-b>", "^")
 map("v", "<C-a>", "$")
 map("c", "<C-p>", "<Up>")
 map("c", "<C-n>", "<Down>")
-
-
