@@ -29,6 +29,12 @@ return require("packer").startup(function(use)
 		"zbirenbaum/copilot.lua",
 		cmd = "Copilot",
 		event = "InsertEnter",
+		requires = {
+			"zbirenbaum/copilot-cmp", -- optional
+			config = function()
+				require("copilot_cmp").setup()
+			end,
+		},
 		config = function()
 			require("plugin-configs.copilot")
 		end,

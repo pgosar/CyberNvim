@@ -121,11 +121,12 @@ local function _format()
     local param = vim.lsp.util.make_formatting_params()
     vim.lsp.buf_request(0, "textDocument/formatting", param,
                         function(err, result, ctx, config)
-        if not result then
+        if not result or err then
             vim.notify('formatting failed', "error", {title = '[LSP] format'})
             return
         end
         vim.lsp.handlers["textDocument/formatting"](err, result, ctx, config)
+        if err or not result then return end
         if count == 0 then
             local name = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(0), ':t')
             vim.notify(string.format('[LSP] formatted %s', name), "info",
