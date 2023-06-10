@@ -3,6 +3,9 @@
 local map = require("core.utils.utils").map
 vim.g.mapleader = " "
 
+map("n", "gR", ":TroubleToggle lsp_references<CR>")
+map("n", "gD", ":TroubleToggle lsp_definitions<CR>")
+map("n", "cd", ":Trouble")
 map("n", "<leader>zm", ":ZenMode<CR>")
 map("n", "<leader>nt", ":Neotree reveal left<CR>")
 map("n", "<leader>nf", ":Neotree reveal float<CR>")
