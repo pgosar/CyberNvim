@@ -80,6 +80,8 @@ lsp.set_server_config({
   },
 })
 
+require("core.language-server-configs.ls_init")
+
 lsp.setup()
 
 local cmp = require("cmp")
@@ -87,9 +89,9 @@ local cmp_action = require("lsp-zero").cmp_action()
 require("luasnip.loaders.from_vscode").lazy_load()
 
 cmp.setup({
-  preselect = "item",
+  preselect = "none",
   completion = {
-    completeopt = "menu,menuone,noinsert",
+    completeopt = "menu,menuone,noinsert,noselect",
   },
   window = {
     completion = cmp.config.window.bordered(),
