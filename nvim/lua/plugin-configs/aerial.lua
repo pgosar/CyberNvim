@@ -1,4 +1,6 @@
-require('aerial').setup({
+local aerial = require('aerial')
+
+aerial.setup({
   filter_kind = {
     "Namespace",
     "Class",
@@ -9,5 +11,10 @@ require('aerial').setup({
     "Module",
     "Method",
     "Struct",
-  }
+  },
+  highlight_on_hover = true,
+  autojump = true,
+  highlight_on_jump = false,
+  manage_folds = true,
+  show_guides = true,
 })

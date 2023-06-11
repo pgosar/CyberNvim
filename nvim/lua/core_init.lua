@@ -15,12 +15,6 @@ for _, source in ipairs({
   end
 end
 
-require("neodev").setup()
-require("Comment").setup()
-
-require("bufferline").setup({})
-require("scope").setup({})
-
 vim.cmd([[ colorscheme onedark ]])
 
 vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])

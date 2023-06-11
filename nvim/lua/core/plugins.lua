@@ -24,7 +24,12 @@ return require("packer").startup(function(use)
 			require("plugin-configs.neo-tree")
 		end,
 	})
-	use("folke/neodev.nvim")
+	use({
+		"folke/neodev.nvim",
+		config = function()
+			require("neodev").setup()
+		end,
+	})
 	use({
 		"zbirenbaum/copilot.lua",
 		cmd = "Copilot",
@@ -59,7 +64,12 @@ return require("packer").startup(function(use)
 			require("plugin-configs.alpha")
 		end,
 	})
-	use({ "numToStr/Comment.nvim" })
+	use({
+		"numToStr/Comment.nvim",
+		config = function()
+			require("Comment")
+		end,
+	})
 	use({
 		"stevearc/dressing.nvim",
 		config = function()
@@ -126,6 +136,7 @@ return require("packer").startup(function(use)
 	})
 	use({
 		"williamboman/mason.nvim",
+		run = ":MasonUpdate",
 		config = function()
 			require("mason").setup({})
 		end,
@@ -156,12 +167,21 @@ return require("packer").startup(function(use)
 	})
 	use("nvim-tree/nvim-web-devicons")
 	use("onsails/lspkind.nvim")
-	use("tiagovla/scope.nvim")
-	use({ "fedepujol/move.nvim" })
-	use("akinsho/bufferline.nvim")
-
 	use({
-		"kylechui/nvim-surround",
+		"tiagovla/scope.nvim",
+		config = function()
+			require("plugin-configs.scope")
+		end,
+	})
+	use({ "fedepujol/move.nvim" })
+	use({
+		"akinsho/bufferline.nvim",
+		config = function()
+			require("plugin-configs.bufferline")
+		end,
+	})
+	use({
+    "kylechui/nvim-surround",
 		tag = "*",
 		config = function()
 			require("nvim-surround").setup({})
@@ -200,7 +220,7 @@ return require("packer").startup(function(use)
 			require("plugin-configs.telescope")
 		end,
 	})
-	use("p00f/nvim-ts-rainbow")
+	use("HiPhish/nvim-ts-rainbow2")
 	use({
 		"TimUntersberger/neogit",
 		requires = "nvim-lua/plenary.nvim",

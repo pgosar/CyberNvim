@@ -46,6 +46,7 @@ vim_opts({
 		undofile = true, -- persistent undo
 		sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions",
 		hidden = true,
+    mousemoveevent = true,
 	},
 	g = {
 		zipPlugin = false, -- disable zip

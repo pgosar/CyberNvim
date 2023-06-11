@@ -27,3 +27,20 @@ map("v", "<C-b>", "^")
 map("v", "<C-a>", "$")
 map("c", "<C-p>", "<Up>")
 map("c", "<C-n>", "<Down>")
+
+map('n', '<leader>a', '<cmd>AerialToggle!<CR>')
+map('n', '{', '<cmd>AerialPrev<CR>')
+map('n', '}', '<cmd>AerialNext<CR>')
+
+map("n", "<A-j>", ":MoveLine(1)<CR>")
+map("n", "<A-k>", ":MoveLine(-1)<CR>")
+map("n", "<A-h>", ":MoveHChar(-1)<CR>")
+map("n", "<A-l>", ":MoveHChar(1)<CR>")
+map("n", "<leader>wf", ":MoveWord(1)<CR>")
+map("n", "<leader>wb", ":MoveWord(-1)<CR>")
+
+-- Visual-mode commands
+map("v", "<A-j>", ":MoveBlock(1)<CR>")
+map("v", "<A-k>", ":MoveBlock(-1)<CR>")
+map("v", "<A-h>", ":MoveHBlock(-1)<CR>")
+map("v", "<A-l>", ":MoveHBlock(1)<CR>")
