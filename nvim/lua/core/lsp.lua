@@ -133,8 +133,8 @@ cmp.setup({
 		{ name = "copilot" },
 		{ name = "nvim_lsp" },
 		{ name = "nvim_lua" },
-		{ name = "buffer", keyword_length = 1 },
-		{ name = "luasnip", keyword_length = 1 },
+		{ name = "buffer", keyword_length = 2 },
+		{ name = "luasnip", keyword_length = 2 },
 	},
 	sorting = {
 		priority_weight = 2,

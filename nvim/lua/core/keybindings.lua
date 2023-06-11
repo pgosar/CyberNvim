@@ -17,6 +17,7 @@ map("n", "a", ":set nohlsearch<CR>a")
 map("n", "I", ":set nohlsearch<CR>I")
 map("n", "A", ":set nohlsearch<CR>A")
 map("i", "<C-d>", "<left><c-o>/[\"';)>}\\]]<cr><c-o>:noh<cr><right>")
+
 map("n", "ff", ":Telescope git_files hidden=true<CR>")
 map("n", "fg", ":Telescope live_grep<CR>")
 map("n", "fb", ":Telescope buffers<CR>")

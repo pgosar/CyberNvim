@@ -67,7 +67,7 @@ return require("packer").startup(function(use)
 	use({
 		"numToStr/Comment.nvim",
 		config = function()
-			require("Comment")
+			require("Comment").setup()
 		end,
 	})
 	use({
@@ -181,7 +181,7 @@ return require("packer").startup(function(use)
 		end,
 	})
 	use({
-    "kylechui/nvim-surround",
+		"kylechui/nvim-surround",
 		tag = "*",
 		config = function()
 			require("nvim-surround").setup({})
@@ -196,13 +196,13 @@ return require("packer").startup(function(use)
 	use({
 		"folke/zen-mode.nvim",
 		config = function()
-			require("zen-mode").setup({})
+			require("plugin-configs.zenmode")
 		end,
 	})
 	use({
 		"folke/twilight.nvim",
 		config = function()
-			require("twilight").setup({})
+			require("plugin-configs.twilight")
 		end,
 	})
 	use({
@@ -220,6 +220,12 @@ return require("packer").startup(function(use)
 			require("plugin-configs.telescope")
 		end,
 	})
+  use({
+    "folke/which-key.nvim",
+    config = function()
+      require("plugin-configs.which-key")
+    end,
+  })
 	use("HiPhish/nvim-ts-rainbow2")
 	use({
 		"TimUntersberger/neogit",
