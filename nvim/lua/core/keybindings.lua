@@ -1,27 +1,36 @@
--- luacheck: globals vim
+-- luacheck<cmd> globals vim
 --
 local map = require("core.utils.utils").map
 vim.g.mapleader = " "
 
-map("n", "gR", ":TroubleToggle lsp_references<CR>")
-map("n", "gD", ":TroubleToggle lsp_definitions<CR>")
-map("n", "cd", ":Trouble")
-map("n", "<leader>zm", ":ZenMode<CR>")
-map("n", "<leader>nt", ":Neotree reveal left<CR>")
-map("n", "<leader>nf", ":Neotree reveal float<CR>")
-map("n", "<leader>a", ":AerialToggle<CR>")
-map("n", "m", ":noh<CR>")
-map("n", "/", ":set hlsearch<CR>/")
-map("n", "i", ":set nohlsearch<CR>i")
-map("n", "a", ":set nohlsearch<CR>a")
-map("n", "I", ":set nohlsearch<CR>I")
-map("n", "A", ":set nohlsearch<CR>A")
-map("i", "<C-d>", "<left><c-o>/[\"';)>}\\]]<cr><c-o>:noh<cr><right>")
+-- Trouble
+map("n", "gR", "<cmd>TroubleToggle lsp_references<CR>")
+map("n", "gD", "<cmd>TroubleToggle lsp_definitions<CR>")
+map("n", "cd", "<cmd>Trouble")
 
-map("n", "ff", ":Telescope git_files hidden=true<CR>")
-map("n", "fg", ":Telescope live_grep<CR>")
-map("n", "fb", ":Telescope buffers<CR>")
-map("n", "fh", ":Telescope help_tags<CR>")
+-- ZenMode
+map("n", "<leader>zm", "<cmd>ZenMode<CR>")
+
+-- NeoTree
+map("n", "<leader>nt", "<cmd>Neotree reveal left<CR>")
+map("n", "<leader>nf", "<cmd>Neotree reveal float<CR>")
+
+-- Aerial
+map("n", "<leader>a", "<cmd>AerialToggle<CR>")
+map("n", "<leader>a", "<cmd>AerialToggle!<CR>")
+map("n", "{", "<cmd>AerialPrev<CR>")
+map("n", "}", "<cmd>AerialNext<CR>")
+
+-- Searching and Highlighting
+map("n", "m", "<cmd>noh<CR>")
+map("n", "/", "<cmd>set hlsearch<CR>/")
+map("n", "i", "<cmd>set nohlsearch<CR>i")
+map("n", "a", "<cmd>set nohlsearch<CR>a")
+map("n", "I", "<cmd>set nohlsearch<CR>I")
+map("n", "A", "<cmd>set nohlsearch<CR>A")
+
+-- Movement
+map("i", "<C-d>", "<left><c-o>/[\"';)>}\\]]<cr><c-o><cmd>noh<cr><right>")
 map("i", "<C-b>", "<C-o>0")
 map("i", "<C-a>", "<C-o>A")
 map("v", "<C-b>", "^")
@@ -29,19 +38,24 @@ map("v", "<C-a>", "$")
 map("c", "<C-p>", "<Up>")
 map("c", "<C-n>", "<Down>")
 
-map('n', '<leader>a', '<cmd>AerialToggle!<CR>')
-map('n', '{', '<cmd>AerialPrev<CR>')
-map('n', '}', '<cmd>AerialNext<CR>')
+-- Telescope
+map("n", "ff", "<cmd>Telescope git_files hidden=true<CR>")
+map("n", "fg", "<cmd>Telescope live_grep<CR>")
+map("n", "fb", "<cmd>Telescope buffers<CR>")
+map("n", "fh", "<cmd>Telescope help_tags<CR>")
 
-map("n", "<A-j>", ":MoveLine(1)<CR>")
-map("n", "<A-k>", ":MoveLine(-1)<CR>")
-map("n", "<A-h>", ":MoveHChar(-1)<CR>")
-map("n", "<A-l>", ":MoveHChar(1)<CR>")
-map("n", "<leader>wf", ":MoveWord(1)<CR>")
-map("n", "<leader>wb", ":MoveWord(-1)<CR>")
+-- MoveLine
+map("n", "<A-j>", "<cmd>MoveLine(1)<CR>")
+map("n", "<A-k>", "<cmd>MoveLine(-1)<CR>")
+map("n", "<A-h>", "<cmd>MoveHChar(-1)<CR>")
+map("n", "<A-l>", "<cmd>MoveHChar(1)<CR>")
+map("n", "<leader>wf", "<cmd>MoveWord(1)<CR>")
+map("n", "<leader>wb", "<cmd>MoveWord(-1)<CR>")
+map("v", "<A-j>", "<cmd>MoveBlock(1)<CR>")
+map("v", "<A-k>", "<cmd>MoveBlock(-1)<CR>")
+map("v", "<A-h>", "<cmd>MoveHBlock(-1)<CR>")
+map("v", "<A-l>", "<cmd>MoveHBlock(1)<CR>")
 
--- Visual-mode commands
-map("v", "<A-j>", ":MoveBlock(1)<CR>")
-map("v", "<A-k>", ":MoveBlock(-1)<CR>")
-map("v", "<A-h>", ":MoveHBlock(-1)<CR>")
-map("v", "<A-l>", ":MoveHBlock(1)<CR>")
+-- Notify
+map("n", "<ESC>", "<cmd>lua require('notify').dismiss()<CR>")
+map("i", "<ESC>", "<cmd>lua require('notify').dismiss()<CR><ESC>")
