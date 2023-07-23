@@ -63,5 +63,6 @@ vim_opts({
 		loaded_zipPlugin = true, -- disable zip
 		loaded_vimball = true, -- disable vimball
 		loaded_vimballPlugin = true, -- disable vimball
+		neo_tree_remove_legacy_commands = true,
 	},
 })

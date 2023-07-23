@@ -1,5 +1,7 @@
 -- luacheck: globals vim
 
+vim.notify = require("notify")
+
 for _, source in ipairs({
 	"core.utils.utils",
 	"core.autocommands",
@@ -11,12 +13,14 @@ for _, source in ipairs({
 }) do
 	local status_ok, fault = pcall(require, source)
 	if not status_ok then
-		vim.api.nvim_err_writeln("Failed to load " .. source .. "\n\n" .. fault)
+		vim.notify("Failed to load " .. source .. "\n\n" .. fault, "error")
 	end
 end
 
-vim.cmd([[ colorscheme onedark ]])
-
-vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
-
-vim.notify = require("notify")
+local colorscheme = "onedark"
+local ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
+vim.o.background = "dark"
+if not ok then
+	vim.notify("colorscheme " .. colorscheme .. " not found!", "error")
+	return
+end
