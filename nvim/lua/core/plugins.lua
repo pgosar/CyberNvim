@@ -220,6 +220,7 @@ return require("packer").startup(function(use)
 			require("plugin-configs.telescope")
 		end,
 	})
+	use("desdic/telescope-rooter.nvim")
 	use({
 		"folke/which-key.nvim",
 		config = function()
