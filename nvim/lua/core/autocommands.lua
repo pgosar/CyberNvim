@@ -13,19 +13,30 @@ cmd({ "BufWinLeave", "BufWritePost" }, {
 cmd({ "BufEnter", "BufAdd", "BufNew", "BufNewFile", "BufWinEnter" }, {
 	desc = "fix tree sitter folds issue",
 	group = augroup("treesitter folds", { clear = true }),
-	pattern = "*",
+	pattern = { "*" },
 	callback = function()
 		vim.opt.foldmethod = "expr"
 		vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
 	end,
 })
 
-vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+cmd({ "BufWritePre" }, {
+	desc = "remove trailing whitespace on save",
+	group = augroup("remove trailing whitespace", { clear = true }),
 	pattern = { "*" },
 	command = [[%s/\s\+$//e]],
 })
 
-vim.cmd([[autocmd BufReadPost *
-  \ if line("'\"") >= 1 && line("'\"") <= line("$") |
-  \   exe "normal! g`\"" |
-  \ endif]])
+augroup("remember file state", { clear = true })
+cmd({ "BufWinLeave" }, {
+	desc = "remember file state",
+	group = "remember file state",
+	pattern = { "*" },
+	command = "mkview",
+})
+cmd({ "BufWinEnter" }, {
+	desc = "remember file state",
+	group = "remember file state",
+	pattern = { "*" },
+	command = "silent! loadview",
+})
