@@ -1,1 +1,1 @@
-require('core_init')
+require("core_init")

@@ -1,6 +1,6 @@
-local hop = require('hop')
+local hop = require("hop")
 
 hop.setup({
-  keys = 'etovxqpdygfblzhckisuran',
-  multi_windows = true,
+	keys = "etovxqpdygfblzhckisuran",
+	multi_windows = true,
 })
