@@ -81,5 +81,11 @@ map("n", "<leader>bn", "<cmd>w | bn<CR>")
 map("n", "<leader>bp", "<cmd>w | bp<CR>")
 
 -- Session
-map("n", "<leader>s", "<cmd>save_current_session<CR>")
-map("n", "<leader>o", "<cmd>load_session<CR>")
+map("n", "<leader>s", "<cmd>SessionManager save_current_session<CR>")
+map("n", "<leader>o", "<cmd>SessionManager load_session<CR>")
+
+-- ToggleTerm
+map("n", "<leader><c-\\>", "<cmd>ToggleTerm direction=tab<cr>")
+
+-- Hop
+map("n", "<leader>h", "<cmd>HopWord<cr>")

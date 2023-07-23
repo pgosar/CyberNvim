@@ -1,3 +1,4 @@
+-- luacheck: globals vim
 local hop = require("hop")
 
 hop.setup({
