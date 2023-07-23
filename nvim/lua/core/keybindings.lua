@@ -1,11 +1,11 @@
--- luacheck<cmd> globals vim
+-- luacheck: globals vim
 --
 local map = require("core.utils.utils").map
 vim.g.mapleader = " "
 
 -- Trouble
-map("n", "gR", "<cmd>TroubleToggle lsp_references<CR>")
-map("n", "gD", "<cmd>TroubleToggle lsp_definitions<CR>")
+map("n", "tr", "<cmd>TroubleToggle lsp_references<CR>")
+map("n", "td", "<cmd>TroubleToggle lsp_definitions<CR>")
 map("n", "cd", "<cmd>Trouble")
 
 -- ZenMode
@@ -33,8 +33,8 @@ map("n", "A", "<cmd>set nohlsearch<CR>A")
 map("i", "<C-d>", "<left><c-o>/[\"';)>}\\]]<cr><c-o><cmd>noh<cr><right>")
 map("i", "<C-b>", "<C-o>0")
 map("i", "<C-a>", "<C-o>A")
-map("v", "<C-b>", "^")
-map("v", "<C-a>", "$")
+
+-- Command mode
 map("c", "<C-p>", "<Up>")
 map("c", "<C-n>", "<Down>")
 
@@ -59,3 +59,18 @@ map("v", "<A-l>", "<cmd>MoveHBlock(1)<CR>")
 -- Notify
 map("n", "<ESC>", "<cmd>lua require('notify').dismiss()<CR>")
 map("i", "<ESC>", "<cmd>lua require('notify').dismiss()<CR><ESC>")
+
+-- Command mode
+map("c", "<C-P>", "<Up>")
+map("c", "<C-N>", "<Down>")
+
+-- More LSP stuff
+map("n", "rg", "gD:%s/<C-R>///g<left><left>")
+
+-- Buffers
+map("n", "<leader>bn", "<cmd>w | bn<CR>")
+map("n", "<leader>bp", "<cmd>w | bp<CR>")
+
+-- Session
+map("n", "<leader>s", "<cmd>save_current_session<CR>")
+map("n", "<leader>o", "<cmd>load_session<CR>")

@@ -32,7 +32,7 @@ vim_opts({
 		foldmethod = "expr",
 		foldexpr = "nvim_treesitter#foldexpr()",
 		foldlevel = 99,
-    foldlevelstart = 99,
+		foldlevelstart = 99,
 		foldcolumn = "1",
 		foldopen = "jump,block,hor,mark,percent,quickfix,search,tag,undo",
 		foldenable = true,
@@ -46,7 +46,6 @@ vim_opts({
 		undofile = true, -- persistent undo
 		sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions",
 		hidden = true,
-    mousemoveevent = true,
 	},
 	g = {
 		zipPlugin = false, -- disable zip

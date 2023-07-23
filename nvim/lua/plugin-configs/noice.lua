@@ -1,25 +1,26 @@
 local noice = require("noice")
 
 noice.setup({
-	redirect = {
+	messages = {
+		view = "mini",
+	},
+	routes = {
 		{
-			view = "mini",
 			filter = {
-				any = {
-					{ event = "msg_showmode" },
-					{ find = " change" },
-					{ event = "msg_history_show" },
-					{ event = "msg_show", kind = "wmsg" },
-					{ find = "E486" },
-					{ event = "msg_showcmd" },
-				},
+				event = "msg_show",
+				kind = "",
+				find = "written",
+			},
+			opts = { skip = true },
+		},
+		{
+			view = "notify",
+			filter = {
+				event = "msg_show",
+				kind = "",
+				find = "substitutions",
 			},
 		},
-		{
-			view = "mini",
-			filter = { event = "msg_show", kind = "", find = "written" },
-		},
-		{ view = "mini", filter = { event = "msg_showmode" } },
 	},
 	cmdline = { view = "cmdline" },
 	lsp = {
@@ -33,7 +34,6 @@ noice.setup({
 		bottom_search = true,
 		command_palette = true,
 		long_message_to_split = true,
-		inc_rename = false,
-		lsp_doc_border = false,
+		lsp_doc_border = true,
 	},
 })
