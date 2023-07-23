@@ -65,7 +65,16 @@ map("c", "<C-P>", "<Up>")
 map("c", "<C-N>", "<Down>")
 
 -- More LSP stuff
-map("n", "rg", "gD:%s/<C-R>///g<left><left>")
+map("n", "rg", ":%s/<C-r><C-w>//g<Left><Left>")
+map("n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>")
+map("n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
+map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>")
+map("n", "gi", "<cmd>lua vim.lsp.buf.implementation()<CR>")
+map("n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>")
+map("n", "<space>D", "<cmd>lua vim.lsp.buf.type_definition()<CR>")
+map("n", "<space>rn", "<cmd>lua vim.lsp.buf.rename()<CR>")
+map("n", "<space>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>")
+map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>")
 
 -- Buffers
 map("n", "<leader>bn", "<cmd>w | bn<CR>")
