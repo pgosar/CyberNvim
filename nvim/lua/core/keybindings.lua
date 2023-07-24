@@ -1,5 +1,5 @@
 -- luacheck: globals vim
---
+
 local map = require("core.utils.utils").map
 vim.g.mapleader = " "
 
@@ -65,16 +65,17 @@ map("c", "<C-P>", "<Up>")
 map("c", "<C-N>", "<Down>")
 
 -- More LSP stuff
+_G.buf = vim.lsp.buf
 map("n", "rg", ":%s/<C-r><C-w>//g<Left><Left>")
-map("n", "gD", "<CMD>lua vim.lsp.buf.declaration()<CR>")
-map("n", "gd", "<CMD>lua vim.lsp.buf.definition()<CR>")
-map("n", "K", "<CMD>lua vim.lsp.buf.hover()<CR>")
-map("n", "gi", "<CMD>lua vim.lsp.buf.implementation()<CR>")
-map("n", "<C-k>", "<CMD>lua vim.lsp.buf.signature_help()<CR>")
-map("n", "<space>D", "<CMD>lua vim.lsp.buf.type_definition()<CR>")
-map("n", "<space>rn", "<CMD>lua vim.lsp.buf.rename()<CR>")
-map("n", "<space>ca", "<CMD>lua vim.lsp.buf.code_action()<CR>")
-map("n", "gr", "<CMD>lua vim.lsp.buf.references()<CR>")
+map("n", "gD", "<CMD>lua buf.declaration()<CR>")
+map("n", "gd", "<CMD>lua buf.definition()<CR>")
+map("n", "K", "<CMD>lua buf.hover()<CR>")
+map("n", "gi", "<CMD>lua buf.implementation()<CR>")
+map("n", "<C-k>", "<CMD>lua buf.signature_help()<CR>")
+map("n", "<space>D", "<CMD>lua buf.type_definition()<CR>")
+map("n", "<space>rn", "<CMD>lua buf.rename()<CR>")
+map("n", "<space>ca", "<CMD>lua buf.code_action()<CR>")
+map("n", "gr", "<CMD>lua buf.references()<CR>")
 
 -- Buffers
 map("n", "<leader>bn", "<CMD>w | bn<CR>")
@@ -85,9 +86,14 @@ map("n", "<leader>s", "<CMD>SessionManager save_current_session<CR>")
 map("n", "<leader>o", "<CMD>SessionManager load_session<CR>")
 
 -- ToggleTerm
-map("n", "<leader><c-\\>t", "<CMD>ToggleTerm dir=git_dir direction=tab<CR>")
-map("n", "<c-\\>", "<CMD>TermExec go_back=0 cmd='cd $(git rev-parse --show-toplevel 2>/dev/null) && clear'<CR>")
-map("n", "<leader>gg", "<cmd>lua require('plugin-configs.toggleterm').lazygit_toggle()<CR>")
+_G.term = require("plugin-configs.toggleterm")
+local git_root = "cd $(git rev-parse --show-toplevel 2>/dev/null) && clear"
+map("n", "<leader><c-\\>t", "<CMD>ToggleTerm direction=tab<CR>")
+map("n", "<c-\\>", "<CMD>TermExec go_back=0 cmd='" .. git_root .. "'<CR>")
+map("n", "<leader>tk", "<CMD>TermExec go_back=0 direction=float cmd='" .. git_root .. "&& tokei'<CR>")
+map("n", "<leader>gg", "<CMD>lua term.lazygit_toggle()<CR>")
+map("n", "<leader>gd", "<CMD>lua term.gdu_toggle()<CR>")
+map("n", "<leader>bt", "<CMD>lua term.bashtop_toggle()<CR>")
 
 -- Hop
 map("n", "<leader>h", "<CMD>HopWord<CR>")
