@@ -4,12 +4,12 @@ vim.notify = require("notify")
 
 for _, source in ipairs({
 	"core.utils.utils",
-	"core.autocommands",
 	"core.main-options",
 	"core.plugins",
 	"core.lsp",
 	"core.keybindings",
 	"core.utils.notify",
+	"core.autocommands",
 }) do
 	local status_ok, fault = pcall(require, source)
 	if not status_ok then

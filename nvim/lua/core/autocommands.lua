@@ -40,3 +40,10 @@ cmd({ "BufWinEnter" }, {
 	pattern = { "*.*" },
 	command = "silent! loadview",
 })
+
+cmd({ "User" }, {
+	desc = "notify session saved",
+	group = augroup("session save", { clear = true }),
+	pattern = "SessionSavePost",
+	command = "lua require('notify').notify('Session Saved', 'info')",
+})
