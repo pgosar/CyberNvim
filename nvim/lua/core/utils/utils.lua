@@ -45,10 +45,10 @@ local function _create_floating_terminal(cmd)
 			float_opts = {
 				border = "double",
 			},
-			on_open = function(_term)
+			on_open = function()
 				vim.cmd("startinsert!")
 			end,
-			on_close = function(_term)
+			on_close = function()
 				vim.cmd("startinsert!")
 			end,
 		})
