@@ -20,15 +20,23 @@ local ensure_packer = function()
 end
 
 local function map(mode, lhs, rhs, opts)
-	local options = { noremap = true }
+	local options = { noremap = true, silent = true }
 	if opts then
 		options = vim.tbl_extend("force", options, opts)
 	end
 	vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
+local function create_new_file()
+	local filename = vim.fn.input("Enter the filename: ")
+	if filename ~= "" then
+		vim.cmd("edit " .. filename)
+	end
+end
+
 return {
 	vim_opts = vim_opts,
 	ensure_packer = ensure_packer,
 	map = map,
+	create_new_file = create_new_file,
 }

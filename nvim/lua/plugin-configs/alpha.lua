@@ -2,7 +2,6 @@
 
 local alpha = require("alpha")
 local dashboard = require("alpha.themes.dashboard")
-
 -- Set header
 dashboard.section.header.val = {
 	"                                                     ",
@@ -17,7 +16,7 @@ dashboard.section.header.val = {
 
 -- Set menu
 dashboard.section.buttons.val = {
-	dashboard.button("e", "  > New file", ":e <BAR> startinsert <CR>"),
+	dashboard.button("e", "  > New file", ":lua require('core.utils.utils').create_new_file()<CR>"),
 	dashboard.button("f", "  > Find file in git repo", ":Telescope git_files <CR>"),
 	dashboard.button("r", "  > Recent", ":Telescope oldfiles<CR>"),
 	dashboard.button("l", "🗘  > Open last session", ":SessionManager load_last_session<CR>"),
