@@ -235,13 +235,6 @@ return require("packer").startup(function(use)
 	})
 	use("HiPhish/nvim-ts-rainbow2")
 	use({
-		"TimUntersberger/neogit",
-		requires = "nvim-lua/plenary.nvim",
-		config = function()
-			require("neogit").setup({})
-		end,
-	})
-	use({
 		"Shatur/neovim-session-manager",
 		config = function()
 			require("plugin-configs.session")
