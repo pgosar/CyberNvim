@@ -1,18 +1,20 @@
 ### Intro
 
 CyberNvim is a fully-featured and incredibly easy-to-understand Neovim config.
-If you want a fully-featured IDE-like setup in a similar vein to
-[Kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim) that is ready
-to go, you're in the right place!
+It is a fully-featured IDE-like setup in a similar vein to
+[Kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim) but offering a 
+far more complete and uncompromising experience with the same ease of modification.
+
 
 ### Intractable codebase BAD 👎 ☹️
 
 Why use many lines when few do trick?
 
 Despite offering a complete IDE-like feature set, CyberNvim's codebase is simple
-, modular, and built to be broken (in a good way). If you, like me, are tired of
-crawling through thousands of lines of code searching for ways to adjust default
-behavior when it could've been done in 10, this might just be the config for you!
+, modular, and built to be broken (in a good way). It was made for people like me
+who are tired of hours spent crawling through thousands of lines of code 
+searching for ways to adjust default behavior when it could've been done 
+with a five-minute change.
 
 At only 1500 lines long (as of August 2023), CyberNvim is 4-8 times smaller than
 similar distributions. With an intuitive file structure and simple,
@@ -31,7 +33,7 @@ Including but not limited to...
 * Fancy start screen (see below)
 * Amazing tabline and statusline
 * File explorer and file overview (see below)
-* Git integration with [lazygit](https://github.com/jesseduffield/lazygit) (see below)
+* Git integration with [lazygit](https://github.com/jesseduffield/lazygit) (see below) and more
 * Debuggers
 * Aesthetic yet subtle UI enhancements (thanks [Noice](https://github.com/folke/noice.nvim)!)
 
@@ -60,9 +62,8 @@ is easy to do, but here are some starting points:
 You might not need explicit wgsl file support, so you could delete the
 `CyberNvim/nvim/ftdetect` directory.
 
-You probably don't want or need so many different language servers to be
-installed, taking a look through `CyberNvim/nvim/lua/core/lsp.lua` may
-be a good idea.
+You probably don't want or need so many different language servers, taking a look 
+through `CyberNvim/nvim/lua/core/lsp.lua` may be a good idea.
 
 ### Installation
 
