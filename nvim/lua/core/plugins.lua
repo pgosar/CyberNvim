@@ -7,6 +7,12 @@ return require("packer").startup(function(use)
 	use("nvim-lua/plenary.nvim")
 	use("windwp/nvim-ts-autotag")
 	use({
+		"Pocco81/auto-save.nvim",
+		config = function()
+			require("auto-save").setup()
+		end,
+	})
+	use({
 		"windwp/nvim-autopairs",
 		config = function()
 			require("plugin-configs.autopairs")
