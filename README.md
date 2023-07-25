@@ -14,7 +14,13 @@ Despite offering a complete IDE-like feature set, CyberNvim's codebase is simple
 crawling through thousands of lines of code searching for ways to adjust default
 behavior when it could've been done in 10, this might just be the config for you!
 
-### Complete and non-compromising featureset GOOD 👍 🥰
+At only 1500 lines long (as of August 2023), CyberNvim is 4-8 times smaller than
+similar distributions. With an intuitive file structure and simple,
+self-documenting code, CyberNvim's entire codebase is built to be understood in
+5 minutes flat. I would call it SpeedyToUnderstandNvim but that doesn't have
+the same ring to it.
+
+### Complete and uncompromisingly fantastic featureset GOOD 👍 🥰
 
 Including but not limited to...
 
