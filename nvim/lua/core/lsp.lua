@@ -6,7 +6,7 @@ lsp.preset("minimal")
 local null_ls = require("null-ls")
 local b = null_ls.builtins
 
-lsp.on_attach(function(client, bufnr)
+lsp.on_attach(function(_, bufnr)
 	lsp.default_keymaps({ buffer = bufnr })
 	vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<cr>", { buffer = true })
 end)
@@ -48,7 +48,6 @@ lsp.set_sign_icons({
 	info = "»",
 })
 
-require("lspconfig").lua_ls.setup(lsp.nvim_lua_ls())
 lsp.ensure_installed({
 	"bashls",
 	"clangd",
