@@ -3,6 +3,7 @@ local noice = require("noice")
 noice.setup({
 	messages = {
 		view = "mini",
+		view_search = "mini",
 	},
 	routes = {
 		{
