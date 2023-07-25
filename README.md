@@ -1,57 +1,64 @@
 
 ### Intro
 
-A short list of remarkable features present in my vim and neovim configs
+CyberNvim is a fully-featured and incredibly easy-to-understand Neovim config. If you want a fully-featured IDE-like setup in a similar vein to [Kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim) that is ready to go, you're in the right place!
 
-* Persistent undo
-* Better autocomplete than VSCode
-* floating and inline function documentation and parameter completion (and other goodies!)
+### Intractable codebase BAD 👎 ☹️
+Despite offering a complete IDE-like feature set, CyberNvim's codebase is simple, modular, and built to be broken (in a good way). If you, like me, are tired of crawling through thousands of lines of code searching for ways to adjust default behavior when few lines do the trick, this might just be the config for you!
+
+### Complete and non-compromising featureset GOOD 👍 🥰
+Including but not limited to...
+
+* Fully featured intellisense (linters, code formatters, auto-complete)!
+* floating and inline function documentation (and other goodies!)
 * Auto-save
-* Persistent sessions
-* support for any of many dozens of colorschemes
-* An all-in-one editor for (literally) **any** programming language, markdown, latex, and more.
-* A start screen with bookmarks to your recent files/favorites
-* An aesthetic colorscheme (actually one of [several dozen](https://github.com/flazz/vim-colorschemes) that you can pick and choose from), tabline, and statusline
-* Super easy tab, split, and buffer navigation
-* File explorer and file overview (see picture)
-* Git integration
-* Fuzzy file searching
+* Persistent sessions and project management!
+* Fancy start screen (see below)
+* Amazing tabline and statusline
+* File explorer and file overview (see below)
+* Git integration with [lazygit](https://github.com/jesseduffield/lazygit) (see below)
 * Debuggers
-* A myriad of quality of life features you will not be able to live without
-* Highly customizable
-If my config does not have a feature you want, (it will), make an issue, and I will add it if I think it would be useful.
+* Aesthetic yet subtle UI enhancements (thanks [Noice](https://github.com/folke/noice.nvim)!)
 
 <hr />
 
-Vim/Nvim Welcome Screen
+CyberNvim with Onedark theme
+![image](https://github.com/pgosar/CyberNvim/assets/55164602/7d22e70e-6e52-4737-8068-9335c7705098)
 
-![image](https://user-images.githubusercontent.com/55164602/182413717-ccb80aa5-c879-4671-9562-ebc628a7dd2d.png)
+<hr />
+
+Neovim Welcome Screen
+
+![image](https://github.com/pgosar/CyberNvim/assets/55164602/d650046e-7dc6-43df-a9c6-2eb24d1725cc)
 
 <hr />
 
-vim/nvim with Nord theme
+Lazygit Integration
+![image](https://github.com/pgosar/CyberNvim/assets/55164602/1e6dc5d5-9945-405b-9e63-0aa2afe604c3)
 
-![image](https://user-images.githubusercontent.com/55164602/182413341-18bdc1d2-f9a0-403c-ba0e-9a15ff37d8d5.png)
+### Caveats
 
+This being my personal configuration, there are features that you may want to remove if they are not relevant to you. Thanks to the simple codebase, this is easy to do, but here are some starting points:
 
+You might not need explicit wgsl file support, so you could delete the `CyberNvim/nvim/ftdetect` directory. 
 
-<hr />
+You probably don't want or need so many different language servers to be installed, taking a look through `CyberNvim/nvim/lua/core/lsp.lua` may be a good idea.
 
 ### Installation
 
-For now, if you want to install my files you have to clone the respository with 
+Clone the repository and (highly recommended) symlink the `CyberNvim/lua` directory with your `~/.config/nvim` directory with
 
 ``` bash
-
-git clone https://github.com/pgosar/dotfiles.git
-
+git clone https://github.com/pgosar/CyberNvim
+ln -s ~/path/to/CyberNvim/nvim ~/.config/nvim
 ```
+Once done, simply run `:CyberInstall` and you should be good to go!
 
+There is also a `:CyberUpdate` command that I use for updating all language servers, plugins, treesitter parsers, etc. at once.
 
 ### Dependencies
-My vimrc requires [vim-plug](https://github.com/junegunn/vim-plug). Look at its README for details on usage. Refer to [CoC's README](https://github.com/neoclide/coc.nvim) for details on using the LSP provider.
 
-The neovim config requires [packer](https://github.com/wbthomason/packer.nvim), and uses the built-in LSP
+The neovim config requires [packer](https://github.com/wbthomason/packer.nvim).
 
 <hr />
 
