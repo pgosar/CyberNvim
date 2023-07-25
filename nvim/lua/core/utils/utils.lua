@@ -1,5 +1,7 @@
 -- luacheck: globals vim
 
+local notif = require("notify")
+
 local function _vim_opts(options)
 	for scope, table in pairs(options) do
 		for setting, value in pairs(table) do
@@ -57,9 +59,28 @@ local function _create_floating_terminal(cmd)
 		if vim.fn.executable(cmd) == 1 then
 			instance:toggle()
 		else
-			require("notify").notify("Command not found: " .. cmd .. ". Ensure it is installed.", "error")
+			notif.notify("Command not found: " .. cmd .. ". Ensure it is installed.", "error")
 		end
 	end
+end
+
+local function updateMason()
+	local registry = require("mason-registry")
+	registry.refresh()
+	registry.update()
+	local packages = registry.get_all_packages()
+	for _, pkg in ipairs(packages) do
+		if pkg:is_installed() then
+			pkg:install()
+		end
+	end
+end
+
+local function _updateAll()
+	vim.cmd("PackerSync")
+	updateMason()
+	vim.cmd("TSUpdate")
+	notif.notify("CyberNvim updated!", "info")
 end
 
 return {
@@ -68,4 +89,5 @@ return {
 	map = _map,
 	create_new_file = _create_new_file,
 	create_floating_terminal = _create_floating_terminal,
+	updateAll = _updateAll,
 }

@@ -24,3 +24,9 @@ if not ok then
 	vim.notify("colorscheme " .. colorscheme .. " not found!", "error")
 	return
 end
+
+local cmd = vim.api.nvim_create_user_command
+
+cmd("CyberUpdate", function()
+	require("core.utils.utils").updateAll()
+end, { desc = "Updates plugins, mason packages, treesitter parsers" })
