@@ -4,7 +4,9 @@
 CyberNvim is a fully-featured and incredibly easy-to-understand Neovim config. If you want a fully-featured IDE-like setup in a similar vein to [Kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim) that is ready to go, you're in the right place!
 
 ### Intractable codebase BAD 👎 ☹️
-Despite offering a complete IDE-like feature set, CyberNvim's codebase is simple, modular, and built to be broken (in a good way). If you, like me, are tired of crawling through thousands of lines of code searching for ways to adjust default behavior when few lines do the trick, this might just be the config for you!
+Why use many lines when few do trick?
+
+Despite offering a complete IDE-like feature set, CyberNvim's codebase is simple, modular, and built to be broken (in a good way). If you, like me, are tired of crawling through thousands of lines of code searching for ways to adjust default behavior when it could've been done in 10, this might just be the config for you!
 
 ### Complete and non-compromising featureset GOOD 👍 🥰
 Including but not limited to...
