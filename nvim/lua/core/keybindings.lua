@@ -96,4 +96,4 @@ map("n", "<leader>gd", "<CMD>lua term.gdu_toggle()<CR>")
 map("n", "<leader>bt", "<CMD>lua term.bashtop_toggle()<CR>")
 
 -- Hop
-map("n", "<leader>h", "<CMD>HopWord<CR>")
+map("n", "<leader>j", "<CMD>HopWord<CR>")
