@@ -20,7 +20,7 @@ Including but not limited to...
 
 * Fully featured intellisense (linters, code formatters, auto-complete)!
 * floating and inline function documentation (and other goodies!)
-* Auto-save
+* Auto-save and formatting
 * Persistent sessions and project management!
 * Fancy start screen (see below)
 * Amazing tabline and statusline
@@ -67,6 +67,7 @@ directory with your `~/.config/nvim` directory with
 git clone https://github.com/pgosar/CyberNvim
 ln -s ~/path/to/CyberNvim/nvim ~/.config/nvim
 ```
+
 Once done, you will need to install the plugins with `:PackerSync` install any
 language servers, linters, etc. using `:MasonInstall` and/or `:LspInstall`.
 

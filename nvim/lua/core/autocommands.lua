@@ -3,6 +3,18 @@
 local augroup = vim.api.nvim_create_augroup
 local cmd = vim.api.nvim_create_autocmd
 
+cmd("LspAttach", {
+	group = augroup("LspAttach_inlayhints", { clear = true }),
+	callback = function(args)
+		if not (args.data and args.data.client_id) then
+			return
+		end
+		local bufnr = args.buf
+		local client = vim.lsp.get_client_by_id(args.data.client_id)
+		require("lsp-inlayhints").on_attach(client, bufnr)
+	end,
+})
+
 cmd({ "BufWinLeave", "BufWritePost" }, {
 	desc = "auto run :PackerCompile whenever plugins.lua is updated",
 	group = augroup("packer", { clear = true }),
