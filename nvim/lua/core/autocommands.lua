@@ -47,10 +47,3 @@ cmd({ "User" }, {
 	pattern = "SessionSavePost",
 	command = "lua require('notify').notify('Session Saved', 'info')",
 })
-
-cmd({ "BufRead, BufNewFile" }, {
-	desc = "auto detect wgsl file properly",
-	group = augroup("wgsl detection", { clear = true }),
-	pattern = { "*.wgsl" },
-	command = "setlocal filetype=wgsl",
-})
