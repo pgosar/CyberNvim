@@ -1,4 +1,5 @@
-<center>CyberNvim </center>
+![image](https://github.com/pgosar/CyberNvim/assets/55164602/0c7161ae-dba7-4437-97c3-331f4ed33381)
+
 
 CyberNvim is a fully-featured and incredibly easy-to-understand Neovim config.
 It is a fully-featured IDE-like setup in a similar vein to
