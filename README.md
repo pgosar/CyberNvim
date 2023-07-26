@@ -1,5 +1,11 @@
 <h1 align="center">CyberNvim</h1>
 
+![image](https://github.com/pgosar/CyberNvim/assets/55164602/d650046e-7dc6-43df-a9c6-2eb24d1725cc)
+
+![image](https://github.com/pgosar/CyberNvim/assets/55164602/7d22e70e-6e52-4737-8068-9335c7705098)
+
+![image](https://github.com/pgosar/CyberNvim/assets/55164602/1e6dc5d5-9945-405b-9e63-0aa2afe604c3)
+
 CyberNvim is a fully-featured and incredibly easy-to-understand Neovim config.
 It is a fully-featured IDE-like setup in a similar vein to
 [Kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim) and
@@ -16,11 +22,11 @@ Including but not limited to...
 * floating and inline function documentation (and other goodies!)
 * Auto-save and formatting
 * Persistent sessions and project management!
-* Fancy start screen (see below)
+* Fancy start screen
 * Amazing tabline and statusline
-* File explorer and file overview (see below)
+* File explorer and file overview (functions, classes etc.)
 * Git integration with [lazygit](https://github.com/jesseduffield/lazygit)
-(see below) and more
+and more
 * Debuggers
 * Aesthetic yet subtle UI enhancements (thanks [Noice](https://github.com/folke/noice.nvim)!)
 
@@ -54,30 +60,6 @@ It pays a surprisingly low price for the small codebase.
 It remains simple to expand upon the config by sourcing extra
 user-defined files or to override parts of the config such as plugins
 and their configurations, main options, and keybindings.
-
----
-
-CyberNvim with Onedark theme
-![image](https://github.com/pgosar/CyberNvim/assets/55164602/7d22e70e-6e52-4737-8068-9335c7705098)
-
----
-
-Neovim Welcome Screen
-
-![image](https://github.com/pgosar/CyberNvim/assets/55164602/d650046e-7dc6-43df-a9c6-2eb24d1725cc)
-
----
-
-Lazygit Integration
-![image](https://github.com/pgosar/CyberNvim/assets/55164602/1e6dc5d5-9945-405b-9e63-0aa2afe604c3)
-
-### Caveats
-
-This configuration is not entirely meant to be used as is. Consider
-making the following changes:
-
-You probably don't want or need so many different language servers, taking a look
-through `CyberNvim/nvim/lua/core/lsp.lua` may be a good idea.
 
 ### Installation
 
