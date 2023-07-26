@@ -1,13 +1,12 @@
-![image](https://github.com/pgosar/CyberNvim/assets/55164602/0c7161ae-dba7-4437-97c3-331f4ed33381)
-
+<h1 align="center">CyberNvim</h1>
 
 CyberNvim is a fully-featured and incredibly easy-to-understand Neovim config.
 It is a fully-featured IDE-like setup in a similar vein to
 [Kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim) and
 [NvChad](https://github.com/NvChad/NvChad/tree/v2.0) but offering a
 more complete and uncompromising base experience with the same ease of modification.
-Its goal is to be both a ready-to-use editor and a starting point for more
-advanced Neovim configuration for those who know the basics.
+Its goal is to be both a ready-to-use editor for 99% of people and a great starting
+point for powerusers requiring far higher customization.
 
 ### Complete and uncompromisingly fantastic featureset GOOD 👍 🥰
 
@@ -47,8 +46,9 @@ SpeedyToUnderstandNvim but that doesn't have the same ring to it.
 
 The main way it saves on line count is by using a "one size fits most"
 rather than "one size fits all" approach. It is built more as a starting
-point for users who require highly advanced setups, similar to
-[NvChad](https://github.com/NvChad/NvChad/tree/v2.0).
+point for users who require highly advanced setups. This is similar to
+[NvChad](https://github.com/NvChad/NvChad/tree/v2.0), but with more complete
+basic functionality.
 
 It pays a surprisingly low price for the small codebase.
 It remains simple to expand upon the config by sourcing extra

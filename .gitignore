@@ -1,4 +1,6 @@
 ..vimrc.un~
 .luarc.json
 plugin/
+ftdetect/
+after/
 
