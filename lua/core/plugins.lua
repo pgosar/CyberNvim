@@ -5,6 +5,11 @@ return require("packer").startup(function(use)
 	use("joshdick/onedark.vim")
 	use("lewis6991/impatient.nvim")
 	use("windwp/nvim-ts-autotag")
+  use({"NvChad/nvim-colorizer.lua",
+    config = function()
+      require("colorizer").setup()
+    end,
+  })
 	use({
 		"okuuva/auto-save.nvim",
 		config = function()

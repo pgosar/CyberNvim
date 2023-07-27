@@ -28,16 +28,60 @@ lsp.set_server_config({
 		},
 	},
 })
+if not _G.enable_autosave then
+	lsp.format_on_save({
+		format_opts = {
+			async = false,
+			timeout_ms = 10000,
+		},
+		servers = {
+			["null-ls"] = {
+				"javascript",
+				"javascriptreact",
+				"typescript",
+				"typescriptreact",
+				"html",
+				"css",
+				"json",
+				"lua",
+				"python",
+				"sh",
+				"bash",
+				"zsh",
+				"go",
+				"rust",
+				"cpp",
+				"c",
+				"cmake",
+				"make",
+				"markdown",
+			},
+		},
+	})
+end
 
 require("core.language-server-configs.ls_init")
-
 lsp.setup()
-
 local cmp = require("cmp")
 local cmp_action = require("lsp-zero").cmp_action()
 require("luasnip.loaders.from_vscode").lazy_load()
 
+local luasnip = require("luasnip")
+local function has_words_before()
+	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+end
+
 cmp.setup({
+	enabled = function()
+		-- disables in comments
+		local context = require("cmp.config.context")
+		if vim.api.nvim_get_mode().mode == "c" then
+			return true
+		else
+			return not context.in_treesitter_capture("comment") and not context.in_syntax_group("Comment")
+		end
+	end,
 	preselect = "none",
 	completion = {
 		completeopt = "menu,menuone,noinsert,noselect",
@@ -57,27 +101,44 @@ cmp.setup({
 	},
 	mapping = {
 		["<CR>"] = cmp.mapping.confirm({ select = false }),
-		["<Tab>"] = cmp_action.luasnip_supertab(),
-		["<S-Tab>"] = cmp_action.luasnip_shift_supertab(),
+		["<Tab>"] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+			elseif luasnip.expand_or_jumpable() then
+				luasnip.expand_or_jump()
+			elseif has_words_before() then
+				cmp.complete()
+			else
+				fallback()
+			end
+		end, { "i", "s" }),
+		["<S-Tab>"] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+			elseif luasnip.jumpable(-1) then
+				luasnip.jump(-1)
+			else
+				fallback()
+			end
+		end, { "i", "s" }),
 		["<C-j>"] = cmp.mapping.scroll_docs(-4),
 		["<C-k"] = cmp.mapping.scroll_docs(4),
-    ['<ESC>'] = cmp.mapping.abort(),
+		["<C-c>"] = cmp.mapping.abort(),
 		["<C-f>"] = cmp_action.luasnip_jump_forward(),
 		["<C-b>"] = cmp_action.luasnip_jump_backward(),
 	},
 	sources = {
+		{ name = "copilot", priority = 100 },
+		{ name = "nvim_lsp", priority = 90 },
+		{ name = "nvim_lua", priority = 80 },
+		{ name = "luasnip", keyword_length = 2, priority = 70 },
 		{
 			name = "path",
 			option = {
 				trailing_slash = true,
 			},
+			priority = 60,
 		},
-		{ name = "path" },
-		{ name = "copilot" },
-		{ name = "nvim_lsp" },
-		{ name = "nvim_lua" },
-		{ name = "buffer", keyword_length = 2 },
-		{ name = "luasnip", keyword_length = 2 },
 	},
 	sorting = {
 		priority_weight = 2,
