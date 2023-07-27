@@ -61,7 +61,7 @@ cmp.setup({
 		["<S-Tab>"] = cmp_action.luasnip_shift_supertab(),
 		["<C-j>"] = cmp.mapping.scroll_docs(-4),
 		["<C-k"] = cmp.mapping.scroll_docs(4),
-		["<C-Space>"] = cmp.mapping.complete(),
+    ['<ESC>'] = cmp.mapping.abort(),
 		["<C-f>"] = cmp_action.luasnip_jump_forward(),
 		["<C-b>"] = cmp_action.luasnip_jump_backward(),
 	},
