@@ -79,3 +79,15 @@ cmd("User", {
 		vim.cmd("Format")
 	end,
 })
+
+cmd({ "Filetype" }, {
+	desc = "activate colorizer",
+	pattern = "css,scss,html,xml,svg,js,jsx,ts,tsx,php,vue",
+	group = augroup("colorizer", { clear = true }),
+	callback = function()
+		require("colorizer").attach_to_buffer(0, {
+			mode = "background",
+			css = true,
+		})
+	end,
+})
