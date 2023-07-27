@@ -7,12 +7,15 @@
 ![image](https://github.com/pgosar/CyberNvim/assets/55164602/1e6dc5d5-9945-405b-9e63-0aa2afe604c3)
 
 CyberNvim is a fully-featured and incredibly easy-to-understand Neovim config.
-It is a fully-featured IDE-like setup in a similar vein to
+It is a fully-featured IDE-like setup with the same ease of modification as
 [Kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim) and
-[NvChad](https://github.com/NvChad/NvChad/tree/v2.0) but offering a
-more complete and uncompromising base experience with the same ease of modification.
+[NvChad](https://github.com/NvChad/NvChad/tree/v2.0) but offering the
+more complete and uncompromising base experience of
+[Astronvim](https://github.com/AstroNvim/AstroNvim/tree/main) and
+[LazyNvim](https://github.com/LazyVim/LazyVim).
 Its goal is to be both a ready-to-use editor for 99% of people and a great starting
-point for powerusers requiring far higher customization.
+point for powerusers requiring far higher levels customization, right down to
+the source code itself.
 
 ### Complete and uncompromisingly fantastic featureset GOOD 👍 🥰
 
@@ -43,7 +46,7 @@ Furthermore, it strictly organizes code so that everything is exactly where you
 would expect to find it. No dealing with keymap definitions in random plugin config
 files or autocommands interspersed throughout the config!
 
-At only 1600 lines of Lua (as of August 2023), CyberNvim is around 3-5 times
+At only 1500 lines of Lua (as of August 2023), CyberNvim is around 3-5 times
 smaller than similar distributions (AstroNvim at 6.3k lines of Lua, LunarVim
 at 8k, LazyVim at 5k etc.). The codebase is built to be understood in less
 than 10 minutes with simple, self-documenting code and an intuitive file
@@ -53,8 +56,8 @@ SpeedyToUnderstandNvim but that doesn't have the same ring to it.
 The main way it saves on line count is by using a "one size fits most"
 rather than "one size fits all" approach. It is built more as a starting
 point for users who require highly advanced setups. This is similar to
-[NvChad](https://github.com/NvChad/NvChad/tree/v2.0), but with more complete
-basic functionality.
+[NvChad](https://github.com/NvChad/NvChad/tree/v2.0), but with will not
+require more than a few minutes of manual work to get a complete IDE setup.
 
 It pays a surprisingly low price for the small codebase.
 It remains simple to expand upon the config by sourcing extra

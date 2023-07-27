@@ -59,3 +59,16 @@ cmd({ "User" }, {
 	pattern = "SessionSavePost",
 	command = "lua require('notify').notify('Session Saved', 'info')",
 })
+
+cmd("User", {
+	desc = "stops format->write loop and joins format change with last user change when undoing",
+	pattern = "AutoSaveWritePre",
+	group = augroup("auto save", { clear = true }),
+	callback = function()
+		vim.api.nvim_buf_create_user_command(0, "Format", function()
+			vim.lsp.buf.format()
+		end, {})
+		vim.cmd("silent! undojoin")
+		vim.cmd("Format")
+	end,
+})

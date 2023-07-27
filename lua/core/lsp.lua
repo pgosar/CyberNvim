@@ -11,62 +11,12 @@ lsp.on_attach(function(_, bufnr)
 	vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<cr>", { buffer = true })
 end)
 
-lsp.format_on_save({
-	format_opts = {
-		async = false,
-		timeout_ms = 10000,
-	},
-	servers = {
-		["null-ls"] = {
-			"javascript",
-			"javascriptreact",
-			"typescript",
-			"typescriptreact",
-			"html",
-			"css",
-			"json",
-			"lua",
-			"python",
-			"sh",
-			"bash",
-			"zsh",
-			"go",
-			"rust",
-			"cpp",
-			"c",
-			"cmake",
-			"make",
-			"markdown",
-		},
-	},
-})
-
 lsp.set_sign_icons({
 	error = "✘",
 	warn = "▲",
 	hint = "⚑",
 	info = "»",
 })
-
-lsp.ensure_installed({
-	"bashls",
-	"clangd",
-	"cmake",
-	"cssls",
-	"html",
-	"jsonls",
-	"lua_ls",
-	"pyright",
-	"taplo",
-	"rust_analyzer",
-	"tsserver",
-})
-
--- Using ufo provider need remap `zR` and `zM`.
-vim.keymap.set("n", "zR", require("ufo").openAllFolds)
-vim.keymap.set("n", "zM", require("ufo").closeAllFolds)
-
-require("ufo").setup()
 
 lsp.set_server_config({
 	capabilities = {

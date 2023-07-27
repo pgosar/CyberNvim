@@ -8,6 +8,10 @@ map("n", "tr", "<CMD>TroubleToggle lsp_references<CR>")
 map("n", "td", "<CMD>TroubleToggle lsp_definitions<CR>")
 map("n", "cd", "<CMD>Trouble<CR>")
 
+-- UFO
+map("n", "zR", "<CMD>lua require('ufo').openAllFolds")
+map("n", "zM", "<CMD>lua require('ufo').closeAllFolds")
+
 -- ZenMode
 map("n", "<leader>zm", "<CMD>ZenMode<CR>")
 
@@ -30,6 +34,8 @@ map("n", "I", "<CMD>set nohlsearch<CR>I")
 map("n", "A", "<CMD>set nohlsearch<CR>A")
 
 -- Movement
+-- in insert mode, type <c-d> and your cursor will move past the next separator
+-- such as quotes, parens, brackets, etc.
 map("i", "<C-d>", "<left><c-o>/[\"';)>}\\]]<cr><c-o><CMD>noh<cr><right>")
 map("i", "<C-b>", "<C-o>0")
 map("i", "<C-a>", "<C-o>A")
@@ -97,3 +103,6 @@ map("n", "<leader>bt", "<CMD>lua term.bashtop_toggle()<CR>")
 
 -- Hop
 map("n", "<leader>j", "<CMD>HopWord<CR>")
+
+-- Misc
+map("n", "<leader>as", "<CMD>ASToggle<CR>")
