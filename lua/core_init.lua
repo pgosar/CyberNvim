@@ -30,3 +30,5 @@ local cmd = vim.api.nvim_create_user_command
 cmd("CyberUpdate", function()
 	require("core.utils.utils").updateAll()
 end, { desc = "Updates plugins, mason packages, treesitter parsers" })
+
+_G.enable_autosave = false

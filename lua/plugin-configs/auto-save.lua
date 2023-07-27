@@ -1,6 +1,6 @@
 local save = require("auto-save")
 save.setup({
-	enabled = false,
+	enabled = _G.enable_autosave,
 	execution_message = {
 		enabled = false,
 	},
