@@ -35,6 +35,7 @@ if not _G.enable_autosave then
 			timeout_ms = 10000,
 		},
 		servers = {
+			["rust_analyzer"] = { "rust" },
 			["null-ls"] = {
 				"javascript",
 				"javascriptreact",
@@ -49,7 +50,6 @@ if not _G.enable_autosave then
 				"bash",
 				"zsh",
 				"go",
-				"rust",
 				"cpp",
 				"c",
 				"cmake",
