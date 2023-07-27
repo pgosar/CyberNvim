@@ -1,6 +1,4 @@
-local aerial = require("aerial")
-
-aerial.setup({
+require("aerial").setup({
 	filter_kind = {
 		"Namespace",
 		"Class",

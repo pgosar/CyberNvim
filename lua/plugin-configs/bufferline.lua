@@ -1,6 +1,4 @@
-local buffer = require("bufferline")
-
-buffer.setup({
+require("bufferline").setup({
 	options = {
 		indicator = {
 			style = "underline",

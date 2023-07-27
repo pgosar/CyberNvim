@@ -1,6 +1,4 @@
-local noice = require("noice")
-
-noice.setup({
+require("noice").setup({
 	messages = {
 		view = "mini",
 		view_search = "mini",

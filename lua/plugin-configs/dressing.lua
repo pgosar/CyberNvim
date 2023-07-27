@@ -1,6 +1,4 @@
-local dressing = require("dressing")
-
-dressing.setup({
+require("dressing").setup({
 	input = {
 		title_pos = "center",
 		insert_only = false,

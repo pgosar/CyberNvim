@@ -18,7 +18,6 @@ local function _rename()
 				)
 				return
 			end
-
 			vim.lsp.handlers["textDocument/rename"](err, result, ctx, config)
 			local notif, entries = {}, {}
 			local files, updates = 0, 0
@@ -32,7 +31,6 @@ local function _rename()
 					for _, edit in ipairs(document.edits) do
 						local start_line = edit.range.start.line + 1
 						local line = vim.api.nvim_buf_get_lines(bufnr, start_line - 1, start_line, false)[1]
-
 						table.insert(entries, {
 							bufnr = bufnr,
 							lnum = start_line,
@@ -40,23 +38,18 @@ local function _rename()
 							text = line,
 						})
 					end
-
 					updates = updates + vim.tbl_count(document.edits)
-
 					local short_uri = string.sub(vim.uri_to_fname(uri), #vim.loop.cwd() + 2)
 					table.insert(notif, string.format("\t- %d in %s", vim.tbl_count(document.edits), short_uri))
 				end
 			end
-
 			if result.changes then
 				for uri, edits in pairs(result.changes) do
 					files = files + 1
 					local bufnr = vim.uri_to_bufnr(uri)
-
 					for _, edit in ipairs(edits) do
 						local start_line = edit.range.start.line + 1
 						local line = vim.api.nvim_buf_get_lines(bufnr, start_line - 1, start_line, false)[1]
-
 						table.insert(entries, {
 							bufnr = bufnr,
 							lnum = start_line,
@@ -64,9 +57,7 @@ local function _rename()
 							text = line,
 						})
 					end
-
 					updates = updates + vim.tbl_count(edits)
-
 					local short_uri = string.sub(vim.uri_to_fname(uri), #vim.loop.cwd() + 2)
 					table.insert(notif, string.format("\t- %d in %s", vim.tbl_count(edits), short_uri))
 				end
@@ -78,11 +69,9 @@ local function _rename()
 					1,
 					string.format("made %d change%s in %d files", updates, (updates > 1 and "s") or "", files)
 				)
-
 				str = table.concat(notif, "\n")
 			else
 				str = string.format("made %s", notif[1]:sub(4))
-
 				local insert_loc = str:find("in")
 				str = table.concat({
 					str:sub(1, insert_loc - 1),
@@ -97,4 +86,5 @@ local function _rename()
 		end)
 	end)
 end
+
 vim.lsp.buf.rename = _rename

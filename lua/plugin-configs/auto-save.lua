@@ -1,5 +1,4 @@
-local save = require("auto-save")
-save.setup({
+require("auto-save").setup({
 	enabled = _G.enable_autosave,
 	execution_message = {
 		enabled = false,

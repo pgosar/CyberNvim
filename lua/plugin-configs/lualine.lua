@@ -28,7 +28,6 @@ local conditions = {
 	end,
 }
 
--- Config
 local config = {
 	options = {
 		component_separators = "",
@@ -39,17 +38,14 @@ local config = {
 		},
 	},
 	sections = {
-		-- these are to remove the defaults
 		lualine_a = {},
 		lualine_b = {},
 		lualine_y = {},
 		lualine_z = {},
-		-- These will be filled later
 		lualine_c = {},
 		lualine_x = {},
 	},
 	inactive_sections = {
-		-- these are to remove the defaults
 		lualine_a = {},
 		lualine_b = {},
 		lualine_y = {},
@@ -74,7 +70,6 @@ ins_left({
 	color = { fg = colors.blue },
 	padding = { left = 0, right = 1 },
 })
-
 ins_left({
 	function()
 		return ""
@@ -106,22 +101,17 @@ ins_left({
 	end,
 	padding = { right = 1 },
 })
-
 ins_left({
 	"filesize",
 	cond = conditions.buffer_not_empty,
 })
-
 ins_left({
 	"filename",
 	cond = conditions.buffer_not_empty,
 	color = { fg = colors.magenta, gui = "bold" },
 })
-
 ins_left({ "location" })
-
 ins_left({ "progress", color = { fg = colors.fg, gui = "bold" } })
-
 ins_left({
 	"diagnostics",
 	sources = { "nvim_diagnostic" },
@@ -132,7 +122,6 @@ ins_left({
 		color_info = { fg = colors.cyan },
 	},
 })
-
 ins_left({
 	function()
 		return "%="
@@ -145,27 +134,23 @@ ins_right({
 	cond = noice.api.statusline.mode.has,
 	color = { fg = "#ff9e64" },
 })
-
 ins_right({
 	"o:encoding",
 	fmt = string.upper,
 	cond = conditions.hide_in_width,
 	color = { fg = colors.green, gui = "bold" },
 })
-
 ins_right({
 	"fileformat",
 	fmt = string.upper,
 	icons_enabled = true,
 	color = { fg = colors.green, gui = "bold" },
 })
-
 ins_right({
 	"branch",
 	icon = "",
 	color = { fg = colors.violet, gui = "bold" },
 })
-
 ins_right({
 	"diff",
 	symbols = { added = " ", modified = "柳 ", removed = " " },
@@ -176,7 +161,6 @@ ins_right({
 	},
 	cond = conditions.hide_in_width,
 })
-
 ins_right({
 	function()
 		return "▊"

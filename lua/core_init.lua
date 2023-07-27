@@ -25,9 +25,7 @@ if not ok then
 	return
 end
 
-local cmd = vim.api.nvim_create_user_command
-
-cmd("CyberUpdate", function()
+vim.api.nvim_create_user_command("CyberUpdate", function()
 	require("core.utils.utils").updateAll()
 end, { desc = "Updates plugins, mason packages, treesitter parsers" })
 

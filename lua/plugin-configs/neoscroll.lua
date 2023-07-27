@@ -1,5 +1,3 @@
-local scroll = require("neoscroll")
-
-scroll.setup({
+require("neoscroll").setup({
 	respect_scrolloff = true,
 })

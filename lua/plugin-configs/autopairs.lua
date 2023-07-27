@@ -1,4 +1,3 @@
-local pairs = require("nvim-autopairs")
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 local cmp = require("cmp")
 local handlers = require("nvim-autopairs.completion.handlers")
@@ -20,6 +19,6 @@ cmp.event:on(
 	})
 )
 
-pairs.setup({
+require("nvim-autopairs").setup({
 	map_c_w = true,
 })

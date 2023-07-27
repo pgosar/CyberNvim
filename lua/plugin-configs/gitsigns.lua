@@ -1,13 +1,9 @@
 -- luacheck: globals vim
 
-local map = require("core.utils.utils").map
-local git = require("gitsigns")
-
-git.setup({
+require("gitsigns").setup({
 	on_attach = function(_bufnr)
 		local gs = package.loaded.gitsigns
-
-		-- Navigation
+		local map = require("core.utils.utils").map
 		map("n", "]c", function()
 			if vim.wo.diff then
 				return "]c"
@@ -17,7 +13,6 @@ git.setup({
 			end)
 			return "<Ignore>"
 		end, { expr = true })
-
 		map("n", "[c", function()
 			if vim.wo.diff then
 				return "[c"
@@ -28,7 +23,6 @@ git.setup({
 			return "<Ignore>"
 		end, { expr = true })
 
-		-- Actions
 		map("n", "<leader>hs", gs.stage_hunk)
 		map("n", "<leader>hr", gs.reset_hunk)
 		map("v", "<leader>hs", function()
@@ -50,8 +44,6 @@ git.setup({
 			gs.diffthis("~")
 		end)
 		map("n", "<leader>td", gs.toggle_deleted)
-
-		-- Text object
 		map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
 	end,
 })

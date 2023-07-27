@@ -1,6 +1,4 @@
-local copilot = require("copilot")
-
-copilot.setup({
+require("copilot").setup({
 	suggestion = {
 		auto_trigger = true,
 		enabled = false,

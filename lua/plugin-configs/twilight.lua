@@ -1,6 +1,4 @@
-local twilight = require("twilight")
-
-twilight.setup({
+require("twilight").setup({
 	dimming = {
 		inactive = true,
 	},

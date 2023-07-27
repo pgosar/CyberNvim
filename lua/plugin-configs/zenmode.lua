@@ -1,6 +1,4 @@
-local zen = require("zen-mode")
-
-zen.setup({
+require("zen-mode").setup({
 	window = {
 		options = {
 			signcolumn = "no",

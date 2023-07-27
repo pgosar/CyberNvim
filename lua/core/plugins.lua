@@ -1,15 +1,14 @@
-local packer_bootstrap = require("core.utils.utils").ensure_packer
-
 return require("packer").startup(function(use)
 	use("wbthomason/packer.nvim")
 	use("joshdick/onedark.vim")
 	use("lewis6991/impatient.nvim")
 	use("windwp/nvim-ts-autotag")
-  use({"NvChad/nvim-colorizer.lua",
-    config = function()
-      require("colorizer").setup()
-    end,
-  })
+	use({
+		"NvChad/nvim-colorizer.lua",
+		config = function()
+			require("colorizer").setup()
+		end,
+	})
 	use({
 		"okuuva/auto-save.nvim",
 		config = function()
@@ -255,8 +254,4 @@ return require("packer").startup(function(use)
 			require("treesitter-context").setup({})
 		end,
 	})
-	-- invert if freshly installing packer
-	if not packer_bootstrap then
-		require("packer").sync()
-	end
 end)

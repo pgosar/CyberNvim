@@ -30,7 +30,7 @@ vim_opts({
 		foldlevelstart = 99,
 		foldopen = "jump,block,hor,mark,percent,quickfix,search,tag,undo",
 		foldenable = true,
-		-- }
+
 		clipboard = "unnamedplus",
 		scrolloff = 5,
 		autowrite = true,

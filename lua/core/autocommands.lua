@@ -22,6 +22,13 @@ cmd({ "BufWinLeave", "BufWritePost" }, {
 	command = "source <afile> | PackerCompile",
 })
 
+cmd({ "FileType" }, {
+	desc = "Disable folding for alpha buffer",
+	group = augroup("alpha", { clear = true }),
+	pattern = "alpha",
+	command = "setlocal nofoldenable",
+})
+
 cmd({ "BufEnter", "BufAdd", "BufNew", "BufNewFile", "BufWinEnter" }, {
 	desc = "fix tree sitter folds issue",
 	group = augroup("treesitter folds", { clear = true }),

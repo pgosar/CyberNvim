@@ -1,9 +1,6 @@
 -- luacheck: globals vim
 
-local terminal = require("toggleterm")
-local create_floating_terminal = require("core.utils.utils").create_floating_terminal
-
-terminal.setup({
+require("toggleterm").setup({
 	open_mapping = [[<c-t>]],
 	on_open = function(_term)
 		vim.cmd("startinsert!")
@@ -18,6 +15,7 @@ terminal.setup({
 		winblend = 6,
 	},
 })
+local create_floating_terminal = require("core.utils.utils").create_floating_terminal
 
 local _lazygit_toggle = create_floating_terminal("lazygit")
 local _gdu_toggle = create_floating_terminal("gdu")
