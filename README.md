@@ -74,20 +74,17 @@ git clone https://github.com/pgosar/CyberNvim
 ln -s ~/path/to/CyberNvim/nvim ~/.config/nvim
 ```
 
-Once done, you will need to install the plugins with `:PackerSync` install any
-language servers, linters, etc. using `:MasonInstall` and/or `:LspInstall`.
+Once done, Install any language servers, linters, etc. using `:MasonInstall`
+and/or `:LspInstall`.
 
 There is also a `:CyberUpdate` command that I use for updating all language
 servers, plugins, treesitter parsers, etc. at once.
 
 ### Dependencies
 
-* [Neovim 0.8+](https://github.com/neovim/neovim/releases/tag/stable)
-* [Packer](https://github.com/wbthomason/packer.nvim) to manage plugins
+* [Neovim 0.8+, built with LuaJIT](https://github.com/neovim/neovim/releases/tag/stable)
 * Optional Dependencies
   * [A Nerd Font](https://www.nerdfonts.com/font-downloads)
   * [Ripgrep](https://github.com/BurntSushi/ripgrep) for live grep in Telescope
   * [Lazygit](https://github.com/jesseduffield/lazygit) for the git ui
   * [Bashtop](https://github.com/aristocratos/bashtop) to manage processes
-
----

@@ -1,6 +1,17 @@
 -- luacheck: globals vim
 
-vim.notify = require("notify")
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable", -- latest stable release
+		lazypath,
+	})
+end
+vim.opt.rtp:prepend(lazypath)
 
 for _, source in ipairs({
 	"core.utils.utils",
@@ -13,10 +24,11 @@ for _, source in ipairs({
 }) do
 	local status_ok, fault = pcall(require, source)
 	if not status_ok then
-		vim.notify("Failed to load " .. source .. "\n\n" .. fault, "error")
+		vim.api.nvim_err_writeln("Failed to load " .. source .. "\n\n" .. fault, "error")
 	end
 end
 
+vim.notify = require("notify")
 local colorscheme = "onedark"
 local ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
 vim.o.background = "dark"

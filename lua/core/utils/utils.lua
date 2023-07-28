@@ -66,7 +66,7 @@ local function updateMason()
 end
 
 local function _updateAll()
-	vim.cmd("PackerSync")
+	require("lazy").sync({ wait = true })
 	updateMason()
 	vim.cmd("TSUpdate")
 	notif.notify("CyberNvim updated!", "info")
@@ -74,7 +74,6 @@ end
 
 return {
 	vim_opts = _vim_opts,
-	ensure_packer = _ensure_packer,
 	map = _map,
 	create_new_file = _create_new_file,
 	create_floating_terminal = _create_floating_terminal,

@@ -15,13 +15,6 @@ cmd("LspAttach", {
 	end,
 })
 
-cmd({ "BufWinLeave", "BufWritePost" }, {
-	desc = "auto run :PackerCompile whenever plugins.lua is updated",
-	group = augroup("packer", { clear = true }),
-	pattern = "plugins.lua",
-	command = "source <afile> | PackerCompile",
-})
-
 cmd({ "FileType" }, {
 	desc = "Disable folding for alpha buffer",
 	group = augroup("alpha", { clear = true }),

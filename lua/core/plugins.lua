@@ -1,25 +1,23 @@
-return require("packer").startup(function(use)
-	use("wbthomason/packer.nvim")
-	use("joshdick/onedark.vim")
-	use("lewis6991/impatient.nvim")
-	use("windwp/nvim-ts-autotag")
-	use("NvChad/nvim-colorizer.lua")
-	use({
+require("lazy").setup({
+	{ "joshdick/onedark.vim" },
+	{ "lewis6991/impatient.nvim" },
+	{ "NvChad/nvim-colorizer.lua" },
+	{
 		"okuuva/auto-save.nvim",
 		config = function()
 			require("plugin-configs.auto-save")
 		end,
-	})
-	use({
+	},
+	{
 		"windwp/nvim-autopairs",
 		config = function()
 			require("plugin-configs.autopairs")
 		end,
-	})
-	use({
+	},
+	{
 		"nvim-neo-tree/neo-tree.nvim",
 		branch = "main",
-		requires = {
+		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-tree/nvim-web-devicons",
 			"MunifTanjim/nui.nvim",
@@ -27,18 +25,18 @@ return require("packer").startup(function(use)
 		config = function()
 			require("plugin-configs.neo-tree")
 		end,
-	})
-	use({
+	},
+	{
 		"folke/neodev.nvim",
 		config = function()
 			require("neodev").setup()
 		end,
-	})
-	use({
+	},
+	{
 		"zbirenbaum/copilot.lua",
 		cmd = "Copilot",
 		event = "InsertEnter",
-		requires = {
+		dependencies = {
 			"zbirenbaum/copilot-cmp",
 			config = function()
 				require("copilot_cmp").setup()
@@ -47,75 +45,74 @@ return require("packer").startup(function(use)
 		config = function()
 			require("plugin-configs.copilot")
 		end,
-	})
-	use("JoosepAlviste/nvim-ts-context-commentstring")
-	use({
+	},
+	{
 		"karb94/neoscroll.nvim",
 		config = function()
 			require("plugin-configs.neoscroll")
 		end,
-	})
-	use({
+	},
+	{
 		"akinsho/toggleterm.nvim",
-		tag = "*",
 		config = function()
 			require("plugin-configs.toggleterm")
 		end,
-	})
-	use({
+	},
+	{
 		"goolord/alpha-nvim",
 		config = function()
 			require("plugin-configs.alpha")
 		end,
-	})
-	use({
+	},
+	{
 		"numToStr/Comment.nvim",
 		config = function()
 			require("Comment").setup()
 		end,
-	})
-	use({
+	},
+	{
 		"stevearc/dressing.nvim",
 		config = function()
 			require("plugin-configs.dressing")
 		end,
-	})
-	use({
+	},
+	{
 		"phaazon/hop.nvim",
 		branch = "v2",
 		config = function()
 			require("plugin-configs.hop")
 		end,
-	})
-	use({
+	},
+	{
 		"rcarriga/nvim-notify",
 		config = function()
-			require("notify").setup({})
+			require("notify").setup()
 		end,
-	})
-	use({
+	},
+	{
 		"folke/noice.nvim",
 		config = function()
 			require("plugin-configs.noice")
 		end,
-	})
-	use({
+	},
+	{
 		"kevinhwang91/nvim-ufo",
-		requires = "kevinhwang91/promise-async",
+		dependencies = "kevinhwang91/promise-async",
 		config = function()
-			require("ufo").setup({})
+			require("ufo").setup()
 		end,
-	})
-	use({
+	},
+	{
 		"lvimuser/lsp-inlayhints.nvim",
 		config = function()
-			require("lsp-inlayhints").setup({})
+			require("lsp-inlayhints").setup()
 		end,
-	})
-	use({
+	},
+	{
 		"VonHeikemen/lsp-zero.nvim",
 		branch = "v2.x",
-		requires = {
+		event = "VimEnter",
+		dependencies = {
 			{ "neovim/nvim-lspconfig" },
 			{ "williamboman/mason.nvim" },
 			{ "williamboman/mason-lspconfig.nvim" },
@@ -128,125 +125,131 @@ return require("packer").startup(function(use)
 			{ "L3MON4D3/LuaSnip" },
 			{ "rafamadriz/friendly-snippets" },
 		},
-	})
-	use({
+	},
+	{
 		"lewis6991/gitsigns.nvim",
 		config = function()
 			require("gitsigns").setup()
 		end,
-	})
-	use({
+	},
+	{
 		"lukas-reineke/indent-blankline.nvim",
 		config = function()
 			require("plugin-configs.indent-blankline")
 		end,
-	})
-	use("mfussenegger/nvim-dap")
-	use({
+	},
+	{ "mfussenegger/nvim-dap" },
+	{
 		"jay-babu/mason-nvim-dap.nvim",
 		config = function()
-			require("mason-nvim-dap").setup({})
+			require("mason-nvim-dap").setup()
 		end,
-	})
-	use("folke/trouble.nvim")
-	use({
+	},
+	{ "folke/trouble.nvim" },
+	{
 		"nvim-lualine/lualine.nvim",
 		config = function()
 			require("plugin-configs.lualine")
 		end,
-	})
-	use({
+	},
+	{
 		"jose-elias-alvarez/null-ls.nvim",
-		requires = { "nvim-lua/plenary.nvim" },
-	})
-	use({
+		dependencies = { "nvim-lua/plenary.nvim" },
+	},
+	{
 		"jay-babu/mason-null-ls.nvim",
 		config = function()
-			require("mason-null-ls").setup({})
+			require("mason-null-ls").setup()
 		end,
-	})
-	use("onsails/lspkind.nvim")
-	use({
+	},
+	{ "onsails/lspkind.nvim" },
+	{
 		"tiagovla/scope.nvim",
 		config = function()
 			require("plugin-configs.scope")
 		end,
-	})
-	use({ "fedepujol/move.nvim" })
-	use({
+	},
+	{ "fedepujol/move.nvim" },
+	{
 		"akinsho/bufferline.nvim",
 		config = function()
 			require("plugin-configs.bufferline")
 		end,
-	})
-	use({
+	},
+	{
 		"kylechui/nvim-surround",
-		tag = "*",
 		config = function()
-			require("nvim-surround").setup({})
+			require("nvim-surround").setup()
 		end,
-	})
-	use({
+	},
+	{
 		"stevearc/aerial.nvim",
 		config = function()
 			require("plugin-configs.aerial")
 		end,
-	})
-	use({
+	},
+	{
 		"folke/zen-mode.nvim",
 		config = function()
 			require("plugin-configs.zenmode")
 		end,
-	})
-	use({
+	},
+	{
 		"folke/twilight.nvim",
 		config = function()
 			require("plugin-configs.twilight")
 		end,
-	})
-	use({
+	},
+	{
 		"nvim-telescope/telescope.nvim",
-		tag = "0.1.x",
-		requires = {
+		dependencies = {
 			{ "nvim-lua/plenary.nvim" },
 			{
 				"nvim-telescope/telescope-fzf-native.nvim",
 				run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build \
          build --config Release && cmake --install build --prefix build",
 			},
+			{ "desdic/telescope-rooter.nvim" },
 		},
 		config = function()
 			require("plugin-configs.telescope")
 		end,
-	})
-	use("desdic/telescope-rooter.nvim")
-	use({
+	},
+	{
 		"folke/which-key.nvim",
 		config = function()
 			require("plugin-configs.which-key")
 		end,
-	})
-	use("HiPhish/nvim-ts-rainbow2")
-	use({
+	},
+	{
 		"Shatur/neovim-session-manager",
 		config = function()
 			require("plugin-configs.session")
 		end,
-	})
-	use({
+	},
+	{
 		"nvim-treesitter/nvim-treesitter",
+		lazy = true,
 		run = function()
 			require("nvim-treesitter.install").update({ with_sync = true })
 		end,
 		config = function()
 			require("plugin-configs.treesitter")
 		end,
-	})
-	use("nvim-treesitter/nvim-treesitter-textobjects")
-	use({
-		"nvim-treesitter/nvim-treesitter-context",
-		config = function()
-			require("treesitter-context").setup({})
-		end,
-	})
-end)
+		dependencies = {
+			{ "nvim-treesitter/nvim-treesitter-textobjects" },
+			{
+				"nvim-treesitter/nvim-treesitter-context",
+				config = function()
+					require("treesitter-context").setup()
+				end,
+			},
+
+			{ "windwp/nvim-ts-autotag" },
+			{ "HiPhish/nvim-ts-rainbow2" },
+			{ "JoosepAlviste/nvim-ts-context-commentstring" },
+		},
+	},
+}, {
+	defaults = { event = "VimEnter" },
+})
