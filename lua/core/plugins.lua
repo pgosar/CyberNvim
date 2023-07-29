@@ -1,21 +1,23 @@
 require("lazy").setup({
 	{ "joshdick/onedark.vim" },
-	{ "lewis6991/impatient.nvim" },
-	{ "NvChad/nvim-colorizer.lua" },
+	{ "NvChad/nvim-colorizer.lua", event = "VimEnter" },
 	{
 		"okuuva/auto-save.nvim",
+		event = "VeryLazy",
 		config = function()
 			require("plugin-configs.auto-save")
 		end,
 	},
 	{
 		"windwp/nvim-autopairs",
+		event = "InsertEnter",
 		config = function()
 			require("plugin-configs.autopairs")
 		end,
 	},
 	{
 		"nvim-neo-tree/neo-tree.nvim",
+		cmd = "Neotree",
 		branch = "main",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
@@ -28,6 +30,7 @@ require("lazy").setup({
 	},
 	{
 		"folke/neodev.nvim",
+		event = "VeryLazy",
 		config = function()
 			require("neodev").setup()
 		end,
@@ -48,36 +51,43 @@ require("lazy").setup({
 	},
 	{
 		"karb94/neoscroll.nvim",
+		event = "VeryLazy",
 		config = function()
 			require("plugin-configs.neoscroll")
 		end,
 	},
 	{
 		"akinsho/toggleterm.nvim",
+		event = "VeryLazy",
 		config = function()
 			require("plugin-configs.toggleterm")
 		end,
 	},
 	{
 		"goolord/alpha-nvim",
+		lazy = false,
 		config = function()
 			require("plugin-configs.alpha")
 		end,
 	},
 	{
 		"numToStr/Comment.nvim",
+		event = "VeryLazy",
 		config = function()
 			require("Comment").setup()
 		end,
 	},
 	{
 		"stevearc/dressing.nvim",
+		event = "VeryLazy",
 		config = function()
 			require("plugin-configs.dressing")
 		end,
 	},
 	{
 		"phaazon/hop.nvim",
+		event = "VeryLazy",
+
 		branch = "v2",
 		config = function()
 			require("plugin-configs.hop")
@@ -85,18 +95,21 @@ require("lazy").setup({
 	},
 	{
 		"rcarriga/nvim-notify",
+		lazy = false,
 		config = function()
 			require("notify").setup()
 		end,
 	},
 	{
 		"folke/noice.nvim",
+		event = "VimEnter",
 		config = function()
 			require("plugin-configs.noice")
 		end,
 	},
 	{
 		"kevinhwang91/nvim-ufo",
+		event = "VimEnter",
 		dependencies = "kevinhwang91/promise-async",
 		config = function()
 			require("ufo").setup()
@@ -104,12 +117,14 @@ require("lazy").setup({
 	},
 	{
 		"lvimuser/lsp-inlayhints.nvim",
+		event = "VeryLazy",
 		config = function()
 			require("lsp-inlayhints").setup()
 		end,
 	},
 	{
 		"VonHeikemen/lsp-zero.nvim",
+		event = "VeryLazy",
 		branch = "v2.x",
 		config = function()
 			require("plugin-configs.lsp")
@@ -118,6 +133,16 @@ require("lazy").setup({
 			{ "neovim/nvim-lspconfig" },
 			{ "williamboman/mason.nvim" },
 			{ "williamboman/mason-lspconfig.nvim" },
+		},
+	},
+	{
+		"hrsh7th/nvim-cmp",
+		event = "InsertEnter",
+		config = function()
+			require("plugin-configs.cmp")
+		end,
+		dependencies = {
+			{ "onsails/lspkind.nvim" },
 			{ "hrsh7th/cmp-nvim-lsp" },
 			{ "hrsh7th/cmp-buffer" },
 			{ "hrsh7th/cmp-path" },
@@ -125,95 +150,106 @@ require("lazy").setup({
 			{ "hrsh7th/cmp-nvim-lua" },
 			{ "L3MON4D3/LuaSnip" },
 			{ "rafamadriz/friendly-snippets" },
-			{
-				"hrsh7th/nvim-cmp",
-				config = function()
-					require("plugin-configs.cmp")
-				end,
-			},
 		},
 	},
 	{
 		"lewis6991/gitsigns.nvim",
+		event = "VimEnter",
 		config = function()
 			require("gitsigns").setup()
 		end,
 	},
 	{
 		"lukas-reineke/indent-blankline.nvim",
+		event = "VimEnter",
 		config = function()
 			require("plugin-configs.indent-blankline")
 		end,
 	},
-	{ "mfussenegger/nvim-dap" },
 	{
-		"jay-babu/mason-nvim-dap.nvim",
-		config = function()
-			require("mason-nvim-dap").setup()
-		end,
+		"mfussenegger/nvim-dap",
+		event = "VeryLazy",
+		dependencies = {
+			{
+				"jay-babu/mason-nvim-dap.nvim",
+				config = function()
+					require("mason-nvim-dap").setup()
+				end,
+			},
+		},
 	},
-	{ "folke/trouble.nvim" },
+	{ "folke/trouble.nvim", cmd = { "TroubleToggle", "Trouble" } },
 	{
 		"nvim-lualine/lualine.nvim",
+		event = "VeryLazy",
 		config = function()
 			require("plugin-configs.lualine")
 		end,
 	},
 	{
 		"jose-elias-alvarez/null-ls.nvim",
+		event = "VeryLazy",
 		config = function()
 			require("plugin-configs.null-ls")
 		end,
-		dependencies = { "nvim-lua/plenary.nvim" },
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			{
+				"jay-babu/mason-null-ls.nvim",
+				cmd = { "NullLsInstall", "NullLsUninstall" },
+				config = function()
+					require("plugin-configs.mason-null-ls")
+				end,
+			},
+		},
 	},
-	{
-		"jay-babu/mason-null-ls.nvim",
-		config = function()
-			require("plugin-configs.mason-null-ls")
-		end,
-	},
-	{ "onsails/lspkind.nvim" },
 	{
 		"tiagovla/scope.nvim",
+		event = "VeryLazy",
 		config = function()
 			require("plugin-configs.scope")
 		end,
 	},
-	{ "fedepujol/move.nvim" },
+	{ "fedepujol/move.nvim", event = "VeryLazy" },
 	{
 		"akinsho/bufferline.nvim",
+		lazy = false,
 		config = function()
 			require("plugin-configs.bufferline")
 		end,
 	},
 	{
 		"kylechui/nvim-surround",
+		cmd = "VimEnter",
 		config = function()
 			require("nvim-surround").setup()
 		end,
 	},
 	{
 		"stevearc/aerial.nvim",
+		cmd = "Aerial",
 		config = function()
 			require("plugin-configs.aerial")
 		end,
 	},
 	{
 		"folke/zen-mode.nvim",
+		cmd = "ZenMode",
 		config = function()
 			require("plugin-configs.zenmode")
 		end,
 	},
 	{
 		"folke/twilight.nvim",
+		cmd = { "Twilight", "TwilightEnable", "TwilightDisable" },
 		config = function()
 			require("plugin-configs.twilight")
 		end,
 	},
 	{
 		"nvim-telescope/telescope.nvim",
+		cmd = "Telescope",
 		dependencies = {
-			{ "nvim-lua/plenary.nvim" },
 			{
 				"nvim-telescope/telescope-fzf-native.nvim",
 				run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build \
@@ -227,19 +263,21 @@ require("lazy").setup({
 	},
 	{
 		"folke/which-key.nvim",
+		event = "VeryLazy",
 		config = function()
 			require("plugin-configs.which-key")
 		end,
 	},
 	{
 		"Shatur/neovim-session-manager",
+		event = "VimEnter",
 		config = function()
 			require("plugin-configs.session")
 		end,
 	},
 	{
 		"nvim-treesitter/nvim-treesitter",
-		lazy = true,
+		lazy = false,
 		run = function()
 			require("nvim-treesitter.install").update({ with_sync = true })
 		end,
@@ -259,4 +297,11 @@ require("lazy").setup({
 			{ "JoosepAlviste/nvim-ts-context-commentstring" },
 		},
 	},
-}, {})
+}, {
+	defaults = { lazy = true },
+	performance = {
+		rtp = {
+			disabled_plugins = { "tohtml", "gzip", "zipPlugin", "netrwPlugin", "tarPlugin" },
+		},
+	},
+})
