@@ -1,5 +1,5 @@
 require("auto-save").setup({
-	enabled = _G.auto_save_enabled,
+	enabled = _G.enable_autosave,
 	execution_message = {
 		enabled = false,
 	},
