@@ -111,12 +111,13 @@ require("lazy").setup({
 	{
 		"VonHeikemen/lsp-zero.nvim",
 		branch = "v2.x",
-		event = "VimEnter",
+		config = function()
+			require("plugin-configs.lsp")
+		end,
 		dependencies = {
 			{ "neovim/nvim-lspconfig" },
 			{ "williamboman/mason.nvim" },
 			{ "williamboman/mason-lspconfig.nvim" },
-			{ "hrsh7th/nvim-cmp" },
 			{ "hrsh7th/cmp-nvim-lsp" },
 			{ "hrsh7th/cmp-buffer" },
 			{ "hrsh7th/cmp-path" },
@@ -124,6 +125,12 @@ require("lazy").setup({
 			{ "hrsh7th/cmp-nvim-lua" },
 			{ "L3MON4D3/LuaSnip" },
 			{ "rafamadriz/friendly-snippets" },
+			{
+				"hrsh7th/nvim-cmp",
+				config = function()
+					require("plugin-configs.cmp")
+				end,
+			},
 		},
 	},
 	{
@@ -154,12 +161,15 @@ require("lazy").setup({
 	},
 	{
 		"jose-elias-alvarez/null-ls.nvim",
+		config = function()
+			require("plugin-configs.null-ls")
+		end,
 		dependencies = { "nvim-lua/plenary.nvim" },
 	},
 	{
 		"jay-babu/mason-null-ls.nvim",
 		config = function()
-			require("mason-null-ls").setup()
+			require("plugin-configs.mason-null-ls")
 		end,
 	},
 	{ "onsails/lspkind.nvim" },
@@ -244,12 +254,9 @@ require("lazy").setup({
 					require("treesitter-context").setup()
 				end,
 			},
-
 			{ "windwp/nvim-ts-autotag" },
 			{ "HiPhish/nvim-ts-rainbow2" },
 			{ "JoosepAlviste/nvim-ts-context-commentstring" },
 		},
 	},
-}, {
-	defaults = { event = "VimEnter" },
-})
+}, {})

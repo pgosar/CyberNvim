@@ -1,72 +1,8 @@
--- luacheck: globals vim
-
-local lsp = require("lsp-zero")
-lsp.preset("minimal")
-
-local null_ls = require("null-ls")
-local b = null_ls.builtins
-
-lsp.on_attach(function(_, bufnr)
-	lsp.default_keymaps({ buffer = bufnr })
-	vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<cr>", { buffer = true })
-end)
-
-lsp.set_sign_icons({
-	error = "✘",
-	warn = "▲",
-	hint = "⚑",
-	info = "»",
-})
-
-lsp.set_server_config({
-	capabilities = {
-		textDocument = {
-			foldingRange = {
-				dynamicRegistration = false,
-				lineFoldingOnly = true,
-			},
-		},
-	},
-})
-if not _G.enable_autosave then
-	lsp.format_on_save({
-		format_opts = {
-			async = false,
-			timeout_ms = 10000,
-		},
-		servers = {
-			["rust_analyzer"] = { "rust" },
-			["null-ls"] = {
-				"javascript",
-				"javascriptreact",
-				"typescript",
-				"typescriptreact",
-				"html",
-				"css",
-				"json",
-				"lua",
-				"python",
-				"sh",
-				"bash",
-				"zsh",
-				"go",
-				"cpp",
-				"c",
-				"cmake",
-				"make",
-				"markdown",
-			},
-		},
-	})
-end
-
-require("core.language-server-configs.ls_init")
-lsp.setup()
 local cmp = require("cmp")
 local cmp_action = require("lsp-zero").cmp_action()
-require("luasnip.loaders.from_vscode").lazy_load()
 
 local luasnip = require("luasnip")
+require("luasnip.loaders.from_vscode").lazy_load()
 local function has_words_before()
 	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
 	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
@@ -155,50 +91,4 @@ cmp.setup({
 			cmp.config.compare.order,
 		},
 	},
-})
-
-null_ls.setup({
-	sources = {
-		b.completion.luasnip,
-		b.completion.tags,
-		b.formatting.stylua,
-		b.formatting.autopep8,
-		b.formatting.beautysh,
-		b.formatting.cbfmt,
-		b.formatting.gofumpt,
-		b.formatting.jq,
-		b.formatting.cmake_format,
-		b.formatting.prettierd.with({
-			filetypes = {
-				"javascript",
-				"javascriptreact",
-				"typescript",
-				"typescriptreact",
-				"html",
-				"css",
-			},
-		}),
-		b.diagnostics.misspell,
-		b.diagnostics.luacheck,
-		b.diagnostics.checkmake,
-		b.diagnostics.clang_check,
-		b.diagnostics.cmake_lint,
-		b.diagnostics.markdownlint,
-		b.diagnostics.pylint,
-		b.diagnostics.revive,
-		b.diagnostics.xo,
-		b.code_actions.cspell,
-		b.code_actions.xo,
-		b.code_actions.gitrebase,
-		b.code_actions.gitsigns,
-		b.code_actions.gomodifytags,
-		b.code_actions.proselint,
-		b.code_actions.refactoring,
-		b.hover.dictionary,
-	},
-})
-
-require("mason-null-ls").setup({
-	ensure_installed = nil,
-	automatic_installation = true,
 })
