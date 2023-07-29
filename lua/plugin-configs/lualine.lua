@@ -1,5 +1,3 @@
--- luacheck: globals vim
-
 local colors = {
 	bg = "#202328",
 	fg = "#bbc2cf",

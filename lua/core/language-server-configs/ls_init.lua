@@ -1,5 +1,3 @@
--- luacheck: globals vim
-
 vim.notify = require("notify")
 for _, source in ipairs({
 	"core.language-server-configs.lua",

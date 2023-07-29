@@ -1,5 +1,3 @@
--- luacheck: globals vim
-
 require("toggleterm").setup({
 	open_mapping = [[<c-t>]],
 	on_open = function(_term)

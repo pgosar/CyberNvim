@@ -1,5 +1,3 @@
--- luacheck: globals vim
---
 local sign_def = vim.fn.sign_define
 require("neo-tree").setup({
 	sign_def("DiagnosticSignError", { text = " ", texthl = "DiagnosticSignError" }),

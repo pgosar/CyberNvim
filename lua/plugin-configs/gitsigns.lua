@@ -1,5 +1,3 @@
--- luacheck: globals vim
-
 require("gitsigns").setup({
 	on_attach = function(_bufnr)
 		local gs = package.loaded.gitsigns

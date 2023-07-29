@@ -1,5 +1,3 @@
--- luacheck: globals vim
-
 local vim_opts = require("core.utils.utils").vim_opts
 vim.opt.shortmess:append({ s = true, I = true })
 vim_opts({

@@ -1,5 +1,3 @@
--- luacheck: globals vim
-
 local notif = require("notify")
 
 local function _vim_opts(options)

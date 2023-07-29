@@ -1,4 +1,4 @@
--- luacheck: globals vim
+_G.enable_autosave = false
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -7,24 +7,23 @@ if not vim.loop.fs_stat(lazypath) then
 		"clone",
 		"--filter=blob:none",
 		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable", -- latest stable release
+		"--branch=stable",
 		lazypath,
 	})
 end
 vim.opt.rtp:prepend(lazypath)
 
 for _, source in ipairs({
-	"core.utils.utils",
 	"core.main-options",
 	"core.plugins",
-	"core.lsp",
 	"core.keybindings",
+	"core.utils.utils",
 	"core.utils.notify",
 	"core.autocommands",
 }) do
 	local status_ok, fault = pcall(require, source)
 	if not status_ok then
-		vim.api.nvim_err_writeln("Failed to load " .. source .. "\n\n" .. fault, "error")
+		vim.api.nvim_err_writeln("Failed to load " .. source .. "\n\n" .. fault)
 	end
 end
 
@@ -40,5 +39,3 @@ end
 vim.api.nvim_create_user_command("CyberUpdate", function()
 	require("core.utils.utils").updateAll()
 end, { desc = "Updates plugins, mason packages, treesitter parsers" })
-
-_G.enable_autosave = false

@@ -1,5 +1,3 @@
--- luacheck: globals vim
-
 local map = require("core.utils.utils").map
 vim.g.mapleader = " "
 
