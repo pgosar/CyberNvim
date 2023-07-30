@@ -63,11 +63,13 @@ cmd("User", {
 	pattern = "AutoSaveWritePre",
 	group = augroup("auto save", { clear = true }),
 	callback = function()
-		vim.api.nvim_buf_create_user_command(0, "Format", function()
-			vim.lsp.buf.format()
-		end, {})
-		vim.cmd("silent! undojoin")
-		vim.cmd("Format")
+		if require("core.utils.utils").supports_formatting then
+			vim.api.nvim_buf_create_user_command(0, "Format", function()
+				vim.lsp.buf.format()
+			end, {})
+			vim.cmd("silent! undojoin")
+			vim.cmd("Format")
+		end
 	end,
 })
 

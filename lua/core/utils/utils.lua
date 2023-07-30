@@ -71,14 +71,23 @@ local function _updateAll()
 end
 
 local function _open_neotree()
-  			if vim.fn.argc() == 1 then
-				local stat = vim.loop.fs_stat(vim.fn.argv(0))
-				if stat and stat.type == "directory" then
-					require("plugin-configs.neo-tree")
-			end
-			end
+	if vim.fn.argc() == 1 then
+		local stat = vim.loop.fs_stat(vim.fn.argv(0))
+		if stat and stat.type == "directory" then
+			require("plugin-configs.neo-tree")
 		end
+	end
+end
 
+local function _supports_formatting()
+	local clients = vim.lsp.get_active_clients()
+	for _, client in ipairs(clients) do
+		if client.supports_method("textDocument/formatting") then
+			return true
+		end
+	end
+	return false
+end
 
 return {
 	vim_opts = _vim_opts,
@@ -86,5 +95,6 @@ return {
 	create_new_file = _create_new_file,
 	create_floating_terminal = _create_floating_terminal,
 	updateAll = _updateAll,
-  open_neotree = _open_neotree
+	open_neotree = _open_neotree,
+	supports_formatting = _supports_formatting,
 }
