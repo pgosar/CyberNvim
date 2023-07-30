@@ -81,10 +81,6 @@ map("n", "<space>rn", "<CMD>lua buf.rename()<CR>")
 map("n", "<space>ca", "<CMD>lua buf.code_action()<CR>")
 map("n", "gr", "<CMD>lua buf.references()<CR>")
 
--- Buffers
-map("n", "<leader>bn", "<CMD>w | bn<CR>")
-map("n", "<leader>bp", "<CMD>w | bp<CR>")
-
 -- Session
 map("n", "<leader>s", "<CMD>SessionManager save_current_session<CR>")
 map("n", "<leader>o", "<CMD>SessionManager load_session<CR>")
