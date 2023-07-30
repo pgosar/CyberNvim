@@ -70,10 +70,21 @@ local function _updateAll()
 	notif.notify("CyberNvim updated!", "info")
 end
 
+local function _open_neotree()
+  			if vim.fn.argc() == 1 then
+				local stat = vim.loop.fs_stat(vim.fn.argv(0))
+				if stat and stat.type == "directory" then
+					require("plugin-configs.neo-tree")
+			end
+			end
+		end
+
+
 return {
 	vim_opts = _vim_opts,
 	map = _map,
 	create_new_file = _create_new_file,
 	create_floating_terminal = _create_floating_terminal,
 	updateAll = _updateAll,
+  open_neotree = _open_neotree
 }

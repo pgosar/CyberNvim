@@ -18,7 +18,9 @@ require("lazy").setup({
 	{
 		"nvim-neo-tree/neo-tree.nvim",
 		cmd = "Neotree",
+		-- lazy = false,
 		branch = "main",
+		init = require("core.utils.utils").open_neotree,
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-tree/nvim-web-devicons",
