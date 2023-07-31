@@ -158,7 +158,7 @@ require("lazy").setup({
 		"lewis6991/gitsigns.nvim",
 		event = "VimEnter",
 		config = function()
-			require("gitsigns").setup()
+			require("plugin-configs.gitsigns")
 		end,
 	},
 	{
