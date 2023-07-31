@@ -28,29 +28,7 @@ if not _G.enable_autosave then
 			async = false,
 			timeout_ms = 10000,
 		},
-		servers = {
-      ['rust_analyzer'] = {'rust'},
-			["null-ls"] = {
-				"javascript",
-				"javascriptreact",
-				"typescript",
-				"typescriptreact",
-				"html",
-				"css",
-				"json",
-				"lua",
-				"python",
-				"sh",
-				"bash",
-				"zsh",
-				"go",
-				"cpp",
-				"c",
-				"cmake",
-				"make",
-				"markdown",
-			},
-		},
+		servers = require("user_config").formatting_servers,
 	})
 end
 
