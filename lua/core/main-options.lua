@@ -6,6 +6,7 @@ vim_opts({
 		number = true,
 		signcolumn = "yes",
 		numberwidth = 6,
+		colorcolumn = "100",
 
 		expandtab = true,
 		tabstop = 2,
