@@ -28,7 +28,7 @@ if not _G.enable_autosave then
 			async = false,
 			timeout_ms = 10000,
 		},
-		servers = require("user_config").formatting_servers,
+		servers = require("user.user_config").formatting_servers,
 	})
 end
 

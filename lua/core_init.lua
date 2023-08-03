@@ -20,7 +20,7 @@ for _, source in ipairs({
 	"core.utils.utils",
 	"core.utils.notify",
 	"core.autocommands",
-	"user_config",
+	"user.user_config",
 }) do
 	local status_ok, fault = pcall(require, source)
 	if not status_ok then
