@@ -18,7 +18,6 @@ require("lazy").setup({
 	{
 		"nvim-neo-tree/neo-tree.nvim",
 		cmd = "Neotree",
-		-- lazy = false,
 		branch = "main",
 		init = require("core.utils.utils").open_neotree,
 		dependencies = {
@@ -229,7 +228,7 @@ require("lazy").setup({
 	},
 	{
 		"stevearc/aerial.nvim",
-		cmd = "Aerial",
+		cmd = "AerialToggle",
 		config = function()
 			require("plugin-configs.aerial")
 		end,

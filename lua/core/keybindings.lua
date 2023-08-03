@@ -18,8 +18,7 @@ map("n", "<leader>nt", "<CMD>Neotree reveal left<CR>")
 map("n", "<leader>nf", "<CMD>Neotree reveal float<CR>")
 
 -- Aerial
-map("n", "<leader>a", "<CMD>AerialToggle<CR>")
-map("n", "<leader>a", "<CMD>AerialToggle!<CR>")
+map("n", "<leader>at", "<CMD>AerialToggle<CR>")
 map("n", "{", "<CMD>AerialPrev<CR>")
 map("n", "}", "<CMD>AerialNext<CR>")
 
@@ -100,8 +99,8 @@ map("n", "<leader>j", "<CMD>HopWord<CR>")
 
 -- Gitsigns
 
--- making this a function here because all it does is create keybinds for gitsigns but it needs
--- to be attached to an on_attach function.
+-- making this a function here because all it does is create keybinds for gitsigns but
+-- it needs to be attached to an on_attach function.
 local function _gitsigns()
 	local gs = package.loaded.gitsigns
 	local map = require("core.utils.utils").map

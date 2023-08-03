@@ -13,9 +13,9 @@ It is a fully-featured IDE-like setup with the same ease of modification as
 more complete and uncompromising base experience of
 [Astronvim](https://github.com/AstroNvim/AstroNvim/tree/main) and
 [LazyNvim](https://github.com/LazyVim/LazyVim).
-Its goal is to be both a ready-to-use editor for 99% of people and a great starting
-point for powerusers requiring far higher levels customization, right down to
-the source code itself.
+Its goal is to be both a ready-to-use editor for 99% of people a great starting
+point for powerusers who want the freedom to possibly overwrite the entire config,
+and a great example for beginners who want to learn how to configure Neovim.
 
 ### Complete and uncompromisingly fantastic featureset GOOD 👍 🥰
 
@@ -40,11 +40,9 @@ Why use many lines when few do trick?
 Despite offering a complete IDE-like feature set, CyberNvim's codebase is simple
 , modular, and built to be broken (in a good way). It was made for people
 that want the convenience of a fully-fledged Neovim configuration and the
-simplicity and flexibility to make widespread changes to a codebase that
-feels like they could write it themselves even as a Lua and Neovim beginner.
-Furthermore, it strictly organizes code so that everything is exactly where you
-would expect to find it. No dealing with keymap definitions in random plugin config
-files or autocommands interspersed throughout the config!
+simplicity and flexibility to make widespread changes even as a beginner programmer.
+Strict and intuitive code organization makes the codebase especially easy to
+understand.
 
 At only 1500 lines of Lua (as of August 2023), CyberNvim is around 3-5 times
 smaller than similar distributions (AstroNvim at 6.3k lines of Lua, LunarVim
