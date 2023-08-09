@@ -1,6 +1,6 @@
-local notif = require("notify")
-
-local function _vim_opts(options)
+--local notif = require("notify")
+local M = {}
+M.vim_opts = function(options)
 	for scope, table in pairs(options) do
 		for setting, value in pairs(table) do
 			vim[scope][setting] = value
@@ -8,7 +8,7 @@ local function _vim_opts(options)
 	end
 end
 
-local function _map(mode, lhs, rhs, opts)
+M.map = function(mode, lhs, rhs, opts)
 	local options = { noremap = true, silent = true }
 	if opts then
 		options = vim.tbl_extend("force", options, opts)
@@ -16,17 +16,17 @@ local function _map(mode, lhs, rhs, opts)
 	vim.keymap.set(mode, lhs, rhs, options)
 end
 
-local function _create_new_file()
+M.create_new_file = function()
 	local filename = vim.fn.input("Enter the filename: ")
 	if filename ~= "" then
 		vim.cmd("edit " .. filename)
 	end
 end
 
-local function _create_floating_terminal(cmd)
+M.create_floating_terminal = function(term, cmd)
 	local instance = nil
 	if vim.fn.executable(cmd) == 1 then
-		local terminal = require("toggleterm.terminal").Terminal
+		local terminal = term.Terminal
 		instance = terminal:new({
 			cmd = cmd,
 			dir = "git_dir",
@@ -46,12 +46,12 @@ local function _create_floating_terminal(cmd)
 		if vim.fn.executable(cmd) == 1 then
 			instance:toggle()
 		else
-			notif.notify("Command not found: " .. cmd .. ". Ensure it is installed.", "error")
+			vim.notify("Command not found: " .. cmd .. ". Ensure it is installed.", "error")
 		end
 	end
 end
 
-local function updateMason()
+M.updateMason = function()
 	local registry = require("mason-registry")
 	registry.refresh()
 	registry.update()
@@ -63,14 +63,14 @@ local function updateMason()
 	end
 end
 
-local function _updateAll()
+M.updateAll = function()
 	require("lazy").sync({ wait = true })
-	updateMason()
+	M.updateMason()
 	vim.cmd("TSUpdate")
-	notif.notify("CyberNvim updated!", "info")
+	vim.notify("CyberNvim updated!", "info")
 end
 
-local function _open_neotree()
+M.open_neotree = function()
 	if vim.fn.argc() == 1 then
 		local stat = vim.loop.fs_stat(vim.fn.argv(0))
 		if stat and stat.type == "directory" then
@@ -79,7 +79,7 @@ local function _open_neotree()
 	end
 end
 
-local function _supports_formatting()
+M.supports_formatting = function()
 	local clients = vim.lsp.get_active_clients()
 	for _, client in ipairs(clients) do
 		if client.supports_method("textDocument/formatting") then
@@ -89,12 +89,4 @@ local function _supports_formatting()
 	return false
 end
 
-return {
-	vim_opts = _vim_opts,
-	map = _map,
-	create_new_file = _create_new_file,
-	create_floating_terminal = _create_floating_terminal,
-	updateAll = _updateAll,
-	open_neotree = _open_neotree,
-	supports_formatting = _supports_formatting,
-}
+return M

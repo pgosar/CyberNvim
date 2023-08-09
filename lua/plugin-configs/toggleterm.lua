@@ -13,14 +13,13 @@ require("toggleterm").setup({
 		winblend = 6,
 	},
 })
-local create_floating_terminal = require("core.utils.utils").create_floating_terminal
 
-local _lazygit_toggle = create_floating_terminal("lazygit")
-local _gdu_toggle = create_floating_terminal("gdu")
-local _bashtop_toggle = create_floating_terminal("bashtop")
+create_floating_terminal = require("core.utils.utils").create_floating_terminal
+local term = require("toggleterm.terminal")
 
-return {
-	lazygit_toggle = _lazygit_toggle,
-	gdu_toggle = _gdu_toggle,
-	bashtop_toggle = _bashtop_toggle,
-}
+local M = {}
+M.lazygit_toggle = create_floating_terminal(term, "lazygit")
+M.gdu_toggle = create_floating_terminal(term, "gdu")
+M.bashtop_toggle = create_floating_terminal(term, "bashtop")
+
+return M

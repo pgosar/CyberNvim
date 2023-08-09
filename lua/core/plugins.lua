@@ -60,9 +60,9 @@ require("lazy").setup({
 	{
 		"akinsho/toggleterm.nvim",
 		event = "VeryLazy",
-		config = function()
-			require("plugin-configs.toggleterm")
-		end,
+		-- config = function()
+		-- 	require("plugin-configs.toggleterm")
+		-- end,
 	},
 	{
 		"goolord/alpha-nvim",

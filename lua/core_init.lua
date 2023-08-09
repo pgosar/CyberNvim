@@ -2,25 +2,25 @@ _G.enable_autosave = false
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-	vim.fn.system({
-		"git",
-		"clone",
-		"--filter=blob:none",
-		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable",
-		lazypath,
-	})
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable",
+    lazypath,
+  })
 end
 vim.opt.rtp:prepend(lazypath)
 
 for _, source in ipairs({
-	"core.main-options",
-	"core.plugins",
-	"core.keybindings",
-	"core.utils.utils",
-	"core.utils.notify",
-	"core.autocommands",
-	"user.user_config",
+  "core.main-options",
+  "core.plugins",
+  "core.keybindings",
+  "core.utils.utils",
+  "core.utils.notify",
+  "core.autocommands",
+  "user.user_config",
 }) do
 	local status_ok, fault = pcall(require, source)
 	if not status_ok then
