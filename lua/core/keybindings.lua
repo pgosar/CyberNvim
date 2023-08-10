@@ -7,8 +7,8 @@ map("n", "td", "<CMD>TroubleToggle lsp_definitions<CR>")
 map("n", "cd", "<CMD>Trouble<CR>")
 
 -- UFO
-map("n", "zR", "<CMD>lua require('ufo').openAllFolds")
-map("n", "zM", "<CMD>lua require('ufo').closeAllFolds")
+map("n", "zR", "<CMD>lua require('ufo').openAllFolds<CR>")
+map("n", "zM", "<CMD>lua require('ufo').closeAllFolds<CR>")
 
 -- ZenMode
 map("n", "<leader>zm", "<CMD>ZenMode<CR>")
