@@ -60,9 +60,10 @@ require("lazy").setup({
 	{
 		"akinsho/toggleterm.nvim",
 		event = "VeryLazy",
-		-- config = function()
-		-- 	require("plugin-configs.toggleterm")
-		-- end,
+		config = function()
+			-- this is going to be used for keybindings
+			_G.term = require("plugin-configs.toggleterm")
+		end,
 	},
 	{
 		"goolord/alpha-nvim",
@@ -125,7 +126,7 @@ require("lazy").setup({
 	},
 	{
 		"VonHeikemen/lsp-zero.nvim",
-		event = "VeryLazy",
+		event = { "BufReadPre", "BufNewFile" },
 		branch = "v2.x",
 		config = function()
 			require("plugin-configs.lsp")
@@ -189,7 +190,7 @@ require("lazy").setup({
 	},
 	{
 		"jose-elias-alvarez/null-ls.nvim",
-		event = "VeryLazy",
+		event = { "BufReadPre", "BufNewFile" },
 		config = function()
 			require("plugin-configs.null-ls")
 		end,

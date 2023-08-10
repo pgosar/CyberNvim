@@ -85,7 +85,6 @@ map("n", "<leader>s", "<CMD>SessionManager save_current_session<CR>")
 map("n", "<leader>o", "<CMD>SessionManager load_session<CR>")
 
 -- ToggleTerm
-_G.term = require("plugin-configs.toggleterm")
 local git_root = "cd $(git rev-parse --show-toplevel 2>/dev/null) && clear"
 map("n", "<leader><c-\\>t", "<CMD>ToggleTerm direction=tab<CR>")
 map("n", "<c-\\>", "<CMD>TermExec go_back=0 cmd='" .. git_root .. "'<CR>")
