@@ -71,7 +71,7 @@ end
 
 M.open_neotree = function()
   local path = vim.fn.expand('%:p')
-  if vim.fn.isdirectory(path) then
+  if vim.fn.isdirectory(path) ~= 0 then
     require("plugin-configs.neo-tree")
   end
 end
