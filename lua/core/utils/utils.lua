@@ -22,6 +22,11 @@ M.create_new_file = function()
   end
 end
 
+M.has_words_before = function()
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+end
+
 M.create_floating_terminal = function(term, cmd)
   local instance = nil
   if vim.fn.executable(cmd) == 1 then
@@ -70,7 +75,7 @@ M.updateAll = function()
 end
 
 M.open_neotree = function()
-  local path = vim.fn.expand('%:p')
+  local path = vim.fn.expand("%:p")
   if vim.fn.isdirectory(path) ~= 0 then
     require("plugin-configs.neo-tree")
   end
