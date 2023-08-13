@@ -1,6 +1,6 @@
 <h1 align="center">CyberNvim</h1>
 
-![image](https://github.com/pgosar/CyberNvim/assets/55164602/d650046e-7dc6-43df-a9c6-2eb24d1725cc)
+![image](https://github.com/pgosar/CyberNvim/assets/55164602/379c6126-bdf4-4c20-898e-5fa35575592c)
 
 ![image](https://github.com/pgosar/CyberNvim/assets/55164602/7d22e70e-6e52-4737-8068-9335c7705098)
 
@@ -62,7 +62,7 @@ It remains simple to expand upon the config by sourcing extra
 user-defined files or to override parts of the config such as plugins
 and their configurations, main options, and keybindings.
 
-### Installation
+### Installation and Configuration
 
 Clone the repository and (highly recommended) symlink the `CyberNvim/lua`
 directory with your `~/.config/nvim` directory with
@@ -73,10 +73,12 @@ ln -s ~/path/to/CyberNvim/nvim ~/.config/nvim
 ```
 
 Once done, Install any language servers, linters, etc. using `:MasonInstall`
-and/or `:LspInstall`.
-
-There is also a `:CyberUpdate` command that I use for updating all language
+and/or `:LspInstall`. Use `:CyberUpdate` to update all language
 servers, plugins, treesitter parsers, etc. at once.
+
+Your personal configuration is housed in `user/user_config.lua`. Use `user/example_user_config.lua`
+as a guide to writing your own configuration. The default user configuration is the one I personally use.
+Feel free to overwrite it completely!
 
 ### Dependencies
 
