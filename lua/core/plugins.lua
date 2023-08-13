@@ -25,9 +25,6 @@ require("lazy").setup({
       "nvim-tree/nvim-web-devicons",
       "MunifTanjim/nui.nvim",
     },
-    config = function()
-      require("plugin-configs.neo-tree")
-    end,
   },
   {
     "folke/neodev.nvim",
@@ -257,7 +254,12 @@ require("lazy").setup({
         run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build \
          build --config Release && cmake --install build --prefix build",
       },
-      { "desdic/telescope-rooter.nvim" },
+      {
+        "ahmedkhalf/project.nvim",
+        config = function()
+          require("project_nvim").setup()
+        end
+      },
     },
     config = function()
       require("plugin-configs.telescope")
