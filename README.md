@@ -63,22 +63,35 @@ user-defined files or to override parts of the config such as plugins
 and their configurations, main options, and keybindings.
 
 ### Installation and Configuration
-
-Clone the repository and (highly recommended) symlink the `CyberNvim/lua`
-directory with your `~/.config/nvim` directory with
+First, backup (rename, move etc.) your existing nvim configuration.
+Clone the repository and symlink it with your `~/.config/nvim` directory with
 
 ``` bash
 git clone https://github.com/pgosar/CyberNvim
 ln -s ~/path/to/CyberNvim/nvim ~/.config/nvim
 ```
 
+Alternatively, directly clone it to the nvim folder:
+```bash
+git clone https://github.com/pgosar/CyberNvim ~/.config/nvim
+```
+
+If you want to backup your personal configuration to git I suggest doing the following:
+```bash
+cd ~/.config/nvim
+rm -rf .git
+cd lua/user
+git init
+```
+
 Once done, Install any language servers, linters, etc. using `:MasonInstall`
 and/or `:LspInstall`. Use `:CyberUpdate` to update all language
-servers, plugins, treesitter parsers, etc. at once.
+servers, plugins, treesitter parsers, etc. at once. Run `:checkhealth` to find
+any common issues with the installation.
 
 Your personal configuration is housed in `user/user_config.lua`. Use `user/example_user_config.lua`
-as a guide to writing your own configuration. The default user configuration is the one I personally use.
-Feel free to overwrite it completely!
+as a guide to writing your own configuration. The default user configuration is the one
+I personally use. Feel free to overwrite it completely!
 
 ### Dependencies
 
