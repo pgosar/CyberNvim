@@ -53,9 +53,9 @@ SpeedyToUnderstandNvim but that doesn't have the same ring to it.
 
 The main way it saves on line count is by using a "one size fits most"
 rather than "one size fits all" approach. It is built more as a starting
-point for users who require highly advanced setups. This is similar to
-[NvChad](https://github.com/NvChad/NvChad/tree/v2.0), but with will not
-require more than a few minutes of manual work to get a complete IDE setup.
+point for users who require highly advanced setups. This approach is similar to
+[NvChad](https://github.com/NvChad/NvChad/tree/v2.0), but CyberNvim offers a far more
+complete base experience for those wanting the IDE experience.
 
 It pays a surprisingly low price for the small codebase.
 It remains simple to expand upon the config by sourcing extra
