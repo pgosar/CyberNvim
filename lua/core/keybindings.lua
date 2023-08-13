@@ -1,5 +1,6 @@
 local map = require("core.utils.utils").map
 vim.g.mapleader = " "
+local M = {}
 
 -- Trouble
 map("n", "tr", "<CMD>TroubleToggle lsp_references<CR>")
@@ -42,10 +43,12 @@ map("c", "<C-p>", "<Up>")
 map("c", "<C-n>", "<Down>")
 
 -- Telescope
-map("n", "ff", "<CMD>Telescope git_files hidden=true<CR>")
-map("n", "fg", "<CMD>Telescope live_grep<CR>")
-map("n", "fb", "<CMD>Telescope buffers<CR>")
-map("n", "fh", "<CMD>Telescope help_tags<CR>")
+map("n", "<leader>ff", "<CMD>Telescope git_files hidden=true<CR>")
+map("n", "<leader>fg", "<CMD>Telescope live_grep<CR>")
+map("n", "<leader>fb", "<CMD>Telescope buffers<CR>")
+map("n", "<leader>fh", "<CMD>Telescope help_tags<CR>")
+map("n", "<leader>fa", "<CMD>Telescope aerial<CR>")
+map("n", "<leader>fp", "<CMD>Telescope projects<CR>")
 
 -- MoveLine
 map("n", "<A-j>", "<CMD>MoveLine(1)<CR>")
@@ -100,55 +103,52 @@ map("n", "<leader>j", "<CMD>HopWord<CR>")
 
 -- making this a function here because all it does is create keybinds for gitsigns but
 -- it needs to be attached to an on_attach function.
-local function _gitsigns()
-	local gs = package.loaded.gitsigns
-	local map = require("core.utils.utils").map
-	map("n", "]c", function()
-		if vim.wo.diff then
-			return "]c"
-		end
-		vim.schedule(function()
-			gs.next_hunk()
-		end)
-		return "<Ignore>"
-	end, { expr = true })
-	map("n", "[c", function()
-		if vim.wo.diff then
-			return "[c"
-		end
-		vim.schedule(function()
-			gs.prev_hunk()
-		end)
-		return "<Ignore>"
-	end, { expr = true })
+M.gitsigns = function()
+  local gs = package.loaded.gitsigns
+  map("n", "]c", function()
+    if vim.wo.diff then
+      return "]c"
+    end
+    vim.schedule(function()
+      gs.next_hunk()
+    end)
+    return "<Ignore>"
+  end, { expr = true })
+  map("n", "[c", function()
+    if vim.wo.diff then
+      return "[c"
+    end
+    vim.schedule(function()
+      gs.prev_hunk()
+    end)
+    return "<Ignore>"
+  end, { expr = true })
 
-	map("n", "<leader>hs", gs.stage_hunk)
-	map("n", "<leader>hr", gs.reset_hunk)
-	map("v", "<leader>hs", function()
-		gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
-	end)
-	map("v", "<leader>hr", function()
-		gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
-	end)
-	map("n", "<leader>hS", gs.stage_buffer)
-	map("n", "<leader>hu", gs.undo_stage_hunk)
-	map("n", "<leader>hR", gs.reset_buffer)
-	map("n", "<leader>hp", gs.preview_hunk)
-	map("n", "<leader>hb", function()
-		gs.blame_line({ full = true })
-	end)
-	map("n", "<leader>tb", gs.toggle_current_line_blame)
-	map("n", "<leader>hd", gs.diffthis)
-	map("n", "<leader>hD", function()
-		gs.diffthis("~")
-	end)
-	map("n", "<leader>td", gs.toggle_deleted)
-	map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
+  map("n", "<leader>hs", gs.stage_hunk)
+  map("n", "<leader>hr", gs.reset_hunk)
+  map("v", "<leader>hs", function()
+    gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+  end)
+  map("v", "<leader>hr", function()
+    gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
+  end)
+  map("n", "<leader>hS", gs.stage_buffer)
+  map("n", "<leader>hu", gs.undo_stage_hunk)
+  map("n", "<leader>hR", gs.reset_buffer)
+  map("n", "<leader>hp", gs.preview_hunk)
+  map("n", "<leader>hb", function()
+    gs.blame_line({ full = true })
+  end)
+  map("n", "<leader>tb", gs.toggle_current_line_blame)
+  map("n", "<leader>hd", gs.diffthis)
+  map("n", "<leader>hD", function()
+    gs.diffthis("~")
+  end)
+  map("n", "<leader>td", gs.toggle_deleted)
+  map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
 end
 
 -- Misc
 map("n", "<leader>as", "<CMD>ASToggle<CR>")
 
-return {
-	gitsigns = _gitsigns,
-}
+return M

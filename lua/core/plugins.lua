@@ -204,7 +204,7 @@ require("lazy").setup({
   },
   {
     "tiagovla/scope.nvim",
-    event = "VeryLazy",
+    event = "VimEnter",
     config = function()
       require("plugin-configs.scope")
     end,
@@ -246,6 +246,13 @@ require("lazy").setup({
     end,
   },
   {
+    "ahmedkhalf/project.nvim",
+    event = "VimEnter",
+    config = function()
+      require("project_nvim").setup()
+    end
+  },
+  {
     "nvim-telescope/telescope.nvim",
     cmd = "Telescope",
     dependencies = {
@@ -253,12 +260,6 @@ require("lazy").setup({
         "nvim-telescope/telescope-fzf-native.nvim",
         run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build \
          build --config Release && cmake --install build --prefix build",
-      },
-      {
-        "ahmedkhalf/project.nvim",
-        config = function()
-          require("project_nvim").setup()
-        end
       },
     },
     config = function()
