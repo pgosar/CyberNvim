@@ -85,8 +85,7 @@ require("lazy").setup({
   },
   {
     "phaazon/hop.nvim",
-    event = "VeryLazy",
-
+    event = "VimEnter",
     branch = "v2",
     config = function()
       require("plugin-configs.hop")
@@ -177,7 +176,7 @@ require("lazy").setup({
       },
     },
   },
-  { "folke/trouble.nvim",  cmd = { "TroubleToggle", "Trouble" } },
+  { "folke/trouble.nvim", cmd = { "TroubleToggle", "Trouble" } },
   {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
@@ -209,7 +208,6 @@ require("lazy").setup({
       require("plugin-configs.scope")
     end,
   },
-  { "fedepujol/move.nvim", event = "VeryLazy" },
   {
     "akinsho/bufferline.nvim",
     lazy = false,

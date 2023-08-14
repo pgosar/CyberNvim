@@ -50,17 +50,9 @@ map("n", "<leader>fh", "<CMD>Telescope help_tags<CR>")
 map("n", "<leader>fa", "<CMD>Telescope aerial<CR>")
 map("n", "<leader>fp", "<CMD>Telescope projects<CR>")
 
--- MoveLine
-map("n", "<A-j>", "<CMD>MoveLine(1)<CR>")
-map("n", "<A-k>", "<CMD>MoveLine(-1)<CR>")
-map("n", "<A-h>", "<CMD>MoveHChar(-1)<CR>")
-map("n", "<A-l>", "<CMD>MoveHChar(1)<CR>")
-map("n", "<leader>wf", "<CMD>MoveWord(1)<CR>")
-map("n", "<leader>wb", "<CMD>MoveWord(-1)<CR>")
-map("v", "<A-j>", "<CMD>MoveBlock(1)<CR>")
-map("v", "<A-k>", "<CMD>MoveBlock(-1)<CR>")
-map("v", "<A-h>", "<CMD>MoveHBlock(-1)<CR>")
-map("v", "<A-l>", "<CMD>MoveHBlock(1)<CR>")
+-- Move lines and blocks
+map("x", "<A-j>", ":m '>+1<CR>gv=gv")
+map("x", "<A-k>", ":m '<-2<CR>gv=gv")
 
 -- Notify
 map("n", "<ESC>", "<CMD>lua require('notify').dismiss()<CR>")
