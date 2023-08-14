@@ -26,7 +26,6 @@
   "mason-null-ls.nvim": { "branch": "main", "commit": "ae0c5fa57468ac65617f1bf821ba0c3a1e251f0c" },
   "mason-nvim-dap.nvim": { "branch": "main", "commit": "6148b51db945b55b3b725da39eaea6441e59dff8" },
   "mason.nvim": { "branch": "main", "commit": "74eac861b013786bf231b204b4ba9a7d380f4bd9" },
-  "move.nvim": { "branch": "main", "commit": "d663b74b4e38f257aae757541c9076b8047844d6" },
   "neo-tree.nvim": { "branch": "main", "commit": "cac2e1bfa1ecd5bd0ce7ae29e12efb3ba5a7347d" },
   "neodev.nvim": { "branch": "main", "commit": "9a5c0f0de5c15fba52d4fb83d425d3f4fa7abfa1" },
   "neoscroll.nvim": { "branch": "master", "commit": "4bc0212e9f2a7bc7fe7a6bceb15b33e39f0f41fb" },

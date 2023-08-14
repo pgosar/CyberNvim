@@ -32,4 +32,47 @@ M.autocommands = {
   activate_neotree = true,
 }
 
+-- set to false to disable plugins
+M.enable_plugins = {
+  aerial = true,
+  alpha = true,
+  autosave = true,
+  bufferline = true,
+  comment = true,
+  copilot = true,
+  dressing = true,
+  gitsigns = true,
+  hop = true,
+  indent_blankline = true,
+  inlay_hints = true,
+  lsp_zero = true,
+  lualine = true,
+  neodev = true,
+  neoscroll = true,
+  neotree = true,
+  session_manager = true,
+  noice = true,
+  null_ls = true,
+  autopairs = true,
+  cmp = true,
+  colorizer = true,
+  dap = true,
+  notify = true,
+  surround = true,
+  treesitter = true,
+  ufo = true,
+  onedark = true,
+  project = true,
+  scope = true,
+  telescope = true,
+  toggleterm = true,
+  trouble = true,
+  twilight = true,
+  whichkey = true,
+  zen = true,
+}
+M.plugins = {
+  -- add plugins
+}
+
 return M
