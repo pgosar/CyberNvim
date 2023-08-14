@@ -1,6 +1,18 @@
 require("lazy").setup({
-  { "joshdick/onedark.vim" },
-  { "NvChad/nvim-colorizer.lua", event = "VimEnter" },
+  {
+    "stevearc/aerial.nvim",
+    cmd = "AerialToggle",
+    config = function()
+      require("plugin-configs.aerial")
+    end,
+  },
+  {
+    "goolord/alpha-nvim",
+    lazy = false,
+    config = function()
+      require("plugin-configs.alpha")
+    end,
+  },
   {
     "okuuva/auto-save.nvim",
     event = "VeryLazy",
@@ -9,28 +21,17 @@ require("lazy").setup({
     end,
   },
   {
-    "windwp/nvim-autopairs",
-    event = "InsertEnter",
+    "akinsho/bufferline.nvim",
+    lazy = false,
     config = function()
-      require("plugin-configs.autopairs")
+      require("plugin-configs.bufferline")
     end,
   },
   {
-    "nvim-neo-tree/neo-tree.nvim",
-    cmd = "Neotree",
-    branch = "main",
-    init = require("core.utils.utils").open_neotree,
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-tree/nvim-web-devicons",
-      "MunifTanjim/nui.nvim",
-    },
-  },
-  {
-    "folke/neodev.nvim",
+    "numToStr/Comment.nvim",
     event = "VeryLazy",
     config = function()
-      require("neodev").setup()
+      require("Comment").setup()
     end,
   },
   {
@@ -48,39 +49,17 @@ require("lazy").setup({
     end,
   },
   {
-    "karb94/neoscroll.nvim",
-    event = "VeryLazy",
-    config = function()
-      require("plugin-configs.neoscroll")
-    end,
-  },
-  {
-    "akinsho/toggleterm.nvim",
-    event = "VeryLazy",
-    config = function()
-      -- this is going to be used for keybindings
-      _G.term = require("plugin-configs.toggleterm")
-    end,
-  },
-  {
-    "goolord/alpha-nvim",
-    lazy = false,
-    config = function()
-      require("plugin-configs.alpha")
-    end,
-  },
-  {
-    "numToStr/Comment.nvim",
-    event = "VeryLazy",
-    config = function()
-      require("Comment").setup()
-    end,
-  },
-  {
     "stevearc/dressing.nvim",
     event = "VeryLazy",
     config = function()
       require("plugin-configs.dressing")
+    end,
+  },
+  {
+    "lewis6991/gitsigns.nvim",
+    event = "VimEnter",
+    config = function()
+      require("plugin-configs.gitsigns")
     end,
   },
   {
@@ -92,25 +71,10 @@ require("lazy").setup({
     end,
   },
   {
-    "rcarriga/nvim-notify",
-    lazy = false,
-    config = function()
-      require("plugin-configs.notify")
-    end,
-  },
-  {
-    "folke/noice.nvim",
+    "lukas-reineke/indent-blankline.nvim",
     event = "VimEnter",
     config = function()
-      require("plugin-configs.noice")
-    end,
-  },
-  {
-    "kevinhwang91/nvim-ufo",
-    event = "VimEnter",
-    dependencies = "kevinhwang91/promise-async",
-    config = function()
-      require("ufo").setup()
+      require("plugin-configs.indent-blankline")
     end,
   },
   {
@@ -134,54 +98,49 @@ require("lazy").setup({
     },
   },
   {
-    "hrsh7th/nvim-cmp",
-    event = "InsertEnter",
-    config = function()
-      require("plugin-configs.cmp")
-    end,
-    dependencies = {
-      { "onsails/lspkind.nvim" },
-      { "hrsh7th/cmp-nvim-lsp" },
-      { "hrsh7th/cmp-buffer" },
-      { "hrsh7th/cmp-path" },
-      { "saadparwaiz1/cmp_luasnip" },
-      { "hrsh7th/cmp-nvim-lua" },
-      { "L3MON4D3/LuaSnip" },
-      { "rafamadriz/friendly-snippets" },
-    },
-  },
-  {
-    "lewis6991/gitsigns.nvim",
-    event = "VimEnter",
-    config = function()
-      require("plugin-configs.gitsigns")
-    end,
-  },
-  {
-    "lukas-reineke/indent-blankline.nvim",
-    event = "VimEnter",
-    config = function()
-      require("plugin-configs.indent-blankline")
-    end,
-  },
-  {
-    "mfussenegger/nvim-dap",
-    event = "VeryLazy",
-    dependencies = {
-      {
-        "jay-babu/mason-nvim-dap.nvim",
-        config = function()
-          require("mason-nvim-dap").setup()
-        end,
-      },
-    },
-  },
-  { "folke/trouble.nvim", cmd = { "TroubleToggle", "Trouble" } },
-  {
     "nvim-lualine/lualine.nvim",
     event = "VeryLazy",
     config = function()
       require("plugin-configs.lualine")
+    end,
+  },
+  {
+    "folke/neodev.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("neodev").setup()
+    end,
+  },
+  {
+    "karb94/neoscroll.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("plugin-configs.neoscroll")
+    end,
+  },
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    cmd = "Neotree",
+    branch = "main",
+    init = require("core.utils.utils").open_neotree,
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons",
+      "MunifTanjim/nui.nvim",
+    },
+  },
+  {
+    "Shatur/neovim-session-manager",
+    event = "VimEnter",
+    config = function()
+      require("plugin-configs.session")
+    end,
+  },
+  {
+    "folke/noice.nvim",
+    event = "VimEnter",
+    config = function()
+      require("plugin-configs.noice")
     end,
   },
   {
@@ -202,17 +161,47 @@ require("lazy").setup({
     },
   },
   {
-    "tiagovla/scope.nvim",
-    event = "VimEnter",
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
     config = function()
-      require("plugin-configs.scope")
+      require("plugin-configs.autopairs")
     end,
   },
   {
-    "akinsho/bufferline.nvim",
+    "hrsh7th/nvim-cmp",
+    event = "InsertEnter",
+    config = function()
+      require("plugin-configs.cmp")
+    end,
+    dependencies = {
+      { "onsails/lspkind.nvim" },
+      { "hrsh7th/cmp-nvim-lsp" },
+      { "hrsh7th/cmp-buffer" },
+      { "hrsh7th/cmp-path" },
+      { "saadparwaiz1/cmp_luasnip" },
+      { "hrsh7th/cmp-nvim-lua" },
+      { "L3MON4D3/LuaSnip" },
+      { "rafamadriz/friendly-snippets" },
+    },
+  },
+  { "NvChad/nvim-colorizer.lua", event = "VimEnter" },
+  {
+    "mfussenegger/nvim-dap",
+    event = "VeryLazy",
+    dependencies = {
+      {
+        "jay-babu/mason-nvim-dap.nvim",
+        config = function()
+          require("mason-nvim-dap").setup()
+        end,
+      },
+    },
+  },
+  {
+    "rcarriga/nvim-notify",
     lazy = false,
     config = function()
-      require("plugin-configs.bufferline")
+      require("plugin-configs.notify")
     end,
   },
   {
@@ -220,62 +209,6 @@ require("lazy").setup({
     cmd = "VimEnter",
     config = function()
       require("nvim-surround").setup()
-    end,
-  },
-  {
-    "stevearc/aerial.nvim",
-    cmd = "AerialToggle",
-    config = function()
-      require("plugin-configs.aerial")
-    end,
-  },
-  {
-    "folke/zen-mode.nvim",
-    cmd = "ZenMode",
-    config = function()
-      require("plugin-configs.zenmode")
-    end,
-  },
-  {
-    "folke/twilight.nvim",
-    cmd = { "Twilight", "TwilightEnable", "TwilightDisable" },
-    config = function()
-      require("plugin-configs.twilight")
-    end,
-  },
-  {
-    "ahmedkhalf/project.nvim",
-    event = "VimEnter",
-    config = function()
-      require("project_nvim").setup()
-    end
-  },
-  {
-    "nvim-telescope/telescope.nvim",
-    cmd = "Telescope",
-    dependencies = {
-      {
-        "nvim-telescope/telescope-fzf-native.nvim",
-        run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build \
-         build --config Release && cmake --install build --prefix build",
-      },
-    },
-    config = function()
-      require("plugin-configs.telescope")
-    end,
-  },
-  {
-    "folke/which-key.nvim",
-    event = "VeryLazy",
-    config = function()
-      require("plugin-configs.which-key")
-    end,
-  },
-  {
-    "Shatur/neovim-session-manager",
-    event = "VimEnter",
-    config = function()
-      require("plugin-configs.session")
     end,
   },
   {
@@ -300,6 +233,75 @@ require("lazy").setup({
       { "JoosepAlviste/nvim-ts-context-commentstring" },
     },
   },
+  {
+    "kevinhwang91/nvim-ufo",
+    event = "VimEnter",
+    dependencies = "kevinhwang91/promise-async",
+    config = function()
+      require("ufo").setup()
+    end,
+  },
+
+  { "joshdick/onedark.vim" },
+  {
+    "ahmedkhalf/project.nvim",
+    event = "VimEnter",
+    config = function()
+      require("project_nvim").setup()
+    end
+  },
+  {
+    "tiagovla/scope.nvim",
+    event = "VimEnter",
+    config = function()
+      require("plugin-configs.scope")
+    end,
+  },
+  {
+    "nvim-telescope/telescope.nvim",
+    cmd = "Telescope",
+    dependencies = {
+      {
+        "nvim-telescope/telescope-fzf-native.nvim",
+        run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build \
+         build --config Release && cmake --install build --prefix build",
+      },
+    },
+    config = function()
+      require("plugin-configs.telescope")
+    end,
+  },
+  {
+    "akinsho/toggleterm.nvim",
+    event = "VeryLazy",
+    config = function()
+      -- this is going to be used for keybindings
+      _G.term = require("plugin-configs.toggleterm")
+    end,
+  },
+  { "folke/trouble.nvim", cmd = { "TroubleToggle", "Trouble" } },
+  {
+    "folke/twilight.nvim",
+    cmd = { "Twilight", "TwilightEnable", "TwilightDisable" },
+    config = function()
+      require("plugin-configs.twilight")
+    end,
+  },
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("plugin-configs.which-key")
+    end,
+  },
+  {
+    "folke/zen-mode.nvim",
+    cmd = "ZenMode",
+    config = function()
+      require("plugin-configs.zenmode")
+    end,
+  },
+  require("user.user_config").plugins,
 }, {
   defaults = { lazy = true },
   performance = {
