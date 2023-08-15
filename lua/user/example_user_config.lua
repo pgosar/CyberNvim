@@ -102,9 +102,15 @@ M.plugins = {
   },
 }
 
+-- general options for misc. behavior. Shown are default values
+M.general_opts = {
+  colorscheme = "onedark",
+  autosave = false,
+}
+
 -- add extra configuration options here, like extra autocmds etc.
 -- feel free to create your own separate files and require them in here
-M.general = function()
+M.user_conf = function()
   vim.cmd([[
   autocmd VimEnter * lua vim.notify("Welcome to cybernvim", "info", {title = "Neovim"})]])
   require("user.autocmds")
