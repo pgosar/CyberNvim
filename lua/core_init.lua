@@ -22,21 +22,24 @@ for _, source in ipairs({
   "core.autocommands",
   "user.user_config",
 }) do
-	local status_ok, fault = pcall(require, source)
-	if not status_ok then
-		vim.api.nvim_err_writeln("Failed to load " .. source .. "\n\n" .. fault)
-	end
+  local status_ok, fault = pcall(require, source)
+  if not status_ok then
+    vim.api.nvim_err_writeln("Failed to load " .. source .. "\n\n" .. fault)
+  end
 end
 
 vim.notify = require("notify")
+
 local colorscheme = "onedark"
 local ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
 vim.o.background = "dark"
 if not ok then
-	vim.notify("colorscheme " .. colorscheme .. " not found!", "error")
-	return
+  vim.notify("colorscheme " .. colorscheme .. " not found!", "error")
+  return
 end
 
 vim.api.nvim_create_user_command("CyberUpdate", function()
-	require("core.utils.utils").updateAll()
+  require("core.utils.utils").updateAll()
 end, { desc = "Updates plugins, mason packages, treesitter parsers" })
+
+require("user.user_config").general()

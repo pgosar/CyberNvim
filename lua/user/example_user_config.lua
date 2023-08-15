@@ -10,6 +10,11 @@ M.null_ls_sources = {
   b.code_actions.gitsigns,
 }
 
+M.null_ls_ensure_installed = {
+  "stylua",
+  "jq"
+}
+
 M.formatting_servers = {
   ["rust_analyzer"] = { "rust" },
 }
@@ -73,6 +78,13 @@ M.enable_plugins = {
 }
 M.plugins = {
   -- add plugins
+}
+
+-- space for any extra configuration you want
+M.general = {
+  vim.cmd([[
+  autocmd VimEnter * lua vim.notify("Welcome to cybernvim", "info", {title = "Neovim"})
+]])
 }
 
 return M

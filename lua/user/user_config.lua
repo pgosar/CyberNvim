@@ -42,6 +42,10 @@ M.setup_sources = function(b)
   }
 end
 
+-- add null_ls sources to auto-install
+M.null_ls_ensure_installed = {
+}
+
 -- add servers to be used for auto formatting here
 M.formatting_servers = {
   ["rust_analyzer"] = { "rust" },
@@ -83,5 +87,9 @@ M.enable_plugins = {
 -- add extra plugins here
 M.plugins = {
 }
+
+-- add extra configuration options here, like extra autocmds etc.
+M.general = function()
+end
 
 return M
