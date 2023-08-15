@@ -77,7 +77,7 @@ M.options = {
 M.autocommands = {
 }
 
--- see example_user_config. Set any to true to disable that plugin
+-- see example_user_config. Set any to false to disable that plugin
 M.enable_plugins = {
 }
 -- add extra plugins here
