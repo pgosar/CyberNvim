@@ -1,3 +1,5 @@
 .luarc.json
 ftdetect/
 after/
+user/
+!example_user_config.lua

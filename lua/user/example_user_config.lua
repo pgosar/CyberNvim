@@ -2,29 +2,41 @@
 
 local M = {}
 
--- the following two fields should not be changed beyond adding more
--- entries to the table
-local b = require("null-ls").builtins
-M.null_ls_sources = {
-  b.formatting.autopep8,
-  b.code_actions.gitsigns,
-}
+-- add any null-ls sources you want here
+M.setup_sources = function(b)
+  return {
+    b.formatting.autopep8,
+    b.code_actions.gitsigns,
+  }
+end
 
+-- add null_ls sources to auto-install
 M.null_ls_ensure_installed = {
   "stylua",
-  "jq"
+  "jq",
 }
 
+-- add servers to be used for auto formatting here
 M.formatting_servers = {
   ["rust_analyzer"] = { "rust" },
-}
-
-M.options = {
-  opt = {
-    -- options
+  ["lua_ls"] = { "lua" },
+  ["null_ls"] = {
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
   },
 }
 
+-- options you put here will override or add on to the default options
+M.options = {
+  opt = {
+    confirm = false,
+  },
+}
+
+-- Set any to false that you want disabled in here.
+-- Default value is true if left blank
 M.autocommands = {
   inlay_hints = true,
   alpha_folding = true,
@@ -38,6 +50,7 @@ M.autocommands = {
 }
 
 -- set to false to disable plugins
+-- Default value is true if left blank
 M.enable_plugins = {
   aerial = true,
   alpha = true,
@@ -76,15 +89,25 @@ M.enable_plugins = {
   whichkey = true,
   zen = true,
 }
+
+-- add extra plugins in here
 M.plugins = {
-  -- add plugins
+  {
+    "nvim-neotest/neotest",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      "antoinemadec/FixCursorHold.nvim",
+    },
+  },
 }
 
--- space for any extra configuration you want
-M.general = {
+-- add extra configuration options here, like extra autocmds etc.
+-- feel free to create your own separate files and require them in here
+M.general = function()
   vim.cmd([[
-  autocmd VimEnter * lua vim.notify("Welcome to cybernvim", "info", {title = "Neovim"})
-]])
-}
+  autocmd VimEnter * lua vim.notify("Welcome to cybernvim", "info", {title = "Neovim"})]])
+  require("user.autocmds")
+end
 
 return M
