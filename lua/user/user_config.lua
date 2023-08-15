@@ -84,11 +84,13 @@ M.autocommands = {
 -- see example_user_config. Set any to false to disable that plugin
 M.enable_plugins = {
 }
+
 -- add extra plugins here
 M.plugins = {
 }
 
 -- add extra configuration options here, like extra autocmds etc.
+-- feel free to create your own separate files and require them in here
 M.general = function()
 end
 

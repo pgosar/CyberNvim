@@ -42,4 +42,7 @@ vim.api.nvim_create_user_command("CyberUpdate", function()
   require("core.utils.utils").updateAll()
 end, { desc = "Updates plugins, mason packages, treesitter parsers" })
 
-require("user.user_config").general()
+local conf = require("user.user_config")
+if conf.general then
+  conf.general()
+end
