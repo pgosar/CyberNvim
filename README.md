@@ -21,6 +21,7 @@ and a great example for beginners who want to learn how to configure Neovim.
 
 Including but not limited to...
 
+* Incredibly fast speeds!
 * Fully featured intellisense (linters, code formatters, auto-complete)!
 * floating and inline function documentation (and other goodies!)
 * Auto-save and formatting
@@ -30,12 +31,13 @@ Including but not limited to...
 * File explorer and file overview (functions, classes etc.)
 * Git integration with [lazygit](https://github.com/jesseduffield/lazygit)
 and more
-* Debuggers
-* Aesthetic yet subtle UI enhancements (thanks [Noice](https://github.com/folke/noice.nvim)!)
+* Complete debugging support
+* Aesthetic yet subtle UI enhancements!
+* Complete freedom to remove every builtin feature and/or add your own
 
 ### Intractable codebase BAD 👎 ☹️
 
-Why use many lines when few do trick?
+Why use many lines when few do the trick?
 
 Despite offering a complete IDE-like feature set, CyberNvim's codebase is simple
 , modular, and built to be broken (in a good way). It was made for people
@@ -44,23 +46,24 @@ simplicity and flexibility to make widespread changes even as a beginner program
 Strict and intuitive code organization makes the codebase especially easy to
 understand.
 
-At only 1500 lines of Lua (as of August 2023), CyberNvim is around 3-5 times
+At only 1600 lines of Lua (as of August 2023), CyberNvim is around 3-5 times
 smaller than similar distributions (AstroNvim at 6.3k lines of Lua, LunarVim
 at 8k, LazyVim at 5k etc.). The codebase is built to be understood in less
 than 10 minutes with simple, self-documenting code and an intuitive file
 structure (there are only five folders!). I would call it
 SpeedyToUnderstandNvim but that doesn't have the same ring to it.
 
-The main way it saves on line count is by using a "one size fits most"
-rather than "one size fits all" approach. It is built more as a starting
-point for users who require highly advanced setups. This approach is similar to
+The main way the codebase saves on line count is by minimizing unnecessary
+abstractions wherever possible. One of CyberNvim's goals is to maintain a
+minimalistic codebase with a style similar to what many create as their own
+personal configuration rahter than what one would expect in a large
+software project. This approach is similar to
 [NvChad](https://github.com/NvChad/NvChad/tree/v2.0), but CyberNvim offers a far more
 complete base experience for those wanting the IDE experience.
 
-It pays a surprisingly low price for the small codebase.
-It remains simple to expand upon the config by sourcing extra
-user-defined files or to override parts of the config such as plugins
-and their configurations, main options, and keybindings.
+It pays a surprisingly low price for the small codebase. It has every major feature
+one would expect of a full-scale Neovim distribution built in and it remains simple
+to expand upon or completely overhaul the config.
 
 ### Installation and Configuration
 First, backup (rename, move etc.) your existing nvim configuration.
@@ -92,8 +95,7 @@ servers, plugins, treesitter parsers, etc. at once. Run `:checkhealth` to find
 any common issues with the installation.
 
 Your personal configuration is housed in `user/user_config.lua`. Use `user/example_user_config.lua`
-as a guide to writing your own configuration. The default user configuration is the one
-I personally use. Feel free to overwrite it completely!
+as a guide to writing your own configuration.
 
 ### Dependencies
 

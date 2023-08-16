@@ -2,14 +2,23 @@ local map = require("core.utils.utils").map
 vim.g.mapleader = " "
 local M = {}
 
+-- DAP
+_G.dap = require("dap")
+map("n", "<leader>dc", "<CMD>lua dap.continue()<CR>")
+map("n", "<leader>n", "<CMD>lua dap.step_over()<CR>")
+map("n", "<leader>s", "<CMD>lua dap.step_into()<CR>")
+map("n", "<leader>so", "<CMD>lua dap.step_out()<CR>")
+map("n", "<leader>b", "<CMD>lua dap.toggle_breakpoint()<CR>")
+map("n", "<leader>dq", "<CMD>lua dap.disconnect({ terminateDebuggee = true })<CR>")
+
 -- Trouble
 map("n", "tr", "<CMD>TroubleToggle lsp_references<CR>")
 map("n", "td", "<CMD>TroubleToggle lsp_definitions<CR>")
 map("n", "cd", "<CMD>Trouble<CR>")
 
 -- UFO
-map("n", "zR", "<CMD>lua require('ufo').openAllFolds<CR>")
-map("n", "zM", "<CMD>lua require('ufo').closeAllFolds<CR>")
+map("n", "zR", "<CMD>lua require('ufo').openAllFolds()<CR>")
+map("n", "zM", "<CMD>lua require('ufo').closeAllFolds()<CR>")
 
 -- ZenMode
 map("n", "<leader>zm", "<CMD>ZenMode<CR>")

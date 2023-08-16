@@ -123,7 +123,7 @@ require("lazy").setup({
     cond = enable == nil or enable.neodev == nil or enable.neodev == true,
     event = "VeryLazy",
     config = function()
-      require("neodev").setup()
+      require("plugin-configs.neodev")
     end,
   },
   {
@@ -211,11 +211,26 @@ require("lazy").setup({
     "mfussenegger/nvim-dap",
     cond = enable == nil or enable.dap == nil or enable.dap == true,
     event = "VeryLazy",
+    config = function()
+      require("plugin-configs.dap")
+    end,
     dependencies = {
       {
         "jay-babu/mason-nvim-dap.nvim",
         config = function()
           require("mason-nvim-dap").setup()
+        end,
+      },
+      {
+        "rcarriga/nvim-dap-ui",
+        config = function()
+          require("dapui").setup()
+        end,
+      },
+      {
+        "theHamsta/nvim-dap-virtual-text",
+        config = function()
+          require("nvim-dap-virtual-text").setup()
         end,
       },
     },
@@ -270,7 +285,7 @@ require("lazy").setup({
   },
   {
     "joshdick/onedark.vim",
-    cond = enable == nil or enable.onedark == nil or enable.onedark == true
+    cond = enable == nil or enable.onedark == nil or enable.onedark == true,
   },
   {
     "ahmedkhalf/project.nvim",
