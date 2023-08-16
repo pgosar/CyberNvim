@@ -94,8 +94,12 @@ and/or `:LspInstall`. Use `:CyberUpdate` to update all language
 servers, plugins, treesitter parsers, etc. at once. Run `:checkhealth` to find
 any common issues with the installation.
 
-Your personal configuration is housed in `user/user_config.lua`. Use `user/example_user_config.lua`
-as a guide to writing your own configuration.
+Your personal configuration is housed in `user/user_config.lua`. Use `example_user_config.lua`
+as a guide to writing your own configuration. As an initial quickstart, I recommend
+running the following command:
+```bash
+cp ~/.config/nvim/lua/example_user_config.lua ~/.config/nvim/lua/user/user_config.lua
+```
 
 ### Dependencies
 

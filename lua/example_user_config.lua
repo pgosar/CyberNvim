@@ -1,4 +1,4 @@
--- use a user_config.lua file to provide your own configuration
+-- use a user/user_config.lua file to provide your own configuration
 
 local M = {}
 
