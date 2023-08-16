@@ -31,6 +31,4 @@ if not _G.autosave then
     servers = require("user.user_config").formatting_servers,
   })
 end
-
-require("core.language-server-configs.ls_init")
 lsp.setup()
