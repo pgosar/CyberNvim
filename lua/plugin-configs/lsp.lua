@@ -28,4 +28,5 @@ if not require("core.utils.utils").plugin_loaded("autosave") then
     servers = require("user.user_config").formatting_servers,
   })
 end
+
 lsp.setup()
