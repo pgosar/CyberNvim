@@ -1,9 +1,5 @@
 local lsp = require("lsp-zero")
 lsp.preset("minimal")
-lsp.on_attach(function(_, bufnr)
-  lsp.default_keymaps({ buffer = bufnr })
-  vim.keymap.set("n", "gr", "<cmd>Telescope lsp_references<cr>", { buffer = true })
-end)
 
 lsp.set_sign_icons({
   error = "✘",
@@ -22,7 +18,8 @@ lsp.set_server_config({
     },
   },
 })
-if not _G.autosave then
+
+if not require("core.utils.utils").plugin_loaded("autosave") then
   lsp.format_on_save({
     format_opts = {
       async = false,

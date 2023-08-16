@@ -1,8 +1,8 @@
-local enable = require("user.user_config").enable_plugins
+local loaded = require("core.utils.utils").plugin_loaded
 require("lazy").setup({
   {
     "stevearc/aerial.nvim",
-    cond = enable == nil or enable.aerial == nil or enable.aerial == true,
+    cond = loaded("aerial"),
     cmd = "AerialToggle",
     config = function()
       require("plugin-configs.aerial")
@@ -10,7 +10,7 @@ require("lazy").setup({
   },
   {
     "goolord/alpha-nvim",
-    cond = enable == nil or enable.alpha == nil or enable.alpha == true,
+    cond = loaded("alpha"),
     lazy = false,
     config = function()
       require("plugin-configs.alpha")
@@ -18,7 +18,7 @@ require("lazy").setup({
   },
   {
     "okuuva/auto-save.nvim",
-    cond = enable == nil or enable.autosave == nil or enable.autosave == true,
+    cond = loaded("autosave"),
     event = "VeryLazy",
     config = function()
       require("plugin-configs.auto-save")
@@ -26,7 +26,7 @@ require("lazy").setup({
   },
   {
     "akinsho/bufferline.nvim",
-    cond = enable == nil or enable.bufferline == nil or enable.bufferline == true,
+    cond = loaded("bufferline"),
     lazy = false,
     config = function()
       require("plugin-configs.bufferline")
@@ -34,30 +34,15 @@ require("lazy").setup({
   },
   {
     "numToStr/Comment.nvim",
-    cond = enable == nil or enable.comment == nil or enable.comment == true,
+    cond = loaded("comment"),
     event = "VeryLazy",
     config = function()
       require("Comment").setup()
     end,
   },
   {
-    "zbirenbaum/copilot.lua",
-    cond = enable == nil or enable.copilot == nil or enable.copilot == true,
-    cmd = "Copilot",
-    event = "InsertEnter",
-    dependencies = {
-      "zbirenbaum/copilot-cmp",
-      config = function()
-        require("copilot_cmp").setup()
-      end,
-    },
-    config = function()
-      require("plugin-configs.copilot")
-    end,
-  },
-  {
     "stevearc/dressing.nvim",
-    cond = enable == nil or enable.dressing == nil or enable.dressing == true,
+    cond = loaded("dressing"),
     event = "VeryLazy",
     config = function()
       require("plugin-configs.dressing")
@@ -65,7 +50,7 @@ require("lazy").setup({
   },
   {
     "lewis6991/gitsigns.nvim",
-    cond = enable == nil or enable.gitsigns == nil or enable.gitsigns == true,
+    cond = loaded("gitsigns"),
     event = "VimEnter",
     config = function()
       require("plugin-configs.gitsigns")
@@ -73,7 +58,7 @@ require("lazy").setup({
   },
   {
     "phaazon/hop.nvim",
-    cond = enable == nil or enable.hop == nil or enable.hop == true,
+    cond = loaded("hop"),
     event = "VimEnter",
     branch = "v2",
     config = function()
@@ -82,7 +67,7 @@ require("lazy").setup({
   },
   {
     "lukas-reineke/indent-blankline.nvim",
-    cond = enable == nil or enable.indent_blankline == nil or enable.indent_blankline == true,
+    cond = loaded("indent_blankline"),
     event = "VimEnter",
     config = function()
       require("plugin-configs.indent-blankline")
@@ -90,7 +75,7 @@ require("lazy").setup({
   },
   {
     "lvimuser/lsp-inlayhints.nvim",
-    cond = enable == nil or enable.inlay_hints == nil or enable.inlay_hints == true,
+    cond = loaded("inlay_hints"),
     event = "VeryLazy",
     config = function()
       require("lsp-inlayhints").setup()
@@ -98,7 +83,7 @@ require("lazy").setup({
   },
   {
     "VonHeikemen/lsp-zero.nvim",
-    cond = enable == nil or enable.lsp_zero == nil or enable.lsp_zero == true,
+    cond = loaded("lsp_zero"),
     event = { "BufReadPre", "BufNewFile" },
     branch = "v2.x",
     config = function()
@@ -112,7 +97,7 @@ require("lazy").setup({
   },
   {
     "nvim-lualine/lualine.nvim",
-    cond = enable == nil or enable.lualine == nil or enable.lualine == true,
+    cond = loaded("lualine"),
     event = "VeryLazy",
     config = function()
       require("plugin-configs.lualine")
@@ -120,7 +105,7 @@ require("lazy").setup({
   },
   {
     "folke/neodev.nvim",
-    cond = enable == nil or enable.neodev == nil or enable.neodev == true,
+    cond = loaded("neodev"),
     event = "VeryLazy",
     config = function()
       require("plugin-configs.neodev")
@@ -128,7 +113,7 @@ require("lazy").setup({
   },
   {
     "karb94/neoscroll.nvim",
-    cond = enable == nil or enable.neoscroll == nil or enable.neoscroll == true,
+    cond = loaded("neoscroll"),
     event = "VeryLazy",
     config = function()
       require("plugin-configs.neoscroll")
@@ -136,19 +121,17 @@ require("lazy").setup({
   },
   {
     "nvim-neo-tree/neo-tree.nvim",
-    cond = enable == nil or enable.neotree == nil or enable.neotree == true,
+    cond = loaded("neotree"),
     cmd = "Neotree",
     branch = "main",
     init = require("core.utils.utils").open_neotree,
     dependencies = {
-      "nvim-lua/plenary.nvim",
       "nvim-tree/nvim-web-devicons",
-      "MunifTanjim/nui.nvim",
     },
   },
   {
     "Shatur/neovim-session-manager",
-    cond = enable == nil or enable.session_manager == nil or enable.session_manager == true,
+    cond = loaded("session_manager"),
     event = "VimEnter",
     config = function()
       require("plugin-configs.session")
@@ -156,21 +139,21 @@ require("lazy").setup({
   },
   {
     "folke/noice.nvim",
-    cond = enable == nil or enable.noice == nil or enable.noice == true,
+    cond = loaded("noice"),
     event = "VimEnter",
     config = function()
       require("plugin-configs.noice")
     end,
   },
+  { "MunifTanjim/nui.nvim" },
   {
     "jose-elias-alvarez/null-ls.nvim",
-    cond = enable == nil or enable.null_ls == nil or enable.null_ls == true,
+    cond = loaded("null_ls"),
     event = { "BufReadPre", "BufNewFile" },
     config = function()
       require("plugin-configs.null-ls")
     end,
     dependencies = {
-      "nvim-lua/plenary.nvim",
       {
         "jay-babu/mason-null-ls.nvim",
         cmd = { "NullLsInstall", "NullLsUninstall" },
@@ -182,7 +165,7 @@ require("lazy").setup({
   },
   {
     "windwp/nvim-autopairs",
-    cond = enable == nil or enable.autopairs == nil or enable.autopairs == true,
+    cond = loaded("autopairs"),
     event = "InsertEnter",
     config = function()
       require("plugin-configs.autopairs")
@@ -190,7 +173,7 @@ require("lazy").setup({
   },
   {
     "hrsh7th/nvim-cmp",
-    cond = enable == nil or enable.cmp == nil or enable.cmp == true,
+    cond = loaded("cmp"),
     event = "InsertEnter",
     config = function()
       require("plugin-configs.cmp")
@@ -204,12 +187,27 @@ require("lazy").setup({
       { "hrsh7th/cmp-nvim-lua" },
       { "L3MON4D3/LuaSnip" },
       { "rafamadriz/friendly-snippets" },
+      {
+        "zbirenbaum/copilot.lua",
+        cond = loaded("copilot"),
+        cmd = "Copilot",
+        event = "InsertEnter",
+        dependencies = {
+          "zbirenbaum/copilot-cmp",
+          config = function()
+            require("copilot_cmp").setup()
+          end,
+        },
+        config = function()
+          require("plugin-configs.copilot")
+        end,
+      },
     },
   },
-  { "NvChad/nvim-colorizer.lua", cond = enable == nil or enable.colorizer, event = "VimEnter" },
+  { "NvChad/nvim-colorizer.lua", cond = loaded("colorizer"), event = "VimEnter" },
   {
     "mfussenegger/nvim-dap",
-    cond = enable == nil or enable.dap == nil or enable.dap == true,
+    cond = loaded("dap"),
     event = "VeryLazy",
     config = function()
       require("plugin-configs.dap")
@@ -237,7 +235,7 @@ require("lazy").setup({
   },
   {
     "rcarriga/nvim-notify",
-    cond = enable == nil or enable.notify == nil or enable.notify == true,
+    cond = loaded("notify"),
     lazy = false,
     config = function()
       require("plugin-configs.notify")
@@ -245,7 +243,7 @@ require("lazy").setup({
   },
   {
     "kylechui/nvim-surround",
-    cond = enable == nil or enable.surround == nil or enable.surround == true,
+    cond = loaded("surround"),
     cmd = "VimEnter",
     config = function()
       require("nvim-surround").setup()
@@ -253,7 +251,7 @@ require("lazy").setup({
   },
   {
     "nvim-treesitter/nvim-treesitter",
-    cond = enable == nil or enable.treesitter == nil or enable.treesitter == true,
+    cond = loaded("treesitter"),
     event = { "BufReadPost", "BufNewFile" },
     run = function()
       require("nvim-treesitter.install").update({ with_sync = true })
@@ -276,7 +274,7 @@ require("lazy").setup({
   },
   {
     "kevinhwang91/nvim-ufo",
-    cond = enable == nil or enable.ufo == nil or enable.ufo == true,
+    cond = loaded("ufo"),
     event = "VimEnter",
     dependencies = "kevinhwang91/promise-async",
     config = function()
@@ -285,11 +283,12 @@ require("lazy").setup({
   },
   {
     "joshdick/onedark.vim",
-    cond = enable == nil or enable.onedark == nil or enable.onedark == true,
+    cond = loaded("onedark"),
   },
+  { "nvim-lua/plenary.nvim" },
   {
     "ahmedkhalf/project.nvim",
-    cond = enable == nil or enable.project == nil or enable.project == true,
+    cond = loaded("project"),
     event = "VimEnter",
     config = function()
       require("project_nvim").setup()
@@ -297,7 +296,7 @@ require("lazy").setup({
   },
   {
     "tiagovla/scope.nvim",
-    cond = enable == nil or enable.scope == nil or enable.scope == true,
+    cond = loaded("scope"),
     event = "VimEnter",
     config = function()
       require("plugin-configs.scope")
@@ -305,7 +304,7 @@ require("lazy").setup({
   },
   {
     "nvim-telescope/telescope.nvim",
-    cond = enable == nil or enable.telescope == nil or enable.telescope == true,
+    cond = loaded("telescope"),
     cmd = "Telescope",
     dependencies = {
       {
@@ -320,7 +319,7 @@ require("lazy").setup({
   },
   {
     "akinsho/toggleterm.nvim",
-    cond = enable == nil or enable.toggleterm == nil or enable.toggleterm == true,
+    cond = loaded("toggleterm"),
     event = "VeryLazy",
     config = function()
       -- this is going to be used for keybindings
@@ -329,12 +328,12 @@ require("lazy").setup({
   },
   {
     "folke/trouble.nvim",
-    cond = enable == nil or enable.trouble == nil or enable.trouble == true,
+    cond = loaded("trouble"),
     cmd = { "TroubleToggle", "Trouble" },
   },
   {
     "folke/twilight.nvim",
-    cond = enable == nil or enable.twilight == nil or enable.twilight == true,
+    cond = loaded("twilight"),
     cmd = { "Twilight", "TwilightEnable", "TwilightDisable" },
     config = function()
       require("plugin-configs.twilight")
@@ -342,7 +341,7 @@ require("lazy").setup({
   },
   {
     "folke/which-key.nvim",
-    cond = enable == nil or enable.whichkey == nil or enable.whichkey == true,
+    cond = loaded("whichkey"),
     event = "VeryLazy",
     config = function()
       require("plugin-configs.which-key")
@@ -350,7 +349,7 @@ require("lazy").setup({
   },
   {
     "folke/zen-mode.nvim",
-    cond = enable == nil or enable.zen == nil or enable.zen == true,
+    cond = loaded("zen"),
     cmd = "ZenMode",
     config = function()
       require("plugin-configs.zenmode")

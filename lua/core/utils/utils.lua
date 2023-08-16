@@ -1,4 +1,6 @@
 local M = {}
+
+-- sets main options from options (table)
 M.vim_opts = function(options)
   if options ~= nil then
     for scope, table in pairs(options) do
@@ -9,6 +11,7 @@ M.vim_opts = function(options)
   end
 end
 
+-- sets keybinds
 M.map = function(mode, lhs, rhs, opts)
   local options = { noremap = true, silent = true }
   if opts then
@@ -17,6 +20,7 @@ M.map = function(mode, lhs, rhs, opts)
   vim.keymap.set(mode, lhs, rhs, options)
 end
 
+-- creating new file for alpha nvim buffer
 M.create_new_file = function()
   local filename = vim.fn.input("Enter the filename: ")
   if filename ~= "" then
@@ -24,11 +28,13 @@ M.create_new_file = function()
   end
 end
 
+-- helper for cmp completion
 M.has_words_before = function()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
   return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
 end
 
+-- creates floating terminal for toggleterm
 M.create_floating_terminal = function(term, cmd)
   local instance = nil
   if vim.fn.executable(cmd) == 1 then
@@ -48,6 +54,7 @@ M.create_floating_terminal = function(term, cmd)
       end,
     })
   end
+  -- check if TermExec function exists
   return function()
     if vim.fn.executable(cmd) == 1 then
       instance:toggle()
@@ -57,6 +64,7 @@ M.create_floating_terminal = function(term, cmd)
   end
 end
 
+-- updates all Mason packages
 M.updateMason = function()
   local registry = require("mason-registry")
   registry.refresh()
@@ -69,6 +77,7 @@ M.updateMason = function()
   end
 end
 
+-- updates everything in CyberNvim
 M.updateAll = function()
   require("lazy").sync({ wait = true })
   M.updateMason()
@@ -76,6 +85,8 @@ M.updateAll = function()
   vim.notify("CyberNvim updated!", "info")
 end
 
+
+-- open neotree whenever a directory is opened
 M.open_neotree = function()
   local path = vim.fn.expand("%:p")
   if vim.fn.isdirectory(path) ~= 0 then
@@ -83,6 +94,7 @@ M.open_neotree = function()
   end
 end
 
+-- check if attached lsp supports formatting
 M.supports_formatting = function()
   local clients = vim.lsp.get_active_clients()
   for _, client in ipairs(clients) do
@@ -91,6 +103,12 @@ M.supports_formatting = function()
     end
   end
   return false
+end
+
+-- check if plugin is loaded or not
+M.plugin_loaded = function(plugin)
+  local enable = require("user.user_config").enable_plugins
+  return enable == nil or enable[plugin] == nil or enable[plugin] == true
 end
 
 return M

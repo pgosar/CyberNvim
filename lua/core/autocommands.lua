@@ -67,7 +67,7 @@ if enabled == nil or enabled.session_saved_notification == nil or enabled.sessio
     desc = "notify session saved",
     group = augroup("session save", { clear = true }),
     pattern = "SessionSavePost",
-    command = "lua require('notify').notify('Session Saved', 'info')",
+    command = "lua vim.notify('Session Saved', 'info')",
   })
 end
 
