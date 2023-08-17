@@ -1,8 +1,9 @@
 local augroup = vim.api.nvim_create_augroup
 local cmd = vim.api.nvim_create_autocmd
 
-local enabled = require("user.user_config").autocommands
-if enabled == nil or enabled.inlay_hints == nil or enabled.inlay_hints == true then
+local group = require("user.user_config").autocommands
+local enabled = require("core.utils.utils").enabled
+if enabled(group, "inlay_hints") then
   cmd("LspAttach", {
     group = augroup("LspAttach_inlayhints", { clear = true }),
     callback = function(args)
@@ -16,7 +17,7 @@ if enabled == nil or enabled.inlay_hints == nil or enabled.inlay_hints == true t
   })
 end
 
-if enabled == nil or enabled.alpha_folding == nil or enabled.alpha_folding == true then
+if enabled(group, "alpha_folding") then
   cmd({ "FileType" }, {
     desc = "Disable folding for alpha buffer",
     group = augroup("alpha", { clear = true }),
@@ -25,7 +26,7 @@ if enabled == nil or enabled.alpha_folding == nil or enabled.alpha_folding == tr
   })
 end
 
-if enabled == nil or enabled.treesitter_folds == nil or enabled.treesitter_folds == true then
+if enabled(group, "treesitter_folds") then
   cmd({ "BufEnter", "BufAdd", "BufNew", "BufNewFile", "BufWinEnter" }, {
     desc = "fix tree sitter folds issue",
     group = augroup("treesitter folds", { clear = true }),
@@ -37,7 +38,7 @@ if enabled == nil or enabled.treesitter_folds == nil or enabled.treesitter_folds
   })
 end
 
-if enabled == nil or enabled.trailing_whitespace == nil or enabled.trailing_whitespace == true then
+if enabled(group, "trailing_whitespace") then
   cmd({ "BufWritePre" }, {
     desc = "remove trailing whitespace on save",
     group = augroup("remove trailing whitespace", { clear = true }),
@@ -46,7 +47,7 @@ if enabled == nil or enabled.trailing_whitespace == nil or enabled.trailing_whit
   })
 end
 
-if enabled == nil or enabled.remember_file_state == nil or enabled.remember_file_state == true then
+if enabled(group, "remember_file_state") then
   augroup("remember file state", { clear = true })
   cmd({ "BufWinLeave" }, {
     desc = "remember file state",
@@ -62,7 +63,7 @@ if enabled == nil or enabled.remember_file_state == nil or enabled.remember_file
   })
 end
 
-if enabled == nil or enabled.session_saved_notification == nil or enabled.session_saved_notification == true then
+if enabled(group, "session_saved_notification") then
   cmd({ "User" }, {
     desc = "notify session saved",
     group = augroup("session save", { clear = true }),
@@ -71,7 +72,7 @@ if enabled == nil or enabled.session_saved_notification == nil or enabled.sessio
   })
 end
 
-if enabled == nil or enabled.format_on_autosave == nil or enabled.format_on_autosave == true then
+if enabled(group, "format_on_autosave") then
   cmd("User", {
     desc = "stops format->write loop and joins format change with last user change when undoing",
     pattern = "AutoSaveWritePre",
@@ -88,7 +89,7 @@ if enabled == nil or enabled.format_on_autosave == nil or enabled.format_on_auto
   })
 end
 
-if enabled == nil or enabled.css_colorizer == nil or enabled.css_colorizer == true then
+if enabled(group, "css_colorizer") then
   cmd({ "Filetype" }, {
     desc = "activate colorizer",
     pattern = "css,scss,html,xml,svg,js,jsx,ts,tsx,php,vue",
@@ -102,7 +103,7 @@ if enabled == nil or enabled.css_colorizer == nil or enabled.css_colorizer == tr
   })
 end
 
-if enabled == nil or enabled.activate_neotree == nil or enabled.activate_neotree == true then
+if enabled(group, "activate_neotree") then
   cmd({ "BufEnter" }, {
     desc = "activate neo-tree",
     pattern = "*",

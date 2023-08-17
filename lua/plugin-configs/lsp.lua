@@ -19,7 +19,8 @@ lsp.set_server_config({
   },
 })
 
-if not require("core.utils.utils").plugin_loaded("autosave") then
+local group = require("user.user_config").enable_plugins
+if not require("core.utils.utils").enabled(group, "autosave") then
   lsp.format_on_save({
     format_opts = {
       async = false,

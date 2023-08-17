@@ -105,10 +105,9 @@ M.supports_formatting = function()
   return false
 end
 
--- check if plugin is loaded or not
-M.plugin_loaded = function(plugin)
-  local enable = require("user.user_config").enable_plugins
-  return enable == nil or enable[plugin] == nil or enable[plugin] == true
+-- check if option to disable is active from specified group
+M.enabled = function(group, opt)
+  return group == nil or group[opt] == nil or group[opt] == true
 end
 
 return M

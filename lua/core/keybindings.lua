@@ -1,10 +1,11 @@
 local map = require("core.utils.utils").map
-local loaded = require("core.utils.utils").plugin_loaded
+local group = require("user.user_config").enable_plugins
+local enabled = require("core.utils.utils").enabled
 vim.g.mapleader = " "
 local M = {}
 
 -- DAP
-if loaded("dap") then
+if enabled(group, "dap") then
   _G.dap = require("dap")
   map("n", "<leader>dc", "<CMD>lua dap.continue()<CR>")
   map("n", "<leader>n", "<CMD>lua dap.step_over()<CR>")
@@ -15,31 +16,31 @@ if loaded("dap") then
 end
 
 -- Trouble
-if loaded("trouble") then
+if enabled(group, "trouble") then
   map("n", "tr", "<CMD>TroubleToggle lsp_references<CR>")
   map("n", "td", "<CMD>TroubleToggle lsp_definitions<CR>")
   map("n", "cd", "<CMD>Trouble<CR>")
 end
 
 -- UFO
-if loaded("ufo") then
+if enabled(group, "ufo") then
   map("n", "zR", "<CMD>lua require('ufo').openAllFolds()<CR>")
   map("n", "zM", "<CMD>lua require('ufo').closeAllFolds()<CR>")
 end
 
 -- ZenMode
-if loaded("zen") then
+if enabled(group, "zen") then
   map("n", "<leader>zm", "<CMD>ZenMode<CR>")
 end
 
 -- NeoTree
-if loaded("neotree") then
+if enabled(group, "neotree") then
   map("n", "<leader>nt", "<CMD>Neotree reveal left<CR>")
   map("n", "<leader>nf", "<CMD>Neotree reveal float<CR>")
 end
 
 -- Aerial
-if loaded("aerial") then
+if enabled(group, "aerial") then
   map("n", "<leader>at", "<CMD>AerialToggle<CR>")
   map("n", "{", "<CMD>AerialPrev<CR>")
   map("n", "}", "<CMD>AerialNext<CR>")
@@ -65,7 +66,7 @@ map("c", "<C-p>", "<Up>")
 map("c", "<C-n>", "<Down>")
 
 -- Telescope
-if loaded("telescope") then
+if enabled(group, "telescope") then
   map("n", "<leader>ff", "<CMD>Telescope git_files hidden=true<CR>")
   map("n", "<leader>fg", "<CMD>Telescope live_grep<CR>")
   map("n", "<leader>fb", "<CMD>Telescope buffers<CR>")
@@ -79,13 +80,13 @@ map("x", "<A-j>", ":m '>+1<CR>gv=gv")
 map("x", "<A-k>", ":m '<-2<CR>gv=gv")
 
 -- Notify
-if loaded("notify") then
+if enabled(group, "notify") then
   map("n", "<ESC>", "<CMD>lua require('notify').dismiss()<CR>")
   map("i", "<ESC>", "<CMD>lua require('notify').dismiss()<CR><ESC>")
 end
 
 -- More LSP stuff
-if loaded("lsp_zero") then
+if enabled(group, "lsp_zero") then
   _G.buf = vim.lsp.buf
   -- lsp agnostic rename
   map("n", "rg", ":%s/<C-r><C-w>//g<Left><Left>")
@@ -101,13 +102,13 @@ if loaded("lsp_zero") then
 end
 
 -- Session
-if loaded("session_manager") then
+if enabled(group, "session_manager") then
   map("n", "<leader>s", "<CMD>SessionManager save_current_session<CR>")
   map("n", "<leader>o", "<CMD>SessionManager load_session<CR>")
 end
 
 -- ToggleTerm
-if loaded("toggleterm") then
+if enabled(group, "toggleterm") then
   local git_root = "cd $(git rev-parse --show-toplevel 2>/dev/null) && clear"
   map("n", "<leader><c-\\>t", "<CMD>ToggleTerm direction=tab<CR>")
   map("n", "<c-\\>", "<CMD>TermExec go_back=0 cmd='" .. git_root .. "'<CR>")
@@ -118,7 +119,7 @@ if loaded("toggleterm") then
 end
 
 -- Hop
-if loaded("hop") then
+if enabled(group, "hop") then
   map("n", "<leader>j", "<CMD>HopWord<CR>")
 end
 
@@ -126,7 +127,7 @@ end
 
 -- making this a function here because all it does is create keybinds for gitsigns but
 -- it needs to be attached to an on_attach function.
-if loaded("gitsigns") then
+if enabled(group, "gitsigns") then
   M.gitsigns = function()
     local gs = package.loaded.gitsigns
     map("n", "]c", function()
@@ -174,7 +175,7 @@ if loaded("gitsigns") then
 end
 
 -- autosave
-if loaded("autosave") then
+if enabled(group, "autosave") then
   map("n", "<leader>as", "<CMD>ASToggle<CR>")
 end
 return M

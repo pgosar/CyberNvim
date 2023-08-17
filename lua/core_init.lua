@@ -25,7 +25,8 @@ for _, source in ipairs({
   end
 end
 
-if require("core.utils.utils").plugin_loaded("notify") then
+local group = require("user.user_config").enable_plugins
+if require("core.utils.utils").enabled(group, "notify") then
   vim.notify = require("notify")
 end
 
