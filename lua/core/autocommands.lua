@@ -113,3 +113,12 @@ if enabled(group, "activate_neotree") then
     end,
   })
 end
+
+if enabled(group, "cmp") then
+  cmd({ "FileType" }, {
+    desc = "disable cmp in certain filetypes",
+    pattern = "gitcommit,gitrebase,text,markdown",
+    group = augroup("cmp_disable", { clear = true }),
+    command = "lua require('cmp').setup.buffer { enabled = false}",
+  })
+end
