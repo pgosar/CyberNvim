@@ -100,6 +100,12 @@ running the following command:
 ```bash
 cp ~/.config/nvim/lua/example_user_config.lua ~/.config/nvim/lua/user/user_config.lua
 ```
+Alternatively, you can also take a look at my own
+[configuration](https://github.com/pgosar/CyberNvim-Configuration.git). Simply
+clone this as your user folder.
+```bash
+git clone https://github.com/pgosar/CyberNvim-Configuration.git ~/.config/nvim/lua/user
+```
 
 ### Dependencies
 
