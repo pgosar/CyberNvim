@@ -7,18 +7,11 @@ lsp.set_sign_icons({
 	hint = "⚑",
 	info = "»",
 })
-
-lsp.set_server_config({
-	capabilities = {
-		textDocument = {
-			foldingRange = {
-				dynamicRegistration = false,
-				lineFoldingOnly = true,
-			},
-		},
-	},
-})
-
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.foldingRange = {
+	dynamicRegistration = false,
+	lineFoldingOnly = true,
+}
 local group = require("user.user_config").enable_plugins
 if not require("core.utils.utils").enabled(group, "autosave") then
 	lsp.format_on_save({

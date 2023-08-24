@@ -1,17 +1,17 @@
 require("toggleterm").setup({
-  open_mapping = [[<c-t>]],
-  on_open = function(_term)
-    vim.cmd("startinsert!")
-  end,
-  on_close = function(_term)
-    vim.cmd("startinsert!")
-  end,
-  size = 25,
-  direction = "horizontal",
-  float_opts = {
-    border = "curved",
-    winblend = 6,
-  },
+	open_mapping = [[<c-t>]],
+	on_open = function(_term)
+		vim.cmd("startinsert!")
+	end,
+	on_close = function(_term)
+		vim.cmd("startinsert!")
+	end,
+	size = 25,
+	direction = "horizontal",
+	float_opts = {
+		border = "curved",
+		winblend = 6,
+	},
 })
 
 local create_floating_terminal = require("core.utils.utils").create_floating_terminal
