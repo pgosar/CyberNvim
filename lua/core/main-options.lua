@@ -7,6 +7,7 @@ vim_opts({
 		signcolumn = "yes",
 		numberwidth = 6,
 		colorcolumn = "100",
+		guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20",
 
 		expandtab = true,
 		tabstop = 2,
