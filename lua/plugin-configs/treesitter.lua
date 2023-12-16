@@ -7,5 +7,8 @@ require("nvim-treesitter.configs").setup({
 	incremental_selection = { enable = true },
 	autotag = { enable = true },
 	rainbow = { enable = true, disable = { "html" }, extended_mode = false },
-	context_commentstring = { enable = true },
+})
+
+require("ts_context_commentstring").setup({
+	enable_autocmd = false,
 })

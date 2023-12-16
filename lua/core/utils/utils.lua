@@ -81,6 +81,8 @@ end
 M.updateAll = function()
 	require("lazy").sync({ wait = true })
 	M.updateMason()
+	-- make sure treesitter is loaded so it can update parsers
+	require("nvim-treesitter")
 	vim.cmd("TSUpdate")
 	vim.notify("CyberNvim updated!", "info")
 end
