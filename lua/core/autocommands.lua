@@ -122,3 +122,18 @@ if enabled(group, "cmp") then
 		command = "lua require('cmp').setup.buffer { enabled = false}",
 	})
 end
+
+-- fixes Trouble not closing when last window in tab
+cmd("BufEnter", {
+	group = vim.api.nvim_create_augroup("TroubleClose", { clear = true }),
+	callback = function()
+		local layout = vim.api.nvim_call_function("winlayout", {})
+		if
+			layout[1] == "leaf"
+			and vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(layout[2]), "filetype") == "Trouble"
+			and layout[3] == nil
+		then
+			vim.cmd("confirm quit")
+		end
+	end,
+})
