@@ -147,7 +147,10 @@ require("lazy").setup({
 		"nvim-neo-tree/neo-tree.nvim",
 		cond = enabled(group, "neotree"),
 		cmd = "Neotree",
-		branch = "main",
+		config = function()
+			require("plugin-configs.neo-tree")
+		end,
+		branch = "v3.x",
 		init = require("core.utils.utils").open_neotree,
 		dependencies = {
 			"nvim-tree/nvim-web-devicons",
