@@ -87,7 +87,7 @@ require("lazy").setup({
 		cond = enabled(group, "indent_blankline"),
 		event = "VimEnter",
 		config = function()
-			require("plugin-configs.indent-blankline")
+			require("ibl").setup()
 		end,
 	},
 	{
@@ -249,9 +249,6 @@ require("lazy").setup({
 		"rcarriga/nvim-notify",
 		cond = enabled(group, "notify"),
 		lazy = false,
-		config = function()
-			require("plugin-configs.notify")
-		end,
 	},
 	{
 		"kylechui/nvim-surround",

@@ -1,5 +1,4 @@
 require("aerial").setup({
-	filter_kind = false,
 	highlight_on_hover = true,
 	autojump = true,
 	highlight_on_jump = false,

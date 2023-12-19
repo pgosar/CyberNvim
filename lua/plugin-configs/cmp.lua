@@ -73,9 +73,7 @@ cmp.setup({
 		{ name = "luasnip", keyword_length = 2, priority = 70 },
 		{
 			name = "path",
-			option = {
-				trailing_slash = true,
-			},
+			option = { trailing_slash = true },
 			priority = 60,
 		},
 	},

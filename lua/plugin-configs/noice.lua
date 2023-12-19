@@ -1,9 +1,4 @@
 local ok, _ = pcall(require, "notify")
-local view = "mini"
-if ok then
-	view = "notify"
-end
-
 require("noice").setup({
 	messages = {
 		view = "mini",
@@ -11,22 +6,7 @@ require("noice").setup({
 	},
 	routes = {
 		{
-			filter = {
-				event = "msg_show",
-				kind = "search_count",
-			},
-			opts = { skip = true },
-		},
-		{
-			filter = {
-				event = "msg_show",
-				kind = "",
-				find = "written",
-			},
-			opts = { skip = true },
-		},
-		{
-			view = view,
+			view = ok and "notify" or "mini",
 			filter = {
 				event = "msg_show",
 				kind = "",
