@@ -1,28 +1,10 @@
 local cmp = require("cmp")
 local cmp_action = require("lsp-zero").cmp_action()
-
 local luasnip = require("luasnip")
 require("luasnip.loaders.from_vscode").lazy_load()
-
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
-local handlers = require("nvim-autopairs.completion.handlers")
-cmp.event:on(
-	"confirm_done",
-	cmp_autopairs.on_confirm_done({
-		filetypes = {
-			["*"] = {
-				["("] = {
-					kind = {
-						cmp.lsp.CompletionItemKind.Function,
-						cmp.lsp.CompletionItemKind.Method,
-					},
-					handler = handlers["*"],
-				},
-			},
-		},
-	})
-)
 
+cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 local has_words_before = require("core.utils.utils").has_words_before
 cmp.setup({
 	enabled = function()
@@ -95,24 +77,6 @@ cmp.setup({
 				trailing_slash = true,
 			},
 			priority = 60,
-		},
-	},
-	sorting = {
-		priority_weight = 2,
-		comparators = {
-			cmp.config.compare.exact,
-			(function()
-				local success, module = pcall(require, "copilot_cmp.comparators")
-				return success and module.prioritize or nil
-			end)(),
-			cmp.config.compare.offset,
-			cmp.config.compare.score,
-			cmp.config.compare.recently_used,
-			cmp.config.compare.locality,
-			cmp.config.compare.kind,
-			cmp.config.compare.sort_text,
-			cmp.config.compare.length,
-			cmp.config.compare.order,
 		},
 	},
 })

@@ -7,6 +7,7 @@ lsp.set_sign_icons({
 	hint = "⚑",
 	info = "»",
 })
+
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.foldingRange = {
 	dynamicRegistration = false,
