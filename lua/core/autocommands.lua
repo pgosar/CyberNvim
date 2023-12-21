@@ -103,17 +103,6 @@ if enabled(group, "css_colorizer") then
 	})
 end
 
-if enabled(group, "activate_neotree") then
-	cmd({ "BufEnter" }, {
-		desc = "activate neo-tree",
-		pattern = "*",
-		group = augroup("neo-tree", { clear = true }),
-		callback = function()
-			require("core.utils.utils").open_neotree()
-		end,
-	})
-end
-
 if enabled(group, "cmp") then
 	cmd({ "FileType" }, {
 		desc = "disable cmp in certain filetypes",

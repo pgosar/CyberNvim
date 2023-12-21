@@ -87,14 +87,6 @@ M.updateAll = function()
 	vim.notify("CyberNvim updated!", "info")
 end
 
--- open neotree whenever a directory is opened
-M.open_neotree = function()
-	local path = vim.fn.expand("%:p")
-	if vim.fn.isdirectory(path) ~= 0 then
-		require("plugin-configs.neo-tree")
-	end
-end
-
 -- check if attached lsp supports formatting
 M.supports_formatting = function()
 	local clients = vim.lsp.get_active_clients()
