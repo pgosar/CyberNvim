@@ -13,16 +13,22 @@ It is a fully-featured IDE-like setup with the same ease of modification as
 more complete and uncompromising base experience of
 [Astronvim](https://github.com/AstroNvim/AstroNvim/tree/main) and
 [LazyNvim](https://github.com/LazyVim/LazyVim).
-Its goal is to be both a ready-to-use editor for 99% of people a great starting
+Its goal is to be both a ready-to-use editor for everyone, a great starting
 point for powerusers who want the freedom to possibly overwrite the entire config,
-and a great example for beginners who want to learn how to configure Neovim.
+and a great example for beginners who want to learn how to configure Neovim. Lots
+of time has gone into making the configuration easily digestible and extensible.
+
+This distribution defines all its keybindings
+[here](https://github.com/pgosar/CyberNvim/blob/main/lua/core/keybindings.lua)
+
 
 ### Complete and uncompromisingly fantastic featureset GOOD 👍 🥰
 
 Including but not limited to...
 
 * Incredibly fast speeds!
-* Fully featured intellisense (linters, code formatters, auto-complete)!
+* Fancy notifications (try renaming something it's so cool)!
+* Fully featured intellisense (linters, code formatters, auto-complete, code actions)!
 * floating and inline function documentation (and other goodies!)
 * Auto-save and formatting
 * Persistent sessions and project management!
@@ -31,9 +37,10 @@ Including but not limited to...
 * File explorer and file overview (functions, classes etc.)
 * Git integration with [lazygit](https://github.com/jesseduffield/lazygit)
 and more
-* Complete debugging support
+* Complete inbuilt debugging support
 * Aesthetic yet subtle UI enhancements!
 * Complete freedom to remove every builtin feature and/or add your own
+* Incredibly easy [user configuration](https://github.com/pgosar/CyberNvim-Configuration) setup!
 
 ### Intractable codebase BAD 👎 ☹️
 
@@ -46,7 +53,7 @@ simplicity and flexibility to make widespread changes even as a beginner program
 Strict and intuitive code organization makes the codebase especially easy to
 understand.
 
-At only 1600 lines of Lua (as of August 2023), CyberNvim is around 3-5 times
+At only 1400 lines of Lua (as of December 2023), CyberNvim is around 3-6 times
 smaller than similar distributions (AstroNvim at 6.3k lines of Lua, LunarVim
 at 8k, LazyVim at 5k etc.). The codebase is built to be understood in less
 than 10 minutes with simple, self-documenting code and an intuitive file
@@ -56,7 +63,7 @@ SpeedyToUnderstandNvim but that doesn't have the same ring to it.
 The main way the codebase saves on line count is by minimizing unnecessary
 abstractions wherever possible. One of CyberNvim's goals is to maintain a
 minimalistic codebase with a style similar to what many create as their own
-personal configuration rahter than what one would expect in a large
+personal configuration rather than what one would expect in a large
 software project. This approach is similar to
 [NvChad](https://github.com/NvChad/NvChad/tree/v2.0), but CyberNvim offers a far more
 complete base experience for those wanting the IDE experience.

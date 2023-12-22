@@ -1,7 +1,7 @@
 local map = require("core.utils.utils").map
 local group = require("user.user_config").enable_plugins
 local enabled = require("core.utils.utils").enabled
-vim.g.mapleader = " "
+vim.g.mapleader = " " -- the leader key is the spacebar
 local M = {}
 
 -- DAP
@@ -88,7 +88,7 @@ end
 -- More LSP stuff
 if enabled(group, "lsp_zero") then
 	_G.buf = vim.lsp.buf
-	-- lsp agnostic rename
+	-- lsp agnostic global rename
 	map("n", "rg", ":%s/<C-r><C-w>//g<Left><Left>")
 	map("n", "gD", "<CMD>lua buf.declaration()<CR>")
 	map("n", "gd", "<CMD>Telescope lsp_definitions<CR>")
@@ -110,7 +110,9 @@ end
 -- ToggleTerm
 if enabled(group, "toggleterm") then
 	local git_root = "cd $(git rev-parse --show-toplevel 2>/dev/null) && clear"
+	-- opens terminal as a new tab at the git root
 	map("n", "<leader><c-\\>t", "<CMD>ToggleTerm direction=tab<CR>")
+	-- as a regular window
 	map("n", "<c-\\>", "<CMD>TermExec go_back=0 cmd='" .. git_root .. "'<CR>")
 	map("n", "<leader>tk", "<CMD>TermExec go_back=0 direction=float cmd='" .. git_root .. "&& tokei'<CR>")
 	map("n", "<leader>gg", "<CMD>lua term.lazygit_toggle()<CR>")
@@ -130,6 +132,7 @@ end
 if enabled(group, "gitsigns") then
 	M.gitsigns = function()
 		local gs = package.loaded.gitsigns
+		-- travel between hunks, backwards and forwards
 		map("n", "]c", function()
 			if vim.wo.diff then
 				return "]c"
@@ -165,12 +168,13 @@ if enabled(group, "gitsigns") then
 			gs.blame_line({ full = true })
 		end)
 		map("n", "<leader>tb", gs.toggle_current_line_blame)
+		-- diff at current working directory
 		map("n", "<leader>hd", gs.diffthis)
+		-- diff at root of git repository
 		map("n", "<leader>hD", function()
 			gs.diffthis("~")
 		end)
 		map("n", "<leader>td", gs.toggle_deleted)
-		map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>")
 	end
 end
 
@@ -178,4 +182,11 @@ end
 if enabled(group, "autosave") then
 	map("n", "<leader>as", "<CMD>ASToggle<CR>")
 end
+
+-- cmp (these are defined in cmp's configuration file)
+-- ["<C-j>"] = cmp.mapping.scroll_docs(-4),
+-- ["<C-k"] = cmp.mapping.scroll_docs(4),
+-- ["<C-c>"] = cmp.mapping.abort(),
+-- ["<C-f>"] = cmp_action.luasnip_jump_forward(),
+-- ["<C-b>"] = cmp_action.luasnip_jump_backward(),
 return M
