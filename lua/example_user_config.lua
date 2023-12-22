@@ -36,6 +36,7 @@ M.options = {
 }
 
 -- Set any to false that you want disabled in here.
+-- take a look at the autocommands file in lua/core for more information
 -- Default value is true if left blank
 M.autocommands = {
 	inlay_hints = true,
@@ -46,7 +47,7 @@ M.autocommands = {
 	session_saved_notification = true,
 	format_on_autosave = true,
 	css_colorizer = true,
-	activate_neotree = true,
+	cmp = true,
 }
 
 -- set to false to disable plugins
