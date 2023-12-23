@@ -1,10 +1,21 @@
 <h1 align="center">CyberNvim</h1>
 
-![image](https://github.com/pgosar/CyberNvim/assets/55164602/379c6126-bdf4-4c20-898e-5fa35575592c)
+<h3 align="center"><b>CyberNvim is the world's simplest and most extensible
+fully-fledged Neovim distribution.</b></h3>
 
-![image](https://github.com/pgosar/CyberNvim/assets/55164602/7d22e70e-6e52-4737-8068-9335c7705098)
+![image](https://github.com/pgosar/CyberNvim/assets/55164602/cc10e969-604c-440f-86dd-0232c2922c44)
+
+![image](https://github.com/pgosar/CyberNvim/assets/55164602/c631a376-e00a-41ad-9c89-178af63475a1)
 
 ![image](https://github.com/pgosar/CyberNvim/assets/55164602/1e6dc5d5-9945-405b-9e63-0aa2afe604c3)
+
+</br>
+<h3 align="center"><b>Where simplicity meets power</b></h3>
+
+CyberNvim is...
+
+* Simple and Extensible
+* Uncompromising in its [featureset](https://github.com/pgosar/cybernvim#fantastic-featureset-good--)
 
 CyberNvim is a fully-featured and incredibly easy-to-understand Neovim config.
 It is a fully-featured IDE-like setup with the same ease of modification as
@@ -14,39 +25,23 @@ more complete and uncompromising base experience of
 [LazyNvim](https://github.com/LazyVim/LazyVim).
 Its goal is to be both a ready-to-use editor for everyone, a great starting
 point for powerusers who want the freedom to possibly overwrite the entire config,
-and a great example for beginners who want to learn how to configure Neovim. Lots
-of time has gone into making the configuration easily digestible and extensible.
+and a great example for beginners who want to learn how to configure Neovim.
 
 This distribution defines all its keybindings
 [here](https://github.com/pgosar/CyberNvim/blob/main/lua/core/keybindings.lua)
 
-
-### Complete and uncompromisingly fantastic featureset GOOD 👍 🥰
-
-Including but not limited to...
-
-* Incredibly fast speeds!
-* Fully featured intellisense (linters, code formatters, auto-complete, code actions)!
-* floating and inline function documentation, hover support, etc.
-* Auto-save and formatting
-* Persistent and configurable sessions and project management!
-* Fancy start screen
-* Amazing tabline and statusline
-* File explorer and file overview for functions, classes, etc.
-* Git integration with [lazygit](https://github.com/jesseduffield/lazygit)
-and more
-* Complete inbuilt debugging support
-* Aesthetic UI enhancements!
-* Complete freedom to remove every builtin feature and/or add your own
-* Incredibly easy [user configuration](https://github.com/pgosar/CyberNvim-Configuration) setup!
-
-### Intractable codebase BAD 👎 ☹️
+<h3 align="center"><b>Intractable codebase BAD 👎 ☹️</b></h3>
 
 Why use many lines when few do the trick?
 
-Despite offering a complete IDE-like feature set, CyberNvim's codebase is simple
-, modular, and built to be broken (in a good way). It was made for people
-that want the convenience of a fully-fledged Neovim configuration and the
+* Only <b>1250</b> lines of code
+* Built to be broken
+* <b>Zero</b> compromises in available features
+* <b>Minimal</b> learning curve
+
+Despite offering a complete IDE-like feature set, CyberNvim's codebase is simple, 
+modular, and built to be broken (in a good way). It was made for people
+who want the convenience of a fully-fledged Neovim configuration and the
 simplicity and flexibility to make widespread changes even as a beginner programmer.
 Strict and intuitive code organization makes the codebase especially easy to
 understand.
@@ -63,11 +58,33 @@ abstractions wherever possible. One of CyberNvim's goals is to maintain a
 minimalistic codebase with a style similar to what many create as their own
 personal configuration rather than what one would expect in a large
 software project. This approach is similar to
-NvChad](https://github.com/NvChad/NvChad/tree/v2.0).
+[NvChad](https://github.com/NvChad/NvChad/tree/v2.0).
 
-It pays a surprisingly low price for the small codebase. It has every major feature
-one would expect of a full-scale Neovim distribution built in and it remains simple
-to expand upon or completely overhaul the config.
+Furthermore, to lower the learning curve of using the distribution, it avoids 
+completely overhauling Neovim and the included plugins wherever it does not detract 
+from the experience of using CyberNvim. As such, the distribution is easy to learn 
+and should feel familiar to most people. With this in mind, the distribution takes 
+care to ensure that every part of the configuration is easily understable, extendable, 
+and rewriteable for those that love tailoring every inch of their setup to their specific tastes.
+
+<h3 align="center"><b>Fantastic featureset GOOD 👍 🥰</b></h3>
+
+Including but not limited to...
+
+* Incredibly fast speeds!
+* Fully featured intellisense (linters, code formatters, auto-complete, code actions)!
+* floating and inline function documentation, hover support, etc.
+* Auto-save and formatting
+* Persistent and configurable sessions and project management!
+* Fancy start screen
+* Amazing tabline and statusline
+* File explorer and file overview for functions, classes, etc.
+* Git integration with [lazygit](https://github.com/jesseduffield/lazygit)
+and more
+* Complete inbuilt debugging support
+* Aesthetic UI enhancements!
+* Complete freedom to rewrite the config as you see fit
+* Incredibly easy [user configuration](https://github.com/pgosar/CyberNvim-Configuration) setup!
 
 ### Installation and Configuration
 First, backup (rename, move etc.) your existing nvim configuration.
