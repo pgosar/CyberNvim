@@ -79,6 +79,8 @@ end
 
 -- updates everything in CyberNvim
 M.updateAll = function()
+	vim.notify("Pulling latest changes...")
+	vim.fn.system("git pull --rebase")
 	require("lazy").sync({ wait = true })
 	M.updateMason()
 	-- make sure treesitter is loaded so it can update parsers

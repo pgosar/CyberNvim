@@ -43,21 +43,6 @@ require("lazy").setup({
 		end,
 	},
 	{
-		"zbirenbaum/copilot.lua",
-		cond = enabled(group, "copilot"),
-		cmd = "Copilot",
-		event = "InsertEnter",
-		dependencies = {
-			"zbirenbaum/copilot-cmp",
-			config = function()
-				require("copilot_cmp").setup()
-			end,
-		},
-		config = function()
-			require("plugin-configs.copilot")
-		end,
-	},
-	{
 		"stevearc/dressing.nvim",
 		cond = enabled(group, "dressing"),
 		event = "VeryLazy",

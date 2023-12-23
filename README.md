@@ -27,18 +27,18 @@ This distribution defines all its keybindings
 Including but not limited to...
 
 * Incredibly fast speeds!
-* Fancy notifications (try renaming something it's so cool)!
+* Fancy notifications (try renaming something)!
 * Fully featured intellisense (linters, code formatters, auto-complete, code actions)!
-* floating and inline function documentation (and other goodies!)
+* floating and inline function documentation, hover support, etc.
 * Auto-save and formatting
-* Persistent sessions and project management!
+* Persistent and configurable sessions and project management!
 * Fancy start screen
 * Amazing tabline and statusline
-* File explorer and file overview (functions, classes etc.)
+* File explorer and file overview for functions, classes, etc.
 * Git integration with [lazygit](https://github.com/jesseduffield/lazygit)
 and more
 * Complete inbuilt debugging support
-* Aesthetic yet subtle UI enhancements!
+* Aesthetic UI enhancements!
 * Complete freedom to remove every builtin feature and/or add your own
 * Incredibly easy [user configuration](https://github.com/pgosar/CyberNvim-Configuration) setup!
 
@@ -53,7 +53,7 @@ simplicity and flexibility to make widespread changes even as a beginner program
 Strict and intuitive code organization makes the codebase especially easy to
 understand.
 
-At only 1400 lines of Lua (as of December 2023), CyberNvim is around 3-6 times
+At only 1250 lines of Lua (as of December 2023), CyberNvim is around 5-7 times
 smaller than similar distributions (AstroNvim at 6.3k lines of Lua, LunarVim
 at 8k, LazyVim at 5k etc.). The codebase is built to be understood in less
 than 10 minutes with simple, self-documenting code and an intuitive file
@@ -65,8 +65,7 @@ abstractions wherever possible. One of CyberNvim's goals is to maintain a
 minimalistic codebase with a style similar to what many create as their own
 personal configuration rather than what one would expect in a large
 software project. This approach is similar to
-[NvChad](https://github.com/NvChad/NvChad/tree/v2.0), but CyberNvim offers a far more
-complete base experience for those wanting the IDE experience.
+NvChad](https://github.com/NvChad/NvChad/tree/v2.0).
 
 It pays a surprisingly low price for the small codebase. It has every major feature
 one would expect of a full-scale Neovim distribution built in and it remains simple
@@ -122,3 +121,11 @@ git clone https://github.com/pgosar/CyberNvim-Configuration.git ~/.config/nvim/l
   * [Ripgrep](https://github.com/BurntSushi/ripgrep) for live grep in Telescope
   * [Lazygit](https://github.com/jesseduffield/lazygit) for the git ui
   * [Bashtop](https://github.com/aristocratos/bashtop) to manage processes
+
+
+### Acknowledgements
+
+[Astronvim](https://github.com/AstroNvim/AstroNvim/tree/main) and
+[LazyNvim](https://github.com/LazyVim/LazyVim) are two fantastic Neovim distributions that provided
+the inspiration for this project. They significantly raised the bar for what a modern, fully-fledged
+Neovim distribution should offer.
