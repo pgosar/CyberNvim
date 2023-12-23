@@ -15,7 +15,7 @@ fully-fledged Neovim distribution.</b></h3>
 CyberNvim is...
 
 * Simple and Extensible
-* Uncompromising in its [featureset](https://github.com/pgosar/cybernvim#fantastic-featureset-good--)
+* Uncompromising in its [featureset](#fantastic-featureset-good--)
 
 CyberNvim is a fully-featured and incredibly easy-to-understand Neovim config.
 It is a fully-featured IDE-like setup with the same ease of modification as
