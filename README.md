@@ -8,8 +8,7 @@
 
 CyberNvim is a fully-featured and incredibly easy-to-understand Neovim config.
 It is a fully-featured IDE-like setup with the same ease of modification as
-[Kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim) and
-[NvChad](https://github.com/NvChad/NvChad/tree/v2.0) but offering the
+[Kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim) but offering the
 more complete and uncompromising base experience of
 [Astronvim](https://github.com/AstroNvim/AstroNvim/tree/main) and
 [LazyNvim](https://github.com/LazyVim/LazyVim).
@@ -27,7 +26,6 @@ This distribution defines all its keybindings
 Including but not limited to...
 
 * Incredibly fast speeds!
-* Fancy notifications (try renaming something)!
 * Fully featured intellisense (linters, code formatters, auto-complete, code actions)!
 * floating and inline function documentation, hover support, etc.
 * Auto-save and formatting
@@ -57,8 +55,8 @@ At only 1250 lines of Lua (as of December 2023), CyberNvim is around 5-7 times
 smaller than similar distributions (AstroNvim at 6.3k lines of Lua, LunarVim
 at 8k, LazyVim at 5k etc.). The codebase is built to be understood in less
 than 10 minutes with simple, self-documenting code and an intuitive file
-structure (there are only five folders!). I would call it
-SpeedyToUnderstandNvim but that doesn't have the same ring to it.
+structure. I would call it SpeedyToUnderstandNvim but that doesn't have
+the same ring to it.
 
 The main way the codebase saves on line count is by minimizing unnecessary
 abstractions wherever possible. One of CyberNvim's goals is to maintain a
@@ -96,9 +94,8 @@ git init
 ```
 
 Once done, Install any language servers, linters, etc. using `:MasonInstall`
-and/or `:LspInstall`. Use `:CyberUpdate` to update all language
-servers, plugins, treesitter parsers, etc. at once. Run `:checkhealth` to find
-any common issues with the installation.
+and/or `:LspInstall`. Use `:CyberUpdate` to update the distribution, including all
+plugins and parsers. Run `:checkhealth` to find any common issues with the installation.
 
 Your personal configuration is housed in `user/user_config.lua`. Use `example_user_config.lua`
 as a guide to writing your own configuration. As an initial quickstart, I recommend
