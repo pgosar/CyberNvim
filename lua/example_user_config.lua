@@ -104,8 +104,10 @@ M.plugins = {
 }
 
 -- general options for misc. behavior. Shown are default values
-M.general_opts = {
-	colorscheme = "onedark",
+M.options = {
+	opt = {
+		colorscheme = "onedark",
+	},
 }
 
 -- add extra configuration options here, like extra autocmds etc.

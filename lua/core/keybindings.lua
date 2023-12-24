@@ -11,7 +11,7 @@ if enabled(group, "dap") then
 	map("n", "<leader>n", "<CMD>lua dap.step_over()<CR>")
 	map("n", "<leader>si", "<CMD>lua dap.step_into()<CR>")
 	map("n", "<leader>so", "<CMD>lua dap.step_out()<CR>")
-	map("n", "<leader>b", "<CMD>lua dap.toggle_breakpoint()<CR>")
+	map("n", "<leader>tb", "<CMD>lua dap.toggle_breakpoint()<CR>")
 	map("n", "<leader>dq", "<CMD>lua dap.disconnect({ terminateDebuggee = true })<CR>")
 end
 
@@ -103,7 +103,7 @@ end
 
 -- Session
 if enabled(group, "session_manager") then
-	map("n", "<leader>s", "<CMD>SessionManager save_current_session<CR>")
+	map("n", "<leader>ss", "<CMD>SessionManager save_current_session<CR>")
 	map("n", "<leader>o", "<CMD>SessionManager load_session<CR>")
 end
 

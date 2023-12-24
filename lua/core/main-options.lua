@@ -1,13 +1,15 @@
 local vim_opts = require("core.utils.utils").vim_opts
-vim.opt.shortmess:append({ s = true, I = true })
+vim.opt.shortmess:append("sIW")
 vim_opts({
 	opt = {
-		swapfile = false,
+		showmode = false,
 		number = true,
 		signcolumn = "yes",
 		numberwidth = 6,
 		colorcolumn = "100",
 		guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20",
+		cursorline = true,
+		cursorlineopt = "number",
 
 		expandtab = true,
 		tabstop = 2,
