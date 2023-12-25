@@ -89,13 +89,12 @@ end
 if enabled(group, "lsp_zero") then
 	_G.buf = vim.lsp.buf
 	-- lsp agnostic global rename
-	map("n", "rg", ":%s/<C-r><C-w>//g<Left><Left>")
+	map("n", "rg", ":%s/<C-r><C-w>//g<Left><Left>", { desc = "global substitution" })
 	map("n", "gD", "<CMD>lua buf.declaration()<CR>")
 	map("n", "gd", "<CMD>Telescope lsp_definitions<CR>")
 	map("n", "K", "<CMD>lua buf.hover()<CR>")
 	map("n", "gi", "<CMD>lua buf.implementation()<CR>")
 	map("n", "<C-k>", "<CMD>lua buf.signature_help()<CR>")
-	map("n", "<space>D", "<CMD>Telescope type_definitions<CR>")
 	map("n", "<space>rn", "<CMD>lua buf.rename()<CR>")
 	map("n", "<space>ca", "<CMD>lua buf.code_action()<CR>")
 	map("n", "gr", "<CMD>Telescope lsp_references<CR>")
@@ -111,13 +110,18 @@ end
 if enabled(group, "toggleterm") then
 	local git_root = "cd $(git rev-parse --show-toplevel 2>/dev/null) && clear"
 	-- opens terminal as a new tab at the git root
-	map("n", "<leader><c-\\>t", "<CMD>ToggleTerm direction=tab<CR>")
+	map("n", "<leader><c-\\>t", "<CMD>ToggleTerm direction=tab<CR>", { desc = "new tabbed terminal" })
 	-- as a regular window
-	map("n", "<c-\\>", "<CMD>TermExec go_back=0 cmd='" .. git_root .. "'<CR>")
-	map("n", "<leader>tk", "<CMD>TermExec go_back=0 direction=float cmd='" .. git_root .. "&& tokei'<CR>")
-	map("n", "<leader>gg", "<CMD>lua term.lazygit_toggle()<CR>")
-	map("n", "<leader>gd", "<CMD>lua term.gdu_toggle()<CR>")
-	map("n", "<leader>bt", "<CMD>lua term.bashtop_toggle()<CR>")
+	map("n", "<c-\\>", "<CMD>TermExec go_back=0 cmd='" .. git_root .. "'<CR>", { desc = "new terminal" })
+	map(
+		"n",
+		"<leader>tk",
+		"<CMD>TermExec go_back=0 direction=float cmd='" .. git_root .. "&& tokei'<CR>",
+		{ desc = "tokei" }
+	)
+	map("n", "<leader>gg", "<CMD>lua term.lazygit_toggle()<CR>", { desc = "open lazygit" })
+	map("n", "<leader>gd", "<CMD>lua term.gdu_toggle()<CR>", { desc = "open gdu" })
+	map("n", "<leader>bt", "<CMD>lua term.bashtop_toggle()<CR>", { desc = "open bashtop" })
 end
 
 -- Hop
@@ -141,7 +145,7 @@ if enabled(group, "gitsigns") then
 				gs.next_hunk()
 			end)
 			return "<Ignore>"
-		end, { expr = true })
+		end, { expr = true, desc = "go to previous git hunk" })
 		map("n", "[c", function()
 			if vim.wo.diff then
 				return "[c"
@@ -150,37 +154,31 @@ if enabled(group, "gitsigns") then
 				gs.prev_hunk()
 			end)
 			return "<Ignore>"
-		end, { expr = true })
+		end, { expr = true, desc = "go to next git hunk" })
 
-		map("n", "<leader>hs", gs.stage_hunk)
-		map("n", "<leader>hr", gs.reset_hunk)
-		map("v", "<leader>hs", function()
-			gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
-		end)
-		map("v", "<leader>hr", function()
-			gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
-		end)
-		map("n", "<leader>hS", gs.stage_buffer)
-		map("n", "<leader>hu", gs.undo_stage_hunk)
-		map("n", "<leader>hR", gs.reset_buffer)
-		map("n", "<leader>hp", gs.preview_hunk)
+		map("n", "<leader>hs", gs.stage_hunk, { desc = "stage hunk" })
+		map("n", "<leader>hr", gs.reset_hunk, { desc = "reset hunk" })
+		map("n", "<leader>hS", gs.stage_buffer, { desc = "stage buffer" })
+		map("n", "<leader>hu", gs.undo_stage_hunk, { desc = "undo stage hunk" })
+		map("n", "<leader>hR", gs.reset_buffer, { desc = "reset buffer" })
+		map("n", "<leader>hp", gs.preview_hunk, { desc = "preview hunk" })
 		map("n", "<leader>hb", function()
 			gs.blame_line({ full = true })
-		end)
-		map("n", "<leader>tb", gs.toggle_current_line_blame)
+		end, { desc = "complete blame line history" })
+		map("n", "<leader>tb", gs.toggle_current_line_blame, { desc = "toggle blame line" })
 		-- diff at current working directory
-		map("n", "<leader>hd", gs.diffthis)
+		map("n", "<leader>hd", gs.diffthis, { desc = "diff at cwd" })
 		-- diff at root of git repository
 		map("n", "<leader>hD", function()
 			gs.diffthis("~")
-		end)
-		map("n", "<leader>td", gs.toggle_deleted)
+		end, { desc = "diff at root of git repo" })
+		map("n", "<leader>td", gs.toggle_deleted, { desc = "toggle deleted line" })
 	end
 end
 
 -- autosave
 if enabled(group, "autosave") then
-	map("n", "<leader>as", "<CMD>ASToggle<CR>")
+	map("n", "<leader>as", "<CMD>ASToggle<CR>", { desc = "toggle autosave" })
 end
 
 -- cmp (these are defined in cmp's configuration file)
