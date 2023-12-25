@@ -267,7 +267,7 @@ require("lazy").setup({
 		end,
 	},
 	{
-		"joshdick/onedark.vim",
+		"navarasu/onedark.nvim",
 		cond = enabled(group, "onedark"),
 	},
 	{ "nvim-lua/plenary.nvim" },
