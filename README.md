@@ -5,7 +5,7 @@ fully-fledged Neovim distribution.</b></h3>
 
 ![image](https://github.com/pgosar/CyberNvim/assets/55164602/15020588-441d-4ddc-aef3-2bf37e0d7ae1)
 
-![image](https://github.com/pgosar/CyberNvim/assets/55164602/07e0a353-2f5b-40fc-be66-89bd22ca7733)
+![image](https://github.com/pgosar/CyberNvim/assets/55164602/003c1a80-ea0a-4af4-b1bd-5d0b6729b1c5)
 
 ![image](https://github.com/pgosar/CyberNvim/assets/55164602/1e6dc5d5-9945-405b-9e63-0aa2afe604c3)
 
