@@ -10,29 +10,24 @@ vim_opts({
 		guicursor = "n-v-c-sm:block,i-ci-ve:ver25,r-cr-o:hor20",
 		cursorline = true,
 		cursorlineopt = "number",
-
 		expandtab = true,
 		tabstop = 2,
 		softtabstop = 2,
 		shiftwidth = 2,
-
 		updatetime = 100,
 		linebreak = true,
 		showbreak = "=>>",
 		textwidth = 100,
 		breakindent = true,
 		breakindentopt = "shift:2,min:40,sbr",
-
 		smartcase = true,
 		ignorecase = true,
-
 		foldmethod = "expr",
 		foldexpr = "nvim_treesitter#foldexpr()",
 		foldlevel = 99,
 		foldlevelstart = 99,
 		foldopen = "jump,block,hor,mark,percent,quickfix,search,tag,undo",
 		foldenable = true,
-
 		clipboard = "unnamedplus",
 		scrolloff = 5,
 		autowrite = true,
@@ -42,6 +37,7 @@ vim_opts({
 		undofile = true,
 		sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions",
 		hidden = true,
+		laststatus = 3,
 	},
 })
 
