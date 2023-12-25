@@ -3,9 +3,9 @@
 <h3 align="center"><b>CyberNvim is the world's simplest and most extensible
 fully-fledged Neovim distribution.</b></h3>
 
-![image](https://github.com/pgosar/CyberNvim/assets/55164602/cc10e969-604c-440f-86dd-0232c2922c44)
+![image](https://github.com/pgosar/CyberNvim/assets/55164602/15020588-441d-4ddc-aef3-2bf37e0d7ae1)
 
-![image](https://github.com/pgosar/CyberNvim/assets/55164602/c631a376-e00a-41ad-9c89-178af63475a1)
+![image](https://github.com/pgosar/CyberNvim/assets/55164602/07e0a353-2f5b-40fc-be66-89bd22ca7733)
 
 ![image](https://github.com/pgosar/CyberNvim/assets/55164602/1e6dc5d5-9945-405b-9e63-0aa2afe604c3)
 
@@ -28,7 +28,7 @@ point for powerusers who want the freedom to possibly overwrite the entire confi
 and a great example for beginners who want to learn how to configure Neovim.
 
 This distribution defines all its keybindings
-[here](https://github.com/pgosar/CyberNvim/blob/main/lua/core/keybindings.lua)
+[here](https://github.com/pgosar/CyberNvim/blob/main/lua/core/keybindings.lua).
 
 <h3 align="center"><b>Intractable codebase BAD 👎 ☹️</b></h3>
 
@@ -38,6 +38,7 @@ Why use many lines when few do the trick?
 * Built to be broken
 * <b>Zero</b> compromises in available features
 * <b>Minimal</b> learning curve
+* Plug and go personal configuration
 
 Despite offering a complete IDE-like feature set, CyberNvim's codebase is simple, 
 modular, and built to be broken (in a good way). It was made for people
@@ -53,7 +54,7 @@ than 10 minutes with simple, self-documenting code and an intuitive file
 structure. I would call it SpeedyToUnderstandNvim but that doesn't have
 the same ring to it.
 
-The main way the codebase saves on line count is by minimizing unnecessary
+The codebase mainly saves on line count by minimizing unnecessary
 abstractions wherever possible. One of CyberNvim's goals is to maintain a
 minimalistic codebase with a style similar to what many create as their own
 personal configuration rather than what one would expect in a large
@@ -66,6 +67,9 @@ from the experience of using CyberNvim. As such, the distribution is easy to lea
 and should feel familiar to most people. With this in mind, the distribution takes 
 care to ensure that every part of the configuration is easily understable, extendable, 
 and rewriteable for those that love tailoring every inch of their setup to their specific tastes.
+
+<b>User configuration can be as simple as copy-pasting your current configuration in the 
+[user conf section](https://github.com/pgosar/CyberNvim/blob/main/lua/example_user_config.lua).</b>
 
 <h3 align="center"><b>Fantastic featureset GOOD 👍 🥰</b></h3>
 
@@ -126,6 +130,10 @@ clone this as your user folder.
 ```bash
 git clone https://github.com/pgosar/CyberNvim-Configuration.git ~/.config/nvim/lua/user
 ```
+
+Beyond this, if you want to plug your current configuration in, it can be as simple as requiring all your files
+in the allotted user configuration function (see the 
+[example](https://github.com/pgosar/CyberNvim/blob/main/lua/example_user_config.lua)).
 
 ### Dependencies
 
