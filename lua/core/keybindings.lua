@@ -67,7 +67,7 @@ map("c", "<C-n>", "<Down>")
 
 -- Telescope
 if enabled(group, "telescope") then
-	map("n", "<leader>ff", "<CMD>Telescope git_files hidden=true<CR>")
+	map("n", "<leader>ff", "<CMD>Telescope git_files hidden=true<CR>", { desc = "Telescope Find Files" })
 	map("n", "<leader>fg", "<CMD>Telescope live_grep<CR>")
 	map("n", "<leader>fb", "<CMD>Telescope buffers<CR>")
 	map("n", "<leader>fh", "<CMD>Telescope help_tags<CR>")
@@ -165,7 +165,7 @@ if enabled(group, "gitsigns") then
 		map("n", "<leader>hb", function()
 			gs.blame_line({ full = true })
 		end, { desc = "complete blame line history" })
-		map("n", "<leader>tb", gs.toggle_current_line_blame, { desc = "toggle blame line" })
+		map("n", "<leader>lb", gs.toggle_current_line_blame, { desc = "toggle blame line" })
 		-- diff at current working directory
 		map("n", "<leader>hd", gs.diffthis, { desc = "diff at cwd" })
 		-- diff at root of git repository

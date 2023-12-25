@@ -34,13 +34,13 @@ This distribution defines all its keybindings
 
 Why use many lines when few do the trick?
 
-* Only <b>1250</b> lines of code
+* Only <b>1200</b> lines of code
 * Built to be broken
 * <b>Zero</b> compromises in available features
 * <b>Minimal</b> learning curve
 * Plug and go personal configuration
 
-Despite offering a complete IDE-like feature set, CyberNvim's codebase is simple, 
+Despite offering a complete IDE-like feature set, CyberNvim's codebase is simple,
 modular, and built to be broken (in a good way). It was made for people
 who want the convenience of a fully-fledged Neovim configuration and the
 simplicity and flexibility to make widespread changes even as a beginner programmer.
@@ -61,14 +61,14 @@ personal configuration rather than what one would expect in a large
 software project. This approach is similar to
 [NvChad](https://github.com/NvChad/NvChad/tree/v2.0).
 
-Furthermore, to lower the learning curve of using the distribution, it avoids 
-completely overhauling Neovim and the included plugins wherever it does not detract 
-from the experience of using CyberNvim. As such, the distribution is easy to learn 
-and should feel familiar to most people. With this in mind, the distribution takes 
-care to ensure that every part of the configuration is easily understable, extendable, 
+Furthermore, to lower the learning curve of using the distribution, it avoids
+completely overhauling Neovim and the included plugins wherever it does not detract
+from the experience of using CyberNvim. As such, the distribution is easy to learn
+and should feel familiar to most people. With this in mind, the distribution takes
+care to ensure that every part of the configuration is easily understable, extendable,
 and rewriteable for those that love tailoring every inch of their setup to their specific tastes.
 
-<b>User configuration can be as simple as copy-pasting your current configuration in the 
+<b>User configuration can be as simple as copy-pasting your current configuration in the
 [user conf section](https://github.com/pgosar/CyberNvim/blob/main/lua/example_user_config.lua).</b>
 
 <h3 align="center"><b>Fantastic featureset GOOD 👍 🥰</b></h3>
@@ -132,7 +132,7 @@ git clone https://github.com/pgosar/CyberNvim-Configuration.git ~/.config/nvim/l
 ```
 
 Beyond this, if you want to plug your current configuration in, it can be as simple as requiring all your files
-in the allotted user configuration function (see the 
+in the allotted user configuration function (see the
 [example](https://github.com/pgosar/CyberNvim/blob/main/lua/example_user_config.lua)).
 
 ### Dependencies

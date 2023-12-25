@@ -92,24 +92,16 @@ require("lazy").setup({
 			require("plugin-configs.lsp")
 		end,
 		dependencies = {
-			{
-				"neovim/nvim-lspconfig",
-				config = function()
-					local capabilities = vim.lsp.protocol.make_client_capabilities()
-					capabilities.offsetEncoding = { "utf-16" }
-					require("lspconfig").clangd.setup({ capabilities = capabilities })
-				end,
-			},
+			{ "neovim/nvim-lspconfig" },
 			{ "williamboman/mason.nvim" },
 			{ "williamboman/mason-lspconfig.nvim" },
 		},
 	},
 	{
-		"nvim-lualine/lualine.nvim",
-		cond = enabled(group, "lualine"),
+		"windwp/windline.nvim",
 		event = "VeryLazy",
 		config = function()
-			require("plugin-configs.lualine")
+			require("wlsample.evil_line")
 		end,
 	},
 	{
@@ -315,7 +307,6 @@ require("lazy").setup({
 		cond = enabled(group, "toggleterm"),
 		event = "VeryLazy",
 		config = function()
-			-- this is going to be used for keybindings
 			_G.term = require("plugin-configs.toggleterm")
 		end,
 	},
@@ -337,7 +328,7 @@ require("lazy").setup({
 		cond = enabled(group, "whichkey"),
 		event = "VeryLazy",
 		config = function()
-			require("plugin-configs.which-key")
+			require("which-key").setup()
 		end,
 	},
 	{
