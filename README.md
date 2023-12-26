@@ -29,6 +29,7 @@ and a great example for beginners who want to learn how to configure Neovim.
 
 This distribution defines all its keybindings
 [here](https://github.com/pgosar/CyberNvim/blob/main/lua/core/keybindings.lua).
+See the wiki for more information.
 
 <h3 align="center"><b>Intractable codebase BAD 👎 ☹️</b></h3>
 
@@ -47,7 +48,7 @@ simplicity and flexibility to make widespread changes even as a beginner program
 Strict and intuitive code organization makes the codebase especially easy to
 understand.
 
-At only 1250 lines of Lua (as of December 2023), CyberNvim is around 5-7 times
+At only 1200 lines of Lua (as of December 2023), CyberNvim is around 5-7 times
 smaller than similar distributions (AstroNvim at 6.3k lines of Lua, LunarVim
 at 8k, LazyVim at 5k etc.). The codebase is built to be understood in less
 than 10 minutes with simple, self-documenting code and an intuitive file
@@ -65,7 +66,7 @@ Furthermore, to lower the learning curve of using the distribution, it avoids
 completely overhauling Neovim and the included plugins wherever it does not detract
 from the experience of using CyberNvim. As such, the distribution is easy to learn
 and should feel familiar to most people. With this in mind, the distribution takes
-care to ensure that every part of the configuration is easily understable, extendable,
+care to ensure that every part of the configuration is easily understandable, extendable,
 and rewriteable for those that love tailoring every inch of their setup to their specific tastes.
 
 <b>User configuration can be as simple as copy-pasting your current configuration in the
