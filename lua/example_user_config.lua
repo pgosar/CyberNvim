@@ -103,19 +103,13 @@ M.plugins = {
 	},
 }
 
--- general options for misc. behavior. Shown are default values
-M.options = {
-	opt = {
-		colorscheme = "onedark",
-	},
-}
-
 -- add extra configuration options here, like extra autocmds etc.
 -- feel free to create your own separate files and require them in here
 M.user_conf = function()
 	vim.cmd([[
-  autocmd VimEnter * lua vim.notify("Welcome to cybernvim", "info", {title = "Neovim"})]])
+  autocmd VimEnter * lua vim.notify("Welcome to CyberNvim!", "info", {title = "Neovim"})]])
 	require("user.autocmds")
+	vim.cmd("colorscheme elflord")
 end
 
 return M

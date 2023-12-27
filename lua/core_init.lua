@@ -32,17 +32,9 @@ vim.api.nvim_create_user_command("CyberUpdate", function()
 	require("core.utils.utils").updateAll()
 end, { desc = "Updates plugins, mason packages, treesitter parsers" })
 
+vim.cmd("colorscheme onedark")
+
 local conf = require("user.user_config")
 if conf.user_conf then
 	conf.user_conf()
-end
-
-local colorscheme = "onedark"
-if conf.general_opts and conf.general_opts.colorscheme then
-	colorscheme = conf.general_opts.colorscheme
-end
-local ok, _ = pcall(vim.cmd, "colorscheme " .. colorscheme)
-if not ok then
-	vim.notify("colorscheme " .. colorscheme .. " not found!", "error")
-	return
 end

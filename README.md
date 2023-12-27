@@ -31,9 +31,10 @@ Its goal is to be both a ready-to-use editor for everyone, a great starting
 point for powerusers who want the freedom to possibly overwrite the entire config,
 and a great example for beginners who want to learn how to configure Neovim.
 
-This distribution defines all its keybindings
-[here](https://github.com/pgosar/CyberNvim/blob/main/lua/core/keybindings.lua).
-See the wiki for more information.
+CyberNvim is the most simple and extensible Neovim configuration. At only 1200 lines of
+code, it is the smallest major Neovim distribution. As the user, you are
+given the power to go so far as to remove almost every change CyberNvim makes and be left with base Neovim. CyberNvim lets you go farther than **any** other distribution so you
+can truly make your Neovim yours.
 
 <h3 align="center"><b>Intractable codebase BAD 👎 ☹️</b></h3>
 
@@ -74,7 +75,7 @@ care to ensure that every part of the configuration is easily understandable, ex
 and rewriteable for those that love tailoring every inch of their setup to their specific tastes.
 
 <b>User configuration can be as simple as copy-pasting your current configuration in the
-[user conf section](https://github.com/pgosar/CyberNvim/blob/main/lua/example_user_config.lua).</b>
+[user conf section](https://github.com/pgosar/CyberNvim/wiki/Configuration#predefined-sections).</b>
 
 <h3 align="center"><b>Fantastic featureset GOOD 👍 🥰</b></h3>
 

@@ -3,6 +3,8 @@ local cmd = vim.api.nvim_create_autocmd
 
 local group = require("user.user_config").autocommands
 local enabled = require("core.utils.utils").enabled
+
+-- enables suport for inlay hints with virtual text
 if enabled(group, "inlay_hints") then
 	cmd("LspAttach", {
 		group = augroup("LspAttach_inlayhints", { clear = true }),
@@ -17,6 +19,7 @@ if enabled(group, "inlay_hints") then
 	})
 end
 
+-- disables code folding for the start screen
 if enabled(group, "alpha_folding") then
 	cmd({ "FileType" }, {
 		desc = "Disable folding for alpha buffer",
@@ -26,6 +29,7 @@ if enabled(group, "alpha_folding") then
 	})
 end
 
+-- Fixes some bugs with how treesitter manages folds
 if enabled(group, "treesitter_folds") then
 	cmd({ "BufEnter", "BufAdd", "BufNew", "BufNewFile", "BufWinEnter" }, {
 		desc = "fix tree sitter folds issue",
@@ -38,6 +42,7 @@ if enabled(group, "treesitter_folds") then
 	})
 end
 
+-- Removes any trailing whitespace when saving a file
 if enabled(group, "trailing_whitespace") then
 	cmd({ "BufWritePre" }, {
 		desc = "remove trailing whitespace on save",
@@ -47,6 +52,7 @@ if enabled(group, "trailing_whitespace") then
 	})
 end
 
+-- remembers file state, such as cursor position and any folds
 if enabled(group, "remember_file_state") then
 	augroup("remember file state", { clear = true })
 	cmd({ "BufWinLeave" }, {
@@ -63,6 +69,7 @@ if enabled(group, "remember_file_state") then
 	})
 end
 
+-- gives you a notification upon saving a session
 if enabled(group, "session_saved_notification") then
 	cmd({ "User" }, {
 		desc = "notify session saved",
@@ -72,6 +79,7 @@ if enabled(group, "session_saved_notification") then
 	})
 end
 
+-- Fixes issues that arise when using the autosave plugin and autoformatting at the same time
 if enabled(group, "format_on_autosave") then
 	cmd("User", {
 		desc = "stops format->write loop and joins format change with last user change when undoing",
@@ -89,6 +97,7 @@ if enabled(group, "format_on_autosave") then
 	})
 end
 
+-- enables coloring hexcodes and color names in css, jsx, etc.
 if enabled(group, "css_colorizer") then
 	cmd({ "Filetype" }, {
 		desc = "activate colorizer",
@@ -103,6 +112,7 @@ if enabled(group, "css_colorizer") then
 	})
 end
 
+-- disables autocomplete in some filetypes
 if enabled(group, "cmp") then
 	cmd({ "FileType" }, {
 		desc = "disable cmp in certain filetypes",
