@@ -67,14 +67,10 @@ cmp.setup({
 		["<C-b>"] = cmp_action.luasnip_jump_backward(),
 	},
 	sources = {
-		{ name = "copilot", priority = 100 },
-		{ name = "nvim_lsp", priority = 90 },
-		{ name = "nvim_lua", priority = 80 },
-		{ name = "luasnip", keyword_length = 2, priority = 70 },
-		{
-			name = "path",
-			option = { trailing_slash = true },
-			priority = 60,
-		},
+		{ name = "copilot" },
+		{ name = "nvim_lsp" },
+		{ name = "nvim_lua" },
+		{ name = "luasnip", keyword_length = 2 },
+		{ name = "path", option = { trailing_slash = true } },
 	},
 })

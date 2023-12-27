@@ -193,8 +193,9 @@ require("lazy").setup({
 		dependencies = {
 			{
 				"jay-babu/mason-nvim-dap.nvim",
+				cmd = { "DapInstall", "DapUninstall" },
 				config = function()
-					require("mason-nvim-dap").setup()
+					require("plugin-configs.mason-nvim-dap")
 				end,
 			},
 			{

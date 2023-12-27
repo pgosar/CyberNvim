@@ -10,10 +10,16 @@ M.setup_sources = function(b)
 	}
 end
 
--- add null_ls sources to auto-install
-M.null_ls_ensure_installed = {
-	"stylua",
-	"jq",
+-- add sources to auto-install
+M.ensure_installed = {
+	null_ls = {
+		"stylua",
+		"jq",
+	},
+	dap = {
+		"puyhon",
+		"delve",
+	},
 }
 
 -- add servers to be used for auto formatting here
