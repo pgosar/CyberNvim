@@ -17,9 +17,9 @@ end
 
 -- Trouble
 if enabled(group, "trouble") then
-	map("n", "tr", "<CMD>TroubleToggle lsp_references<CR>")
-	map("n", "td", "<CMD>TroubleToggle lsp_definitions<CR>")
-	map("n", "cd", "<CMD>Trouble<CR>")
+	map("n", "<leader>tr", "<CMD>TroubleToggle lsp_references<CR>")
+	map("n", "<leader>td", "<CMD>TroubleToggle lsp_definitions<CR>")
+	map("n", "<leader>cd", "<CMD>TroubleToggle<CR>")
 end
 
 -- UFO
@@ -42,17 +42,10 @@ end
 -- Aerial
 if enabled(group, "aerial") then
 	map("n", "<leader>at", "<CMD>AerialToggle<CR>")
-	map("n", "{", "<CMD>AerialPrev<CR>")
-	map("n", "}", "<CMD>AerialNext<CR>")
 end
 
 -- Searching and Highlighting
 map("n", "m", "<CMD>noh<CR>")
-map("n", "/", "<CMD>set hlsearch<CR>/")
-map("n", "i", "<CMD>set nohlsearch<CR>i")
-map("n", "a", "<CMD>set nohlsearch<CR>a")
-map("n", "I", "<CMD>set nohlsearch<CR>I")
-map("n", "A", "<CMD>set nohlsearch<CR>A")
 
 -- Movement
 -- in insert mode, type <c-d> and your cursor will move past the next separator
@@ -90,14 +83,14 @@ if enabled(group, "lsp_zero") then
 	_G.buf = vim.lsp.buf
 	-- lsp agnostic global rename
 	map("n", "rg", ":%s/<C-r><C-w>//g<Left><Left>", { desc = "global substitution" })
-	map("n", "gD", "<CMD>lua buf.declaration()<CR>")
-	map("n", "gd", "<CMD>Telescope lsp_definitions<CR>")
+	map("n", "gd", "<CMD>lua buf.declaration()<CR>")
+	map("n", "gD", "<CMD>Telescope lsp_definitions<CR>")
 	map("n", "K", "<CMD>lua buf.hover()<CR>")
 	map("n", "gi", "<CMD>lua buf.implementation()<CR>")
-	map("n", "<C-k>", "<CMD>lua buf.signature_help()<CR>")
-	map("n", "<space>rn", "<CMD>lua buf.rename()<CR>")
-	map("n", "<space>ca", "<CMD>lua buf.code_action()<CR>")
 	map("n", "gr", "<CMD>Telescope lsp_references<CR>")
+	map("n", "<C-k>", "<CMD>lua buf.signature_help()<CR>")
+	map("n", "<leader>rn", "<CMD>lua buf.rename()<CR>")
+	map("n", "<leader>ca", "<CMD>lua buf.code_action()<CR>")
 end
 
 -- Session
@@ -110,9 +103,9 @@ end
 if enabled(group, "toggleterm") then
 	local git_root = "cd $(git rev-parse --show-toplevel 2>/dev/null) && clear"
 	-- opens terminal as a new tab at the git root
-	map("n", "<leader><c-\\>t", "<CMD>ToggleTerm direction=tab<CR>", { desc = "new tabbed terminal" })
+	map("n", "<C-\\>t", "<CMD>ToggleTerm direction=tab<CR>", { desc = "new tabbed terminal" })
 	-- as a regular window
-	map("n", "<c-\\>", "<CMD>TermExec go_back=0 cmd='" .. git_root .. "'<CR>", { desc = "new terminal" })
+	map("n", "<C-\\>", "<CMD>TermExec go_back=0 cmd='" .. git_root .. "'<CR>", { desc = "new terminal" })
 	map(
 		"n",
 		"<leader>tk",

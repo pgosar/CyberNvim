@@ -1,7 +1,6 @@
 local enabled = require("core.utils.utils").enabled
 local group = require("user.user_config").enable_plugins
 require("lazy").setup({
-	{ "ellisonleao/gruvbox.nvim" },
 	{
 		"stevearc/aerial.nvim",
 		cond = enabled(group, "aerial"),
@@ -98,13 +97,6 @@ require("lazy").setup({
 		},
 	},
 	{
-		"windwp/windline.nvim",
-		event = "VeryLazy",
-		config = function()
-			require("wlsample.evil_line")
-		end,
-	},
-	{
 		"folke/neodev.nvim",
 		cond = enabled(group, "neodev"),
 		event = "VeryLazy",
@@ -128,9 +120,7 @@ require("lazy").setup({
 			require("plugin-configs.neo-tree")
 		end,
 		branch = "v3.x",
-		dependencies = {
-			"nvim-tree/nvim-web-devicons",
-		},
+		dependencies = { "nvim-tree/nvim-web-devicons" },
 	},
 	{
 		"Shatur/neovim-session-manager",
@@ -147,8 +137,8 @@ require("lazy").setup({
 		config = function()
 			require("plugin-configs.noice")
 		end,
+		dependencies = { { "MunifTanjim/nui.nvim" } },
 	},
-	{ "MunifTanjim/nui.nvim" },
 	{
 		"jose-elias-alvarez/null-ls.nvim",
 		cond = enabled(group, "null_ls"),
@@ -329,6 +319,13 @@ require("lazy").setup({
 		event = "VeryLazy",
 		config = function()
 			require("which-key").setup()
+		end,
+	},
+	{
+		"windwp/windline.nvim",
+		event = "VeryLazy",
+		config = function()
+			require("wlsample.evil_line")
 		end,
 	},
 	{

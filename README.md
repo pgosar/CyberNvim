@@ -140,6 +140,8 @@ Beyond this, if you want to plug your current configuration in, it can be as sim
 in the allotted user configuration function (see the
 [example](https://github.com/pgosar/CyberNvim/blob/main/lua/example_user_config.lua)).
 
+For more information, be sure to check the repository's wiki.
+
 ### Dependencies
 
 * [Neovim 0.8+, built with LuaJIT](https://github.com/neovim/neovim/releases/tag/stable)

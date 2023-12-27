@@ -12,22 +12,12 @@ require("noice").setup({
 				find = "substitutions",
 			},
 		},
-		{
-			filter = { find = "fewer" },
-			opts = { skip = true },
-		},
-		{
-			filter = { find = "more" },
-			opts = { skip = true },
-		},
-		{
-			filter = { find = "less" },
-			opts = { skip = true },
-		},
-		{
-			filter = { find = "change" },
-			opts = { skip = true },
-		},
+		{ filter = { find = "fewer" }, opts = { skip = true } },
+		{ filter = { find = "more" }, opts = { skip = true } },
+		{ filter = { find = "less" }, opts = { skip = true } },
+		{ filter = { find = "change" }, opts = { skip = true } },
+		{ filter = { find = "indent" }, opts = { skip = true } },
+		{ filter = { find = "move" }, opts = { skip = true } },
 	},
 	cmdline = { view = "cmdline" },
 	views = {
