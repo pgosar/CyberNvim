@@ -56,7 +56,7 @@ M.create_floating_terminal = function(term, cmd)
 	end
 	-- check if TermExec function exists
 	return function()
-		if vim.fn.executable(cmd) == 1 then
+		if vim.fn.executable(cmd) == 1 and instance ~= nil then
 			instance:toggle()
 		else
 			vim.notify("Command not found: " .. cmd .. ". Ensure it is installed.", "error")
@@ -82,6 +82,7 @@ M.updateAll = function()
 	vim.notify("Pulling latest changes...")
 	vim.fn.system("git pull --rebase")
 	require("lazy").sync({ wait = true })
+	vim.notify("Updating Mason packages...")
 	M.updateMason()
 	-- make sure treesitter is loaded so it can update parsers
 	require("nvim-treesitter")
