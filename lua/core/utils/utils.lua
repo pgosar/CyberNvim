@@ -80,7 +80,7 @@ end
 -- updates everything in CyberNvim
 M.updateAll = function()
 	vim.notify("Pulling latest changes...")
-	vim.fn.system("git pull --rebase")
+	vim.fn.jobstart({ "git", "pull", "--rebase" })
 	require("lazy").sync({ wait = true })
 	vim.notify("Updating Mason packages...")
 	M.updateMason()
