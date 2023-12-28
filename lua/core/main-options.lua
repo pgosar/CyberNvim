@@ -41,4 +41,6 @@ vim_opts({
 	},
 })
 
-vim_opts(require("user.user_config").options)
+local exist, user_config = pcall(require, "user.user_config")
+local opts = exist and user_config.options or {}
+vim_opts(opts)

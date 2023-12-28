@@ -23,7 +23,8 @@ for _, source in ipairs({
 		vim.api.nvim_err_writeln("Failed to load " .. source .. "\n\n" .. fault)
 	end
 end
-local group = require("user.user_config").enable_plugins
+local exist, user_config = pcall(require, "user.user_config")
+local group = exist and user_config.enable_plugins or {}
 if require("core.utils.utils").enabled(group, "notify") then
 	vim.notify = require("notify")
 end
@@ -34,7 +35,7 @@ end, { desc = "Updates plugins, mason packages, treesitter parsers" })
 
 vim.cmd("colorscheme onedark")
 
-local conf = require("user.user_config")
-if conf.user_conf then
-	conf.user_conf()
+local exist, user_config = pcall(require, "user.user_config")
+if exist then
+	user_config.user_conf()
 end

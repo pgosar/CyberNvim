@@ -1,5 +1,8 @@
 local enabled = require("core.utils.utils").enabled
-local group = require("user.user_config").enable_plugins
+
+local exist, user_config = pcall(require, "user.user_config")
+local group = exist and user_config.enable_plugins or {}
+local plugins = exist and user_config.plugins or {}
 require("lazy").setup({
 	{
 		"stevearc/aerial.nvim",
@@ -337,7 +340,7 @@ require("lazy").setup({
 			require("plugin-configs.zenmode")
 		end,
 	},
-	require("user.user_config").plugins,
+	plugins,
 }, {
 	defaults = { lazy = true },
 	performance = {
