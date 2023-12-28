@@ -85,7 +85,7 @@ require("lazy").setup({
 	{
 		"VonHeikemen/lsp-zero.nvim",
 		cond = enabled(group, "lsp_zero"),
-		event = { "BufReadPre", "BufNewFile" },
+		event = "VimEnter",
 		branch = "v2.x",
 		config = function()
 			require("plugin-configs.lsp")

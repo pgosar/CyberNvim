@@ -126,8 +126,9 @@ plugins and parsers. Run `:checkhealth` to find any common issues with the insta
 
 Your personal configuration is housed in `user/user_config.lua`. Use `example_user_config.lua`
 as a guide to writing your own configuration. As an initial quickstart, I recommend
-running the following command:
+running the following commands:
 ```bash
+mkdir ~/.config/nvim/lua/user
 cp ~/.config/nvim/lua/example_user_config.lua ~/.config/nvim/lua/user/user_config.lua
 ```
 Alternatively, you can also take a look at my own
