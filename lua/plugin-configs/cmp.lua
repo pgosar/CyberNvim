@@ -18,6 +18,7 @@ cmp.setup({
 	end,
 	preselect = "none",
 	completion = {
+		keyword_length = 1,
 		completeopt = "menu,menuone,noinsert,noselect",
 	},
 	snippet = {
@@ -60,8 +61,8 @@ cmp.setup({
 				fallback()
 			end
 		end, { "i", "s" }),
-		["<C-j>"] = cmp.mapping.scroll_docs(-4),
-		["<C-k"] = cmp.mapping.scroll_docs(4),
+		["<C-k>"] = cmp.mapping.scroll_docs(-4),
+		["<C-j>"] = cmp.mapping.scroll_docs(4),
 		["<C-c>"] = cmp.mapping.abort(),
 		["<C-f>"] = cmp_action.luasnip_jump_forward(),
 		["<C-b>"] = cmp_action.luasnip_jump_backward(),
@@ -70,7 +71,7 @@ cmp.setup({
 		{ name = "copilot" },
 		{ name = "nvim_lsp" },
 		{ name = "nvim_lua" },
-		{ name = "luasnip", keyword_length = 2 },
+		{ name = "luasnip" },
 		{ name = "path", option = { trailing_slash = true } },
 	},
 })

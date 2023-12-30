@@ -90,7 +90,7 @@ if enabled(group, "lsp_zero") then
 	map("n", "K", "<CMD>lua buf.hover()<CR>")
 	map("n", "gi", "<CMD>lua buf.implementation()<CR>")
 	map("n", "gr", "<CMD>Telescope lsp_references<CR>")
-	map("n", "<C-k>", "<CMD>lua buf.signature_help()<CR>")
+	map("n", "sh", "<CMD>lua buf.signature_help()<CR>")
 	map("n", "<leader>rn", "<CMD>lua buf.rename()<CR>")
 	map("n", "<leader>ca", "<CMD>lua buf.code_action()<CR>")
 end

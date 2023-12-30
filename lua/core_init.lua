@@ -35,7 +35,6 @@ end, { desc = "Updates plugins, mason packages, treesitter parsers" })
 
 vim.cmd("colorscheme onedark")
 
-local exist, user_config = pcall(require, "user.user_config")
 if exist then
 	user_config.user_conf()
 end
