@@ -110,20 +110,6 @@ Alternatively, directly clone it to the nvim folder:
 git clone https://github.com/pgosar/CyberNvim ~/.config/nvim
 ```
 
-If you want to backup your personal configuration to git I suggest doing the following.
-Even though this is inside another git repository, it still acts as its own individual
-entity as long as you're inside the folder. CyberNvim will never push changes to your
-configuration files - at most it will update example_user_config.
-```bash
-cd ~/.config/nvim/lua/user
-git init
-# setup repository
-```
-
-Once done, Install any language servers, linters, etc. using `:MasonInstall`
-and/or `:LspInstall`. Use `:CyberUpdate` to update the distribution, including all
-plugins and parsers. Run `:checkhealth` to find any common issues with the installation.
-
 Your personal configuration is housed in `user/user_config.lua`. Use `example_user_config.lua`
 as a guide to writing your own configuration. As an initial quickstart, I recommend
 running the following commands:
@@ -137,6 +123,19 @@ clone this as your user folder.
 ```bash
 git clone https://github.com/pgosar/CyberNvim-Configuration.git ~/.config/nvim/lua/user
 ```
+
+If you want to backup your personal configuration to git I suggest doing the following.
+The user folder is gitignored, meaning you can create a new git repository under that folder
+. CyberNvim will never push changes to your configuration files - at most it will update example_user_config.
+```bash
+cd ~/.config/nvim/lua/user
+git init
+# setup repository
+```
+
+Once done, Install any language servers, linters, etc. using `:MasonInstall`
+and/or `:LspInstall`. Use `:CyberUpdate` to update the distribution, including all
+plugins and parsers. Run `:checkhealth` to find any common issues with the installation.
 
 Beyond this, if you want to plug your current configuration in, it can be as simple as requiring all your files
 in the allotted user configuration function (see the
