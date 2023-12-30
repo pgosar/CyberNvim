@@ -64,6 +64,7 @@ cmp.setup({
 		["<C-k>"] = cmp.mapping.scroll_docs(-4),
 		["<C-j>"] = cmp.mapping.scroll_docs(4),
 		["<C-c>"] = cmp.mapping.abort(),
+		["<C-n>"] = { i = cmp.mapping.complete() },
 		["<C-f>"] = cmp_action.luasnip_jump_forward(),
 		["<C-b>"] = cmp_action.luasnip_jump_backward(),
 	},
