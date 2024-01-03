@@ -143,7 +143,7 @@ require("lazy").setup({
 		dependencies = { { "MunifTanjim/nui.nvim" } },
 	},
 	{
-		"jose-elias-alvarez/null-ls.nvim",
+		"nvimtools/none-ls.nvim",
 		cond = enabled(group, "null_ls"),
 		event = { "BufReadPre", "BufNewFile" },
 		config = function()
