@@ -6,6 +6,9 @@ local enabled = require("core.utils.utils").enabled
 vim.g.mapleader = " " -- the leader key is the spacebar
 local M = {}
 
+-- Image Pasting
+map("n", "<leader>p", "<CMD>PasteImage<CR>", { desc = "Paste clipboard image" })
+
 -- DAP
 if enabled(group, "dap") then
 	_G.dap = require("dap")

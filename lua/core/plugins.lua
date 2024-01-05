@@ -70,6 +70,10 @@ require("lazy").setup({
 		end,
 	},
 	{
+		"HakonHarnes/img-clip.nvim",
+		event = "BufEnter",
+	},
+	{
 		"lukas-reineke/indent-blankline.nvim",
 		cond = enabled(group, "indent_blankline"),
 		event = "VimEnter",
