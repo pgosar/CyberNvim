@@ -1,7 +1,7 @@
 local map = require("core.utils.utils").map
 
 local exist, user_config = pcall(require, "user.user_config")
-local group = exist and user_config.enable_plugins or {}
+local group = exist and type(user_config) == "table" and user_config.enable_plugins or {}
 local enabled = require("core.utils.utils").enabled
 vim.g.mapleader = " " -- the leader key is the spacebar
 local M = {}

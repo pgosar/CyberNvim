@@ -41,6 +41,6 @@ vim_opts({
 	},
 })
 
-local exist, user_config = pcall(require, "user.user_config")
+local exist, user_config = pcall(require, "user.user_config") and type(user_config) == "table"
 local opts = exist and user_config.options or {}
 vim_opts(opts)
