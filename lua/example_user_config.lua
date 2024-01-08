@@ -95,6 +95,7 @@ M.enable_plugins = {
 	twilight = true,
 	whichkey = true,
 	zen = true,
+	img_paste = true,
 }
 
 -- add extra plugins in here

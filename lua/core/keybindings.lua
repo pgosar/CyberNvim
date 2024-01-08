@@ -7,7 +7,9 @@ vim.g.mapleader = " " -- the leader key is the spacebar
 local M = {}
 
 -- Image Pasting
-map("n", "<leader>p", "<CMD>PasteImage<CR>", { desc = "Paste clipboard image" })
+if enabled(group, "img_paste") then
+	map("n", "<leader>p", "<CMD>PasteImage<CR>", { desc = "Paste clipboard image" })
+end
 
 -- DAP
 if enabled(group, "dap") then
