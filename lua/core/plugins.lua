@@ -61,10 +61,10 @@ require("lazy").setup({
 		end,
 	},
 	{
-		"phaazon/hop.nvim",
+		"smoka7/hop.nvim",
+		version = "*",
 		cond = enabled(group, "hop"),
 		event = "VimEnter",
-		branch = "v2",
 		config = function()
 			require("plugin-configs.hop")
 		end,
