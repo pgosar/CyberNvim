@@ -65,7 +65,7 @@ M.create_floating_terminal = function(term, cmd)
 end
 
 -- updates all Mason packages
-M.updateMason = function()
+M.update_mason = function()
 	local registry = require("mason-registry")
 	registry.refresh()
 	registry.update()
@@ -83,7 +83,7 @@ M.update_all = function()
 	vim.fn.jobstart({ "git", "pull", "--rebase" })
 	require("lazy").sync({ wait = true })
 	vim.notify("Updating Mason packages...")
-	M.updateMason()
+	M.update_mason()
 	-- make sure treesitter is loaded so it can update parsers
 	require("nvim-treesitter")
 	vim.cmd("TSUpdate")
