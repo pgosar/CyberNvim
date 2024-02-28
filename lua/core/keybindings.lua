@@ -91,7 +91,7 @@ if enabled(group, "lsp_zero") then
 	-- lsp agnostic global rename
 	map("n", "rg", ":%s/<C-r><C-w>//g<Left><Left>", { desc = "global substitution" })
 	map("n", "gd", "<CMD>lua buf.declaration()<CR>")
-	map("n", "gD", "<CMD>Telescope lsp_definitions<CR>")
+	map("n", "gD", "<CMD>lua buf.definition()<CR>")
 	map("n", "K", "<CMD>lua buf.hover()<CR>")
 	map("n", "gi", "<CMD>lua buf.implementation()<CR>")
 	map("n", "gr", "<CMD>Telescope lsp_references<CR>")
