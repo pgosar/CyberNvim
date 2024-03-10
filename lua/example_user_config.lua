@@ -22,8 +22,6 @@ M.mason_ensure_installed = {
 	},
 }
 
-M.treesitter_ensure_installed = {}
-
 -- add servers to be used for auto formatting here
 M.formatting_servers = {
 	["rust_analyzer"] = { "rust" },
