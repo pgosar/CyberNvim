@@ -10,3 +10,8 @@ require("nvim-treesitter.configs").setup({
 require("ts_context_commentstring").setup({
 	enable_autocmd = false,
 })
+
+require("treesitter-context").setup({
+	max_lines = 1,
+	multiline_threshold = 2,
+})

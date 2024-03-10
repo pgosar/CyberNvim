@@ -245,12 +245,7 @@ require("lazy").setup({
 		end,
 		dependencies = {
 			{ "nvim-treesitter/nvim-treesitter-textobjects" },
-			{
-				"nvim-treesitter/nvim-treesitter-context",
-				config = function()
-					require("treesitter-context").setup()
-				end,
-			},
+			{ "nvim-treesitter/nvim-treesitter-context" },
 			{ "windwp/nvim-ts-autotag" },
 			{ "HiPhish/rainbow-delimiters.nvim" },
 			{ "JoosepAlviste/nvim-ts-context-commentstring" },
