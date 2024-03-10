@@ -10,8 +10,8 @@ M.setup_sources = function(b)
 	}
 end
 
--- add sources to auto-install
-M.ensure_installed = {
+-- add mason sources to auto-install
+M.mason_ensure_installed = {
 	null_ls = {
 		"stylua",
 		"jq",
@@ -21,6 +21,8 @@ M.ensure_installed = {
 		"delve",
 	},
 }
+
+M.treesitter_ensure_installed = {}
 
 -- add servers to be used for auto formatting here
 M.formatting_servers = {
