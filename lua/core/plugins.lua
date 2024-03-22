@@ -218,6 +218,9 @@ require("lazy").setup({
 					require("nvim-dap-virtual-text").setup()
 				end,
 			},
+			{
+				"nvim-neotest/nvim-nio",
+			},
 		},
 	},
 	{
