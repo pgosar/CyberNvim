@@ -2,6 +2,7 @@ local cmp = require("cmp")
 local cmp_action = require("lsp-zero").cmp_action()
 local luasnip = require("luasnip")
 require("luasnip.loaders.from_vscode").lazy_load()
+require("luasnip_snippets.common.snip_utils").setup()
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
 
 cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
@@ -36,7 +37,6 @@ cmp.setup({
 			maxwidth = 50,
 			ellipsis_char = "...",
 			mode = "symbol_text",
-			symbol_map = { Copilot = "" },
 		}),
 	},
 	mapping = {
@@ -69,10 +69,16 @@ cmp.setup({
 		["<C-b>"] = cmp_action.luasnip_jump_backward(),
 	},
 	sources = {
-		{ name = "copilot" },
 		{ name = "nvim_lsp" },
 		{ name = "nvim_lua" },
 		{ name = "luasnip" },
+		{ name = "emoji" },
 		{ name = "path", option = { trailing_slash = true } },
 	},
+	cmp.setup.filetype("gitcommit", {
+		sources = {
+			{ name = "commit" },
+			{ name = "git" },
+		},
+	}),
 })

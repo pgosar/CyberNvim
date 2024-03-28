@@ -5,7 +5,7 @@ if not vim.loop.fs_stat(lazypath) then
 		"clone",
 		"--filter=blob:none",
 		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable",
+		"--branch=main",
 		lazypath,
 	})
 end
@@ -20,7 +20,7 @@ for _, source in ipairs({
 }) do
 	local status_ok, fault = pcall(require, source)
 	if not status_ok then
-		vim.api.nvim_err_writeln("Failed to load " .. source .. "\n\n" .. fault)
+		vim.api.nvim_err_writeln("載入失敗 " .. source .. "\n\n" .. fault)
 	end
 end
 local exist, user_config = pcall(require, "user.user_config")
@@ -33,7 +33,7 @@ vim.api.nvim_create_user_command("CyberUpdate", function()
 	require("core.utils.utils").update_all()
 end, { desc = "Updates plugins, mason packages, treesitter parsers" })
 
-vim.cmd("colorscheme onedark")
+vim.cmd("colorscheme gruvbox-material")
 
 if exist and type(user_config) == "table" and user_config.user_conf then
 	user_config.user_conf()

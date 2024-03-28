@@ -22,7 +22,7 @@ end
 
 -- creating new file for alpha nvim buffer
 M.create_new_file = function()
-	local filename = vim.fn.input("Enter the filename: ")
+	local filename = vim.fn.input("輸入檔案名稱：")
 	if filename ~= "" then
 		vim.cmd("edit " .. filename)
 	end

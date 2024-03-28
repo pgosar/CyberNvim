@@ -11,17 +11,6 @@ if enabled(group, "img_paste") then
 	map("n", "<leader>p", "<CMD>PasteImage<CR>", { desc = "Paste clipboard image" })
 end
 
--- DAP
-if enabled(group, "dap") then
-	_G.dap = require("dap")
-	map("n", "<leader>dc", "<CMD>lua dap.continue()<CR>")
-	map("n", "<leader>n", "<CMD>lua dap.step_over()<CR>")
-	map("n", "<leader>si", "<CMD>lua dap.step_into()<CR>")
-	map("n", "<leader>so", "<CMD>lua dap.step_out()<CR>")
-	map("n", "<leader>tb", "<CMD>lua dap.toggle_breakpoint()<CR>")
-	map("n", "<leader>dq", "<CMD>lua dap.disconnect({ terminateDebuggee = true })<CR>")
-end
-
 -- Trouble
 if enabled(group, "trouble") then
 	map("n", "<leader>tr", "<CMD>TroubleToggle lsp_references<CR>")
@@ -33,11 +22,6 @@ end
 if enabled(group, "ufo") then
 	map("n", "zR", "<CMD>lua require('ufo').openAllFolds()<CR>")
 	map("n", "zM", "<CMD>lua require('ufo').closeAllFolds()<CR>")
-end
-
--- ZenMode
-if enabled(group, "zen") then
-	map("n", "<leader>zm", "<CMD>ZenMode<CR>")
 end
 
 -- NeoTree

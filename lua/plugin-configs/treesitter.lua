@@ -1,7 +1,5 @@
 require("nvim-treesitter.configs").setup({
-	highlight = {
-		disable = { "html" },
-	},
+	highlight = { enable = true, disable = { "html" } },
 	incremental_selection = { enable = true },
 	autotag = { enable = true },
 	rainbow = { enable = true, disable = { "html" }, extended_mode = false },

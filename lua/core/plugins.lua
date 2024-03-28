@@ -3,6 +3,7 @@ local enabled = require("core.utils.utils").enabled
 local exist, user_config = pcall(require, "user.user_config")
 local group = exist and type(user_config) == "table" and user_config.enable_plugins or {}
 local plugins = exist and type(user_config) == "table" and user_config.plugins or {}
+
 require("lazy").setup({
 	{
 		"stevearc/aerial.nvim",
@@ -53,14 +54,6 @@ require("lazy").setup({
 		end,
 	},
 	{
-		"lewis6991/gitsigns.nvim",
-		cond = enabled(group, "gitsigns"),
-		event = "VimEnter",
-		config = function()
-			require("plugin-configs.gitsigns")
-		end,
-	},
-	{
 		"smoka7/hop.nvim",
 		version = "*",
 		cond = enabled(group, "hop"),
@@ -79,7 +72,26 @@ require("lazy").setup({
 		cond = enabled(group, "indent_blankline"),
 		event = "VimEnter",
 		config = function()
-			require("ibl").setup()
+			require("plugin-configs.rainbow")
+		end,
+	},
+	{
+		"VonHeikemen/lsp-zero.nvim",
+		cond = enabled(group, "lsp_zero"),
+		event = "VimEnter",
+		branch = "v3.x",
+		dependencies = {
+			"neovim/nvim-lspconfig",
+			"williamboman/mason.nvim",
+			"williamboman/mason-lspconfig.nvim",
+		},
+	},
+	{
+		"lewis6991/gitsigns.nvim",
+		cond = enabled(group, "gitsigns"),
+		event = "VimEnter",
+		config = function()
+			require("plugin-configs.gitsigns")
 		end,
 	},
 	{
@@ -91,18 +103,31 @@ require("lazy").setup({
 		end,
 	},
 	{
-		"VonHeikemen/lsp-zero.nvim",
-		cond = enabled(group, "lsp_zero"),
-		event = "VimEnter",
-		branch = "v2.x",
-		config = function()
-			require("plugin-configs.lsp")
-		end,
+		"neovim/nvim-lspconfig",
 		dependencies = {
-			{ "neovim/nvim-lspconfig" },
-			{ "williamboman/mason.nvim" },
-			{ "williamboman/mason-lspconfig.nvim" },
+			-- Automatically install LSPs to stdpath for neovim
+			"williamboman/mason.nvim",
+			"williamboman/mason-lspconfig.nvim",
+			-- Useful status updates for LSP
+			-- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
+			"j-hui/fidget.nvim",
+
+			-- Additional lua configuration, makes nvim stuff amazing!
+			"folke/neodev.nvim",
+			"nvimdev/lspsaga.nvim",
 		},
+	},
+	{
+		"j-hui/fidget.nvim",
+		config = function()
+			require("plugin-configs.fidget")
+		end,
+	},
+	{
+		"williamboman/mason-lspconfig.nvim",
+		config = function()
+			require("plugin-configs.lspconfig")
+		end,
 	},
 	{
 		"folke/neodev.nvim",
@@ -127,7 +152,7 @@ require("lazy").setup({
 		config = function()
 			require("plugin-configs.neo-tree")
 		end,
-		branch = "v3.x",
+		branch = "main",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 	},
 	{
@@ -180,15 +205,30 @@ require("lazy").setup({
 			require("plugin-configs.cmp")
 		end,
 		dependencies = {
-			{ "onsails/lspkind.nvim" },
-			{ "hrsh7th/cmp-nvim-lsp" },
-			{ "hrsh7th/cmp-buffer" },
-			{ "hrsh7th/cmp-path" },
-			{ "saadparwaiz1/cmp_luasnip" },
-			{ "hrsh7th/cmp-nvim-lua" },
-			{ "L3MON4D3/LuaSnip" },
-			{ "rafamadriz/friendly-snippets" },
+			-- Snippet Engine & its associated nvim-cmp source
+			"L3MON4D3/LuaSnip",
+			"saadparwaiz1/cmp_luasnip",
+
+			-- Adds LSP completion capabilities
+			"Dosx001/cmp-commit",
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-cmdline",
+			"hrsh7th/cmp-emoji",
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-nvim-lua",
+			"hrsh7th/cmp-path",
+			"mireq/luasnip-snippets",
+			"onsails/lspkind.nvim",
+			"petertriho/cmp-git",
+			"rafamadriz/friendly-snippets",
 		},
+	},
+	{
+		"L3MON4D3/LuaSnip",
+		build = "make install_jsregexp",
+		init = function()
+			require("plugin-configs.luasnip")
+		end,
 	},
 	{ "NvChad/nvim-colorizer.lua", cond = enabled(group, "colorizer"), event = "VimEnter" },
 	{
@@ -224,6 +264,12 @@ require("lazy").setup({
 		},
 	},
 	{
+
+		"akinsho/git-conflict.nvim",
+		version = "*",
+		config = true,
+	},
+	{
 		"rcarriga/nvim-notify",
 		cond = enabled(group, "notify"),
 		lazy = false,
@@ -247,11 +293,11 @@ require("lazy").setup({
 			require("plugin-configs.treesitter")
 		end,
 		dependencies = {
-			{ "nvim-treesitter/nvim-treesitter-textobjects" },
-			{ "nvim-treesitter/nvim-treesitter-context" },
-			{ "windwp/nvim-ts-autotag" },
-			{ "HiPhish/rainbow-delimiters.nvim" },
-			{ "JoosepAlviste/nvim-ts-context-commentstring" },
+			"nvim-treesitter/nvim-treesitter-textobjects",
+			"nvim-treesitter/nvim-treesitter-context",
+			"windwp/nvim-ts-autotag",
+			"HiPhish/rainbow-delimiters.nvim",
+			"JoosepAlviste/nvim-ts-context-commentstring",
 		},
 	},
 	{
@@ -263,11 +309,14 @@ require("lazy").setup({
 			require("ufo").setup()
 		end,
 	},
-	{
-		"navarasu/onedark.nvim",
-		cond = enabled(group, "onedark"),
-	},
 	{ "nvim-lua/plenary.nvim" },
+	{
+		"sainnhe/gruvbox-material",
+		priority = 1000,
+		config = function()
+			vim.cmd.colorscheme("gruvbox-material")
+		end,
+	},
 	{
 		"ahmedkhalf/project.nvim",
 		cond = enabled(group, "project"),
@@ -292,7 +341,7 @@ require("lazy").setup({
 			{
 				"nvim-telescope/telescope-fzf-native.nvim",
 				run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build \
-         build --config Release && cmake --install build --prefix build",
+                build --config Release && cmake --install build --prefix build",
 			},
 		},
 		config = function()
@@ -309,16 +358,16 @@ require("lazy").setup({
 	},
 	{
 		"folke/trouble.nvim",
-		cond = enabled(group, "trouble"),
+		dependencies = {
+			"nvim-tree/nvim-web-devicons",
+			opts = {
+				color_icons = true,
+				default = true,
+				strict = true,
+			},
+		},
 		cmd = { "TroubleToggle", "Trouble" },
-	},
-	{
-		"folke/twilight.nvim",
-		cond = enabled(group, "twilight"),
-		cmd = { "Twilight", "TwilightEnable", "TwilightDisable" },
-		config = function()
-			require("plugin-configs.twilight")
-		end,
+		cond = enabled(group, "trouble"),
 	},
 	{
 		"folke/which-key.nvim",
@@ -329,18 +378,24 @@ require("lazy").setup({
 		end,
 	},
 	{
-		"windwp/windline.nvim",
-		event = "VeryLazy",
+		"glepnir/template.nvim",
+		cmd = { "Template" },
 		config = function()
-			require("wlsample.evil_line")
+			require("plugin-configs.template")
 		end,
 	},
 	{
-		"folke/zen-mode.nvim",
-		cond = enabled(group, "zen"),
-		cmd = "ZenMode",
+		"RRethy/vim-illuminate",
+		"chentoast/marks.nvim",
+		"tpope/vim-fugitive",
+		"tpope/vim-rhubarb",
+		"tpope/vim-sleuth",
+	},
+	{
+		"nvim-lualine/lualine.nvim",
+		event = "VeryLazy",
 		config = function()
-			require("plugin-configs.zenmode")
+			require("plugin-configs.lualine")
 		end,
 	},
 	plugins,
