@@ -22,6 +22,18 @@ cmp.setup({
 		keyword_length = 1,
 		completeopt = "menu,menuone,noinsert,noselect",
 	},
+	sorting = {
+		comparators = {
+			cmp.config.compare.offset,
+			cmp.config.compare.exact,
+			cmp.config.compare.sort_text,
+			cmp.config.compare.score,
+			cmp.config.compare.recently_used,
+			cmp.config.compare.kind,
+			cmp.config.compare.length,
+			cmp.config.compare.order,
+		},
+	},
 	snippet = {
 		expand = function(args)
 			luasnip.lsp_expand(args.body)
@@ -72,13 +84,13 @@ cmp.setup({
 		{ name = "nvim_lsp" },
 		{ name = "nvim_lua" },
 		{ name = "luasnip" },
-		{ name = "emoji" },
+		{ name = "nerdfont" },
+		{ name = "git" },
 		{ name = "path", option = { trailing_slash = true } },
 	},
 	cmp.setup.filetype("gitcommit", {
 		sources = {
 			{ name = "commit" },
-			{ name = "git" },
 		},
 	}),
 })

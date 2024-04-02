@@ -6,28 +6,17 @@ local enabled = require("core.utils.utils").enabled
 vim.g.mapleader = " " -- the leader key is the spacebar
 local M = {}
 
--- Image Pasting
-if enabled(group, "img_paste") then
-	map("n", "<leader>p", "<CMD>PasteImage<CR>", { desc = "Paste clipboard image" })
-end
-
 -- Trouble
 if enabled(group, "trouble") then
-	map("n", "<leader>tr", "<CMD>TroubleToggle lsp_references<CR>")
-	map("n", "<leader>td", "<CMD>TroubleToggle lsp_definitions<CR>")
-	map("n", "<leader>cd", "<CMD>TroubleToggle<CR>")
+	map("n", "<leader>xr", "<CMD>TroubleToggle lsp_references<CR>")
+	map("n", "<leader>xd", "<CMD>TroubleToggle lsp_definitions<CR>")
+	map("n", "<leader>xx", "<CMD>TroubleToggle<CR>")
 end
 
 -- UFO
 if enabled(group, "ufo") then
 	map("n", "zR", "<CMD>lua require('ufo').openAllFolds()<CR>")
 	map("n", "zM", "<CMD>lua require('ufo').closeAllFolds()<CR>")
-end
-
--- NeoTree
-if enabled(group, "neotree") then
-	map("n", "<leader>nt", "<CMD>Neotree reveal left<CR>")
-	map("n", "<leader>nf", "<CMD>Neotree reveal float<CR>")
 end
 
 -- Aerial
@@ -163,6 +152,28 @@ end
 -- autosave
 if enabled(group, "autosave") then
 	map("n", "<leader>as", "<CMD>ASToggle<CR>", { desc = "toggle autosave" })
+end
+
+-- Oil
+if enabled(group, "oil") then
+	map("n", "<leader>ex", "<CMD>Oil<CR>", { desc = "file explorer" })
+end
+
+-- Todo
+if enabled(group, "todo-comments") then
+	vim.keymap.set("n", "]t", function()
+		require("todo-comments").jump_next()
+	end, { desc = "Next todo comment" })
+
+	vim.keymap.set("n", "[t", function()
+		require("todo-comments").jump_prev()
+	end, { desc = "Previous todo comment" })
+
+	-- You can also specify a list of valid jump keywords
+
+	vim.keymap.set("n", "]t", function()
+		require("todo-comments").jump_next({ keywords = { "ERROR", "WARNING" } })
+	end, { desc = "Next error/warning todo comment" })
 end
 
 -- cmp (these are defined in cmp's configuration file)

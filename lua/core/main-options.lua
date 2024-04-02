@@ -33,7 +33,6 @@ vim_opts({
 		scrolloff = 5,
 		sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions",
 		shiftwidth = 4,
-		showbreak = "=>>",
 		showmode = true,
 		signcolumn = "yes",
 		smartcase = true,

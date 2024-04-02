@@ -20,7 +20,7 @@ require("fidget").setup({
 		display = {
 			render_limit = 16, -- How many LSP messages to show at once
 			done_ttl = 3, -- How long a message should persist after completion
-			done_icon = "✔", -- Icon shown when all LSP progress tasks are complete
+			done_icon = "", -- Icon shown when all LSP progress tasks are complete
 			done_style = "Constant", -- Highlight group for completed LSP tasks
 			progress_ttl = math.huge, -- How long a message should persist when in progress
 			-- Icon shown when LSP progress tasks are in progress
@@ -41,9 +41,6 @@ require("fidget").setup({
 			format_group_name = function(group)
 				return tostring(group)
 			end,
-			overrides = { -- Override options from the default notification config
-				rust_analyzer = { name = "rust-analyzer" },
-			},
 		},
 
 		-- Options related to Neovim's built-in LSP client

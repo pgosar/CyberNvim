@@ -16,7 +16,6 @@ require("lazy").setup({
 	{
 		"goolord/alpha-nvim",
 		cond = enabled(group, "alpha"),
-		lazy = false,
 		config = function()
 			require("plugin-configs.alpha")
 		end,
@@ -24,7 +23,7 @@ require("lazy").setup({
 	{
 		"okuuva/auto-save.nvim",
 		cond = enabled(group, "autosave"),
-		event = "VeryLazy",
+		event = "VeryLazy", -- optional for lazy loading on trigger events
 		config = function()
 			require("plugin-configs.auto-save")
 		end,
@@ -32,7 +31,6 @@ require("lazy").setup({
 	{
 		"akinsho/bufferline.nvim",
 		cond = enabled(group, "bufferline"),
-		lazy = false,
 		config = function()
 			require("plugin-configs.bufferline")
 		end,
@@ -47,6 +45,7 @@ require("lazy").setup({
 	},
 	{
 		"stevearc/dressing.nvim",
+		lazy = true,
 		cond = enabled(group, "dressing"),
 		event = "VeryLazy",
 		config = function()
@@ -63,19 +62,6 @@ require("lazy").setup({
 		end,
 	},
 	{
-		"HakonHarnes/img-clip.nvim",
-		cond = enabled(group, "img_paste"),
-		event = "BufEnter",
-	},
-	{
-		"lukas-reineke/indent-blankline.nvim",
-		cond = enabled(group, "indent_blankline"),
-		event = "VimEnter",
-		config = function()
-			require("plugin-configs.rainbow")
-		end,
-	},
-	{
 		"VonHeikemen/lsp-zero.nvim",
 		cond = enabled(group, "lsp_zero"),
 		event = "VimEnter",
@@ -88,6 +74,7 @@ require("lazy").setup({
 	},
 	{
 		"lewis6991/gitsigns.nvim",
+		lazy = true,
 		cond = enabled(group, "gitsigns"),
 		event = "VimEnter",
 		config = function()
@@ -114,7 +101,6 @@ require("lazy").setup({
 
 			-- Additional lua configuration, makes nvim stuff amazing!
 			"folke/neodev.nvim",
-			"nvimdev/lspsaga.nvim",
 		},
 	},
 	{
@@ -138,22 +124,12 @@ require("lazy").setup({
 		end,
 	},
 	{
-		"karb94/neoscroll.nvim",
-		cond = enabled(group, "neoscroll"),
-		event = "VeryLazy",
-		config = function()
-			require("plugin-configs.neoscroll")
-		end,
-	},
-	{
-		"nvim-neo-tree/neo-tree.nvim",
-		cond = enabled(group, "neotree"),
-		event = "VeryLazy",
-		config = function()
-			require("plugin-configs.neo-tree")
-		end,
-		branch = "main",
+		"stevearc/oil.nvim",
+		-- Optional dependencies
 		dependencies = { "nvim-tree/nvim-web-devicons" },
+		config = function()
+			require("plugin-configs.oil")
+		end,
 	},
 	{
 		"Shatur/neovim-session-manager",
@@ -213,15 +189,21 @@ require("lazy").setup({
 			"Dosx001/cmp-commit",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-cmdline",
-			"hrsh7th/cmp-emoji",
+			"chrisgrieser/cmp-nerdfont",
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-nvim-lua",
 			"hrsh7th/cmp-path",
 			"mireq/luasnip-snippets",
 			"onsails/lspkind.nvim",
-			"petertriho/cmp-git",
 			"rafamadriz/friendly-snippets",
 		},
+	},
+	{
+		"petertriho/cmp-git",
+		lazy = true,
+		config = function()
+			require("plugin-configs.cmp-git")
+		end,
 	},
 	{
 		"L3MON4D3/LuaSnip",
@@ -230,7 +212,6 @@ require("lazy").setup({
 			require("plugin-configs.luasnip")
 		end,
 	},
-	{ "NvChad/nvim-colorizer.lua", cond = enabled(group, "colorizer"), event = "VimEnter" },
 	{
 		"mfussenegger/nvim-dap",
 		cond = enabled(group, "dap"),
@@ -266,18 +247,17 @@ require("lazy").setup({
 	{
 
 		"akinsho/git-conflict.nvim",
+		lazy = true,
 		version = "*",
 		config = true,
 	},
 	{
 		"rcarriga/nvim-notify",
 		cond = enabled(group, "notify"),
-		lazy = false,
 	},
 	{
 		"kylechui/nvim-surround",
 		cond = enabled(group, "surround"),
-		cmd = "VimEnter",
 		config = function()
 			require("nvim-surround").setup()
 		end,
@@ -342,6 +322,7 @@ require("lazy").setup({
 				"nvim-telescope/telescope-fzf-native.nvim",
 				run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build \
                 build --config Release && cmake --install build --prefix build",
+				"debugloop/telescope-undo.nvim",
 			},
 		},
 		config = function()
@@ -358,6 +339,7 @@ require("lazy").setup({
 	},
 	{
 		"folke/trouble.nvim",
+		lazy = false,
 		dependencies = {
 			"nvim-tree/nvim-web-devicons",
 			opts = {
@@ -385,11 +367,68 @@ require("lazy").setup({
 		end,
 	},
 	{
-		"RRethy/vim-illuminate",
 		"chentoast/marks.nvim",
-		"tpope/vim-fugitive",
-		"tpope/vim-rhubarb",
-		"tpope/vim-sleuth",
+		config = function()
+			require("plugin-configs.marks")
+		end,
+	},
+	-- HACK: this looks cool
+	{
+		"folke/todo-comments.nvim",
+		config = function()
+			require("plugin-configs.todo")
+		end,
+	},
+	{
+		"Bekaboo/dropbar.nvim",
+	},
+	{
+		"echasnovski/mini.indentscope",
+		config = function()
+			require("plugin-configs.indentscope")
+		end,
+	},
+	{
+		"kevinhwang91/nvim-fundo",
+		require = "kevinhwang91/promise-async",
+		run = function()
+			require("fundo").install()
+			require("fundo").setup()
+		end,
+	},
+	{
+		"mawkler/modicator.nvim",
+		dependencies = "sainnhe/gruvbox-material",
+		init = function() end,
+		config = function()
+			require("plugin-configs.modicator")
+		end,
+		opts = {
+			-- Warn if any required option above is missing. May emit false positives
+			-- if some other plugin modifies them, which in that case you can just
+			-- ignore. Feel free to remove this line after you've gotten Modicator to
+			-- work properly.
+			show_warnings = true,
+		},
+	},
+	{
+		"max397574/better-escape.nvim",
+		config = function()
+			require("plugin-configs.escape")
+		end,
+	},
+	{
+		"zeioth/garbage-day.nvim",
+		dependencies = "neovim/nvim-lspconfig",
+		event = "VeryLazy",
+		opts = {
+			-- your options here
+		},
+	},
+	{
+		"lukas-reineke/headlines.nvim",
+		dependencies = "nvim-treesitter/nvim-treesitter",
+		config = true,
 	},
 	{
 		"nvim-lualine/lualine.nvim",
@@ -398,9 +437,36 @@ require("lazy").setup({
 			require("plugin-configs.lualine")
 		end,
 	},
+	{
+		"mawkler/modicator.nvim",
+		dependencies = "sainnhe/gruvbox-material",
+		init = function() end,
+		config = function()
+			require("plugin-configs.modicator")
+		end,
+		opts = {
+			show_warnings = true,
+		},
+	},
+	{
+		"max397574/better-escape.nvim",
+		config = function()
+			require("plugin-configs.escape")
+		end,
+	},
+	{
+		"zeioth/garbage-day.nvim",
+		dependencies = "neovim/nvim-lspconfig",
+		event = "VeryLazy",
+	},
+	{
+		"lukas-reineke/headlines.nvim",
+		dependencies = "nvim-treesitter/nvim-treesitter",
+		config = true,
+	},
 	plugins,
 }, {
-	defaults = { lazy = true },
+	defaults = { lazy = false },
 	performance = {
 		rtp = {
 			disabled_plugins = { "tohtml", "gzip", "zipPlugin", "netrwPlugin", "tarPlugin" },

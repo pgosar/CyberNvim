@@ -1,3 +1,14 @@
+local function diff_source()
+	local gitsigns = vim.b.gitsigns_status_dict
+	if gitsigns then
+		return {
+			added = gitsigns.added,
+			modified = gitsigns.changed,
+			removed = gitsigns.removed,
+		}
+	end
+end
+
 require("lualine").setup({
 	options = {
 		theme = "gruvbox-material",
@@ -6,7 +17,7 @@ require("lualine").setup({
 	},
 	sections = {
 		lualine_a = { "mode" },
-		lualine_b = { "branch", "diagnostics" },
+		lualine_b = { { "b:gitsigns_head", icon = "" }, "diagnostics" },
 		lualine_c = {
 			{
 				"filename",
@@ -19,12 +30,30 @@ require("lualine").setup({
 					directory = "", -- Text to show when the buffer is a directory
 				},
 			},
+			{
+				"diff",
+				colored = true, -- Displays a colored diff status if set to true
+				symbols = { added = "󰐖 ", modified = "󰦓 ", removed = " " }, -- Changes the symbols used by the diff.
+				source = diff_source,
+			},
 		},
 
-		lualine_x = { "fileformat", "filetype" },
+		lualine_x = {
+			{
+				"fileformat",
+				symbols = {
+					unix = "",
+					mac = "",
+				},
+			},
+			"filetype",
+		},
 		lualine_y = { { "progress", separator = " ", padding = { left = 1, right = 0 } } },
-		lualine_z = { "diff", "location" },
+		lualine_z = {
+			"location",
+		},
 	},
+
 	inactive_sections = {
 		lualine_a = {},
 		lualine_b = { "filesize" },
@@ -33,5 +62,5 @@ require("lualine").setup({
 		lualine_y = {},
 		lualine_z = {},
 	},
-	extensions = { "lazy", "fugitive", "trouble", "nvim-tree" },
+	extensions = { "lazy", "fugitive", "trouble" },
 })
