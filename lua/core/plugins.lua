@@ -187,9 +187,10 @@ require("lazy").setup({
 
 			-- Adds LSP completion capabilities
 			"Dosx001/cmp-commit",
+			"chrisgrieser/cmp-nerdfont",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-cmdline",
-			"chrisgrieser/cmp-nerdfont",
+			"hrsh7th/cmp-emoji",
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-nvim-lua",
 			"hrsh7th/cmp-path",

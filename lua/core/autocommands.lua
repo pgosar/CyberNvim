@@ -5,7 +5,7 @@ local exist, user_config = pcall(require, "user.user_config")
 local group = exist and type(user_config) == "table" and user_config.autocommands or {}
 local enabled = require("core.utils.utils").enabled
 
--- enables suport for inlay hints with virtual text
+-- enables support for inlay hints with virtual text
 if enabled(group, "inlay_hints") then
 	cmd("LspAttach", {
 		group = augroup("LspAttach_inlayhints", { clear = true }),
@@ -118,11 +118,7 @@ cmd("BufEnter", {
 	group = vim.api.nvim_create_augroup("TroubleClose", { clear = true }),
 	callback = function()
 		local layout = vim.api.nvim_call_function("winlayout", {})
-		if
-			layout[1] == "leaf"
-			and vim.api.nvim_buf_get_option(vim.api.nvim_win_get_buf(layout[2]), "filetype") == "Trouble"
-			and layout[3] == nil
-		then
+		if layout[1] == "leaf" and vim.fn.getbufvar(layout[2], "filetype") == "Trouble" and layout[3] == nil then
 			vim.cmd("confirm quit")
 		end
 	end,

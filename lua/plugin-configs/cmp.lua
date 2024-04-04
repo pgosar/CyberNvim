@@ -81,11 +81,12 @@ cmp.setup({
 		["<C-b>"] = cmp_action.luasnip_jump_backward(),
 	},
 	sources = {
-		{ name = "nvim_lsp" },
-		{ name = "nvim_lua" },
+		{ name = "emoji" },
+		{ name = "git" },
 		{ name = "luasnip" },
 		{ name = "nerdfont" },
-		{ name = "git" },
+		{ name = "nvim_lsp" },
+		{ name = "nvim_lua" },
 		{ name = "path", option = { trailing_slash = true } },
 	},
 	cmp.setup.filetype("gitcommit", {
