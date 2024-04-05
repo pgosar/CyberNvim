@@ -200,6 +200,13 @@ require("lazy").setup({
 		},
 	},
 	{
+		"yutkat/git-rebase-auto-diff.nvim",
+		ft = { "gitrebase" },
+		config = function()
+			require("git-rebase-auto-diff").setup()
+		end,
+	},
+	{
 		"petertriho/cmp-git",
 		lazy = true,
 		config = function()
@@ -322,7 +329,7 @@ require("lazy").setup({
 			{
 				"nvim-telescope/telescope-fzf-native.nvim",
 				run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build \
-                build --config Release && cmake --install build --prefix build",
+				build --config Release && cmake --install build --prefix build",
 				"debugloop/telescope-undo.nvim",
 			},
 		},
@@ -379,6 +386,16 @@ require("lazy").setup({
 		config = function()
 			require("plugin-configs.todo")
 		end,
+	},
+	{
+		"linrongbin16/gitlinker.nvim",
+		lazy = false,
+		cmd = "GitLink",
+		opts = {},
+		keys = {
+			{ "gl", "<cmd>GitLink!<cr>", mode = { "n", "v" }, desc = "Open git link" },
+			{ "gy", "<cmd>GitLink<cr>", mode = { "n", "v" }, desc = "Yank git link" },
+		},
 	},
 	{
 		"Bekaboo/dropbar.nvim",
@@ -464,6 +481,16 @@ require("lazy").setup({
 		"lukas-reineke/headlines.nvim",
 		dependencies = "nvim-treesitter/nvim-treesitter",
 		config = true,
+	},
+	{
+		"ThePrimeagen/refactoring.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-treesitter/nvim-treesitter",
+		},
+		config = function()
+			require("refactoring").setup()
+		end,
 	},
 	plugins,
 }, {
