@@ -140,6 +140,12 @@ require("lazy").setup({
 		end,
 	},
 	{
+		"nacro90/numb.nvim",
+		config = function()
+			require("numb").setup()
+		end,
+	},
+	{
 		"folke/noice.nvim",
 		cond = enabled(group, "noice"),
 		event = "VimEnter",
@@ -306,20 +312,18 @@ require("lazy").setup({
 		end,
 	},
 	{
-		"ahmedkhalf/project.nvim",
-		cond = enabled(group, "project"),
-		event = "VimEnter",
-		config = function()
-			require("project_nvim").setup()
-		end,
-	},
-	{
 		"tiagovla/scope.nvim",
 		cond = enabled(group, "scope"),
 		event = "VimEnter",
 		config = function()
 			require("plugin-configs.scope")
 		end,
+	},
+	{
+		"jsongerber/thanks.nvim",
+		opts = {
+			plugin_manager = "lazy",
+		},
 	},
 	{
 		"nvim-telescope/telescope.nvim",
@@ -343,6 +347,12 @@ require("lazy").setup({
 		event = "VeryLazy",
 		config = function()
 			_G.term = require("plugin-configs.toggleterm")
+		end,
+	},
+	{
+		"NvChad/nvim-colorizer.lua",
+		config = function()
+			require("colorizer").setup()
 		end,
 	},
 	{
@@ -398,9 +408,6 @@ require("lazy").setup({
 		},
 	},
 	{
-		"Bekaboo/dropbar.nvim",
-	},
-	{
 		"echasnovski/mini.indentscope",
 		config = function()
 			require("plugin-configs.indentscope")
@@ -415,38 +422,10 @@ require("lazy").setup({
 		end,
 	},
 	{
-		"mawkler/modicator.nvim",
-		dependencies = "sainnhe/gruvbox-material",
-		init = function() end,
-		config = function()
-			require("plugin-configs.modicator")
-		end,
-		opts = {
-			-- Warn if any required option above is missing. May emit false positives
-			-- if some other plugin modifies them, which in that case you can just
-			-- ignore. Feel free to remove this line after you've gotten Modicator to
-			-- work properly.
-			show_warnings = true,
-		},
-	},
-	{
 		"max397574/better-escape.nvim",
 		config = function()
 			require("plugin-configs.escape")
 		end,
-	},
-	{
-		"zeioth/garbage-day.nvim",
-		dependencies = "neovim/nvim-lspconfig",
-		event = "VeryLazy",
-		opts = {
-			-- your options here
-		},
-	},
-	{
-		"lukas-reineke/headlines.nvim",
-		dependencies = "nvim-treesitter/nvim-treesitter",
-		config = true,
 	},
 	{
 		"nvim-lualine/lualine.nvim",
@@ -467,15 +446,13 @@ require("lazy").setup({
 		},
 	},
 	{
-		"max397574/better-escape.nvim",
-		config = function()
-			require("plugin-configs.escape")
-		end,
-	},
-	{
 		"zeioth/garbage-day.nvim",
 		dependencies = "neovim/nvim-lspconfig",
 		event = "VeryLazy",
+	},
+	{
+		"eandrju/cellular-automaton.nvim",
+		cmd = "CellularAutomaton",
 	},
 	{
 		"lukas-reineke/headlines.nvim",
@@ -483,18 +460,14 @@ require("lazy").setup({
 		config = true,
 	},
 	{
-		"ThePrimeagen/refactoring.nvim",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"nvim-treesitter/nvim-treesitter",
-		},
+		"blumaa/ohne-accidents",
 		config = function()
-			require("refactoring").setup()
+			require("ohne-accidents").setup()
+			vim.api.nvim_set_keymap("n", "<leader>oh", ":OhneAccidents<CR>", { noremap = true, silent = true })
 		end,
 	},
 	plugins,
 }, {
-	defaults = { lazy = false },
 	performance = {
 		rtp = {
 			disabled_plugins = { "tohtml", "gzip", "zipPlugin", "netrwPlugin", "tarPlugin" },
