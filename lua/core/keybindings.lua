@@ -45,7 +45,6 @@ if enabled(group, "telescope") then
 	map("n", "<leader>fb", "<CMD>Telescope buffers<CR>")
 	map("n", "<leader>fh", "<CMD>Telescope help_tags<CR>")
 	map("n", "<leader>fa", "<CMD>Telescope aerial<CR>")
-	map("n", "<leader>fp", "<CMD>Telescope projects<CR>")
 end
 
 -- Move lines and blocks
@@ -176,10 +175,4 @@ if enabled(group, "todo-comments") then
 	end, { desc = "Next error/warning todo comment" })
 end
 
--- cmp (these are defined in cmp's configuration file)
--- ["<C-j>"] = cmp.mapping.scroll_docs(-4),
--- ["<C-k"] = cmp.mapping.scroll_docs(4),
--- ["<C-c>"] = cmp.mapping.abort(),
--- ["<C-f>"] = cmp_action.luasnip_jump_forward(),
--- ["<C-b>"] = cmp_action.luasnip_jump_backward(),
 return M

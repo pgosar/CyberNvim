@@ -179,6 +179,7 @@ require("lazy").setup({
 			require("plugin-configs.autopairs")
 		end,
 	},
+
 	{
 		"hrsh7th/nvim-cmp",
 		cond = enabled(group, "cmp"),
@@ -193,16 +194,40 @@ require("lazy").setup({
 
 			-- Adds LSP completion capabilities
 			"Dosx001/cmp-commit",
+			"KadoBOT/cmp-plugins",
 			"chrisgrieser/cmp-nerdfont",
+			"dmitmel/cmp-cmdline-history",
+			"f3fora/cmp-spell",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-cmdline",
 			"hrsh7th/cmp-emoji",
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-nvim-lua",
 			"hrsh7th/cmp-path",
+			"lukas-reineke/cmp-rg",
 			"mireq/luasnip-snippets",
 			"onsails/lspkind.nvim",
-			"rafamadriz/friendly-snippets",
+			{
+				"Dynge/gitmoji.nvim",
+				config = function()
+					require("gitmoji").setup({})
+				end,
+			},
+			{
+				"petertriho/cmp-git",
+				lazy = true,
+				config = function()
+					require("plugin-configs.cmp-git")
+				end,
+			},
+			{
+				"rafamadriz/friendly-snippets",
+				config = function()
+					require("cmp-plugins").setup({
+						files = { ".*\\.lua" }, -- default
+					})
+				end,
+			},
 		},
 	},
 	{
@@ -213,15 +238,8 @@ require("lazy").setup({
 		end,
 	},
 	{
-		"petertriho/cmp-git",
-		lazy = true,
-		config = function()
-			require("plugin-configs.cmp-git")
-		end,
-	},
-	{
 		"L3MON4D3/LuaSnip",
-		build = "make install_jsregexp",
+		dependencies = { "benfowler/telescope-luasnip.nvim" },
 		init = function()
 			require("plugin-configs.luasnip")
 		end,
@@ -254,7 +272,14 @@ require("lazy").setup({
 				end,
 			},
 			{
+				--NOTE:library
 				"nvim-neotest/nvim-nio",
+			},
+			{
+				"mfussenegger/nvim-dap-python",
+				config = function()
+					require("dap-python").setup("~/.venv/debugpy/bin/python")
+				end,
 			},
 		},
 	},
@@ -333,7 +358,7 @@ require("lazy").setup({
 			{
 				"nvim-telescope/telescope-fzf-native.nvim",
 				run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build \
-				build --config Release && cmake --install build --prefix build",
+					build --config Release && cmake --install build --prefix build",
 				"debugloop/telescope-undo.nvim",
 			},
 		},
@@ -458,13 +483,6 @@ require("lazy").setup({
 		"lukas-reineke/headlines.nvim",
 		dependencies = "nvim-treesitter/nvim-treesitter",
 		config = true,
-	},
-	{
-		"blumaa/ohne-accidents",
-		config = function()
-			require("ohne-accidents").setup()
-			vim.api.nvim_set_keymap("n", "<leader>oh", ":OhneAccidents<CR>", { noremap = true, silent = true })
-		end,
 	},
 	plugins,
 }, {

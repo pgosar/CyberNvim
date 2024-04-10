@@ -87,11 +87,36 @@ cmp.setup({
 		{ name = "nerdfont" },
 		{ name = "nvim_lsp" },
 		{ name = "nvim_lua" },
-		{ name = "path", option = { trailing_slash = true } },
+		{ name = "path" },
+		{ name = "plugins" },
+		{ name = "rg" },
+		{ name = "spell" },
+		{ name = "zsh" },
 	},
-	cmp.setup.filetype("gitcommit", {
-		sources = {
-			{ name = "commit" },
+})
+cmp.setup.filetype("gitcommit", {
+	sources = {
+		{ name = "commit" },
+		{ name = "gitmoji" },
+	},
+})
+-- `/` cmdline setup.
+cmp.setup.cmdline("/", {
+	mapping = cmp.mapping.preset.cmdline(),
+	sources = {
+		{ name = "buffer" },
+	},
+})
+
+-- `:` cmdline setup.
+cmp.setup.cmdline(":", {
+	mapping = cmp.mapping.preset.cmdline(),
+	sources = cmp.config.sources({ name = "path" }, {
+		{
+			name = "cmdline",
+			option = {
+				ignore_cmds = { "Man", "!" },
+			},
 		},
-	}),
+	}, { name = "cmdline_history" }),
 })
