@@ -11,7 +11,7 @@ end
 
 require("lualine").setup({
 	options = {
-		theme = "gruvbox",
+		theme = "gruvbox-material",
 		globalstatus = false,
 		disabled_filetypes = { statusline = { "alpha" } },
 	},

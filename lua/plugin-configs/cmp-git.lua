@@ -3,7 +3,7 @@ local sort = require("cmp_git.sort")
 
 require("cmp_git").setup({
 	-- defaults
-	filetypes = { "gitcommit", "octo" },
+	filetypes = { "gitcommit" },
 	remotes = { "upstream", "origin" }, -- in order of most to least prioritized
 	enableRemoteUrlRewrites = false, -- enable git url rewrites, see https://git-scm.com/docs/git-config#Documentation/git-config.txt-urlltbasegtinsteadOf
 	git = {

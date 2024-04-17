@@ -318,7 +318,6 @@ require("lazy").setup({
 		dependencies = "kevinhwang91/promise-async",
 		opts = {},
 	},
-	{ "nvim-lua/plenary.nvim" },
 	{
 		"f4z3r/gruvbox-material.nvim",
 		priority = 1000,
@@ -433,7 +432,7 @@ require("lazy").setup({
 		opts = {},
 		keys = {
 			{ "gl", "<cmd>GitLink!<cr>", mode = { "n", "v" }, desc = "Open git link" },
-			{ "gy", "<cmd>GitLink<cr>",  mode = { "n", "v" }, desc = "Yank git link" },
+			{ "gy", "<cmd>GitLink<cr>", mode = { "n", "v" }, desc = "Yank git link" },
 		},
 	},
 	{
