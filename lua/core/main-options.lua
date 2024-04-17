@@ -36,8 +36,6 @@ vim_opts({
 		signcolumn = "yes",
 		smartcase = true,
 		softtabstop = 4,
-		spell = true,
-		spelllang = { "en_us" },
 		tabstop = 4,
 		termguicolors = true,
 		textwidth = 100,

@@ -92,8 +92,6 @@ if enabled(group, "toggleterm") then
 		{ desc = "tokei" }
 	)
 	map("n", "<leader>gg", "<CMD>lua term.lazygit_toggle()<CR>", { desc = "open lazygit" })
-	map("n", "<leader>gd", "<CMD>lua term.gdu_toggle()<CR>", { desc = "open gdu" })
-	map("n", "<leader>bt", "<CMD>lua term.bashtop_toggle()<CR>", { desc = "open bashtop" })
 end
 
 -- Hop
@@ -153,26 +151,50 @@ if enabled(group, "autosave") then
 	map("n", "<leader>as", "<CMD>ASToggle<CR>", { desc = "toggle autosave" })
 end
 
--- Oil
+-- template
+if enabled(group, "template") then
+	map("n", "<Leader>nt", function()
+		vim.fn.feedkeys(":Template ")
+	end, { remap = true, desc = "New Template" })
+end
+
 if enabled(group, "oil") then
-	map("n", "<leader>ex", "<CMD>Oil<CR>", { desc = "file explorer" })
+	map("n", "<leader>ex", "<CMD>Oil<CR>", { desc = "File Explorer" })
+	map("n", "<leader>eg", "<CMD>Oil ~/.config/nvim/lua<CR>", { desc = "Edit Nvim Config" })
 end
 
 -- Todo
 if enabled(group, "todo-comments") then
-	vim.keymap.set("n", "]t", function()
+	map("n", "]t", function()
 		require("todo-comments").jump_next()
 	end, { desc = "Next todo comment" })
 
-	vim.keymap.set("n", "[t", function()
+	map("n", "[t", function()
 		require("todo-comments").jump_prev()
 	end, { desc = "Previous todo comment" })
 
 	-- You can also specify a list of valid jump keywords
 
-	vim.keymap.set("n", "]t", function()
+	map("n", "]t", function()
 		require("todo-comments").jump_next({ keywords = { "ERROR", "WARNING" } })
 	end, { desc = "Next error/warning todo comment" })
+end
+
+-- toggle-bool
+if enabled(group, "bool") then
+	map("n", "<leader>tb", "<CMD>lua require('toggle-bool').toggle_bool()<CR>", { desc = "Toggle bool" })
+end
+
+if enabled(group, "duck") then
+	map("n", "<leader>dd", function()
+		require("duck").hatch("ඞ")
+	end, { desc = "Spawn Your New Pet" })
+	map("n", "<leader>dk", function()
+		require("duck").cook()
+	end, { desc = "Cook Your Pet" })
+	map("n", "<leader>da", function()
+		require("duck").cook_all()
+	end, { desc = "Cook All Of Your Pets" })
 end
 
 return M

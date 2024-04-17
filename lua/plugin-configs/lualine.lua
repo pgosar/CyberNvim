@@ -11,13 +11,13 @@ end
 
 require("lualine").setup({
 	options = {
-		theme = "gruvbox-material",
+		theme = "gruvbox",
 		globalstatus = false,
 		disabled_filetypes = { statusline = { "alpha" } },
 	},
 	sections = {
 		lualine_a = { "mode" },
-		lualine_b = { { "b:gitsigns_head", icon = "" }, "diagnostics" },
+		lualine_b = { { "b:gitsigns_head", icon = "" }, "diagnostics" },
 		lualine_c = {
 			{
 				"filename",

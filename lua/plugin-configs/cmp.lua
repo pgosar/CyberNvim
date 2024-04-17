@@ -4,9 +4,24 @@ local luasnip = require("luasnip")
 require("luasnip.loaders.from_vscode").lazy_load()
 require("luasnip_snippets.common.snip_utils").setup()
 local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+local cmp_hl = vim.api.nvim_create_augroup("CmpHighlights", {})
+local cmp_types = {
+	"Class",
+	"Constant",
+	"Constructor",
+	"Enum",
+	"Field",
+	"Function",
+	"Keyword",
+	"Method",
+	"Operator",
+	"Property",
+	"Struct",
+	"Text",
+}
+local has_words_before = require("core.utils.utils").has_words_before
 
 cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
-local has_words_before = require("core.utils.utils").has_words_before
 cmp.setup({
 	enabled = function()
 		-- disables in comments
@@ -22,6 +37,7 @@ cmp.setup({
 		keyword_length = 1,
 		completeopt = "menu,menuone,noinsert,noselect",
 	},
+	files = { ".*\\.lua" }, -- default
 	sorting = {
 		comparators = {
 			cmp.config.compare.offset,
@@ -46,9 +62,11 @@ cmp.setup({
 	formatting = {
 		fields = { "abbr", "kind", "menu" },
 		format = require("lspkind").cmp_format({
+			mode = "symbol_text",
 			maxwidth = 50,
 			ellipsis_char = "...",
-			mode = "symbol_text",
+			symbol_map = { Codeium = "" },
+			show_labelDetails = true,
 		}),
 	},
 	mapping = {
@@ -81,8 +99,9 @@ cmp.setup({
 		["<C-b>"] = cmp_action.luasnip_jump_backward(),
 	},
 	sources = {
+		{ name = "cmp_yanky" },
+		{ name = "codeium" },
 		{ name = "emoji" },
-		{ name = "git" },
 		{ name = "luasnip" },
 		{ name = "nerdfont" },
 		{ name = "nvim_lsp" },
@@ -91,7 +110,20 @@ cmp.setup({
 		{ name = "plugins" },
 		{ name = "rg" },
 		{ name = "spell" },
-		{ name = "zsh" },
+		-- { name = "zsh" },
+		{
+			name = "buffer",
+			keyword_length = 5,
+			option = {
+				get_bufnrs = function()
+					local bufs = {}
+					for _, win in ipairs(vim.api.nvim_list_wins()) do
+						bufs[vim.api.nvim_win_get_buf(win)] = true
+					end
+					return vim.tbl_keys(bufs)
+				end,
+			},
+		},
 	},
 })
 cmp.setup.filetype("gitcommit", {
@@ -100,9 +132,12 @@ cmp.setup.filetype("gitcommit", {
 		{ name = "gitmoji" },
 	},
 })
+
 -- `/` cmdline setup.
-cmp.setup.cmdline("/", {
+cmp.setup.cmdline({ "/", "?" }, {
 	mapping = cmp.mapping.preset.cmdline(),
+	window = { completion = cmp.config.window.bordered({ col_offset = 0 }) },
+	formatting = { fields = { "abbr" } },
 	sources = {
 		{ name = "buffer" },
 	},
@@ -111,12 +146,29 @@ cmp.setup.cmdline("/", {
 -- `:` cmdline setup.
 cmp.setup.cmdline(":", {
 	mapping = cmp.mapping.preset.cmdline(),
-	sources = cmp.config.sources({ name = "path" }, {
-		{
-			name = "cmdline",
-			option = {
-				ignore_cmds = { "Man", "!" },
-			},
-		},
-	}, { name = "cmdline_history" }),
+	window = { completion = cmp.config.window.bordered({ col_offset = 0 }) },
+	formatting = { fields = { "abbr" } },
+	sources = cmp.config.sources({
+		{ name = "path" },
+	}, {
+		{ name = "cmdline" },
+	}),
+})
+
+vim.api.nvim_clear_autocmds({ group = cmp_hl })
+vim.api.nvim_create_autocmd({ "InsertEnter", "CmdlineEnter" }, {
+	group = cmp_hl,
+	desc = "redefinition of nvim-cmp highlight groups",
+	callback = function()
+		vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", {})
+		vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", { link = "@text.todo" })
+		vim.api.nvim_set_hl(0, "CmpItemMenu", {})
+		vim.api.nvim_set_hl(0, "CmpItemMenu", { link = "LineNr" })
+		vim.api.nvim_set_hl(0, "CmpItemKindVariable", {})
+		vim.api.nvim_set_hl(0, "CmpItemKindVariable", { link = "@number" })
+		for _, type in ipairs(cmp_types) do
+			vim.api.nvim_set_hl(0, "CmpItemKind" .. type, {})
+			vim.api.nvim_set_hl(0, "CmpItemKind" .. type, { link = "@" .. type })
+		end
+	end,
 })

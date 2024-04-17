@@ -19,7 +19,6 @@ local term = require("toggleterm.terminal")
 
 local M = {}
 M.lazygit_toggle = create_floating_terminal(term, "lazygit")
-M.gdu_toggle = create_floating_terminal(term, "gdu")
 M.bashtop_toggle = create_floating_terminal(term, "bashtop")
 
 return M

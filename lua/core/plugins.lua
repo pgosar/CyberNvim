@@ -39,9 +39,7 @@ require("lazy").setup({
 		"numToStr/Comment.nvim",
 		cond = enabled(group, "comment"),
 		event = "VeryLazy",
-		config = function()
-			require("Comment").setup()
-		end,
+		opts = {},
 	},
 	{
 		"stevearc/dressing.nvim",
@@ -85,9 +83,7 @@ require("lazy").setup({
 		"lvimuser/lsp-inlayhints.nvim",
 		cond = enabled(group, "inlay_hints"),
 		event = "VeryLazy",
-		config = function()
-			require("lsp-inlayhints").setup()
-		end,
+		opts = {},
 	},
 	{
 		"neovim/nvim-lspconfig",
@@ -96,7 +92,6 @@ require("lazy").setup({
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
 			-- Useful status updates for LSP
-			-- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
 			"j-hui/fidget.nvim",
 
 			-- Additional lua configuration, makes nvim stuff amazing!
@@ -141,9 +136,7 @@ require("lazy").setup({
 	},
 	{
 		"nacro90/numb.nvim",
-		config = function()
-			require("numb").setup()
-		end,
+		opts = {},
 	},
 	{
 		"folke/noice.nvim",
@@ -196,6 +189,7 @@ require("lazy").setup({
 			"Dosx001/cmp-commit",
 			"KadoBOT/cmp-plugins",
 			"chrisgrieser/cmp-nerdfont",
+			"chrisgrieser/cmp_yanky",
 			"dmitmel/cmp-cmdline-history",
 			"f3fora/cmp-spell",
 			"hrsh7th/cmp-buffer",
@@ -207,11 +201,10 @@ require("lazy").setup({
 			"lukas-reineke/cmp-rg",
 			"mireq/luasnip-snippets",
 			"onsails/lspkind.nvim",
+			"rafamadriz/friendly-snippets",
 			{
 				"Dynge/gitmoji.nvim",
-				config = function()
-					require("gitmoji").setup({})
-				end,
+				opts = {},
 			},
 			{
 				"petertriho/cmp-git",
@@ -220,22 +213,19 @@ require("lazy").setup({
 					require("plugin-configs.cmp-git")
 				end,
 			},
-			{
-				"rafamadriz/friendly-snippets",
-				config = function()
-					require("cmp-plugins").setup({
-						files = { ".*\\.lua" }, -- default
-					})
-				end,
-			},
 		},
+	},
+	{
+		"m4xshen/hardtime.nvim",
+		dependencies = { "MunifTanjim/nui.nvim", "nvim-lua/plenary.nvim" },
+		config = function()
+			require("plugin-configs.hardtime")
+		end,
 	},
 	{
 		"yutkat/git-rebase-auto-diff.nvim",
 		ft = { "gitrebase" },
-		config = function()
-			require("git-rebase-auto-diff").setup()
-		end,
+		opts = {},
 	},
 	{
 		"L3MON4D3/LuaSnip",
@@ -261,15 +251,11 @@ require("lazy").setup({
 			},
 			{
 				"rcarriga/nvim-dap-ui",
-				config = function()
-					require("dapui").setup()
-				end,
+				opts = {},
 			},
 			{
 				"theHamsta/nvim-dap-virtual-text",
-				config = function()
-					require("nvim-dap-virtual-text").setup()
-				end,
+				opts = {},
 			},
 			{
 				--NOTE:library
@@ -284,11 +270,19 @@ require("lazy").setup({
 		},
 	},
 	{
-
+		"tamton-aquib/duck.nvim",
+		cond = enabled(group, "duck"),
+		opts = {},
+	},
+	{
+		"hinell/lsp-timeout.nvim",
+		dependencies = { "neovim/nvim-lspconfig" },
+	},
+	{
 		"akinsho/git-conflict.nvim",
-		lazy = true,
 		version = "*",
 		config = true,
+		default_mappings = true,
 	},
 	{
 		"rcarriga/nvim-notify",
@@ -297,9 +291,7 @@ require("lazy").setup({
 	{
 		"kylechui/nvim-surround",
 		cond = enabled(group, "surround"),
-		config = function()
-			require("nvim-surround").setup()
-		end,
+		opts = {},
 	},
 	{
 		"nvim-treesitter/nvim-treesitter",
@@ -324,13 +316,11 @@ require("lazy").setup({
 		cond = enabled(group, "ufo"),
 		event = "VimEnter",
 		dependencies = "kevinhwang91/promise-async",
-		config = function()
-			require("ufo").setup()
-		end,
+		opts = {},
 	},
 	{ "nvim-lua/plenary.nvim" },
 	{
-		"sainnhe/gruvbox-material",
+		"f4z3r/gruvbox-material.nvim",
 		priority = 1000,
 		config = function()
 			vim.cmd.colorscheme("gruvbox-material")
@@ -342,6 +332,12 @@ require("lazy").setup({
 		event = "VimEnter",
 		config = function()
 			require("plugin-configs.scope")
+		end,
+	},
+	{
+		"gerazov/toggle-bool.nvim",
+		config = function()
+			require("plugin-configs.bool")
 		end,
 	},
 	{
@@ -358,7 +354,7 @@ require("lazy").setup({
 			{
 				"nvim-telescope/telescope-fzf-native.nvim",
 				run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build \
-					build --config Release && cmake --install build --prefix build",
+				build --config Release && cmake --install build --prefix build",
 				"debugloop/telescope-undo.nvim",
 			},
 		},
@@ -376,9 +372,7 @@ require("lazy").setup({
 	},
 	{
 		"NvChad/nvim-colorizer.lua",
-		config = function()
-			require("colorizer").setup()
-		end,
+		opts = {},
 	},
 	{
 		"folke/trouble.nvim",
@@ -399,21 +393,31 @@ require("lazy").setup({
 		cond = enabled(group, "whichkey"),
 		event = "VeryLazy",
 		config = function()
-			require("which-key").setup()
+			require("plugin-configs.which-key")
+		end,
+	},
+	{
+		"lambdalisue/suda.vim",
+		config = function()
+			require("plugin-configs.suda")
 		end,
 	},
 	{
 		"glepnir/template.nvim",
-		cmd = { "Template" },
+		cmd = { "Template", "TemProject" },
 		config = function()
 			require("plugin-configs.template")
 		end,
 	},
 	{
-		"chentoast/marks.nvim",
+		"gbprod/yanky.nvim",
 		config = function()
-			require("plugin-configs.marks")
+			require("plugin-configs.yanky")
 		end,
+	},
+	{
+		"chentoast/marks.nvim",
+		opts = {},
 	},
 	-- HACK: this looks cool
 	{
@@ -429,7 +433,7 @@ require("lazy").setup({
 		opts = {},
 		keys = {
 			{ "gl", "<cmd>GitLink!<cr>", mode = { "n", "v" }, desc = "Open git link" },
-			{ "gy", "<cmd>GitLink<cr>", mode = { "n", "v" }, desc = "Yank git link" },
+			{ "gy", "<cmd>GitLink<cr>",  mode = { "n", "v" }, desc = "Yank git link" },
 		},
 	},
 	{
@@ -460,29 +464,37 @@ require("lazy").setup({
 		end,
 	},
 	{
-		"mawkler/modicator.nvim",
-		dependencies = "sainnhe/gruvbox-material",
-		init = function() end,
-		config = function()
-			require("plugin-configs.modicator")
-		end,
-		opts = {
-			show_warnings = true,
-		},
-	},
-	{
-		"zeioth/garbage-day.nvim",
-		dependencies = "neovim/nvim-lspconfig",
-		event = "VeryLazy",
-	},
-	{
-		"eandrju/cellular-automaton.nvim",
-		cmd = "CellularAutomaton",
-	},
-	{
 		"lukas-reineke/headlines.nvim",
 		dependencies = "nvim-treesitter/nvim-treesitter",
 		config = true,
+	},
+	{
+		"Exafunction/codeium.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"hrsh7th/nvim-cmp",
+		},
+		config = function()
+			require("codeium").setup({})
+		end,
+	},
+	{
+		"roobert/action-hints.nvim",
+		opts = {},
+	},
+	{
+		"ldelossa/gh.nvim",
+		dependencies = {
+			{
+				"ldelossa/litee.nvim",
+				config = function()
+					require("litee.lib").setup()
+				end,
+			},
+		},
+		config = function()
+			require("litee.gh").setup()
+		end,
 	},
 	plugins,
 }, {
