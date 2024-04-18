@@ -8,15 +8,15 @@ local M = {}
 
 -- Trouble
 if enabled(group, "trouble") then
-	map("n", "<leader>xr", "<CMD>TroubleToggle lsp_references<CR>")
 	map("n", "<leader>xd", "<CMD>TroubleToggle lsp_definitions<CR>")
+	map("n", "<leader>xr", "<CMD>TroubleToggle lsp_references<CR>")
 	map("n", "<leader>xx", "<CMD>TroubleToggle<CR>")
 end
 
 -- UFO
 if enabled(group, "ufo") then
-	map("n", "zR", "<CMD>lua require('ufo').openAllFolds()<CR>")
 	map("n", "zM", "<CMD>lua require('ufo').closeAllFolds()<CR>")
+	map("n", "zR", "<CMD>lua require('ufo').openAllFolds()<CR>")
 end
 
 -- Aerial
@@ -30,21 +30,21 @@ map("n", "m", "<CMD>noh<CR>")
 -- Movement
 -- in insert mode, type <c-d> and your cursor will move past the next separator
 -- such as quotes, parens, brackets, etc.
-map("i", "<C-d>", "<left><c-o>/[\"';)>}\\]]<cr><c-o><CMD>noh<cr><right>")
-map("i", "<C-b>", "<C-o>0")
 map("i", "<C-a>", "<C-o>A")
+map("i", "<C-b>", "<C-o>0")
+map("i", "<C-d>", "<left><c-o>/[\"';)>}\\]]<cr><c-o><CMD>noh<cr><right>")
 
 -- Command mode
-map("c", "<C-p>", "<Up>")
 map("c", "<C-n>", "<Down>")
+map("c", "<C-p>", "<Up>")
 
 -- Telescope
 if enabled(group, "telescope") then
+	map("n", "<leader>fa", "<CMD>Telescope aerial<CR>")
+	map("n", "<leader>fb", "<CMD>Telescope buffers<CR>")
 	map("n", "<leader>ff", "<CMD>Telescope git_files hidden=true<CR>", { desc = "Telescope Find Files" })
 	map("n", "<leader>fg", "<CMD>Telescope live_grep<CR>")
-	map("n", "<leader>fb", "<CMD>Telescope buffers<CR>")
 	map("n", "<leader>fh", "<CMD>Telescope help_tags<CR>")
-	map("n", "<leader>fa", "<CMD>Telescope aerial<CR>")
 	map("n", "<leader>u", "<cmd>Telescope undo<cr>")
 end
 
@@ -54,29 +54,29 @@ map("x", "<A-k>", ":m '<-2<CR>gv=gv")
 
 -- Notify
 if enabled(group, "notify") then
-	map("n", "<ESC>", "<CMD>lua require('notify').dismiss()<CR>")
 	map("i", "<ESC>", "<CMD>lua require('notify').dismiss()<CR><ESC>")
+	map("n", "<ESC>", "<CMD>lua require('notify').dismiss()<CR>")
 end
 
 -- More LSP stuff
 if enabled(group, "lsp_zero") then
 	_G.buf = vim.lsp.buf
 	-- lsp agnostic global rename
-	map("n", "rg", ":%s/<C-r><C-w>//g<Left><Left>", { desc = "global substitution" })
-	map("n", "gd", "<CMD>lua buf.declaration()<CR>")
-	map("n", "gD", "<CMD>lua buf.definition()<CR>")
+	map("n", "<leader>ca", "<CMD>lua buf.code_action()<CR>")
+	map("n", "<leader>rn", "<CMD>lua buf.rename()<CR>")
 	map("n", "K", "<CMD>lua buf.hover()<CR>")
+	map("n", "gD", "<CMD>lua buf.definition()<CR>")
+	map("n", "gd", "<CMD>lua buf.declaration()<CR>")
 	map("n", "gi", "<CMD>lua buf.implementation()<CR>")
 	map("n", "gr", "<CMD>Telescope lsp_references<CR>")
+	map("n", "rg", ":%s/<C-r><C-w>//g<Left><Left>", { desc = "global substitution" })
 	map("n", "sh", "<CMD>lua buf.signature_help()<CR>")
-	map("n", "<leader>rn", "<CMD>lua buf.rename()<CR>")
-	map("n", "<leader>ca", "<CMD>lua buf.code_action()<CR>")
 end
 
 -- Session
 if enabled(group, "session_manager") then
-	map("n", "<leader>ss", "<CMD>SessionManager save_current_session<CR>")
 	map("n", "<leader>o", "<CMD>SessionManager load_session<CR>")
+	map("n", "<leader>ss", "<CMD>SessionManager save_current_session<CR>")
 end
 
 -- ToggleTerm
@@ -127,12 +127,12 @@ if enabled(group, "gitsigns") then
 			return "<Ignore>"
 		end, { expr = true, desc = "go to next git hunk" })
 
-		map("n", "<leader>hs", gs.stage_hunk, { desc = "stage hunk" })
-		map("n", "<leader>hr", gs.reset_hunk, { desc = "reset hunk" })
-		map("n", "<leader>hS", gs.stage_buffer, { desc = "stage buffer" })
-		map("n", "<leader>hu", gs.undo_stage_hunk, { desc = "undo stage hunk" })
 		map("n", "<leader>hR", gs.reset_buffer, { desc = "reset buffer" })
+		map("n", "<leader>hS", gs.stage_buffer, { desc = "stage buffer" })
 		map("n", "<leader>hp", gs.preview_hunk, { desc = "preview hunk" })
+		map("n", "<leader>hr", gs.reset_hunk, { desc = "reset hunk" })
+		map("n", "<leader>hs", gs.stage_hunk, { desc = "stage hunk" })
+		map("n", "<leader>hu", gs.undo_stage_hunk, { desc = "undo stage hunk" })
 		map("n", "<leader>hb", function()
 			gs.blame_line({ full = true })
 		end, { desc = "complete blame line history" })
@@ -160,8 +160,8 @@ if enabled(group, "template") then
 end
 
 if enabled(group, "oil") then
+	map("n", "<leader>ec", "<CMD>Oil ~/.config/nvim/lua<CR>", { desc = "Edit Nvim Config" })
 	map("n", "<leader>ex", "<CMD>Oil<CR>", { desc = "File Explorer" })
-	map("n", "<leader>eg", "<CMD>Oil ~/.config/nvim/lua<CR>", { desc = "Edit Nvim Config" })
 end
 
 -- Todo
