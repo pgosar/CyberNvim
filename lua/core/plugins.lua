@@ -439,6 +439,10 @@ require("lazy").setup({
 		keys = {},
 	},
 	{
+		"sQVe/sort.nvim",
+		opts = {},
+	},
+	{
 		"echasnovski/mini.indentscope",
 		config = function()
 			require("plugin-configs.indentscope")
