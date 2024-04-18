@@ -15,7 +15,6 @@ require("lazy").setup({
 	{
 		"goolord/alpha-nvim",
 		cond = enabled(group, "alpha"),
-		lazy = false,
 		config = function()
 			require("plugin-configs.alpha")
 		end,
@@ -31,7 +30,6 @@ require("lazy").setup({
 	{
 		"akinsho/bufferline.nvim",
 		cond = enabled(group, "bufferline"),
-		lazy = false,
 		config = function()
 			require("plugin-configs.bufferline")
 		end,
@@ -40,9 +38,7 @@ require("lazy").setup({
 		"numToStr/Comment.nvim",
 		cond = enabled(group, "comment"),
 		event = "VeryLazy",
-		config = function()
-			require("Comment").setup()
-		end,
+		opts = {},
 	},
 	{
 		"stevearc/dressing.nvim",
@@ -78,17 +74,13 @@ require("lazy").setup({
 		"lukas-reineke/indent-blankline.nvim",
 		cond = enabled(group, "indent_blankline"),
 		event = "VimEnter",
-		config = function()
-			require("ibl").setup()
-		end,
+		opts = {},
 	},
 	{
 		"lvimuser/lsp-inlayhints.nvim",
 		cond = enabled(group, "inlay_hints"),
 		event = "VeryLazy",
-		config = function()
-			require("lsp-inlayhints").setup()
-		end,
+		opts = {},
 	},
 	{
 		"VonHeikemen/lsp-zero.nvim",
@@ -99,9 +91,9 @@ require("lazy").setup({
 			require("plugin-configs.lsp")
 		end,
 		dependencies = {
-			{ "neovim/nvim-lspconfig" },
-			{ "williamboman/mason.nvim" },
-			{ "williamboman/mason-lspconfig.nvim" },
+			"neovim/nvim-lspconfig",
+			"williamboman/mason.nvim",
+			"williamboman/mason-lspconfig.nvim",
 		},
 	},
 	{
@@ -145,7 +137,7 @@ require("lazy").setup({
 		config = function()
 			require("plugin-configs.noice")
 		end,
-		dependencies = { { "MunifTanjim/nui.nvim" } },
+		dependencies = { "MunifTanjim/nui.nvim" },
 	},
 	{
 		"nvimtools/none-ls.nvim",
@@ -180,14 +172,14 @@ require("lazy").setup({
 			require("plugin-configs.cmp")
 		end,
 		dependencies = {
-			{ "onsails/lspkind.nvim" },
-			{ "hrsh7th/cmp-nvim-lsp" },
-			{ "hrsh7th/cmp-buffer" },
-			{ "hrsh7th/cmp-path" },
-			{ "saadparwaiz1/cmp_luasnip" },
-			{ "hrsh7th/cmp-nvim-lua" },
-			{ "L3MON4D3/LuaSnip" },
-			{ "rafamadriz/friendly-snippets" },
+			"onsails/lspkind.nvim",
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-path",
+			"saadparwaiz1/cmp_luasnip",
+			"hrsh7th/cmp-nvim-lua",
+			"L3MON4D3/LuaSnip",
+			"rafamadriz/friendly-snippets",
 		},
 	},
 	{ "NvChad/nvim-colorizer.lua", cond = enabled(group, "colorizer"), event = "VimEnter" },
@@ -208,15 +200,11 @@ require("lazy").setup({
 			},
 			{
 				"rcarriga/nvim-dap-ui",
-				config = function()
-					require("dapui").setup()
-				end,
+				opts = {},
 			},
 			{
 				"theHamsta/nvim-dap-virtual-text",
-				config = function()
-					require("nvim-dap-virtual-text").setup()
-				end,
+				opts = {},
 			},
 			{
 				"nvim-neotest/nvim-nio",
@@ -226,15 +214,12 @@ require("lazy").setup({
 	{
 		"rcarriga/nvim-notify",
 		cond = enabled(group, "notify"),
-		lazy = false,
 	},
 	{
 		"kylechui/nvim-surround",
 		cond = enabled(group, "surround"),
 		cmd = "VimEnter",
-		config = function()
-			require("nvim-surround").setup()
-		end,
+		opts = {},
 	},
 	{
 		"nvim-treesitter/nvim-treesitter",
@@ -247,11 +232,11 @@ require("lazy").setup({
 			require("plugin-configs.treesitter")
 		end,
 		dependencies = {
-			{ "nvim-treesitter/nvim-treesitter-textobjects" },
-			{ "nvim-treesitter/nvim-treesitter-context" },
-			{ "windwp/nvim-ts-autotag" },
-			{ "HiPhish/rainbow-delimiters.nvim" },
-			{ "JoosepAlviste/nvim-ts-context-commentstring" },
+			"nvim-treesitter/nvim-treesitter-textobjects",
+			"nvim-treesitter/nvim-treesitter-context",
+			"windwp/nvim-ts-autotag",
+			"HiPhish/rainbow-delimiters.nvim",
+			"JoosepAlviste/nvim-ts-context-commentstring",
 		},
 	},
 	{
@@ -259,9 +244,7 @@ require("lazy").setup({
 		cond = enabled(group, "ufo"),
 		event = "VimEnter",
 		dependencies = "kevinhwang91/promise-async",
-		config = function()
-			require("ufo").setup()
-		end,
+		opts = {},
 	},
 	{
 		"navarasu/onedark.nvim",
@@ -272,9 +255,7 @@ require("lazy").setup({
 		"ahmedkhalf/project.nvim",
 		cond = enabled(group, "project"),
 		event = "VimEnter",
-		config = function()
-			require("project_nvim").setup()
-		end,
+		opts = {},
 	},
 	{
 		"tiagovla/scope.nvim",
@@ -292,7 +273,7 @@ require("lazy").setup({
 			{
 				"nvim-telescope/telescope-fzf-native.nvim",
 				run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build \
-         build --config Release && cmake --install build --prefix build",
+				build --config Release && cmake --install build --prefix build",
 			},
 		},
 		config = function()
@@ -324,9 +305,7 @@ require("lazy").setup({
 		"folke/which-key.nvim",
 		cond = enabled(group, "whichkey"),
 		event = "VeryLazy",
-		config = function()
-			require("which-key").setup()
-		end,
+		opts = {},
 	},
 	{
 		"windwp/windline.nvim",
@@ -345,7 +324,6 @@ require("lazy").setup({
 	},
 	plugins,
 }, {
-	defaults = { lazy = true },
 	performance = {
 		rtp = {
 			disabled_plugins = { "tohtml", "gzip", "zipPlugin", "netrwPlugin", "tarPlugin" },

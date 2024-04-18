@@ -1,0 +1,3 @@
+[submodule "lua/CyberNvim-Configuration"]
+	path = lua/CyberNvim-Configuration
+	url = git@github.com:pgosar/CyberNvim-Configuration
