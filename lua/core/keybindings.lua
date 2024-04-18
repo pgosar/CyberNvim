@@ -45,6 +45,7 @@ if enabled(group, "telescope") then
 	map("n", "<leader>fb", "<CMD>Telescope buffers<CR>")
 	map("n", "<leader>fh", "<CMD>Telescope help_tags<CR>")
 	map("n", "<leader>fa", "<CMD>Telescope aerial<CR>")
+	map("n", "<leader>u", "<cmd>Telescope undo<cr>")
 end
 
 -- Move lines and blocks
@@ -180,11 +181,18 @@ if enabled(group, "todo-comments") then
 	end, { desc = "Next error/warning todo comment" })
 end
 
+-- suda
+if enabled(group, "suda") then
+	map("n", "<leader>su", function()
+		vim.fn.feedkeys(":Template ")
+	end, { desc = "Gain Write Permission" })
+end
 -- toggle-bool
 if enabled(group, "bool") then
 	map("n", "<leader>tb", "<CMD>lua require('toggle-bool').toggle_bool()<CR>", { desc = "Toggle bool" })
 end
 
+-- install amongsus
 if enabled(group, "duck") then
 	map("n", "<leader>dd", function()
 		require("duck").hatch("ඞ")
@@ -195,6 +203,12 @@ if enabled(group, "duck") then
 	map("n", "<leader>da", function()
 		require("duck").cook_all()
 	end, { desc = "Cook All Of Your Pets" })
+end
+
+-- Git Link
+if enabled(group, "gitlink") then
+	map("n", "<leader>gl", "<cmd>GitLink!<cr>", { desc = "Open git link" })
+	map("n", "<leader>gy", "<cmd>GitLink<cr>", { desc = "Yank git link" })
 end
 
 return M

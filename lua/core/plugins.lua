@@ -397,16 +397,21 @@ require("lazy").setup({
 	},
 	{
 		"lambdalisue/suda.vim",
+		cond = enabled(group, "suda"),
 		config = function()
 			require("plugin-configs.suda")
 		end,
 	},
 	{
-		"glepnir/template.nvim",
-		cmd = { "Template", "TemProject" },
-		config = function()
-			require("plugin-configs.template")
+		"mawkler/modicator.nvim",
+		dependencies = "f4z3r/gruvbox-material.nvim", -- Add your colorscheme plugin here
+		init = function()
+			-- These are required for Modicator to work
+			vim.o.cursorline = true
+			vim.o.number = true
+			vim.o.termguicolors = true
 		end,
+		opts = {},
 	},
 	{
 		"gbprod/yanky.nvim",
@@ -427,13 +432,11 @@ require("lazy").setup({
 	},
 	{
 		"linrongbin16/gitlinker.nvim",
+		cond = enabled(group, "aerial"),
 		lazy = false,
 		cmd = "GitLink",
 		opts = {},
-		keys = {
-			{ "gl", "<cmd>GitLink!<cr>", mode = { "n", "v" }, desc = "Open git link" },
-			{ "gy", "<cmd>GitLink<cr>", mode = { "n", "v" }, desc = "Yank git link" },
-		},
+		keys = {},
 	},
 	{
 		"echasnovski/mini.indentscope",
