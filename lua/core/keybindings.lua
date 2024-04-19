@@ -147,11 +147,6 @@ if enabled(group, "gitsigns") then
 	end
 end
 
--- autosave
-if enabled(group, "autosave") then
-	map("n", "<leader>as", "<CMD>ASToggle<CR>", { desc = "toggle autosave" })
-end
-
 -- template
 if enabled(group, "template") then
 	map("n", "<Leader>nt", function()

@@ -21,14 +21,6 @@ require("lazy").setup({
 		end,
 	},
 	{
-		"okuuva/auto-save.nvim",
-		cond = enabled(group, "autosave"),
-		event = "VeryLazy", -- optional for lazy loading on trigger events
-		config = function()
-			require("plugin-configs.auto-save")
-		end,
-	},
-	{
 		"akinsho/bufferline.nvim",
 		cond = enabled(group, "bufferline"),
 		config = function()
@@ -145,7 +137,7 @@ require("lazy").setup({
 		config = function()
 			require("plugin-configs.noice")
 		end,
-		dependencies = { { "MunifTanjim/nui.nvim" } },
+		dependencies = {  "MunifTanjim/nui.nvim"  },
 	},
 	{
 		"nvimtools/none-ls.nvim",
@@ -234,6 +226,16 @@ require("lazy").setup({
 			require("plugin-configs.luasnip")
 		end,
 	},
+	{
+  "nvim-neotest/neotest",
+  dependencies = {
+    "nvim-neotest/nvim-nio",
+    "nvim-lua/plenary.nvim",
+    "antoinemadec/FixCursorHold.nvim",
+    "nvim-treesitter/nvim-treesitter",
+	'rcasia/neotest-bash',
+  }
+},
 	{
 		"mfussenegger/nvim-dap",
 		cond = enabled(group, "dap"),
@@ -375,7 +377,6 @@ require("lazy").setup({
 	},
 	{
 		"folke/trouble.nvim",
-		lazy = false,
 		dependencies = {
 			"nvim-tree/nvim-web-devicons",
 			opts = {
@@ -406,10 +407,7 @@ require("lazy").setup({
 		"mawkler/modicator.nvim",
 		dependencies = "f4z3r/gruvbox-material.nvim", -- Add your colorscheme plugin here
 		init = function()
-			-- These are required for Modicator to work
-			vim.o.cursorline = true
-			vim.o.number = true
-			vim.o.termguicolors = true
+			require("plugin-configs.modicator")
 		end,
 		opts = {},
 	},
@@ -436,7 +434,6 @@ require("lazy").setup({
 		lazy = false,
 		cmd = "GitLink",
 		opts = {},
-		keys = {},
 	},
 	{
 		"sQVe/sort.nvim",
@@ -463,6 +460,14 @@ require("lazy").setup({
 		end,
 	},
 	{
+		"pwntester/octo.nvim",
+		requires = {
+			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope.nvim",
+			"nvim-tree/nvim-web-devicons",
+		},
+	},
+	{
 		"nvim-lualine/lualine.nvim",
 		event = "VeryLazy",
 		config = function()
@@ -487,20 +492,6 @@ require("lazy").setup({
 	{
 		"roobert/action-hints.nvim",
 		opts = {},
-	},
-	{
-		"ldelossa/gh.nvim",
-		dependencies = {
-			{
-				"ldelossa/litee.nvim",
-				config = function()
-					require("litee.lib").setup()
-				end,
-			},
-		},
-		config = function()
-			require("litee.gh").setup()
-		end,
 	},
 	plugins,
 }, {

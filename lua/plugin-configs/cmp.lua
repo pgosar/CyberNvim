@@ -19,8 +19,8 @@ local cmp_types = {
 	"Struct",
 	"Text",
 }
-local has_words_before = require("core.utils.utils").has_words_before
 
+local has_words_before = require("core.utils.utils").has_words_before
 cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 cmp.setup({
 	enabled = function()
