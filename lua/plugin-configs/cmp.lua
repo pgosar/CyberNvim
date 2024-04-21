@@ -65,7 +65,7 @@ cmp.setup({
 			mode = "symbol_text",
 			maxwidth = 50,
 			ellipsis_char = "...",
-			symbol_map = { Codeium = "" },
+			symbol_map = { Codeium = "󰚩" },
 			show_labelDetails = true,
 		}),
 	},

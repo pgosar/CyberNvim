@@ -147,6 +147,7 @@ require("lazy").setup({
 			require("plugin-configs.null-ls")
 		end,
 		dependencies = {
+			"gbprod/none-ls-shellcheck.nvim",
 			{
 				"jay-babu/mason-null-ls.nvim",
 				cmd = { "NullLsInstall", "NullLsUninstall" },
@@ -227,15 +228,20 @@ require("lazy").setup({
 		end,
 	},
 	{
-  "nvim-neotest/neotest",
-  dependencies = {
-    "nvim-neotest/nvim-nio",
-    "nvim-lua/plenary.nvim",
-    "antoinemadec/FixCursorHold.nvim",
-    "nvim-treesitter/nvim-treesitter",
-	'rcasia/neotest-bash',
-  }
-},
+		"nvim-neotest/neotest",
+		dependencies = {
+			"alfaix/neotest-gtest",
+			"nvim-neotest/neotest-python",
+			"rcasia/neotest-bash",
+			"antoinemadec/FixCursorHold.nvim",
+			"nvim-lua/plenary.nvim",
+			"nvim-neotest/nvim-nio",
+			"nvim-treesitter/nvim-treesitter",
+		},
+		config = function()
+			require("plugin-configs.neotest")
+		end,
+	},
 	{
 		"mfussenegger/nvim-dap",
 		cond = enabled(group, "dap"),

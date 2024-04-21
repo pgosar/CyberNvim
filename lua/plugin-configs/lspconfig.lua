@@ -4,6 +4,14 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.offsetEncoding = { "utf-16" }
 require("lspconfig").jedi_language_server.setup({ capabilities = capabilities })
 require("lspconfig").marksman.setup({ capabilities = capabilities })
+require("lspconfig").ruff_lsp.setup({
+	init_options = {
+		settings = {
+			-- Any extra CLI arguments for `ruff` go here.
+			args = {},
+		},
+	},
+})
 require("lspconfig").lua_ls.setup({
 	settings = {
 		Lua = {

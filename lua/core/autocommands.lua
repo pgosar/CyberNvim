@@ -4,7 +4,6 @@ local cmd = vim.api.nvim_create_autocmd
 local exist, user_config = pcall(require, "user.user_config")
 local group = exist and type(user_config) == "table" and user_config.autocommands or {}
 local enabled = require("core.utils.utils").enabled
-local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
 
 -- enables support for inlay hints with virtual text
 if enabled(group, "inlay_hints") then
@@ -44,15 +43,15 @@ if enabled(group, "treesitter_folds") then
 	})
 end
 
--- Removes any trailing whitespace when saving a file
-if enabled(group, "trailing_whitespace") then
-	cmd({ "BufWritePre" }, {
-		desc = "remove trailing whitespace on save",
-		group = augroup("remove trailing whitespace", { clear = true }),
-		pattern = { "*" },
-		command = [[%s/\s\+$//e]],
-	})
-end
+-- -- Removes any trailing whitespace when saving a file
+-- if enabled(group, "trailing_whitespace") then
+-- 	cmd({ "BufWritePre" }, {
+-- 		desc = "remove trailing whitespace on save",
+-- 		group = augroup("remove trailing whitespace", { clear = true }),
+-- 		pattern = { "*" },
+-- 		command = [[%s/\s\+$//e]],
+-- 	})
+-- end
 
 -- remembers file state, such as cursor position and any folds
 if enabled(group, "remember_file_state") then

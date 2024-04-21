@@ -97,7 +97,7 @@ end
 
 -- Hop
 if enabled(group, "hop") then
-	map("n", "<leader>j", "<CMD>HopWord<CR>")
+	map("n", "<leader>j", "<CMD>HopWord<CR>", { desc = "Hop to Word" })
 end
 
 -- Gitsigns
@@ -179,7 +179,7 @@ end
 -- suda
 if enabled(group, "suda") then
 	map("n", "<leader>su", function()
-		vim.fn.feedkeys(":Template ")
+		vim.fn.feedkeys(":SudaWrite")
 	end, { desc = "Gain Write Permission" })
 end
 -- toggle-bool
@@ -204,6 +204,11 @@ end
 if enabled(group, "gitlink") then
 	map("n", "<leader>gl", "<cmd>GitLink!<cr>", { desc = "Open git link" })
 	map("n", "<leader>gy", "<cmd>GitLink<cr>", { desc = "Yank git link" })
+end
+
+-- lspzero
+if enabled(group, "lsp_zero") then
+	map("n", "<leader>F", "<CMD>LspZeroFormat<CR>", { desc = "Format File" })
 end
 
 return M
