@@ -17,17 +17,18 @@ require("lualine").setup({
 	},
 	sections = {
 		lualine_a = { "mode" },
+		-- lualine_b = { "git_prompt_string", "diagnostics" },
 		lualine_b = { { "b:gitsigns_head", icon = "" }, "diagnostics" },
 		lualine_c = {
 			{
 				"filename",
 				symbols = {
-					modified = "󰐖", -- Text to show when the buffer is modified
-					readonly = "󰌾", -- Text to show when the file is non-modifiable or readonly.
-					unnamed = "󰜣", -- Text to show for unnamed buffers.
-					newfile = "󰎜", -- Text to show for newly created file before first write
-					alternate_file = "#", -- Text to show to identify the alternate file
-					directory = "", -- Text to show when the buffer is a directory
+					modified = "󰐖 ", -- Text to show when the buffer is modified
+					readonly = "󰌾 ", -- Text to show when the file is non-modifiable or readonly.
+					unnamed = "󰜣 ", -- Text to show for unnamed buffers.
+					newfile = "󰎜 ", -- Text to show for newly created file before first write
+					alternate_file = "# ", -- Text to show to identify the alternate file
+					directory = " ", -- Text to show when the buffer is a directory
 				},
 			},
 			{
@@ -42,8 +43,8 @@ require("lualine").setup({
 			{
 				"fileformat",
 				symbols = {
-					unix = "",
-					mac = "",
+					unix = " ",
+					mac = " ",
 				},
 			},
 			"filetype",

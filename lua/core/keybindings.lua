@@ -32,7 +32,7 @@ map("n", "m", "<CMD>noh<CR>")
 -- such as quotes, parens, brackets, etc.
 map("i", "<C-a>", "<C-o>A")
 map("i", "<C-b>", "<C-o>0")
-map("i", "<C-d>", "<left><c-o>/[\"';)>}\\]]<cr><c-o><CMD>noh<cr><right>")
+map("i", "<C-d>", "<left><c-o>/[\"';)>}\\]]<cr><c-o><CMD>nohlsearch<cr><right>")
 
 -- Command mode
 map("c", "<C-n>", "<Down>")
@@ -45,7 +45,7 @@ if enabled(group, "telescope") then
 	map("n", "<leader>ff", "<CMD>Telescope git_files hidden=true<CR>", { desc = "Telescope Find Files" })
 	map("n", "<leader>fg", "<CMD>Telescope live_grep<CR>")
 	map("n", "<leader>fh", "<CMD>Telescope help_tags<CR>")
-	map("n", "<leader>u", "<cmd>Telescope undo<cr>")
+	map("n", "<leader>fu", "<cmd>Telescope undo<cr>")
 end
 
 -- Move lines and blocks
@@ -83,21 +83,22 @@ end
 if enabled(group, "toggleterm") then
 	local git_root = "cd $(git rev-parse --show-toplevel 2>/dev/null) && clear"
 	-- opens terminal as a new tab at the git root
-	map("n", "<C-\\>t", "<CMD>ToggleTerm direction=tab<CR>", { desc = "new tabbed terminal" })
+	map("n", "<C-\\>t", "<CMD>ToggleTerm direction=tab<CR>", { desc = "New Tabbed Terminal" })
 	-- as a regular window
-	map("n", "<C-\\>", "<CMD>TermExec go_back=0 cmd='" .. git_root .. "'<CR>", { desc = "new terminal" })
+	map("n", "<C-\\>", "<CMD>TermExec go_back=0 cmd='" .. git_root .. "'<CR>", { desc = "New Terminal" })
 	map(
 		"n",
 		"<leader>tk",
 		"<CMD>TermExec go_back=0 direction=float cmd='" .. git_root .. "&& tokei'<CR>",
 		{ desc = "tokei" }
 	)
-	map("n", "<leader>gg", "<CMD>lua term.lazygit_toggle()<CR>", { desc = "open lazygit" })
+	map("n", "<leader>gg", "<CMD>lua term.lazygit_toggle()<CR>", { desc = "Open Lazygit" })
 end
 
 -- Hop
 if enabled(group, "hop") then
-	map("n", "<leader>j", "<CMD>HopWord<CR>", { desc = "Hop to Word" })
+	map("n", "<leader>jw", "<CMD>HopWord<CR>", { desc = "Hop to Word" })
+	map("n", "<leader>jl", "<CMD>HopLine<CR>", { desc = "Hop to Line" })
 end
 
 -- Gitsigns

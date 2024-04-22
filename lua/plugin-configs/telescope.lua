@@ -7,9 +7,6 @@ telescope.setup({
 					["<cr>"] = require("telescope-undo.actions").yank_additions,
 					["<S-cr>"] = require("telescope-undo.actions").yank_deletions,
 					["<C-cr>"] = require("telescope-undo.actions").restore,
-					-- alternative defaults, for users whose terminals do questionable things with modified <cr>
-					["<C-y>"] = require("telescope-undo.actions").yank_deletions,
-					["<C-r>"] = require("telescope-undo.actions").restore,
 				},
 				n = {
 					["y"] = require("telescope-undo.actions").yank_additions,
@@ -26,6 +23,8 @@ telescope.setup({
 	},
 })
 telescope.load_extension("aerial")
+telescope.load_extension("fzf")
+telescope.load_extension("media_files")
 telescope.load_extension("noice")
 telescope.load_extension("notify")
 telescope.load_extension("scope")

@@ -137,7 +137,7 @@ require("lazy").setup({
 		config = function()
 			require("plugin-configs.noice")
 		end,
-		dependencies = {  "MunifTanjim/nui.nvim"  },
+		dependencies = { "MunifTanjim/nui.nvim" },
 	},
 	{
 		"nvimtools/none-ls.nvim",
@@ -266,7 +266,7 @@ require("lazy").setup({
 				opts = {},
 			},
 			{
-				--NOTE:library
+				--NOTE: Library
 				"nvim-neotest/nvim-nio",
 			},
 			{
@@ -358,6 +358,8 @@ require("lazy").setup({
 		cond = enabled(group, "telescope"),
 		cmd = "Telescope",
 		dependencies = {
+			"nvim-lua/popup.nvim",
+			"nvim-telescope/telescope-media-files.nvim",
 			{
 				"nvim-telescope/telescope-fzf-native.nvim",
 				run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build \
@@ -476,6 +478,10 @@ require("lazy").setup({
 	{
 		"nvim-lualine/lualine.nvim",
 		event = "VeryLazy",
+		dependencies = {
+			"nvim-tree/nvim-web-devicons",
+			"mikesmithgh/git-prompt-string-lualine.nvim",
+		},
 		config = function()
 			require("plugin-configs.lualine")
 		end,
