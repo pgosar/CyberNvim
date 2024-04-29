@@ -147,7 +147,6 @@ require("lazy").setup({
 			require("plugin-configs.null-ls")
 		end,
 		dependencies = {
-			"gbprod/none-ls-shellcheck.nvim",
 			{
 				"jay-babu/mason-null-ls.nvim",
 				cmd = { "NullLsInstall", "NullLsUninstall" },
@@ -165,7 +164,11 @@ require("lazy").setup({
 			require("plugin-configs.autopairs")
 		end,
 	},
-
+	{
+		"moyiz/command-and-cursor.nvim",
+		event = "VeryLazy",
+		opts = {},
+	},
 	{
 		"hrsh7th/nvim-cmp",
 		cond = enabled(group, "cmp"),
@@ -497,9 +500,7 @@ require("lazy").setup({
 			"nvim-lua/plenary.nvim",
 			"hrsh7th/nvim-cmp",
 		},
-		config = function()
-			require("codeium").setup({})
-		end,
+		opts = {},
 	},
 	{
 		"roobert/action-hints.nvim",
