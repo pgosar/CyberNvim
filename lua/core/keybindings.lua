@@ -42,8 +42,10 @@ map("c", "<C-p>", "<Up>")
 if enabled(group, "telescope") then
 	map("n", "<leader>fa", "<CMD>Telescope aerial<CR>")
 	map("n", "<leader>fb", "<CMD>Telescope buffers<CR>")
+	map("n", "<leader>fc", "<CMD>Telescope commands<CR>")
 	map("n", "<leader>ff", "<CMD>Telescope git_files hidden=true<CR>", { desc = "Telescope Find Files" })
 	map("n", "<leader>fg", "<CMD>Telescope live_grep<CR>")
+	map("n", "<leader>fp", "<CMD>Telescope lazy_plugins<CR>", { desc = "Search For Plugins" })
 	map("n", "<leader>fh", "<CMD>Telescope help_tags<CR>")
 	map("n", "<leader>fu", "<cmd>Telescope undo<cr>")
 end
@@ -56,6 +58,15 @@ map("x", "<A-k>", ":m '<-2<CR>gv=gv")
 if enabled(group, "notify") then
 	map("i", "<ESC>", "<CMD>lua require('notify').dismiss()<CR><ESC>")
 	map("n", "<ESC>", "<CMD>lua require('notify').dismiss()<CR>")
+end
+
+if enabled(group, "myeyeshurt") then
+	map("n", "<leader>sb", function()
+		require("myeyeshurt").start()
+	end, { desc = "Begin The Snow" })
+	map("n", "<leader>sx", function()
+		require("myeyeshurt").stop()
+	end, { desc = 'Stop The Snow' })
 end
 
 -- More LSP stuff
@@ -146,13 +157,6 @@ if enabled(group, "gitsigns") then
 		end, { desc = "diff at root of git repo" })
 		map("n", "<leader>td", gs.toggle_deleted, { desc = "toggle deleted line" })
 	end
-end
-
--- template
-if enabled(group, "template") then
-	map("n", "<Leader>nt", function()
-		vim.fn.feedkeys(":Template ")
-	end, { remap = true, desc = "New Template" })
 end
 
 if enabled(group, "oil") then

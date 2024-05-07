@@ -42,10 +42,11 @@ cmp.setup({
 		comparators = {
 			cmp.config.compare.offset,
 			cmp.config.compare.exact,
-			cmp.config.compare.sort_text,
 			cmp.config.compare.score,
+			require("cmp-under-comparator").under,
 			cmp.config.compare.recently_used,
 			cmp.config.compare.kind,
+			cmp.config.compare.sort_text,
 			cmp.config.compare.length,
 			cmp.config.compare.order,
 		},
@@ -61,13 +62,6 @@ cmp.setup({
 	},
 	formatting = {
 		fields = { "abbr", "kind", "menu" },
-		format = require("lspkind").cmp_format({
-			mode = "symbol_text",
-			maxwidth = 50,
-			ellipsis_char = "...",
-			symbol_map = { Codeium = "󰚩" },
-			show_labelDetails = true,
-		}),
 	},
 	mapping = {
 		["<CR>"] = cmp.mapping.confirm({ select = false }),
@@ -100,7 +94,6 @@ cmp.setup({
 	},
 	sources = {
 		{ name = "cmp_yanky" },
-		{ name = "codeium" },
 		{ name = "emoji" },
 		{ name = "luasnip" },
 		{ name = "nerdfont" },
@@ -127,7 +120,6 @@ cmp.setup({
 })
 cmp.setup.filetype("gitcommit", {
 	sources = {
-		{ name = "commit" },
 		{ name = "gitmoji" },
 	},
 })

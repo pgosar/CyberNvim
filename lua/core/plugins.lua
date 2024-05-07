@@ -182,7 +182,6 @@ require("lazy").setup({
 			"saadparwaiz1/cmp_luasnip",
 
 			-- Adds LSP completion capabilities
-			"Dosx001/cmp-commit",
 			"KadoBOT/cmp-plugins",
 			"chrisgrieser/cmp-nerdfont",
 			"chrisgrieser/cmp_yanky",
@@ -194,14 +193,12 @@ require("lazy").setup({
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-nvim-lua",
 			"hrsh7th/cmp-path",
+			"lukas-reineke/cmp-under-comparator",
 			"lukas-reineke/cmp-rg",
 			"mireq/luasnip-snippets",
 			"onsails/lspkind.nvim",
 			"rafamadriz/friendly-snippets",
-			{
-				"Dynge/gitmoji.nvim",
-				opts = {},
-			},
+			"Dynge/gitmoji.nvim",
 			{
 				"petertriho/cmp-git",
 				lazy = true,
@@ -356,13 +353,32 @@ require("lazy").setup({
 			plugin_manager = "lazy",
 		},
 	},
+	-- {
+	-- 	"tris203/precognition.nvim",
+	-- 	config = {
+	-- 		startVisible = true,
+	-- 		hints = {
+	-- 			["^"] = { text = "^", prio = 1 },
+	-- 			["$"] = { text = "$", prio = 1 },
+	-- 			["w"] = { text = "w", prio = 10 },
+	-- 			["b"] = { text = "b", prio = 10 },
+	-- 			["e"] = { text = "e", prio = 10 },
+	-- 		},
+	-- 		gutterHints = {
+	-- 			--prio is not currentlt used for gutter hints
+	-- 			["G"] = { text = "G", prio = 1 },
+	-- 			["gg"] = { text = "gg", prio = 1 },
+	-- 			["{"] = { text = "{", prio = 1 },
+	-- 			["}"] = { text = "}", prio = 1 },
+	-- 		},
+	-- 	},
+	-- },
 	{
 		"nvim-telescope/telescope.nvim",
 		cond = enabled(group, "telescope"),
 		cmd = "Telescope",
 		dependencies = {
 			"nvim-lua/popup.nvim",
-			"nvim-telescope/telescope-media-files.nvim",
 			{
 				"nvim-telescope/telescope-fzf-native.nvim",
 				run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build \
@@ -387,7 +403,16 @@ require("lazy").setup({
 		opts = {},
 	},
 	{
+		"wildfunctions/myeyeshurt",
+		cond = enabled(group, "myeyeshurt"),
+		dependencies = { "nvim-lua/plenary.nvim" },
+		config = function()
+			require("plugin-configs.myeyeshurt")
+		end,
+	},
+	{
 		"folke/trouble.nvim",
+		branch = "dev", -- IMPORTANT!
 		dependencies = {
 			"nvim-tree/nvim-web-devicons",
 			opts = {
@@ -490,17 +515,11 @@ require("lazy").setup({
 		end,
 	},
 	{
-		"lukas-reineke/headlines.nvim",
-		dependencies = "nvim-treesitter/nvim-treesitter",
-		config = true,
-	},
-	{
-		"Exafunction/codeium.nvim",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"hrsh7th/nvim-cmp",
-		},
-		opts = {},
+		"MeanderingProgrammer/markdown.nvim",
+		dependencies = { "nvim-treesitter/nvim-treesitter" },
+		config = function()
+			require("plugin-configs.markdown")
+		end,
 	},
 	{
 		"roobert/action-hints.nvim",
