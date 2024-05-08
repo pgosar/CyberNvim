@@ -14,7 +14,6 @@ require("lazy").setup({
 	},
 	{
 		"goolord/alpha-nvim",
-		cond = enabled(group, "alpha"),
 		config = function()
 			require("plugin-configs.alpha")
 		end,
@@ -29,20 +28,17 @@ require("lazy").setup({
 	},
 	{
 		"akinsho/bufferline.nvim",
-		cond = enabled(group, "bufferline"),
 		config = function()
 			require("plugin-configs.bufferline")
 		end,
 	},
 	{
 		"numToStr/Comment.nvim",
-		cond = enabled(group, "comment"),
 		event = "VeryLazy",
 		opts = {},
 	},
 	{
 		"stevearc/dressing.nvim",
-		cond = enabled(group, "dressing"),
 		event = "VeryLazy",
 		config = function()
 			require("plugin-configs.dressing")
@@ -71,9 +67,14 @@ require("lazy").setup({
 		event = "BufEnter",
 	},
 	{
+		"max397574/better-escape.nvim",
+		config = function()
+			require("plugin-configs.escape")
+		end,
+	},
+	{
 		"lukas-reineke/indent-blankline.nvim",
-		cond = enabled(group, "indent_blankline"),
-		event = "VimEnter",
+		main = "ibl",
 		opts = {},
 	},
 	{
@@ -86,7 +87,7 @@ require("lazy").setup({
 		"VonHeikemen/lsp-zero.nvim",
 		cond = enabled(group, "lsp_zero"),
 		event = "VimEnter",
-		branch = "v2.x",
+		branch = "v3.x",
 		config = function()
 			require("plugin-configs.lsp")
 		end,
@@ -119,7 +120,7 @@ require("lazy").setup({
 		config = function()
 			require("plugin-configs.neo-tree")
 		end,
-		branch = "v3.x",
+		branch = "main",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 	},
 	{
@@ -253,9 +254,14 @@ require("lazy").setup({
 	{ "nvim-lua/plenary.nvim" },
 	{
 		"ahmedkhalf/project.nvim",
-		cond = enabled(group, "project"),
 		event = "VimEnter",
-		opts = {},
+		config = function()
+			require("project_nvim").setup({
+				-- your configuration comes here
+				-- or leave it empty to use the default settings
+				-- refer to the configuration section below
+			})
+		end,
 	},
 	{
 		"tiagovla/scope.nvim",
@@ -290,12 +296,12 @@ require("lazy").setup({
 	},
 	{
 		"folke/trouble.nvim",
+		branch = "dev",
 		cond = enabled(group, "trouble"),
 		cmd = { "TroubleToggle", "Trouble" },
 	},
 	{
 		"folke/twilight.nvim",
-		cond = enabled(group, "twilight"),
 		cmd = { "Twilight", "TwilightEnable", "TwilightDisable" },
 		config = function()
 			require("plugin-configs.twilight")
