@@ -13,3 +13,8 @@ require("treesitter-context").setup({
 	max_lines = 1,
 	multiline_threshold = 2,
 })
+
+require('detect-language').provider.treesitter {
+  -- minimum score to be considered as candidate languages
+  minimum = 0
+}

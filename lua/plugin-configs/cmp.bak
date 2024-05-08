@@ -37,6 +37,7 @@ cmp.setup({
 		keyword_length = 1,
 		completeopt = "menu,menuone,noinsert,noselect",
 	},
+	files = { ".*\\.lua" }, -- default
 	sorting = {
 		comparators = {
 			cmp.config.compare.offset,
@@ -91,49 +92,68 @@ cmp.setup({
 		["<C-b>"] = cmp_action.luasnip_jump_backward(),
 	},
 	sources = {
-		-- { name = "cmp_yanky" },
+		{ name = "cmp_yanky" },
 		{ name = "emoji" },
 		{ name = "luasnip" },
 		{ name = "nerdfont" },
-		{ name = "nvim_lsp" },
+		-- { name = "nvim_lsp" },
 		{ name = "nvim_lua" },
+		{ name = "path" },
 		{ name = "plugins" },
 		{ name = "rg" },
 		{ name = "spell" },
+		{
+			name = "buffer",
+			keyword_length = 5,
+			option = {
+				get_bufnrs = function()
+					local bufs = {}
+					for _, win in ipairs(vim.api.nvim_list_wins()) do
+						bufs[vim.api.nvim_win_get_buf(win)] = true
+					end
+					return vim.tbl_keys(bufs)
+				end,
+			},
+		},
 	},
 })
 
--- -- `/` cmdline setup.
--- cmp.setup.cmdline({ "/", "?" }, {
--- 	mapping = cmp.mapping.preset.cmdline(),
--- 	window = { completion = cmp.config.window.bordered({ col_offset = 0 }) },
--- 	formatting = { fields = { "abbr" } },
--- })
---
--- -- `:` cmdline setup.
--- cmp.setup.cmdline(":", {
--- 	mapping = cmp.mapping.preset.cmdline(),
--- 	window = { completion = cmp.config.window.bordered({ col_offset = 0 }) },
--- 	formatting = { fields = { "abbr" } },
--- 	sources = cmp.config.sources( {
--- 		{ name = "cmdline" },
--- 	}),
--- })
+-- `/` cmdline setup.
+cmp.setup.cmdline({ "/", "?" }, {
+	mapping = cmp.mapping.preset.cmdline(),
+	window = { completion = cmp.config.window.bordered({ col_offset = 0 }) },
+	formatting = { fields = { "abbr" } },
+	sources = {
+		{ name = "buffer" },
+	},
+})
 
--- vim.api.nvim_clear_autocmds({ group = cmp_hl })
--- vim.api.nvim_create_autocmd({ "InsertEnter", "CmdlineEnter" }, {
--- 	group = cmp_hl,
--- 	desc = "redefinition of nvim-cmp highlight groups",
--- 	callback = function()
--- 		vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", {})
--- 		vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", { link = "@text.todo" })
--- 		vim.api.nvim_set_hl(0, "CmpItemMenu", {})
--- 		vim.api.nvim_set_hl(0, "CmpItemMenu", { link = "LineNr" })
--- 		vim.api.nvim_set_hl(0, "CmpItemKindVariable", {})
--- 		vim.api.nvim_set_hl(0, "CmpItemKindVariable", { link = "@number" })
--- 		for _, type in ipairs(cmp_types) do
--- 			vim.api.nvim_set_hl(0, "CmpItemKind" .. type, {})
--- 			vim.api.nvim_set_hl(0, "CmpItemKind" .. type, { link = "@" .. type })
--- 		end
--- 	end,
--- })
+-- `:` cmdline setup.
+cmp.setup.cmdline(":", {
+	mapping = cmp.mapping.preset.cmdline(),
+	window = { completion = cmp.config.window.bordered({ col_offset = 0 }) },
+	formatting = { fields = { "abbr" } },
+	sources = cmp.config.sources({
+		{ name = "path" },
+	}, {
+		{ name = "cmdline" },
+	}),
+})
+
+vim.api.nvim_clear_autocmds({ group = cmp_hl })
+vim.api.nvim_create_autocmd({ "InsertEnter", "CmdlineEnter" }, {
+	group = cmp_hl,
+	desc = "redefinition of nvim-cmp highlight groups",
+	callback = function()
+		vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", {})
+		vim.api.nvim_set_hl(0, "CmpItemAbbrMatch", { link = "@text.todo" })
+		vim.api.nvim_set_hl(0, "CmpItemMenu", {})
+		vim.api.nvim_set_hl(0, "CmpItemMenu", { link = "LineNr" })
+		vim.api.nvim_set_hl(0, "CmpItemKindVariable", {})
+		vim.api.nvim_set_hl(0, "CmpItemKindVariable", { link = "@number" })
+		for _, type in ipairs(cmp_types) do
+			vim.api.nvim_set_hl(0, "CmpItemKind" .. type, {})
+			vim.api.nvim_set_hl(0, "CmpItemKind" .. type, { link = "@" .. type })
+		end
+	end,
+})

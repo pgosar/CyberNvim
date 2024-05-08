@@ -177,35 +177,21 @@ require("lazy").setup({
 			require("plugin-configs.cmp")
 		end,
 		dependencies = {
-			-- Snippet Engine & its associated nvim-cmp source
 			"L3MON4D3/LuaSnip",
 			"saadparwaiz1/cmp_luasnip",
-
-			-- Adds LSP completion capabilities
 			"KadoBOT/cmp-plugins",
 			"chrisgrieser/cmp-nerdfont",
 			"chrisgrieser/cmp_yanky",
 			"dmitmel/cmp-cmdline-history",
 			"f3fora/cmp-spell",
-			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-cmdline",
 			"hrsh7th/cmp-emoji",
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-nvim-lua",
 			"hrsh7th/cmp-path",
-			"lukas-reineke/cmp-under-comparator",
 			"lukas-reineke/cmp-rg",
 			"mireq/luasnip-snippets",
 			"onsails/lspkind.nvim",
-			"rafamadriz/friendly-snippets",
-			"Dynge/gitmoji.nvim",
-			{
-				"petertriho/cmp-git",
-				lazy = true,
-				config = function()
-					require("plugin-configs.cmp-git")
-				end,
-			},
 		},
 	},
 	{
@@ -353,26 +339,6 @@ require("lazy").setup({
 			plugin_manager = "lazy",
 		},
 	},
-	-- {
-	-- 	"tris203/precognition.nvim",
-	-- 	config = {
-	-- 		startVisible = true,
-	-- 		hints = {
-	-- 			["^"] = { text = "^", prio = 1 },
-	-- 			["$"] = { text = "$", prio = 1 },
-	-- 			["w"] = { text = "w", prio = 10 },
-	-- 			["b"] = { text = "b", prio = 10 },
-	-- 			["e"] = { text = "e", prio = 10 },
-	-- 		},
-	-- 		gutterHints = {
-	-- 			--prio is not currentlt used for gutter hints
-	-- 			["G"] = { text = "G", prio = 1 },
-	-- 			["gg"] = { text = "gg", prio = 1 },
-	-- 			["{"] = { text = "{", prio = 1 },
-	-- 			["}"] = { text = "}", prio = 1 },
-	-- 		},
-	-- 	},
-	-- },
 	{
 		"nvim-telescope/telescope.nvim",
 		cond = enabled(group, "telescope"),
@@ -496,14 +462,6 @@ require("lazy").setup({
 		end,
 	},
 	{
-		"pwntester/octo.nvim",
-		requires = {
-			"nvim-lua/plenary.nvim",
-			"nvim-telescope/telescope.nvim",
-			"nvim-tree/nvim-web-devicons",
-		},
-	},
-	{
 		"nvim-lualine/lualine.nvim",
 		event = "VeryLazy",
 		dependencies = {
@@ -525,7 +483,17 @@ require("lazy").setup({
 		"roobert/action-hints.nvim",
 		opts = {},
 	},
+	{
+		"spywhere/detect-language.nvim",
+		opts = {},
+	},
 	plugins,
+	{
+		"m4xshen/smartcolumn.nvim",
+		config = function()
+			require("plugin-configs.smartcolumn")
+		end,
+	}
 }, {
 	performance = {
 		rtp = {
