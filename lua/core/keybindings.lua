@@ -182,11 +182,6 @@ if enabled(group, "gitsigns") then
 	end
 end
 
--- autosave
-if enabled(group, "autosave") then
-	map("n", "<leader>as", "<CMD>ASToggle<CR>", { desc = "toggle autosave" })
-end
-
 -- cmp (these are defined in cmp's configuration file)
 -- ["<C-j>"] = cmp.mapping.scroll_docs(-4),
 -- ["<C-k"] = cmp.mapping.scroll_docs(4),

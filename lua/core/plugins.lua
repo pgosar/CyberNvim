@@ -21,14 +21,6 @@ require("lazy").setup({
 		end,
 	},
 	{
-		"okuuva/auto-save.nvim",
-		cond = enabled(group, "autosave"),
-		event = "VeryLazy",
-		config = function()
-			require("plugin-configs.auto-save")
-		end,
-	},
-	{
 		"akinsho/bufferline.nvim",
 		cond = enabled(group, "bufferline"),
 		lazy = false,

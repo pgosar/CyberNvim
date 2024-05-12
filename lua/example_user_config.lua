@@ -51,7 +51,6 @@ M.autocommands = {
 	trailing_whitespace = true,
 	remember_file_state = true,
 	session_saved_notification = true,
-	format_on_autosave = true,
 	css_colorizer = true,
 	cmp = true,
 }
@@ -61,7 +60,6 @@ M.autocommands = {
 M.enable_plugins = {
 	aerial = true,
 	alpha = true,
-	autosave = true,
 	bufferline = true,
 	comment = true,
 	copilot = true,
