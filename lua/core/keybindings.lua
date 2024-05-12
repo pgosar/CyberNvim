@@ -61,6 +61,12 @@ map("i", "<C-d>", "<left><c-o>/[\"';)>}\\]]<cr><c-o><CMD>noh<cr><right>")
 map("i", "<C-b>", "<C-o>0")
 map("i", "<C-a>", "<C-o>A")
 
+-- Window switching from terminal
+map("t", "<C-w>h", "<C-\\><C-n><C-w>h")
+map("t", "<C-w>j", "<C-\\><C-n><C-w>j")
+map("t", "<C-w>k", "<C-\\><C-n><C-w>k")
+map("t", "<C-w>l", "<C-\\><C-n><C-w>l")
+
 -- Command mode
 map("c", "<C-p>", "<Up>")
 map("c", "<C-n>", "<Down>")
@@ -109,10 +115,10 @@ end
 -- ToggleTerm
 if enabled(group, "toggleterm") then
 	local git_root = "cd $(git rev-parse --show-toplevel 2>/dev/null) && clear"
+	map("t", "<C-\\>", "<C-\\><C-n>")
 	-- opens terminal as a new tab at the git root
-	map("n", "<C-\\>t", "<CMD>ToggleTerm direction=tab<CR>", { desc = "new tabbed terminal" })
 	-- as a regular window
-	map("n", "<C-\\>", "<CMD>TermExec go_back=0 cmd='" .. git_root .. "'<CR>", { desc = "new terminal" })
+	map("n", "<C-\\>", "<CMD>ToggleTerm go_back=0 cmd='" .. git_root .. "'<CR>", { desc = "new terminal" })
 	map(
 		"n",
 		"<leader>tk",
