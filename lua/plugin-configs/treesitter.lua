@@ -14,7 +14,7 @@ require("treesitter-context").setup({
 	multiline_threshold = 2,
 })
 
-require('detect-language').provider.treesitter {
-  -- minimum score to be considered as candidate languages
-  minimum = 0
-}
+-- require('detect-language').provider.treesitter {
+--   -- minimum score to be considered as candidate languages
+--   minimum = 0
+-- }

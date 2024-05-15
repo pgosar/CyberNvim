@@ -1,8 +1,7 @@
-local enabled = require("core.utils.utils").enabled
+local enabled = require("core.utils").enabled
 
-local exist, user_config = pcall(require, "user.user_config")
-local group = exist and type(user_config) == "table" and user_config.enable_plugins or {}
-local plugins = exist and type(user_config) == "table" and user_config.plugins or {}
+local group = {}
+local plugins = {}
 
 require("lazy").setup({
 	{
@@ -58,8 +57,8 @@ require("lazy").setup({
 		branch = "v3.x",
 		dependencies = {
 			"neovim/nvim-lspconfig",
-			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
+			"williamboman/mason.nvim",
 		},
 	},
 	{
@@ -72,22 +71,12 @@ require("lazy").setup({
 		end,
 	},
 	{
-		"lvimuser/lsp-inlayhints.nvim",
-		cond = enabled(group, "inlay_hints"),
-		event = "VeryLazy",
-		opts = {},
-	},
-	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
-			-- Automatically install LSPs to stdpath for neovim
-			"williamboman/mason.nvim",
-			"williamboman/mason-lspconfig.nvim",
-			-- Useful status updates for LSP
-			"j-hui/fidget.nvim",
-
-			-- Additional lua configuration, makes nvim stuff amazing!
 			"folke/neodev.nvim",
+			"j-hui/fidget.nvim",
+			"williamboman/mason-lspconfig.nvim",
+			"williamboman/mason.nvim",
 		},
 	},
 	{
@@ -125,10 +114,6 @@ require("lazy").setup({
 		config = function()
 			require("plugin-configs.session")
 		end,
-	},
-	{
-		"nacro90/numb.nvim",
-		opts = {},
 	},
 	{
 		"folke/noice.nvim",
@@ -178,20 +163,13 @@ require("lazy").setup({
 		end,
 		dependencies = {
 			"L3MON4D3/LuaSnip",
-			"saadparwaiz1/cmp_luasnip",
-			"KadoBOT/cmp-plugins",
-			"chrisgrieser/cmp-nerdfont",
-			"chrisgrieser/cmp_yanky",
-			"dmitmel/cmp-cmdline-history",
-			"f3fora/cmp-spell",
-			"hrsh7th/cmp-cmdline",
-			"hrsh7th/cmp-emoji",
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-nvim-lua",
-			"hrsh7th/cmp-path",
 			"lukas-reineke/cmp-rg",
 			"mireq/luasnip-snippets",
 			"onsails/lspkind.nvim",
+			"ray-x/cmp-treesitter",
+			"saadparwaiz1/cmp_luasnip",
 		},
 	},
 	{
@@ -212,56 +190,6 @@ require("lazy").setup({
 		init = function()
 			require("plugin-configs.luasnip")
 		end,
-	},
-	{
-		"nvim-neotest/neotest",
-		dependencies = {
-			"alfaix/neotest-gtest",
-			"nvim-neotest/neotest-python",
-			"rcasia/neotest-bash",
-			"antoinemadec/FixCursorHold.nvim",
-			"nvim-lua/plenary.nvim",
-			"nvim-neotest/nvim-nio",
-			"nvim-treesitter/nvim-treesitter",
-		},
-		config = function()
-			require("plugin-configs.neotest")
-		end,
-	},
-	{
-		"mfussenegger/nvim-dap",
-		cond = enabled(group, "dap"),
-		event = "VeryLazy",
-		config = function()
-			require("plugin-configs.dap")
-		end,
-		dependencies = {
-			{
-				"jay-babu/mason-nvim-dap.nvim",
-				cmd = { "DapInstall", "DapUninstall" },
-				config = function()
-					require("plugin-configs.mason-nvim-dap")
-				end,
-			},
-			{
-				"rcarriga/nvim-dap-ui",
-				opts = {},
-			},
-			{
-				"theHamsta/nvim-dap-virtual-text",
-				opts = {},
-			},
-			{
-				--NOTE: Library
-				"nvim-neotest/nvim-nio",
-			},
-			{
-				"mfussenegger/nvim-dap-python",
-				config = function()
-					require("dap-python").setup("~/.venv/debugpy/bin/python")
-				end,
-			},
-		},
 	},
 	{
 		"tamton-aquib/duck.nvim",
@@ -334,23 +262,19 @@ require("lazy").setup({
 		end,
 	},
 	{
-		"jsongerber/thanks.nvim",
-		opts = {
-			plugin_manager = "lazy",
-		},
-	},
-	{
 		"nvim-telescope/telescope.nvim",
 		cond = enabled(group, "telescope"),
 		cmd = "Telescope",
 		dependencies = {
+			"AckslD/nvim-neoclip.lua",
+			"Snikimonkd/telescope-git-conflicts.nvim",
+			"debugloop/telescope-undo.nvim",
+			"nvim-lua/plenary.nvim",
 			"nvim-lua/popup.nvim",
-			{
-				"nvim-telescope/telescope-fzf-native.nvim",
-				run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build \
-				build --config Release && cmake --install build --prefix build",
-				"debugloop/telescope-undo.nvim",
-			},
+			"nvim-telescope/telescope-frecency.nvim",
+			"nvim-telescope/telescope-fzf-native.nvim",
+			"nvim-telescope/telescope-hop.nvim",
+			"nvim-telescope/telescope-symbols.nvim",
 		},
 		config = function()
 			require("plugin-configs.telescope")
@@ -365,10 +289,6 @@ require("lazy").setup({
 		end,
 	},
 	{
-		"NvChad/nvim-colorizer.lua",
-		opts = {},
-	},
-	{
 		"wildfunctions/myeyeshurt",
 		cond = enabled(group, "myeyeshurt"),
 		dependencies = { "nvim-lua/plenary.nvim" },
@@ -379,16 +299,9 @@ require("lazy").setup({
 	{
 		"folke/trouble.nvim",
 		branch = "dev", -- IMPORTANT!
-		dependencies = {
-			"nvim-tree/nvim-web-devicons",
-			opts = {
-				color_icons = true,
-				default = true,
-				strict = true,
-			},
-		},
-		cmd = { "TroubleToggle", "Trouble" },
+		dependencies = "nvim-tree/nvim-web-devicons",
 		cond = enabled(group, "trouble"),
+		opts = {},
 	},
 	{
 		"folke/which-key.nvim",
@@ -411,16 +324,6 @@ require("lazy").setup({
 		init = function()
 			require("plugin-configs.modicator")
 		end,
-		opts = {},
-	},
-	{
-		"gbprod/yanky.nvim",
-		config = function()
-			require("plugin-configs.yanky")
-		end,
-	},
-	{
-		"chentoast/marks.nvim",
 		opts = {},
 	},
 	-- HACK: this looks cool
@@ -480,20 +383,32 @@ require("lazy").setup({
 		end,
 	},
 	{
-		"roobert/action-hints.nvim",
-		opts = {},
-	},
-	{
-		"spywhere/detect-language.nvim",
-		opts = {},
-	},
-	plugins,
-	{
 		"m4xshen/smartcolumn.nvim",
 		config = function()
 			require("plugin-configs.smartcolumn")
 		end,
-	}
+	},
+	{
+		"Bekaboo/dropbar.nvim",
+		"Myzel394/easytables.nvim",
+		"dstein64/nvim-scrollview",
+		"f-person/git-blame.nvim",
+		"jghauser/mkdir.nvim",
+		"jsongerber/thanks.nvim",
+		"lambdalisue/suda.vim",
+		"tpope/vim-fugitive",
+		"tpope/vim-rhubarb",
+		"tpope/vim-sleuth",
+		{ "NvChad/nvim-colorizer.lua",     opts = {} },
+		{ "briangwaltney/paren-hint.nvim", opts = {} },
+		{ "chentoast/marks.nvim",          opts = {} },
+		{ "nacro90/numb.nvim",             opts = {} },
+		{ "roobert/action-hints.nvim",     opts = {} },
+		{ "spywhere/detect-language.nvim", opts = {} },
+		{ "tzachar/highlight-undo.nvim",   opts = {} },
+		{ "yamatsum/nvim-cursorline",      opts = {} },
+	},
+
 }, {
 	performance = {
 		rtp = {

@@ -1,4 +1,4 @@
-local vim_opts = require("core.utils.utils").vim_opts
+local vim_opts = require("core.utils").vim_opts
 vim.opt.shortmess:append("sIW")
 
 vim_opts({
@@ -44,6 +44,14 @@ vim_opts({
 	},
 })
 
-local exist, user_config = pcall(require, "user.user_config")
-local opts = exist and type(user_config) == "table" and user_config.options or {}
-vim_opts(opts)
+vim.filetype.add {
+	extension = {
+		zsh = "sh",
+		sh = "sh", -- force sh-files with zsh-shebang to still get sh as filetype
+	},
+
+	filename = {
+		[".zshrc"] = "sh",
+		[".zshenv"] = "sh",
+	},
+}

@@ -14,7 +14,7 @@ require("toggleterm").setup({
 	},
 })
 
-local create_floating_terminal = require("core.utils.utils").create_floating_terminal
+local create_floating_terminal = require("core.utils").create_floating_terminal
 local term = require("toggleterm.terminal")
 
 local M = {}

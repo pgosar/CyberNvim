@@ -13,7 +13,8 @@ require("lualine").setup({
 	options = {
 		theme = "gruvbox-material",
 		globalstatus = false,
-		disabled_filetypes = { "alpha", "lazy", "mason", "netrw" },
+		disabled_filetypes = { statusline = { "alpha" } },
+
 	},
 	sections = {
 		lualine_a = { "mode" },

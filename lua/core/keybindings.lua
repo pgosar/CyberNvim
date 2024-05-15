@@ -1,16 +1,18 @@
-local map = require("core.utils.utils").map
+local map = require("core.utils").map
 
-local exist, user_config = pcall(require, "user.user_config")
-local group = exist and type(user_config) == "table" and user_config.enable_plugins or {}
-local enabled = require("core.utils.utils").enabled
+local group = {}
+local enabled = require("core.utils").enabled
 vim.g.mapleader = " " -- the leader key is the spacebar
 local M = {}
 
 -- Trouble
 if enabled(group, "trouble") then
-	map("n", "<leader>xd", "<CMD>TroubleToggle lsp_definitions<CR>")
-	map("n", "<leader>xr", "<CMD>TroubleToggle lsp_references<CR>")
-	map("n", "<leader>xx", "<CMD>TroubleToggle<CR>")
+	map("n", "<leader>xd", "<CMD>Trouble lsp_definitions toggle<CR>")
+	map("n", "<leader>xr", "<CMD>Trouble lsp_references toggle<CR>")
+	map("n", "<leader>xQ", "<CMD>Trouble qflist toggle<CR>", { desc = "Quickfix List (Trouble)" })
+	map("n", "<leader>xL", "<CMD>Trouble loclist toggle<CR>", { desc = "Location List (Trouble)" })
+	map("n", "<leader>xx", "<CMD>Trouble diagnostics toggle<CR>", { desc = "Diagnostics (Trouble)" })
+	map("n", "<leader>xX", "<CMD>Trouble diagnostics toggle filter.buf=0<CR>", { desc = "Buffer Diagnostics (Trouble)" })
 end
 
 -- UFO
@@ -47,6 +49,7 @@ if enabled(group, "telescope") then
 	map("n", "<leader>fg", "<CMD>Telescope live_grep<CR>")
 	map("n", "<leader>fp", "<CMD>Telescope lazy_plugins<CR>", { desc = "Search For Plugins" })
 	map("n", "<leader>fh", "<CMD>Telescope help_tags<CR>")
+	map("n", "<leader>fs", "<CMD>Telescope symbols<CR>")
 	map("n", "<leader>fu", "<cmd>Telescope undo<cr>")
 end
 
@@ -175,7 +178,6 @@ if enabled(group, "todo-comments") then
 	end, { desc = "Previous todo comment" })
 
 	-- You can also specify a list of valid jump keywords
-
 	map("n", "]t", function()
 		require("todo-comments").jump_next({ keywords = { "ERROR", "WARNING" } })
 	end, { desc = "Next error/warning todo comment" })
