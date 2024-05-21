@@ -36,7 +36,9 @@ cmp.setup({
 	end,
 	preselect = "none",
 	performance = {
-		max_view_entries = 5,
+		max_view_entries = 10,
+		debounce = 5,
+		throttle = 5,
 	},
 	completion = {
 		keyword_length = 1,
@@ -105,8 +107,17 @@ cmp.setup({
 	},
 	sources = {
 		{ name = "luasnip" },
-		{ name = "nvim_lsp" },
+		-- { name = "nvim_lsp" },
 		{ name = "nvim_lua" },
 		{ name = "rg" },
+		-- { name = "treesitter" },
+		{
+			name = 'look',
+			keyword_length = 2,
+			option = {
+				convert_case = true,
+				loud = true
+			}
+		},
 	},
 })

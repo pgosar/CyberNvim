@@ -165,6 +165,7 @@ require("lazy").setup({
 			"L3MON4D3/LuaSnip",
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-nvim-lua",
+			"octaltree/cmp-look",
 			"lukas-reineke/cmp-rg",
 			"mireq/luasnip-snippets",
 			"onsails/lspkind.nvim",
