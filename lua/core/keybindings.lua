@@ -78,7 +78,7 @@ if enabled(group, "lsp_zero") then
 	-- lsp agnostic global rename
 	map("n", "<leader>ca", "<CMD>lua buf.code_action()<CR>")
 	map("n", "<leader>rn", "<CMD>lua buf.rename()<CR>")
-	map("n", "K", "<CMD>lua buf.hover()<CR>")
+	-- map("n", "K", "<CMD>lua buf.hover()<CR>")
 	map("n", "gD", "<CMD>lua buf.definition()<CR>")
 	map("n", "gd", "<CMD>lua buf.declaration()<CR>")
 	map("n", "gi", "<CMD>lua buf.implementation()<CR>")
