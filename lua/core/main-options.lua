@@ -26,6 +26,7 @@ vim_opts({
 		laststatus = 3,
 		linebreak = true,
 		mouse = "a",
+		mousemoveevent = true,
 		number = true,
 		numberwidth = 6,
 		relativenumber = true,
@@ -46,12 +47,12 @@ vim_opts({
 
 vim.filetype.add {
 	extension = {
-		zsh = "sh",
-		sh = "sh", -- force sh-files with zsh-shebang to still get sh as filetype
+		zsh = "bash",
+		sh = "bash", -- force sh-files with zsh-shebang to still get sh as filetype
 	},
 
 	filename = {
-		[".zshrc"] = "sh",
-		[".zshenv"] = "sh",
+		[".zshrc"] = "bash",
+		[".zshenv"] = "bash",
 	},
 }

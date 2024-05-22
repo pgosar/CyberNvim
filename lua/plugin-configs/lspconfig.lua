@@ -13,7 +13,5 @@ require("lspconfig").basedpyright.setup({
 		},
 	},
 })
-require("lspconfig").clangd.setup({ capabilities = capabilities })
-require("lspconfig").markdown_oxide.setup({ capabilities = capabilities })
-require("lspconfig").marksman.setup({ capabilities = capabilities })
-require("lspconfig").lua_ls.setup(lsp_zero.nvim_lua_ls())
+
+lsp_zero.setup_servers({ "clangd", "markdown_oxide", "marksman", "lua_ls" })
