@@ -5,10 +5,10 @@ capabilities.offsetEncoding = { "utf-16" }
 lsp.extend_lspconfig()
 
 lsp.set_sign_icons({
-	error = "✘",
-	warn = "▲",
-	hint = "⚑",
-	info = "»",
+	error = " ",
+	warn = " ",
+	hint = " ",
+	info = " ",
 })
 
 capabilities.textDocument.foldingRange = {

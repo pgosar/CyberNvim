@@ -389,6 +389,12 @@ require("lazy").setup({
 		end,
 	},
 	{
+		"roobert/action-hints.nvim",
+		config = function()
+			require("plugin-configs.action-hints")
+		end,
+	},
+	{
 		"Bekaboo/dropbar.nvim",
 		"Myzel394/easytables.nvim",
 		"dstein64/nvim-scrollview",
@@ -399,16 +405,14 @@ require("lazy").setup({
 		"tpope/vim-fugitive",
 		"tpope/vim-rhubarb",
 		"tpope/vim-sleuth",
-		{ "NvChad/nvim-colorizer.lua",     opts = {} },
+		{ "NvChad/nvim-colorizer.lua", opts = {} },
 		{ "briangwaltney/paren-hint.nvim", opts = {} },
-		{ "chentoast/marks.nvim",          opts = {} },
-		{ "nacro90/numb.nvim",             opts = {} },
-		{ "roobert/action-hints.nvim",     opts = {} },
+		{ "chentoast/marks.nvim", opts = {} },
+		{ "nacro90/numb.nvim", opts = {} },
 		{ "spywhere/detect-language.nvim", opts = {} },
-		{ "tzachar/highlight-undo.nvim",   opts = {} },
-		{ "yamatsum/nvim-cursorline",      opts = {} },
+		{ "tzachar/highlight-undo.nvim", opts = {} },
+		{ "yamatsum/nvim-cursorline", opts = {} },
 	},
-
 }, {
 	performance = {
 		rtp = {
