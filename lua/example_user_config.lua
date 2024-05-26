@@ -60,11 +60,11 @@ M.enable_plugins = {
 	aerial = true,
 	alpha = true,
 	bufferline = true,
-	comment = true,
 	copilot = true,
 	dressing = true,
 	gitsigns = true,
 	hop = true,
+	img_clip = true,
 	indent_blankline = true,
 	lsp_zero = true,
 	lualine = true,
@@ -90,8 +90,8 @@ M.enable_plugins = {
 	trouble = true,
 	twilight = true,
 	whichkey = true,
+	windline = true,
 	zen = true,
-	img_paste = true,
 }
 
 -- add extra plugins in here

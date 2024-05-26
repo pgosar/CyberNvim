@@ -3,6 +3,7 @@ local cmd = vim.api.nvim_create_autocmd
 
 local exist, user_config = pcall(require, "user.user_config")
 local group = exist and type(user_config) == "table" and user_config.autocommands or {}
+local plugin = exist and type(user_config) == "table" and user_config.enable_plugins or {}
 local enabled = require("core.utils.utils").enabled
 
 -- disables code folding for the start screen
@@ -66,7 +67,7 @@ if enabled(group, "session_saved_notification") then
 end
 
 -- enables coloring hexcodes and color names in css, jsx, etc.
-if enabled(group, "css_colorizer") then
+if enabled(group, "css_colorizer") and enabled(plugin, "colorizer") then
 	cmd({ "Filetype" }, {
 		desc = "activate colorizer",
 		pattern = "css,scss,html,xml,svg,js,jsx,ts,tsx,php,vue",
@@ -81,7 +82,7 @@ if enabled(group, "css_colorizer") then
 end
 
 -- disables autocomplete in some filetypes
-if enabled(group, "cmp") then
+if enabled(group, "cmp") and enabled(plugin, "cmp") then
 	cmd({ "FileType" }, {
 		desc = "disable cmp in certain filetypes",
 		pattern = "gitcommit,gitrebase,text",

@@ -55,7 +55,7 @@ require("lazy").setup({
 	},
 	{
 		"HakonHarnes/img-clip.nvim",
-		cond = enabled(group, "img_paste"),
+		cond = enabled(group, "img_clip"),
 		event = "BufEnter",
 	},
 	{
@@ -215,6 +215,7 @@ require("lazy").setup({
 	{
 		"nvim-treesitter/nvim-treesitter",
 		cond = enabled(group, "treesitter"),
+		build = ":TSUpdate",
 		event = { "BufReadPost", "BufNewFile" },
 		run = function()
 			require("nvim-treesitter.install").update({ with_sync = true })
@@ -267,8 +268,7 @@ require("lazy").setup({
 		dependencies = {
 			{
 				"nvim-telescope/telescope-fzf-native.nvim",
-				run = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build \
-         build --config Release && cmake --install build --prefix build",
+				build = "make",
 			},
 		},
 		config = function()
@@ -306,6 +306,7 @@ require("lazy").setup({
 	},
 	{
 		"windwp/windline.nvim",
+		cond = enabled(group, "windline"),
 		event = "VeryLazy",
 		config = function()
 			require("wlsample.evil_line")
