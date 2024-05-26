@@ -20,6 +20,6 @@ lsp.format_on_save({
 		async = false,
 		timeout_ms = 10000,
 	},
-	servers = require("user.user_config").formatting_servers,
+	servers = user_config.formatting_servers,
 })
 lsp.setup()
