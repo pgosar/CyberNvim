@@ -45,7 +45,6 @@ M.options = {
 -- take a look at the autocommands file in lua/core for more information
 -- Default value is true if left blank
 M.autocommands = {
-	inlay_hints = true,
 	alpha_folding = true,
 	treesitter_folds = true,
 	trailing_whitespace = true,
@@ -67,7 +66,6 @@ M.enable_plugins = {
 	gitsigns = true,
 	hop = true,
 	indent_blankline = true,
-	inlay_hints = true,
 	lsp_zero = true,
 	lualine = true,
 	neodev = true,

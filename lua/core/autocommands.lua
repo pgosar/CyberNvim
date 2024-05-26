@@ -5,21 +5,6 @@ local exist, user_config = pcall(require, "user.user_config")
 local group = exist and type(user_config) == "table" and user_config.autocommands or {}
 local enabled = require("core.utils.utils").enabled
 
--- enables suport for inlay hints with virtual text
-if enabled(group, "inlay_hints") then
-	cmd("LspAttach", {
-		group = augroup("LspAttach_inlayhints", { clear = true }),
-		callback = function(args)
-			if not (args.data and args.data.client_id) then
-				return
-			end
-			local bufnr = args.buf
-			local client = vim.lsp.get_client_by_id(args.data.client_id)
-			require("lsp-inlayhints").on_attach(client, bufnr)
-		end,
-	})
-end
-
 -- disables code folding for the start screen
 if enabled(group, "alpha_folding") then
 	cmd({ "FileType" }, {
@@ -99,7 +84,7 @@ end
 if enabled(group, "cmp") then
 	cmd({ "FileType" }, {
 		desc = "disable cmp in certain filetypes",
-		pattern = "gitcommit,gitrebase,text,markdown",
+		pattern = "gitcommit,gitrebase,text",
 		group = augroup("cmp_disable", { clear = true }),
 		command = "lua require('cmp').setup.buffer { enabled = false}",
 	})

@@ -29,14 +29,6 @@ require("lazy").setup({
 		end,
 	},
 	{
-		"numToStr/Comment.nvim",
-		cond = enabled(group, "comment"),
-		event = "VeryLazy",
-		config = function()
-			require("Comment").setup()
-		end,
-	},
-	{
 		"stevearc/dressing.nvim",
 		cond = enabled(group, "dressing"),
 		event = "VeryLazy",
@@ -72,14 +64,6 @@ require("lazy").setup({
 		event = "VimEnter",
 		config = function()
 			require("ibl").setup()
-		end,
-	},
-	{
-		"lvimuser/lsp-inlayhints.nvim",
-		cond = enabled(group, "inlay_hints"),
-		event = "VeryLazy",
-		config = function()
-			require("lsp-inlayhints").setup()
 		end,
 	},
 	{

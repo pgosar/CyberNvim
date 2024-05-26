@@ -145,7 +145,7 @@ For more information, be sure to check the repository's wiki.
 
 ### Dependencies
 
-* [Neovim 0.8+, built with LuaJIT](https://github.com/neovim/neovim/releases/tag/stable)
+* [Neovim 0.10.0+, built with LuaJIT](https://github.com/neovim/neovim/releases/tag/stable)
 * Optional Dependencies
   * [A Nerd Font](https://www.nerdfonts.com/font-downloads)
   * [Ripgrep](https://github.com/BurntSushi/ripgrep) for live grep in Telescope
