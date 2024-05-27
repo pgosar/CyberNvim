@@ -20,6 +20,7 @@ require("noice").setup({
 		{ filter = { find = "changes;" }, opts = { skip = true } },
 		{ filter = { find = "indent" }, opts = { skip = true } },
 		{ filter = { find = "move" }, opts = { skip = true } },
+		{ filter = { find = "No information available" }, opts = { skip = true } },
 	},
 	cmdline = { view = "cmdline" },
 	views = {
