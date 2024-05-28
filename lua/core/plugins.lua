@@ -217,17 +217,20 @@ require("lazy").setup({
 		cond = enabled(group, "treesitter"),
 		build = ":TSUpdate",
 		event = { "BufReadPost", "BufNewFile" },
-		run = function()
-			require("nvim-treesitter.install").update({ with_sync = true })
-		end,
 		config = function()
 			require("plugin-configs.treesitter")
 		end,
 		dependencies = {
 			{ "nvim-treesitter/nvim-treesitter-textobjects" },
-			{ "nvim-treesitter/nvim-treesitter-context" },
-			{ "windwp/nvim-ts-autotag" },
-			{ "HiPhish/rainbow-delimiters.nvim" },
+			{
+				"nvim-treesitter/nvim-treesitter-context",
+				cond = enabled(group, "context"),
+				config = function()
+					require("plugin-configs.treesitter-context")
+				end,
+			},
+			{ "windwp/nvim-ts-autotag", cond = enabled(group, "autotag") },
+			{ "HiPhish/rainbow-delimiters.nvim", cond = enabled(group, "rainbow") },
 			{ "JoosepAlviste/nvim-ts-context-commentstring" },
 		},
 	},
