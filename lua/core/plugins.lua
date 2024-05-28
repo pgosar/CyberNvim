@@ -70,7 +70,7 @@ require("lazy").setup({
 		"VonHeikemen/lsp-zero.nvim",
 		cond = enabled(group, "lsp_zero"),
 		event = "VimEnter",
-		branch = "v2.x",
+		branch = "v3.x",
 		config = function()
 			require("plugin-configs.lsp")
 		end,
