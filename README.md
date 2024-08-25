@@ -102,7 +102,7 @@ Clone the repository and symlink it with your `~/.config/nvim` directory with
 
 ``` bash
 git clone https://github.com/pgosar/CyberNvim
-ln -s ~/path/to/CyberNvim/nvim ~/.config/nvim
+ln -s ~/path/to/CyberNvim ~/.config/nvim
 ```
 
 Alternatively, directly clone it to the nvim folder:
