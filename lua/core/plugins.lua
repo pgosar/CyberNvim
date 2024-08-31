@@ -72,6 +72,7 @@ require("lazy").setup({
 		event = "VimEnter",
 		branch = "v3.x",
 		config = function()
+                        require('mason').setup()
 			require("plugin-configs.lsp")
 		end,
 		dependencies = {
