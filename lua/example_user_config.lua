@@ -109,6 +109,10 @@ M.plugins = {
 	},
 }
 
+M.lsp_config = {
+	clangd = {},
+}
+
 -- add extra configuration options here, like extra autocmds etc.
 -- feel free to create your own separate files and require them in here
 M.user_conf = function()
